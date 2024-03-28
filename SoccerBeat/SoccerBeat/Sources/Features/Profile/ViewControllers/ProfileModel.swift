@@ -94,6 +94,8 @@ final class ProfileModel: ObservableObject {
     }
     
     private func calculateAverageAbility(_ workouts: [WorkoutData]) {
+        guard !workouts.isEmpty else { return }
+        
         for workout in workouts {
             averageAbility.maxHeartRate += workout.maxHeartRate
             averageAbility.minHeartRate += workout.minHeartRate
