@@ -42,7 +42,7 @@ final class HealthInteractor: ObservableObject {
     ]
     
     // Entire user workouts in HealthKit data.
-    private var workoutData: [WorkoutData] = []
+//    private var workoutData: [WorkoutData] = []
     
     // Send when permission is granted by the user.
     var authSuccess = PassthroughSubject<(), Never>()
@@ -60,14 +60,7 @@ final class HealthInteractor: ObservableObject {
     @Published var recent9Games = [WorkoutData]()
     @Published var recent4Games = [WorkoutData]()
     
-    var monthly: [String: [WorkoutData]] {
-        var dict = [String: [WorkoutData]]()
-        workoutData.forEach { match in
-            let yearMonth = Array(match.date.split(separator: "-")[...1]).joined(separator: "-")
-            dict[yearMonth, default: []].append(match)
-        }
-        return dict
-    }
+    private(set) var monthly = [String: [WorkoutData]]()
     
     func haveNoLocationAuthorization() -> Bool {
         return locationManager.authorizationStatus == .denied
@@ -101,7 +94,7 @@ final class HealthInteractor: ObservableObject {
         
         healthStore.requestAuthorization(toShare: typesToShare, read: typesToRead) { success, error in
             if success && !self.haveNoHealthAuthorization() {
-                    self.authSuccess.send()
+                self.authSuccess.send()
             } else {
                 NSLog("Error in getting healthstore reading authorization. ")
             }
@@ -114,12 +107,14 @@ final class HealthInteractor: ObservableObject {
         let workouts = await fetchHKWorkouts()
         
         // Convert WorkoutData(Bussiness Model)
+        var workoutData = [WorkoutData]()
         for (index, workout) in workouts.enumerated() {
             let workoutDatum = await convert(from: workout, at: index)
             workoutData.append(workoutDatum)
         }
         
-        settingForChartView()
+        settingForChartView(workoutData)
+        monthly = divideWorkoutsByMonthly(workoutData)
         self.fetchWorkoutsSuccess.send(workoutData)
     }
     
@@ -145,11 +140,6 @@ final class HealthInteractor: ObservableObject {
         else { return  WorkoutData.blankExample }
         
         let velocityKMPH = Double((velocityMPS * 3.6).rounded(at: 2)) ?? 0
-        
-        // TODO: - badgeData를 WorkoutData로 바꾸는 정도만 해야할 듯
-        // 바뀌어야 하는 이유, workoutData 가 있으면 for문 돌면서 뱃지를 계산하면 될 것
-//        let matchBadge = calculateBadgeData(distance: distance, sprint: sprintCount, velocity: velocityKMPH)
-        
         let displayedTime = String(Int(workout.duration)/60) + " : " + String(Int(workout.duration) % 60)
         let dotCount = routes.count
         return WorkoutData(dataID: index+1,
@@ -229,13 +219,13 @@ final class HealthInteractor: ObservableObject {
 
 extension HealthInteractor {
     
-    private func settingForChartView() {
+    private func settingForChartView(_ workouts: [WorkoutData]) {
         let nineGames: [WorkoutData] = {
-            let games = readRecentMatches(for: 9)
+            let games = readRecentMatches(with: workouts, for: 9)
             return sortWorkoutsForChart(games)
         }()
         let fourGames: [WorkoutData] = {
-            let games = readRecentMatches(for: 4)
+            let games = readRecentMatches(with: workouts, for: 4)
             let sorted = sortWorkoutsForChart(games)
             return makeBlankWorkouts(with: sorted)
         }()
@@ -243,14 +233,14 @@ extension HealthInteractor {
         recent9Games = nineGames
     }
     
-    private func readRecentMatches(for count: Int) -> [WorkoutData] {
-        guard !workoutData.isEmpty else { return [] }
-        guard workoutData.count >= count  else { return workoutData }
-        let startIndex = workoutData.count - count
-        let lastIndex = workoutData.count-1
+    private func readRecentMatches(with workouts: [WorkoutData], for count: Int) -> [WorkoutData] {
+        guard !workouts.isEmpty else { return [] }
+        guard workouts.count >= count  else { return workouts }
+        let startIndex = workouts.count - count
+        let lastIndex = workouts.count-1
         var recentMatches = [WorkoutData]()
         for i in startIndex...lastIndex {
-            recentMatches.append(workoutData[i])
+            recentMatches.append(workouts[i])
         }
         return recentMatches
     }
@@ -273,4 +263,14 @@ extension HealthInteractor {
             preWork.formattedDate < postWork.formattedDate
         }
     }
+    
+    private func divideWorkoutsByMonthly(_ workouts: [WorkoutData]) -> [String: [WorkoutData]] {
+        var dict = [String: [WorkoutData]]()
+        workouts.forEach { match in
+                let yearMonth = Array(match.date.split(separator: "-")[...1]).joined(separator: "-")
+                dict[yearMonth, default: []].append(match)
+            }
+        return dict
+    }
+    
 }
