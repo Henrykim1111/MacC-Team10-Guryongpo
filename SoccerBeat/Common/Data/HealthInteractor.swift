@@ -94,7 +94,9 @@ final class HealthInteractor: ObservableObject {
         
         healthStore.requestAuthorization(toShare: typesToShare, read: typesToRead) { success, error in
             if success && !self.haveNoHealthAuthorization() {
-                self.authSuccess.send()
+                DispatchQueue.main.async {
+                    self.authSuccess.send()
+                }
             } else {
                 NSLog("Error in getting healthstore reading authorization. ")
             }
