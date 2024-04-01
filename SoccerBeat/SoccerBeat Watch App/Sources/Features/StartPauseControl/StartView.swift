@@ -42,9 +42,7 @@ struct StartView: View {
         }
         .buttonStyle(.borderless)
     }
-    
-    
-    
+
     private func requestAuthorization() {
         workoutManager.requestAuthorization()
     }
