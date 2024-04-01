@@ -186,13 +186,6 @@ struct MainView: View {
         .refreshable {
             healthInteractor.requestAuthorization()
         }
-        .onReceive(healthInteractor.authSuccess, perform: {
-            Task {
-                print("ContentView: attempting to fetch all data..")
-                await healthInteractor.fetchWorkoutData()
-            }
-        })
-        
         .padding(.horizontal)
         .navigationTitle("")
     }
