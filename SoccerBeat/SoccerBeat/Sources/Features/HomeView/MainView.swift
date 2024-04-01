@@ -17,7 +17,7 @@ struct MainView: View {
     @Binding var workouts: [WorkoutData]
     
     @State var isShowingBug = false
-    let alertTitle: String = "문제가 있으신가요?"
+    private let alertTitle = "문제가 있으신가요?"
     
     var body: some View {
         ScrollView(showsIndicators: false) {
@@ -186,13 +186,6 @@ struct MainView: View {
         .refreshable {
             healthInteractor.requestAuthorization()
         }
-        .onReceive(healthInteractor.authSuccess, perform: {
-            Task {
-                print("ContentView: attempting to fetch all data..")
-                await healthInteractor.fetchWorkoutData()
-            }
-        })
-        
         .padding(.horizontal)
         .navigationTitle("")
     }
