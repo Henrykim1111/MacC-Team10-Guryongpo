@@ -90,6 +90,7 @@
 
 ## 🗂️ Folder Structure
 
+```
 ⚽️ SoccerBeat
 ├── 🗂️ Common
 │   ├── 📁 Data
@@ -123,6 +124,7 @@
     ├── 🗒️ Entitlements.plist
     ├── 🗒️ Info.plist
     └── 📁 (BeforeRemoved)
+```
 
 </br>
 
