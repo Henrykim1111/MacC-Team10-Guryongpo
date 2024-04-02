@@ -12,8 +12,8 @@ struct SoccerBeatApp: App {
     @StateObject var soundManager = SoundManager()
     @StateObject var healthInteracter = HealthInteractor.shared
     @StateObject var profileModel = ProfileModel(healthInteractor: HealthInteractor.shared)
-    @State var noHealth: Bool
-    @State var noLocation: Bool
+    @State private var noHealth: Bool
+    @State private var noLocation: Bool
     
     init() {
         self.noHealth = HealthInteractor.shared.haveNoHealthAuthorization()
@@ -36,8 +36,8 @@ struct SoccerBeatApp: App {
                         .environmentObject(profileModel)
                 }
             }.onReceive(NotificationCenter.default.publisher(for: UIApplication.didBecomeActiveNotification)) { _ in
-                noHealth = healthInteracter.haveNoHealthAuthorization() ? true : false
-                noLocation = healthInteracter.haveNoLocationAuthorization() ? true : false
+                noHealth = healthInteracter.haveNoHealthAuthorization()
+                noLocation = healthInteracter.haveNoLocationAuthorization()
             }
         }
     }
