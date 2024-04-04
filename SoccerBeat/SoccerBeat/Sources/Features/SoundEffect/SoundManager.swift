@@ -40,6 +40,7 @@ final class SoundManager: ObservableObject {
             try session.setActive(true)
             
             backgroundPlayer = try AVAudioPlayer(contentsOf: backgroundURL)
+            backgroundPlayer?.volume = 0.5
             cardFrontPlayer = try AVAudioPlayer(contentsOf: cardEffectURL)
             cardBackPlayer = try AVAudioPlayer(contentsOf: cardEffectURL)
             photoSelectPlayer = try AVAudioPlayer(contentsOf: photoSelectEffectURL)
