@@ -14,9 +14,11 @@ final class SoundManager: ObservableObject {
     private var cardBackPlayer: AVAudioPlayer?
     private var photoSelectPlayer: AVAudioPlayer?
     
-    @Published var isMusicPlaying = true
+    @Published var isMusicPlaying: Bool
     
     init() {
+        isMusicPlaying = UserDefaults.standard.bool(forKey: "isMusicPlaying")
+        print("musicPlaying? ", isMusicPlaying)
         setupPlayer()
     }
     
@@ -32,7 +34,13 @@ final class SoundManager: ObservableObject {
         
         // 음악 파일 별로 플레이어 할당
         do {
+            
+            let session = AVAudioSession.sharedInstance()
+            try session.setCategory(.ambient, mode: .default)
+            try session.setActive(true)
+            
             backgroundPlayer = try AVAudioPlayer(contentsOf: backgroundURL)
+            backgroundPlayer?.volume = 0.5
             cardFrontPlayer = try AVAudioPlayer(contentsOf: cardEffectURL)
             cardBackPlayer = try AVAudioPlayer(contentsOf: cardEffectURL)
             photoSelectPlayer = try AVAudioPlayer(contentsOf: photoSelectEffectURL)
@@ -41,7 +49,7 @@ final class SoundManager: ObservableObject {
         }
         
         // 상태 불러와서 저장
-        self.isMusicPlaying = UserDefaults.standard.bool(forKey: "isMusicPlaying")
+        
     }
     
     func playBackground() {

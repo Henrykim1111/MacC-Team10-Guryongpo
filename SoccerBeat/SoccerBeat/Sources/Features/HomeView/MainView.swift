@@ -175,11 +175,6 @@ struct MainView: View {
                 
                 AnalyticsView()
             }
-            .onAppear {
-                if !soundManager.isMusicPlaying {
-                    soundManager.toggleMusic()
-                }
-            }
         }
         .refreshable {
             healthInteractor.requestAuthorization()
