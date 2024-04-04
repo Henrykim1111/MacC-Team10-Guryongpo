@@ -145,11 +145,6 @@ struct EmptyDataView: View {
                 
                 Spacer()
             }
-            .onAppear {
-                if !soundManager.isMusicPlaying {
-                    soundManager.toggleMusic()
-                }
-            }
         .padding(.horizontal)
         .navigationTitle("")
     }
