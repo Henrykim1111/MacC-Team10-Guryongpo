@@ -23,11 +23,69 @@ struct GameProgressView: View {
     
     // MARK: - Body
     var body: some View {
+        GeometryReader { proxy in
+            TabView {
+                Group {
+                    progressView
+                    
+                    Text("2")
+                }
+                .rotationEffect(.degrees(-90)) // Rotate content
+                .frame(
+                    width: proxy.size.width,
+                    height: proxy.size.height
+                )
+            }
+            .frame(
+                width: proxy.size.height, // Height & width swap
+                height: proxy.size.width
+            )
+            .rotationEffect(.degrees(90), anchor: .topLeading) // Rotate TabView
+            .offset(x: proxy.size.width) // Offset back into screens bounds
+            .tabViewStyle(
+                PageTabViewStyle(indexDisplayMode: .never)
+            )
+        }
+    }
+}
+
+#Preview {
+    GameProgressView()
+        .environmentObject(DIContianer.makeWorkoutManager())
+        .environmentObject(DIContianer.makeMatricsIndicator())
+}
+
+private struct ProgressTimelineSchedule: TimelineSchedule {
+    var startDate: Date
+    var isPaused: Bool
+    
+    init(from startDate: Date, isPaused: Bool) {
+        self.startDate = startDate
+        self.isPaused = isPaused
+    }
+    
+    func entries(from startDate: Date, mode: TimelineScheduleMode) -> AnyIterator<Date> {
+        var baseSchedule = PeriodicTimelineSchedule(from: self.startDate,
+                                                    by: (mode == .lowFrequency ? 1.0 : 1.0 / 30.0))
+            .entries(from: startDate, mode: mode)
+        
+        return AnyIterator<Date> {
+            guard !isPaused else { return nil }
+            return baseSchedule.next()
+        }
+    }
+}
+
+extension GameProgressView {
+    @ViewBuilder
+    var progressView: some View {
         let timelineSchedule = ProgressTimelineSchedule(from: whenTheGameStarted,
                                                         isPaused: isGamePaused)
-        return TimelineView(timelineSchedule) { context in
+        TimelineView(timelineSchedule) { context in
             VStack(alignment: .center) {
                 Spacer()
+                // TODO: - 여기에 심박존 들어가면 좋을 듯
+                
                 // MARK: - 경기 시간
                 VStack {
                     let elapsedTime = workoutManager.builder?.elapsedTime(at: context.date) ?? 0
@@ -98,33 +156,6 @@ struct GameProgressView: View {
                 let unit = "km/h"
                 SprintSheetView(speedKPH: sprintSpeedKPH + unit)
             }
-        }
-    }
-}
-
-#Preview {
-    GameProgressView()
-        .environmentObject(DIContianer.makeWorkoutManager())
-        .environmentObject(DIContianer.makeMatricsIndicator())
-}
-
-private struct ProgressTimelineSchedule: TimelineSchedule {
-    var startDate: Date
-    var isPaused: Bool
-    
-    init(from startDate: Date, isPaused: Bool) {
-        self.startDate = startDate
-        self.isPaused = isPaused
-    }
-    
-    func entries(from startDate: Date, mode: TimelineScheduleMode) -> AnyIterator<Date> {
-        var baseSchedule = PeriodicTimelineSchedule(from: self.startDate,
-                                                    by: (mode == .lowFrequency ? 1.0 : 1.0 / 30.0))
-            .entries(from: startDate, mode: mode)
-        
-        return AnyIterator<Date> {
-            guard !isPaused else { return nil }
-            return baseSchedule.next()
         }
     }
 }
