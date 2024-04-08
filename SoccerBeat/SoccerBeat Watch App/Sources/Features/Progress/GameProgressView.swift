@@ -26,12 +26,11 @@ struct GameProgressView: View {
         GeometryReader { proxy in
             TabView {
                 Group {
+                    // MARK: - Vertical Page 1
                     progressView
                     
                     VStack {
-                        zoneBar
-                        
-                        BPMView(textGradient: .zone3Bpm)
+                        BPMView()
                     }
                 }
                 .rotationEffect(.degrees(-90)) // Rotate content
@@ -82,10 +81,11 @@ extension GameProgressView {
         TimelineView(timelineSchedule) { context in
             VStack(alignment: .center) {
                 Spacer()
-                // TODO: - 여기에 심박존 들어가면 좋을 듯
+                zoneBar
                 
                 // MARK: - 경기 시간
                 VStack {
+                    
                     let elapsedTime = workoutManager.builder?.elapsedTime(at: context.date) ?? 0
                     ElapsedTimeView(elapsedSec: elapsedTime)
                 }
@@ -138,7 +138,7 @@ extension GameProgressView {
                     }
                 }
                 Spacer()
-                // Sprint Gauge bar
+                // MARK: - Sprint Gauge bar
                 SprintView()
                 Spacer()
             }
@@ -159,20 +159,71 @@ extension GameProgressView {
 }
 
 extension GameProgressView {
+    enum HeartRateZone: Int {
+        case one = 1, two, three, four, five
+        
+        var text: String {
+            return "zone".uppercased() + "\(self.rawValue)"
+        }
+    }
+    
+    private var zone: HeartRateZone {
+        switch matricsIndicator.heartZone {
+        case 1: return .one
+        case 2: return .two
+        case 3: return .three
+        case 4: return .four
+        default: return .five
+        }
+    }
+    
+    private var zoneBPMGradient: LinearGradient {
+        switch zone {
+        case .one:
+            return .zone1Bpm
+        case .two:
+            return .zone2Bpm
+        case .three:
+            return .zone3Bpm
+        case .four:
+            return .zone4Bpm
+        case .five:
+            return .zone5Bpm
+        }
+    }
+    
+    private var currentZoneBarGradient: LinearGradient {
+        switch zone {
+        case .one:
+            return .zone1CurrentZoneBar
+        case .two:
+            return .zone2CurrentZoneBar
+        case .three:
+            return .zone3CurrentZoneBar
+        case .four:
+            return .zone4CurrentZoneBar
+        case .five:
+            return .zone5CurrentZoneBar
+        }
+    }
+    
     @ViewBuilder
     private var zoneBar: some View {
-        let circleHeight = CGFloat(14.0)
-        let currentZoneWidth = CGFloat(51.0)
-        
-        HStack {
-            ForEach(1...5, id: \.self) { index in
-                if zone.rawValue == index {
-                    currentZone
-                        .frame(width: currentZoneWidth, height: circleHeight)
-                } else {
-                    Circle()
-                        .frame(width: circleHeight, height: circleHeight)
-                        .foregroundStyle(.inactiveZone)
+
+        GeometryReader { geo in
+            let circleHeight = geo.size.height
+            let currentZoneWidth = circleHeight * 5
+            
+            HStack(spacing: 8) {
+                ForEach(1...5, id: \.self) { index in
+                    if zone.rawValue == index {
+                        currentZone
+                            .frame(width: currentZoneWidth, height: circleHeight)
+                    } else {
+                        Circle()
+                            .frame(width: circleHeight, height: circleHeight)
+                            .foregroundStyle(.inactiveZone)
+                    }
                 }
             }
         }

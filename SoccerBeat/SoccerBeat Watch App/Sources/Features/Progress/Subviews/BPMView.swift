@@ -8,13 +8,27 @@
 import SwiftUI
 
 struct BPMView: View {
+    @EnvironmentObject var matrics: MatricsIndicator
     @EnvironmentObject var workoutManager: WorkoutManager
     @State private var firstCircle = 1.0
     @State private var secondCircle = 1.0
-    let textGradient: LinearGradient
+    private var textGradient: LinearGradient {
+        switch matrics.heartZone {
+        case 1:
+            return .zone1Bpm
+        case 2:
+            return .zone2Bpm
+        case 3:
+            return .zone3Bpm
+        case 4:
+            return .zone4Bpm
+        default:
+            return .zone5Bpm
+        }
+    }
     
     var body: some View {
-        let text = Text(workoutManager.bpmForText)
+        let text = Text(matrics.bpmForText)
         return ZStack {
             Color.clear
             // 기본 텍스트
@@ -64,14 +78,14 @@ struct Particle: Identifiable {
 // MARK: BasicLineView 를 여러 개 퍼트려서 파동처럼 퍼지고 사라지게 만드는 뷰
 struct LineBPMView: View {
     
-    @EnvironmentObject var workoutManager: WorkoutManager
+    @EnvironmentObject var matrics: MatricsIndicator
     @State private var pulsedHearts: [Particle] = []
     
     var body: some View {
         VStack {
             ZStack {
                 Color.clear
-                TimelineView(.animation(minimumInterval: 1 - (Double(workoutManager.heartZone)/10), paused: false)) { timeline in
+                TimelineView(.animation(minimumInterval: 1 - (Double(matrics.heartZone)/10), paused: false)) { timeline in
                     Canvas { context, size in
                         for heart in pulsedHearts {
                             if let resolvedView = context.resolveSymbol(id: heart.id) {
@@ -82,7 +96,7 @@ struct LineBPMView: View {
                             }
                         }
                     } symbols: {
-                        if workoutManager.isBPMActive {
+                        if matrics.isBPMActive {
                             ForEach(pulsedHearts) {
                                 BasicLineView()
                                     .id($0.id)
@@ -108,10 +122,10 @@ struct LineBPMView: View {
 // MARK: 파동처럼 퍼지는 기본 뷰
 struct BasicLineView: View {
     
-    @EnvironmentObject var workoutManager: WorkoutManager
+    @EnvironmentObject var matrics: MatricsIndicator
     @State private var startAnimation: Bool = false
     var body: some View {
-        let text = Text(workoutManager.bpmForText)
+        let text = Text(matrics.bpmForText)
         return ZStack {
             Color.clear
             // 기본 텍스트
