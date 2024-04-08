@@ -28,7 +28,11 @@ struct GameProgressView: View {
                 Group {
                     progressView
                     
-                    Text("2")
+                    VStack {
+                        zoneBar
+                        
+                        BPMView(textGradient: .zone3Bpm)
+                    }
                 }
                 .rotationEffect(.degrees(-90)) // Rotate content
                 .frame(
@@ -47,12 +51,6 @@ struct GameProgressView: View {
             )
         }
     }
-}
-
-#Preview {
-    GameProgressView()
-        .environmentObject(DIContianer.makeWorkoutManager())
-        .environmentObject(DIContianer.makeMatricsIndicator())
 }
 
 private struct ProgressTimelineSchedule: TimelineSchedule {
@@ -158,4 +156,59 @@ extension GameProgressView {
             }
         }
     }
+}
+
+extension GameProgressView {
+    @ViewBuilder
+    private var zoneBar: some View {
+        let circleHeight = CGFloat(14.0)
+        let currentZoneWidth = CGFloat(51.0)
+        
+        HStack {
+            ForEach(1...5, id: \.self) { index in
+                if zone.rawValue == index {
+                    currentZone
+                        .frame(width: currentZoneWidth, height: circleHeight)
+                } else {
+                    Circle()
+                        .frame(width: circleHeight, height: circleHeight)
+                        .foregroundStyle(.inactiveZone)
+                }
+            }
+        }
+    }
+    
+    @ViewBuilder
+    private var currentZone: some View {
+        let circleHeight = CGFloat(14.0)
+        let strokeWidth = CGFloat(0.6)
+        let roundedRectangle = RoundedRectangle(cornerRadius: circleHeight / 2)
+        let text = Text(zone.text)
+            .font(.zoneCapsule)
+            .foregroundStyle(.currentZoneText)
+        
+        if #available(watchOS 10.0, *) {
+            roundedRectangle
+                .stroke(.currentZoneStroke, lineWidth: strokeWidth)
+                .fill(workoutManager.running ? currentZoneBarGradient : LinearGradient.stopCurrentZoneBar)
+                .overlay {
+                    text
+                }
+        } else { // current watch version(9.0)
+            roundedRectangle
+                .strokeBorder(.currentZoneStroke, lineWidth: strokeWidth)
+                .background(
+                    roundedRectangle.foregroundStyle(workoutManager.running ? currentZoneBarGradient : .stopCurrentZoneBar)
+                )
+                .overlay {
+                    text
+                }
+        }
+    }
+}
+
+#Preview {
+    GameProgressView()
+        .environmentObject(DIContianer.makeWorkoutManager())
+        .environmentObject(DIContianer.makeMatricsIndicator())
 }
