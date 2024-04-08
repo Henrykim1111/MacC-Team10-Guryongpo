@@ -19,7 +19,8 @@ struct GameProgressView: View {
         : "--'--"
     }
     
-    private var distanceUnit: String { matricsIndicator.isDistanceActive ? "KM" : "" }
+    private var distanceUnit: String { matricsIndicator.isDistanceActive ? "KM" : ""
+    }
     
     // MARK: - Body
     var body: some View {
@@ -29,7 +30,9 @@ struct GameProgressView: View {
                     // MARK: - Vertical Page 1
                     progressView
                     
-                    VStack {
+                    ZStack {
+                        zoneBar
+
                         BPMView()
                     }
                 }
@@ -81,7 +84,6 @@ extension GameProgressView {
         TimelineView(timelineSchedule) { context in
             VStack(alignment: .center) {
                 Spacer()
-                zoneBar
                 
                 // MARK: - 경기 시간
                 VStack {
@@ -211,8 +213,8 @@ extension GameProgressView {
     private var zoneBar: some View {
 
         GeometryReader { geo in
-            let circleHeight = geo.size.height
-            let currentZoneWidth = circleHeight * 5
+            let circleHeight = 22.0
+            let currentZoneWidth = 55.0
             
             HStack(spacing: 8) {
                 ForEach(1...5, id: \.self) { index in
