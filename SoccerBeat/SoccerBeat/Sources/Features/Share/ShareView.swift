@@ -17,7 +17,7 @@ struct ShareView: View {
     var body: some View {
         VStack {
             GeometryReader { geo in
-                TargetImageView(cgSize: geo.size, degree: 0)
+                TargetImageView(allBadges: profileModel.allBadges, cgSize: geo.size, degree: 0)
                     .onAppear {
                         self.geoSize = CGSize(width: geo.size.width, height: geo.size.height)
                     }
@@ -25,7 +25,7 @@ struct ShareView: View {
         }
         .toolbar {
             Button {
-                renderImage = TargetImageView(cgSize: self.geoSize)
+                renderImage = TargetImageView(allBadges: profileModel.allBadges, cgSize: self.geoSize)
                     .asImage(size: self.geoSize)
                 presentShareSheet()
             } label: {
@@ -66,7 +66,7 @@ extension View {
 }
 
 struct TargetImageView: View {
-    @EnvironmentObject var profileModel: ProfileModel
+    let allBadges: [[Bool]]
     @EnvironmentObject var healthInteractor: HealthInteractor
     @State var cgSize: CGSize
     @State var degree: Double = 0
@@ -139,12 +139,12 @@ extension TargetImageView {
     @ViewBuilder
     private var currentBadge: some View {
         VStack(alignment: .leading, spacing: 31) {
-            ForEach(0..<profileModel.allBadges.count) { sortIndex in
+            ForEach(0..<allBadges.count) { sortIndex in
                 VStack(alignment: .leading, spacing: 10) {
                     floatingBadgeInfo(at: sortIndex)
                     HStack {
-                        ForEach(0..<profileModel.allBadges[sortIndex].count, id: \.self) { levelIndex in
-                            let isOpened = profileModel.allBadges[sortIndex][levelIndex]
+                        ForEach(0..<allBadges[sortIndex].count, id: \.self) { levelIndex in
+                            let isOpened = allBadges[sortIndex][levelIndex]
                             
                             TrophyView(sort: sortIndex, level: levelIndex, isOpened: isOpened)
                                 .frame(width: 74, height: 82)
