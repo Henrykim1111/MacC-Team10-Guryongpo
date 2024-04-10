@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct ShareView: View {
+    @EnvironmentObject var profileModel: ProfileModel
+    @EnvironmentObject var healthInteractor: HealthInteractor
     @State var geoSize = CGSize(width: 0, height: 0)
     @State var highresImage = UIImage()
     @State var renderImage: UIImage?
@@ -24,22 +26,18 @@ struct ShareView: View {
         .toolbar {
             Button {
                 renderImage = TargetImageView(cgSize: self.geoSize)
-                                    .asImage(size: self.geoSize)
-                share()
+                    .asImage(size: self.geoSize)
+                presentShareSheet()
             } label: {
                 Text("공유하기")
                     .foregroundStyle(.shareViewTitleTint)
             }
         }
     }
-    func share() {
+    func presentShareSheet() {
         let activityVC = UIActivityViewController(activityItems: [renderImage], applicationActivities: nil)
         UIApplication.shared.windows.first?.rootViewController?.present(activityVC, animated: true, completion: nil)
     }
-}
-
-#Preview {
-    ShareView()
 }
 
 extension UIScreen {
@@ -68,14 +66,14 @@ extension View {
 }
 
 struct TargetImageView: View {
-    @EnvironmentObject var viewModel: ProfileModel
+    @EnvironmentObject var profileModel: ProfileModel
     @EnvironmentObject var healthInteractor: HealthInteractor
     @State var cgSize: CGSize
     @State var degree: Double = 0
     private var userName: String {
         return UserDefaults.standard.string(forKey: "userName") ?? "닉네임"
     }
-
+    
     var body: some View {
         ZStack(alignment: .top) {
             Image("BackgroundPattern")
@@ -100,7 +98,7 @@ struct TargetImageView: View {
                             HStack {
                                 Text(userName)
                                     .highlighter(activity: .heartrate, isDefault: false)
-                              .foregroundStyle(.shareViewTitleTint)
+                                    .foregroundStyle(.shareViewTitleTint)
                             }
                         }
                         .font(.shareViewTitle)
@@ -131,10 +129,9 @@ struct TargetImageView: View {
                 return "최고 속도에 따라 획득하는 뱃지입니다."
             }
         }
-        
         return Text(message)
-                .padding(.horizontal, 8)
-                .floatingCapsuleStyle()
+            .padding(.horizontal, 8)
+            .floatingCapsuleStyle()
     }
 }
 
@@ -142,12 +139,12 @@ extension TargetImageView {
     @ViewBuilder
     private var currentBadge: some View {
         VStack(alignment: .leading, spacing: 31) {
-            ForEach(0..<viewModel.allBadges.count) { sortIndex in
+            ForEach(0..<profileModel.allBadges.count) { sortIndex in
                 VStack(alignment: .leading, spacing: 10) {
                     floatingBadgeInfo(at: sortIndex)
                     HStack {
-                        ForEach(0..<viewModel.allBadges[sortIndex].count, id: \.self) { levelIndex in
-                            let isOpened = viewModel.allBadges[sortIndex][levelIndex]
+                        ForEach(0..<profileModel.allBadges[sortIndex].count, id: \.self) { levelIndex in
+                            let isOpened = profileModel.allBadges[sortIndex][levelIndex]
                             
                             TrophyView(sort: sortIndex, level: levelIndex, isOpened: isOpened)
                                 .frame(width: 74, height: 82)
@@ -161,4 +158,5 @@ extension TargetImageView {
 
 #Preview {
     ShareView()
+        .environmentObject(ProfileModel(healthInteractor: HealthInteractor()))
 }

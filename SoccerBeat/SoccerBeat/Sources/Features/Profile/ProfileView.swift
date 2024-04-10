@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ProfileView: View {
-    @EnvironmentObject var viewModel: ProfileModel
+    @EnvironmentObject var profileModel: ProfileModel
     @State private var isFlipped = false
     @State private var userName = ""
     @State private var userImage: UIImage?
@@ -67,7 +67,7 @@ struct ProfileView: View {
                                 VStack {
                                     MyCardView(isFlipped: $isFlipped)
                                         .frame(width: 105)
-                                    PhotoSelectButtonView(viewModel: viewModel)
+                                    PhotoSelectButtonView()
                                         .opacity(isFlipped ? 1 : 0)
                                         .padding(.top, 10)
                                 }
@@ -107,8 +107,8 @@ struct ProfileView: View {
                         }
                     }
                     
-                    let average = DataConverter.toLevels(viewModel.averageAbility)
-                    let maximumAbility = DataConverter.toLevels(viewModel.maxAbility)
+                    let average = DataConverter.toLevels(profileModel.averageAbility)
+                    let maximumAbility = DataConverter.toLevels(profileModel.maxAbility)
                     
                     ViewControllerContainer(ProfileViewController(radarAverageValue: average, radarAtypicalValue: maximumAbility))
                         .fixedSize()

@@ -9,8 +9,8 @@ import PhotosUI
 import SwiftUI
 
 struct MyCardView: View {
+    @EnvironmentObject var profileModel: ProfileModel
     @EnvironmentObject var soundManager: SoundManager
-    @EnvironmentObject var viewModel: ProfileModel
     @State private var backDegree = 0.0
     @State private var frontDegree = -90.0
     @Binding var isFlipped: Bool
@@ -32,7 +32,7 @@ struct MyCardView: View {
                     // sound control
                     isFlipped ? soundManager.playFrontSoundEffect() : soundManager.playBackSoundEffect()
                 }
-                .onChange(of: viewModel.imageSelection) { _ in
+                .onChange(of: profileModel.imageSelection) { _ in
                     soundManager.playPhotoSelectEffect()
                 }
             }
@@ -61,7 +61,6 @@ struct MyCardView: View {
 }
 
 struct CardFront : View {
-    @EnvironmentObject var viewModel: ProfileModel
     @State private var selectedItem: PhotosPickerItem?
     @Binding var degree : Double
     let width : CGFloat
@@ -76,7 +75,8 @@ struct CardFront : View {
                 .resizable()
                 .scaledToFit()
                 .frame(width: width, height: height)
-        }.rotation3DEffect(Angle(degrees: degree), axis: (x: 0, y: 1, z: 0))
+        }
+        .rotation3DEffect(Angle(degrees: degree), axis: (x: 0, y: 1, z: 0))
             .background(.clear)
     }
 }
@@ -91,7 +91,8 @@ struct CardBack : View {
             Image(.myCardBack)
                 .resizable()
                 .frame(width: width, height: height)
-        }.rotation3DEffect(Angle(degrees: degree), axis: (x: 0, y: 1, z: 0))
+        }
+        .rotation3DEffect(Angle(degrees: degree), axis: (x: 0, y: 1, z: 0))
     }
 }
 

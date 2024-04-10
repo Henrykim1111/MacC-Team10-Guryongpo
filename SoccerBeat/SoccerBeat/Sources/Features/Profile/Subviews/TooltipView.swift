@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct TooltipView<Content: View>: View {
+    @EnvironmentObject var profileModel: ProfileModel
     @Binding var isVisible: Bool
     let alignment: Edge
     let content: () -> Content
