@@ -8,10 +8,9 @@
 import SwiftUI
 
 struct MainView: View {
-    @EnvironmentObject var healthInteractor: HealthInteractor
     @EnvironmentObject var profileModel: ProfileModel
+    @EnvironmentObject var healthInteractor: HealthInteractor
     @EnvironmentObject var soundManager: SoundManager
-    @EnvironmentObject var viewModel: ProfileModel
     @State private var isFlipped = false
     @State private var currentLocation = "---"
     @Binding var workouts: [WorkoutData]

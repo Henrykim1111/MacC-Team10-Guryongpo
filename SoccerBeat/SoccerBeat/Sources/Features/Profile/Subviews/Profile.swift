@@ -9,7 +9,6 @@ import PhotosUI
 import SwiftUI
 
 struct Profile: View {
-    @EnvironmentObject var viewModel: ProfileModel
     @AppStorage("userImage") var userImage: Data = .init()
     let width : CGFloat
     let height : CGFloat

@@ -14,7 +14,7 @@ struct TrophyView: View {
     let isOpened: Bool
     
     private var imageName: String {
-        isOpened 
+        isOpened
         ? badgeUnlockedImages[sort][level]
         : badgeLockedImages[sort][level]
     }

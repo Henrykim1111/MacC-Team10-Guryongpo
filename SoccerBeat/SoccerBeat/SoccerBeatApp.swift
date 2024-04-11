@@ -21,7 +21,7 @@ struct SoccerBeatApp: App {
     }
     var body: some Scene {
         WindowGroup {
-//             if Authorization == sharingDenied, 명시적으로 거절함.
+            //             if Authorization == sharingDenied, 명시적으로 거절함.
             ZStack {
                 if noHealth || noLocation {
                     NoAuthorizationView(requestingAuth: .health)
@@ -31,11 +31,12 @@ struct SoccerBeatApp: App {
                 
                 if !noHealth && !noLocation {
                     ContentView()
-                        .environmentObject(soundManager)
-                        .environmentObject(healthInteracter)
-                        .environmentObject(profileModel)
                 }
-            }.onReceive(NotificationCenter.default.publisher(for: UIApplication.didBecomeActiveNotification)) { _ in
+            }
+            .environmentObject(soundManager)
+            .environmentObject(healthInteracter)
+            .environmentObject(profileModel)
+            .onReceive(NotificationCenter.default.publisher(for: UIApplication.didBecomeActiveNotification)) { _ in
                 noHealth = healthInteracter.haveNoHealthAuthorization()
                 noLocation = healthInteracter.haveNoLocationAuthorization()
             }
