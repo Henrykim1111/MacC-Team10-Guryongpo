@@ -46,7 +46,7 @@ struct EmptyDataView: View {
                     }
                     .overlay {
                         Capsule()
-                            .stroke()
+                            .stroke(lineWidth: 0.8)
                             .frame(height: 24)
                     }
                     .padding(.horizontal)
