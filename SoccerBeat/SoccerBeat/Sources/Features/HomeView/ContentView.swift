@@ -5,6 +5,7 @@
 //  Created by daaan on 10/21/23.
 //
 
+import SkeletonUI
 import SwiftUI
 import HealthKit
 
@@ -24,11 +25,7 @@ struct ContentView: View {
                 if healthAlert {
                     HealthAlertView(showingAlert: $healthAlert)
                 } else {
-                    if workouts.isEmpty {
-                        EmptyDataView()
-                    } else {
-                        MainView(workouts: $workouts)
-                    }
+                    MainView(workouts: $workouts)
                 }
             }
             .task {
