@@ -11,6 +11,7 @@ import HealthKit
 struct ContentView: View {
     @EnvironmentObject var healthInteractor: HealthInteractor
     @EnvironmentObject var soundManager: SoundManager
+    @EnvironmentObject var profileModel: ProfileModel
     
     @State var showingScenes = false
     @AppStorage("healthAlert") var healthAlert = true

@@ -11,7 +11,7 @@ extension View {
         self
             .onChange(of: text.wrappedValue) { _ in
                 if text.wrappedValue.count > characterLimit {
-                    DispatchQueue.main.asyncAfter(deadline: .now()+0.08) {
+                    DispatchQueue.main.asyncAfter(deadline: .now()+0.03) {
                         text.wrappedValue = String(text.wrappedValue.dropLast())
                     }
                 }

@@ -9,10 +9,10 @@ import PhotosUI
 import SwiftUI
 
 struct PhotoSelectButtonView: View {
-    @ObservedObject var viewModel: ProfileModel
+    @ObservedObject var profileModel: ProfileModel
     
     var body: some View {
-        PhotosPicker(selection: $viewModel.imageSelection,
+        PhotosPicker(selection: $profileModel.imageSelection,
                      matching: .images,
                      photoLibrary: .shared()) {
             HStack {

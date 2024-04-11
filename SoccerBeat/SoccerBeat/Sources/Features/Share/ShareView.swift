@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct ShareView: View {
+    @EnvironmentObject var profileModel: ProfileModel
     @State var geoSize = CGSize(width: 0, height: 0)
     @State var highresImage = UIImage()
     @State var renderImage: UIImage?
@@ -68,7 +69,7 @@ extension View {
 }
 
 struct TargetImageView: View {
-    @EnvironmentObject var viewModel: ProfileModel
+    @EnvironmentObject var profileModel: ProfileModel
     @EnvironmentObject var healthInteractor: HealthInteractor
     @State var cgSize: CGSize
     @State var degree: Double = 0
@@ -142,12 +143,12 @@ extension TargetImageView {
     @ViewBuilder
     private var currentBadge: some View {
         VStack(alignment: .leading, spacing: 31) {
-            ForEach(0..<viewModel.allBadges.count) { sortIndex in
+            ForEach(0..<profileModel.allBadges.count) { sortIndex in
                 VStack(alignment: .leading, spacing: 10) {
                     floatingBadgeInfo(at: sortIndex)
                     HStack {
-                        ForEach(0..<viewModel.allBadges[sortIndex].count, id: \.self) { levelIndex in
-                            let isOpened = viewModel.allBadges[sortIndex][levelIndex]
+                        ForEach(0..<profileModel.allBadges[sortIndex].count, id: \.self) { levelIndex in
+                            let isOpened = profileModel.allBadges[sortIndex][levelIndex]
                             
                             TrophyView(sort: sortIndex, level: levelIndex, isOpened: isOpened)
                                 .frame(width: 74, height: 82)

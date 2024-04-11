@@ -8,11 +8,12 @@
 import SwiftUI
 
 struct ProfileView: View {
-    @EnvironmentObject var viewModel: ProfileModel
+    @EnvironmentObject var profileModel: ProfileModel
     @State private var isFlipped = false
     @State private var userName = ""
     @State private var userImage: UIImage?
     @FocusState private var isFocused: Bool
+    let nameLength = 15
     
     var body: some View {
         NavigationStack {
@@ -26,8 +27,8 @@ struct ProfileView: View {
                             }
                             .padding(.top, 48)
                             .padding(.bottom, 30)
-                            HStack {
-                                VStack(alignment: .leading, spacing: 0.0) {
+                            
+                                VStack(spacing: 0) {
                                     HStack {
                                         Text("선수 프로필")
                                             .font(.matchDetailSubTitle)
@@ -35,45 +36,45 @@ struct ProfileView: View {
                                         Spacer()
                                     }
                                     
-                                    VStack(alignment: .leading, spacing: 0) {
-                                        ZStack(alignment: .leading) {
+                                    VStack(spacing: 0) {
+                                        ZStack {
                                             if !userName.isEmpty {
                                                 Text(userName)
+                                                    .foregroundStyle(.clear)
                                                     .padding(.horizontal)
+                                                    .frame(height: 40)
                                                     .overlay {
                                                         Capsule()
                                                             .stroke(style: .init(lineWidth: 0.8))
                                                             .frame(height: 40)
-                                                            .foregroundColor(userName.count >= 6 ? .red : .brightmint)
+                                                            .foregroundColor(userName.count >= nameLength + 1 ? .red : .brightmint)
                                                     }
                                             }
                                             
                                             TextField("Name", text: $userName)
                                                 .padding(.horizontal)
-                                                .limitText($userName, to: 5)
+                                                .frame(height: 40)
+                                                .limitText($userName, to: nameLength)
+                                                .multilineTextAlignment(.center)
+                                                .lineLimit(1)
                                                 .onChange(of: userName) { _ in
                                                     UserDefaults.standard.set(userName, forKey: "userName")
                                                 }
                                         }
-                                        
-                                        VStack(alignment: .leading, spacing: 0) {
-                                            Text("How you")
-                                            Text("like that")
-                                        }.kerning(-0.4)
                                     }
+                                    .offset(y: 24)
+                                    
+                                    VStack {
+                                        MyCardView(isFlipped: $isFlipped)
+                                            .frame(width: 210)
+                                        PhotoSelectButtonView(profileModel: profileModel)
+                                            .opacity(isFlipped ? 1 : 0)
+                                            .padding(.top, 10)
+                                    }
+                                    .offset(y: 16)
+
                                 }
                                 .font(.custom("SFProDisplay-HeavyItalic", size: 36))
-                                
-                                VStack {
-                                    MyCardView(isFlipped: $isFlipped)
-                                        .frame(width: 105)
-                                    PhotoSelectButtonView(viewModel: viewModel)
-                                        .opacity(isFlipped ? 1 : 0)
-                                        .padding(.top, 10)
-                                }
-                                .offset(y: 27)
-                            }
-                            
                         }
                     }
                     
@@ -107,8 +108,8 @@ struct ProfileView: View {
                         }
                     }
                     
-                    let average = DataConverter.toLevels(viewModel.averageAbility)
-                    let maximumAbility = DataConverter.toLevels(viewModel.maxAbility)
+                    let average = DataConverter.toLevels(profileModel.averageAbility)
+                    let maximumAbility = DataConverter.toLevels(profileModel.maxAbility)
                     
                     ViewControllerContainer(ProfileViewController(radarAverageValue: average, radarAtypicalValue: maximumAbility))
                         .fixedSize()
