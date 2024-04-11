@@ -19,17 +19,75 @@ struct GameProgressView: View {
         : "--'--"
     }
     
-    private var distanceUnit: String { matricsIndicator.isDistanceActive ? "KM" : "" }
+    private var distanceUnit: String { matricsIndicator.isDistanceActive ? "KM" : ""
+    }
     
     // MARK: - Body
     var body: some View {
+        GeometryReader { proxy in
+            TabView {
+                Group {
+                    // MARK: - Vertical Page 1
+                    progressView
+                    
+                    ZStack {
+                        zoneBar
+
+                        BPMView()
+                    }
+                }
+                .rotationEffect(.degrees(-90)) // Rotate content
+                .frame(
+                    width: proxy.size.width,
+                    height: proxy.size.height
+                )
+            }
+            .frame(
+                width: proxy.size.height, // Height & width swap
+                height: proxy.size.width
+            )
+            .rotationEffect(.degrees(90), anchor: .topLeading) // Rotate TabView
+            .offset(x: proxy.size.width) // Offset back into screens bounds
+            .tabViewStyle(
+                PageTabViewStyle(indexDisplayMode: .never)
+            )
+        }
+    }
+}
+
+private struct ProgressTimelineSchedule: TimelineSchedule {
+    var startDate: Date
+    var isPaused: Bool
+    
+    init(from startDate: Date, isPaused: Bool) {
+        self.startDate = startDate
+        self.isPaused = isPaused
+    }
+    
+    func entries(from startDate: Date, mode: TimelineScheduleMode) -> AnyIterator<Date> {
+        var baseSchedule = PeriodicTimelineSchedule(from: self.startDate,
+                                                    by: (mode == .lowFrequency ? 1.0 : 1.0 / 30.0))
+            .entries(from: startDate, mode: mode)
+        
+        return AnyIterator<Date> {
+            guard !isPaused else { return nil }
+            return baseSchedule.next()
+        }
+    }
+}
+
+extension GameProgressView {
+    @ViewBuilder
+    var progressView: some View {
         let timelineSchedule = ProgressTimelineSchedule(from: whenTheGameStarted,
                                                         isPaused: isGamePaused)
-        return TimelineView(timelineSchedule) { context in
+        TimelineView(timelineSchedule) { context in
             VStack(alignment: .center) {
                 Spacer()
+                
                 // MARK: - 경기 시간
                 VStack {
+                    
                     let elapsedTime = workoutManager.builder?.elapsedTime(at: context.date) ?? 0
                     ElapsedTimeView(elapsedSec: elapsedTime)
                 }
@@ -82,7 +140,7 @@ struct GameProgressView: View {
                     }
                 }
                 Spacer()
-                // Sprint Gauge bar
+                // MARK: - Sprint Gauge bar
                 SprintView()
                 Spacer()
             }
@@ -102,29 +160,108 @@ struct GameProgressView: View {
     }
 }
 
+extension GameProgressView {
+    enum HeartRateZone: Int {
+        case one = 1, two, three, four, five
+        
+        var text: String {
+            return "zone".uppercased() + "\(self.rawValue)"
+        }
+    }
+    
+    private var zone: HeartRateZone {
+        switch matricsIndicator.heartZone {
+        case 1: return .one
+        case 2: return .two
+        case 3: return .three
+        case 4: return .four
+        default: return .five
+        }
+    }
+    
+    private var zoneBPMGradient: LinearGradient {
+        switch zone {
+        case .one:
+            return .zone1Bpm
+        case .two:
+            return .zone2Bpm
+        case .three:
+            return .zone3Bpm
+        case .four:
+            return .zone4Bpm
+        case .five:
+            return .zone5Bpm
+        }
+    }
+    
+    private var currentZoneBarGradient: LinearGradient {
+        switch zone {
+        case .one:
+            return .zone1CurrentZoneBar
+        case .two:
+            return .zone2CurrentZoneBar
+        case .three:
+            return .zone3CurrentZoneBar
+        case .four:
+            return .zone4CurrentZoneBar
+        case .five:
+            return .zone5CurrentZoneBar
+        }
+    }
+    
+    @ViewBuilder
+    private var zoneBar: some View {
+
+        GeometryReader { geo in
+            let circleHeight = 22.0
+            let currentZoneWidth = 55.0
+            
+            HStack(spacing: 8) {
+                ForEach(1...5, id: \.self) { index in
+                    if zone.rawValue == index {
+                        currentZone
+                            .frame(width: currentZoneWidth, height: circleHeight)
+                    } else {
+                        Circle()
+                            .frame(width: circleHeight, height: circleHeight)
+                            .foregroundStyle(.inactiveZone)
+                    }
+                }
+            }
+        }
+    }
+    
+    @ViewBuilder
+    private var currentZone: some View {
+        let circleHeight = CGFloat(14.0)
+        let strokeWidth = CGFloat(0.6)
+        let roundedRectangle = RoundedRectangle(cornerRadius: circleHeight / 2)
+        let text = Text(zone.text)
+            .font(.zoneCapsule)
+            .foregroundStyle(.currentZoneText)
+        
+        if #available(watchOS 10.0, *) {
+            roundedRectangle
+                .stroke(.currentZoneStroke, lineWidth: strokeWidth)
+                .fill(workoutManager.running ? currentZoneBarGradient : LinearGradient.stopCurrentZoneBar)
+                .overlay {
+                    text
+                }
+        } else { // current watch version(9.0)
+            roundedRectangle
+                .strokeBorder(.currentZoneStroke, lineWidth: strokeWidth)
+                .background(
+                    roundedRectangle.foregroundStyle(workoutManager.running ? currentZoneBarGradient : .stopCurrentZoneBar)
+                )
+                .overlay {
+                    text
+                }
+        }
+    }
+}
+
 #Preview {
     GameProgressView()
         .environmentObject(DIContianer.makeWorkoutManager())
         .environmentObject(DIContianer.makeMatricsIndicator())
-}
-
-private struct ProgressTimelineSchedule: TimelineSchedule {
-    var startDate: Date
-    var isPaused: Bool
-    
-    init(from startDate: Date, isPaused: Bool) {
-        self.startDate = startDate
-        self.isPaused = isPaused
-    }
-    
-    func entries(from startDate: Date, mode: TimelineScheduleMode) -> AnyIterator<Date> {
-        var baseSchedule = PeriodicTimelineSchedule(from: self.startDate,
-                                                    by: (mode == .lowFrequency ? 1.0 : 1.0 / 30.0))
-            .entries(from: startDate, mode: mode)
-        
-        return AnyIterator<Date> {
-            guard !isPaused else { return nil }
-            return baseSchedule.next()
-        }
-    }
 }

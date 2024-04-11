@@ -96,6 +96,7 @@
 		BEA63A672B0AFDFF000A309D /* ActivityEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEA63A652B0AFDFF000A309D /* ActivityEnum.swift */; };
 		BEA63A6A2B0B386C000A309D /* AnalyticsComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEA63A692B0B386C000A309D /* AnalyticsComponent.swift */; };
 		BEB666C22AE4E16D0090195A /* StartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEB666C12AE4E16D0090195A /* StartView.swift */; };
+		BEB7684B2BC3E5B500C5DA05 /* BPMView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEB7684A2BC3E5B500C5DA05 /* BPMView.swift */; };
 		BEC1E5CE2AE6A254008B285E /* ElapsedTimeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEC1E5CD2AE6A254008B285E /* ElapsedTimeView.swift */; };
 		BECCFAB22B0665D2009F4BE5 /* SpeedChartOverview.swift in Sources */ = {isa = PBXBuildFile; fileRef = BECCFAB12B0665D2009F4BE5 /* SpeedChartOverview.swift */; };
 		BECCFAB42B06698F009F4BE5 /* DistanceChartOverview.swift in Sources */ = {isa = PBXBuildFile; fileRef = BECCFAB32B06698F009F4BE5 /* DistanceChartOverview.swift */; };
@@ -231,6 +232,7 @@
 		BEA63A652B0AFDFF000A309D /* ActivityEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityEnum.swift; sourceTree = "<group>"; };
 		BEA63A692B0B386C000A309D /* AnalyticsComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsComponent.swift; sourceTree = "<group>"; };
 		BEB666C12AE4E16D0090195A /* StartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartView.swift; sourceTree = "<group>"; };
+		BEB7684A2BC3E5B500C5DA05 /* BPMView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BPMView.swift; sourceTree = "<group>"; };
 		BEC1E5CD2AE6A254008B285E /* ElapsedTimeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElapsedTimeView.swift; sourceTree = "<group>"; };
 		BEC1E5CF2AE6B4AF008B285E /* SoccerBeat-Watch-App-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "SoccerBeat-Watch-App-Info.plist"; sourceTree = SOURCE_ROOT; };
 		BECCFAB12B0665D2009F4BE5 /* SpeedChartOverview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeedChartOverview.swift; sourceTree = "<group>"; };
@@ -666,6 +668,7 @@
 			children = (
 				BEC1E5CD2AE6A254008B285E /* ElapsedTimeView.swift */,
 				6898F2842AEFD7FC0075A573 /* SprintView.swift */,
+				BEB7684A2BC3E5B500C5DA05 /* BPMView.swift */,
 			);
 			path = Subviews;
 			sourceTree = "<group>";
@@ -1005,6 +1008,7 @@
 				BE22D6352AE586AA009035C9 /* GameProgressView.swift in Sources */,
 				68B0732E2AF11847004C723F /* AlertView.swift in Sources */,
 				D3C500252AE36F3F00EFAEFF /* SoccerBeatApp.swift in Sources */,
+				BEB7684B2BC3E5B500C5DA05 /* BPMView.swift in Sources */,
 				685D7B5F2AE3F3D000783433 /* WatchWorkoutManager.swift in Sources */,
 				BEB666C22AE4E16D0090195A /* StartView.swift in Sources */,
 				BE360EFE2B9703A700071C30 /* WorkoutData.swift in Sources */,
