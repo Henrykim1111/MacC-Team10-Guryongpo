@@ -67,7 +67,7 @@ struct ProfileView: View {
                                     VStack {
                                         MyCardView(isFlipped: $isFlipped)
                                             .frame(width: 210)
-                                        PhotoSelectButtonView(profileModel: profileModel)
+                                        PhotoSelectButtonView()
                                             .opacity(isFlipped ? 1 : 0)
                                             .padding(.top, 10)
                                     }
