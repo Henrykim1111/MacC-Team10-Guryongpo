@@ -12,7 +12,6 @@ struct ContentView: View {
     @EnvironmentObject var profileModel: ProfileModel
     @EnvironmentObject var healthInteractor: HealthInteractor
     @EnvironmentObject var soundManager: SoundManager
-    @EnvironmentObject var profileModel: ProfileModel
     
     @State var showingScenes = false
     @AppStorage("healthAlert") var healthAlert = true
