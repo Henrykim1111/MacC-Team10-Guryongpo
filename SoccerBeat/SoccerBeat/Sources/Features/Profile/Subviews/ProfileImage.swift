@@ -10,6 +10,7 @@ import SwiftUI
 
 //  렌더링 과정을 거친 이후의 이미지
 struct ProfileImage: View {
+    
     let imageState: ProfileModel.ImageState
     
     var body: some View {
@@ -32,11 +33,11 @@ struct ProfileImage: View {
 
 // Transmit Profile ViewModel
 struct EditableCircularProfileImage: View {
-    @EnvironmentObject var viewModel: ProfileModel
+    @EnvironmentObject var profileModel: ProfileModel
     let width : CGFloat
     let height : CGFloat
     var body: some View {
-        ProfileImage(imageState: viewModel.imageState)
+        ProfileImage(imageState: profileModel.imageState)
             .aspectRatio(contentMode: /*@START_MENU_TOKEN@*/.fill/*@END_MENU_TOKEN@*/)
             .frame(width: width, height: height)
     }

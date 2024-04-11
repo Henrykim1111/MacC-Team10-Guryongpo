@@ -9,7 +9,7 @@ import PhotosUI
 import SwiftUI
 
 struct PhotoSelectButtonView: View {
-    @ObservedObject var profileModel: ProfileModel
+    @EnvironmentObject var profileModel: ProfileModel
     
     var body: some View {
         PhotosPicker(selection: $profileModel.imageSelection,

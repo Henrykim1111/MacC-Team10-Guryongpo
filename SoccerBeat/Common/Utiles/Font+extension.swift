@@ -116,6 +116,10 @@ extension Font {
     
     // MARK: - ToolTip
     public static let tooltipTextFont = Font.sfProText(size: 12, weight: .regular)
+    
+    // MARK: - NoAuthorization
+    public static let noAuthorizationTitleFont = Font.sfProText(size: 20, weight: .medium)
+    public static let noAuthorizationExplainFont = Font.sfProText(size: 16, weight: .medium)
 }
 
 extension Font {

@@ -113,6 +113,7 @@ extension ShapeStyle where Self == Color {
     // MARK: - ToolTipView
     static var tooltipTextColor: Self { .init(hex: 0xABFFE6) }
     static var tooltipBackgroundColor: Self { .init(hex: 0x191919)}
+    
 }
 
 extension ShapeStyle where Self == LinearGradient {

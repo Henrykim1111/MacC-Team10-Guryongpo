@@ -1,82 +1,16 @@
-//
-//  ShareView.swift
-//  SoccerBeat
-//
-//  Created by Hyungmin Kim on 11/12/23.
-//
-
 import SwiftUI
+import Photos
 
 struct ShareView: View {
     @EnvironmentObject var profileModel: ProfileModel
-    @State var geoSize = CGSize(width: 0, height: 0)
-    @State var highresImage = UIImage()
-    @State var renderImage: UIImage?
-    
-    var body: some View {
-        VStack {
-            GeometryReader { geo in
-                TargetImageView(cgSize: geo.size, degree: 0)
-                    .onAppear {
-                        self.geoSize = CGSize(width: geo.size.width, height: geo.size.height)
-                    }
-            }
-        }
-        .toolbar {
-            Button {
-                renderImage = TargetImageView(cgSize: self.geoSize)
-                                    .asImage(size: self.geoSize)
-                share()
-            } label: {
-                Text("공유하기")
-                    .foregroundStyle(.shareViewTitleTint)
-            }
-        }
-    }
-    func share() {
-        let activityVC = UIActivityViewController(activityItems: [renderImage], applicationActivities: nil)
-        UIApplication.shared.windows.first?.rootViewController?.present(activityVC, animated: true, completion: nil)
-    }
-}
-
-#Preview {
-    ShareView()
-}
-
-extension UIScreen {
-    static let screenWidth = UIScreen.main.bounds.size.width
-    static let screenHeight = UIScreen.main.bounds.size.width
-    static let screenSize = UIScreen.main.bounds.size
-}
-
-extension UIView {
-    func asImage(size: CGSize) -> UIImage {
-        let format = UIGraphicsImageRendererFormat()
-        format.scale = 1
-        return UIGraphicsImageRenderer(size: size, format: format).image { context in
-            self.drawHierarchy(in: self.layer.bounds, afterScreenUpdates: true)
-        }
-    }
-}
-
-extension View {
-    func asImage(size: CGSize) -> UIImage {
-        let controller = UIHostingController(rootView: self)
-        controller.view.bounds = CGRect(origin: .zero, size: size)
-        let image = controller.view.asImage(size: size)
-        return image
-    }
-}
-
-struct TargetImageView: View {
-    @EnvironmentObject var profileModel: ProfileModel
     @EnvironmentObject var healthInteractor: HealthInteractor
-    @State var cgSize: CGSize
     @State var degree: Double = 0
+    @State private var showingAlert: Bool = false
+    
     private var userName: String {
         return UserDefaults.standard.string(forKey: "userName") ?? "닉네임"
     }
-
+    
     var body: some View {
         ZStack(alignment: .top) {
             Image("BackgroundPattern")
@@ -101,7 +35,7 @@ struct TargetImageView: View {
                             HStack {
                                 Text(userName)
                                     .highlighter(activity: .heartrate, isDefault: false)
-                              .foregroundStyle(.shareViewTitleTint)
+                                    .foregroundStyle(.shareViewTitleTint)
                             }
                         }
                         .font(.shareViewTitle)
@@ -120,6 +54,14 @@ struct TargetImageView: View {
             }
             .padding()
         }
+        .toolbar {
+            Button {
+                share()
+            } label: {
+                Text("공유하기")
+                    .foregroundStyle(.shareViewTitleTint)
+            }
+        }
     }
     private func floatingBadgeInfo(at sort: Int) -> some View {
         var message: String {
@@ -132,14 +74,19 @@ struct TargetImageView: View {
                 return "최고 속도에 따라 획득하는 뱃지입니다."
             }
         }
-        
         return Text(message)
-                .padding(.horizontal, 8)
-                .floatingCapsuleStyle()
+            .padding(.horizontal, 8)
+            .floatingCapsuleStyle()
     }
 }
 
-extension TargetImageView {
+extension UIScreen {
+    static let screenWidth = UIScreen.main.bounds.size.width
+    static let screenHeight = UIScreen.main.bounds.size.width
+    static let screenSize = UIScreen.main.bounds.size
+}
+
+extension ShareView {
     @ViewBuilder
     private var currentBadge: some View {
         VStack(alignment: .leading, spacing: 31) {
@@ -160,6 +107,55 @@ extension TargetImageView {
     }
 }
 
+extension ShareView {
+    func screenShot() {
+        let screenshot = body.takeScreenshot(origin: UIScreen.main.bounds.origin, size: UIScreen.main.bounds.size)
+        UIImageWriteToSavedPhotosAlbum(screenshot, self, nil, nil)
+        
+        PHPhotoLibrary.requestAuthorization( { status in
+            switch status {
+            case .authorized:
+                showingAlert = true
+            case .denied:
+                break
+            case .restricted, .notDetermined:
+                break
+            default:
+                break
+            }
+        })
+    }
+    
+    func share() {
+        let screenshot = body.takeScreenshot(origin: UIScreen.main.bounds.origin, size: UIScreen.main.bounds.size)
+        let activityViewController = UIActivityViewController(activityItems: [screenshot], applicationActivities: nil)
+        UIApplication.shared.windows.first?.rootViewController?.present(activityViewController, animated: true)
+    }
+}
+
+extension UIView {
+    var screenShot: UIImage {
+        let rect = self.bounds
+        UIGraphicsBeginImageContextWithOptions(rect.size, false, 0.0)
+        let context: CGContext = UIGraphicsGetCurrentContext()!
+        self.layer.render(in: context)
+        let capturedImage: UIImage = UIGraphicsGetImageFromCurrentImageContext()!
+        return capturedImage
+    }
+}
+
+extension View {
+    func takeScreenshot(origin: CGPoint, size: CGSize) -> UIImage {
+        let window = UIWindow(frame: CGRect(origin: origin, size: size))
+        let hosting = UIHostingController(rootView: self)
+        hosting.view.frame = window.frame
+        window.addSubview(hosting.view)
+        window.makeKeyAndVisible()
+        return hosting.view.screenShot
+    }
+}
+
 #Preview {
     ShareView()
+        .environmentObject(ProfileModel(healthInteractor: HealthInteractor()))
 }

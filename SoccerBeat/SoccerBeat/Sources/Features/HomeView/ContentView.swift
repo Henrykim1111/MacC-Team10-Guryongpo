@@ -9,6 +9,7 @@ import SwiftUI
 import HealthKit
 
 struct ContentView: View {
+    @EnvironmentObject var profileModel: ProfileModel
     @EnvironmentObject var healthInteractor: HealthInteractor
     @EnvironmentObject var soundManager: SoundManager
     @EnvironmentObject var profileModel: ProfileModel
@@ -55,4 +56,7 @@ struct ContentView: View {
 #Preview {
     ContentView()
         .preferredColorScheme(.dark)
+        .environmentObject(ProfileModel(healthInteractor: HealthInteractor()))
+        .environmentObject(SoundManager())
+        .environmentObject(HealthInteractor())
 }

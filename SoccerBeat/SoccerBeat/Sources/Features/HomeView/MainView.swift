@@ -8,10 +8,9 @@
 import SwiftUI
 
 struct MainView: View {
-    @EnvironmentObject var healthInteractor: HealthInteractor
     @EnvironmentObject var profileModel: ProfileModel
+    @EnvironmentObject var healthInteractor: HealthInteractor
     @EnvironmentObject var soundManager: SoundManager
-    @EnvironmentObject var viewModel: ProfileModel
     @State private var isFlipped = false
     @State private var currentLocation = "---"
     @Binding var workouts: [WorkoutData]
@@ -50,7 +49,7 @@ struct MainView: View {
                     }
                     .overlay {
                         Capsule()
-                            .stroke()
+                            .stroke(lineWidth: 0.8)
                             .frame(height: 24)
                     }
                     .padding(.horizontal)

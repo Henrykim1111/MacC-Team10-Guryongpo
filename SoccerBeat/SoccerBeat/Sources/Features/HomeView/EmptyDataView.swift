@@ -10,7 +10,7 @@ import SwiftUI
 struct EmptyDataView: View {
     @State var workoutAverageData: WorkoutAverageData = WorkoutAverageData(maxHeartRate: 0, minHeartRate: 0, rangeHeartRate: 0, totalDistance: 0, maxAcceleration: 0, maxVelocity: 0, sprintCount: 0, totalMatchTime: 0)
     @EnvironmentObject var soundManager: SoundManager
-    @EnvironmentObject var viewModel: ProfileModel
+    @EnvironmentObject var profileModel: ProfileModel
     
     @State var isShowingBug = false
     let alertTitle: String = "문제가 있으신가요?"
@@ -46,7 +46,7 @@ struct EmptyDataView: View {
                     }
                     .overlay {
                         Capsule()
-                            .stroke()
+                            .stroke(lineWidth: 0.8)
                             .frame(height: 24)
                     }
                     .padding(.horizontal)
@@ -178,4 +178,15 @@ struct EmptyDataView: View {
             
         return defaultUrl
     }
+}
+
+#Preview {
+    @StateObject var health = HealthInteractor.shared
+    @StateObject var sound = SoundManager()
+    @StateObject var profileModel = ProfileModel(healthInteractor: .shared)
+    
+    return EmptyDataView()
+        .environmentObject(health)
+        .environmentObject(sound)
+        .environmentObject(profileModel)
 }
