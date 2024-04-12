@@ -35,7 +35,8 @@ struct MatchRecapView: View {
             
             HStack {
                 VStack(alignment: .leading, spacing: 0.0) {
-                    Text("Player, \(userName)")
+                    Text(userName.isEmpty ? "Player, " : "Player \(userName.split(separator: " ").last!),")
+                        .lineLimit(1)
                     Text("Your past games")
                 }
                 .font(.mainTitleText)
@@ -44,6 +45,7 @@ struct MatchRecapView: View {
                 Spacer()
             }
             .padding(.leading, 32)
+            .padding(.bottom, 45)
             
             List {
                 ForEach(userWorkouts) { workout in

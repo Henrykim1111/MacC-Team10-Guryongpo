@@ -41,7 +41,9 @@ final class SoundManager: ObservableObject {
             backgroundPlayer = try AVAudioPlayer(contentsOf: backgroundURL)
             backgroundPlayer?.volume = 0.5
             cardFrontPlayer = try AVAudioPlayer(contentsOf: cardEffectURL)
+            cardFrontPlayer?.volume = 0.5
             cardBackPlayer = try AVAudioPlayer(contentsOf: cardEffectURL)
+            cardBackPlayer?.volume = 0.5
             photoSelectPlayer = try AVAudioPlayer(contentsOf: photoSelectEffectURL)
         } catch let error {
             print("재생하는데 오류가 발생했습니다. \(error.localizedDescription)")
