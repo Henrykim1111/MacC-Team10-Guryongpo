@@ -17,9 +17,10 @@ struct SprintSheetView: View {
                 Image("alertButton")
                     .resizable()
                     .scaledToFit()
+                    .frame(width: 180, height: 180)
+                    .scaleEffect(beatAnimation ? 1.0 : 1.1, anchor: .center)
                     .animation(.smooth.repeatForever(autoreverses: true).speed(2.0), value: beatAnimation)
-                    .scaleEffect(beatAnimation ? 1.0 : 1.01, anchor: .topLeading)
-            
+
             VStack {
                 Text("last SPRINT!")
                     .font(.lastSprint)

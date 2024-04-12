@@ -12,6 +12,7 @@ struct BPMView: View {
     @EnvironmentObject var workoutManager: WorkoutManager
     @State private var firstCircle = 1.0
     @State private var secondCircle = 1.0
+    
     private var textGradient: LinearGradient {
         switch matrics.heartZone {
         case 1:
@@ -35,15 +36,21 @@ struct BPMView: View {
             HStack(alignment: .lastTextBaseline, spacing: 8) {
                 Group {
                     text
+                        .kerning(-1.0)
                         .font(.beatPerMinute)
+                        .overlay {
+                            text
+                                .kerning(-1.0)
+                                .font(.beatPerMinute)
+                                .viewBorder(color: .white, radius: CGFloat(0.15), outline: true)
+                                .offset(x: 1.5, y: 3)
+                        }
+                    
+                    Text("bpm")
+                        .font(.bpmUnit)
                 }
-
-                Text(" bpm")
-                    .font(.bpmUnit)
-                    .scaleEffect(workoutManager.running ? 1.1 : 1)
-                    .animation(.spring.repeatForever(autoreverses: true).speed(2), value: workoutManager.running)
             }
-            
+
             if workoutManager.running {
                 LineBPMView()
             }

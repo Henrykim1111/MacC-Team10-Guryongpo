@@ -18,22 +18,24 @@ struct PhraseView: View {
     }
 
     var body: some View {
-        VStack(spacing: 0) {
+        VStack {
             Text(phrase)
                 .fixedSize(horizontal: false, vertical: true)
                 .font(.wiseSaying)
                 .multilineTextAlignment(.center)
                 .foregroundStyle(.zone2Bpm)
+                .frame(width: .infinity, height: 85)
             
             Spacer()
             
-            Image(.blueHeart)
-                .resizable()
-                .scaledToFit()
-                .scaleEffect(beatAnimation ? 1.1 : 1)
-                .frame(width: 42, height: 34)
-                .animation(.spring.repeatForever(autoreverses: true).speed(3),
-                           value: beatAnimation)
+                Image(.blueHeart)
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 42, height: 25)
+                    .scaleEffect(beatAnimation ? 1.1 : 1)
+                    .animation(.spring.repeatForever(autoreverses: true).speed(3),
+                               value: beatAnimation)
+
         }
         .onAppear {
             withAnimation {
