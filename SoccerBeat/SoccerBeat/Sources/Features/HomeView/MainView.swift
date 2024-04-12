@@ -74,35 +74,45 @@ struct MainView: View {
                 
                 HStack(alignment: .bottom) {
                     VStack(alignment: .leading) {
-                        Text(workouts[0].yearMonthDay)
-                            .font(.mainSubTitleText)
-                            .opacity(0.7)
+                        if !workouts.isEmpty {
+                            Text(workouts[0].yearMonthDay)
+                                .font(.mainSubTitleText)
+                                .opacity(0.7)
+                        }
                         Text("최근 경기")
                             .font(.mainTitleText)
+                            .skeleton(with: workouts.isEmpty)
                     }
+                    
+                    
                     Spacer()
                     NavigationLink {
                         ProfileView()
                     } label: {
                         CardFront(degree: .constant(0), width: 72, height: 110)
+                            .skeleton(with: workouts.isEmpty)
                     }
                 }
                 .padding()
                 
                 NavigationLink {
-                    MatchDetailView(workoutData: workouts[0])
+                    if !workouts.isEmpty {
+                        MatchDetailView(workoutData: workouts[0])
+                    }
                 } label: {
                     ZStack {
                         LightRectangleView(alpha: 0.6, color: .black, radius: 15)
                         HStack {
                             VStack {
                                 HStack {
-                                    let recent = DataConverter.toLevels(workouts[0])
-                                    let average = DataConverter.toLevels(profileModel.averageAbility)
-                                    
-                                    ViewControllerContainer(RadarViewController(radarAverageValue: average, radarAtypicalValue: recent))                              .scaleEffect(CGSize(width: 0.7, height: 0.7))
-                                        .fixedSize()
-                                        .frame(width: 210, height: 210)
+                                    if !workouts.isEmpty {
+                                        let recent = DataConverter.toLevels(workouts[0])
+                                        let average = DataConverter.toLevels(profileModel.averageAbility)
+                                        
+                                        ViewControllerContainer(RadarViewController(radarAverageValue: average, radarAtypicalValue: recent))                              .scaleEffect(CGSize(width: 0.7, height: 0.7))
+                                                                                .fixedSize()
+                                                                                .frame(width: 210, height: 210)
+                                    }
                                     
                                     Spacer()
                                     
@@ -112,14 +122,20 @@ struct MainView: View {
                                         VStack(alignment: .leading) {
                                             Text(currentLocation)
                                                 .font(.mainDateLocation)
+                                                .skeleton(with: workouts.isEmpty)
                                                 .foregroundStyle(.mainDateTime)
                                                 .opacity(0.8)
                                                 .task {
-                                                    currentLocation = await workouts[0].location
+                                                    if !workouts.isEmpty {
+                                                        currentLocation = await workouts[0].location
+                                                    }
                                                 }
                                             Group {
                                                 Text("경기 시간")
-                                                Text(workouts[0].time)
+                                                    .skeleton(with: workouts.isEmpty)
+                                                if !workouts.isEmpty {
+                                                    Text(workouts[0].time)
+                                                }
                                             }
                                             .font(.mainTime)
                                             .foregroundStyle(.mainMatchTime)
@@ -129,15 +145,17 @@ struct MainView: View {
                                         
                                         // 뱃지
                                         HStack {
-                                            ForEach(workouts[0].matchBadge.indices, id: \.self) { index in
-                                                if let badgeName = ShortenedBadgeImageDictionary[index][workouts[0].matchBadge[index]] {
-                                                    if badgeName.isEmpty {
-                                                        EmptyView()
-                                                    } else {
-                                                        Image(badgeName)
-                                                            .resizable()
-                                                            .aspectRatio(contentMode: .fit)
-                                                            .frame(width: 32, height: 36)
+                                            if !workouts.isEmpty {
+                                                ForEach(workouts[0].matchBadge.indices, id: \.self) { index in
+                                                    if let badgeName = ShortenedBadgeImageDictionary[index][workouts[0].matchBadge[index]] {
+                                                        if badgeName.isEmpty {
+                                                            EmptyView()
+                                                        } else {
+                                                            Image(badgeName)
+                                                                .resizable()
+                                                                .aspectRatio(contentMode: .fit)
+                                                                .frame(width: 32, height: 36)
+                                                        }
                                                     }
                                                 }
                                             }
@@ -165,6 +183,7 @@ struct MainView: View {
                             
                             Spacer()
                         }
+                        .skeleton(with: workouts.isEmpty)
                         .padding()
                     }
                 }
@@ -173,6 +192,7 @@ struct MainView: View {
                     .frame(height: 80)
                 
                 AnalyticsView()
+                    .skeleton(with: workouts.isEmpty)
             }
         }
         .refreshable {

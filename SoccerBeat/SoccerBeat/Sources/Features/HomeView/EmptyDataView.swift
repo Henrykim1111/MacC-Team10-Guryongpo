@@ -13,7 +13,7 @@ struct EmptyDataView: View {
     @EnvironmentObject var profileModel: ProfileModel
     
     @State var isShowingBug = false
-    let alertTitle: String = "문제가 있으신가요?"
+    let alertTitle = "문제가 있으신가요?"
     
     var body: some View {
             VStack(spacing: 0.0) {
