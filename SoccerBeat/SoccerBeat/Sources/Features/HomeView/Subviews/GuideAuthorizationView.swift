@@ -80,8 +80,11 @@ struct GuideAuthorizationView: View {
                             HStack {
                                 Spacer()
                                 Button {
+//                                    x-apple-health://HealthProfile
+//                                prefs:root=HEALTH
+//                                    App-Prefs:HEALTH&path=SOURCES_ITEM/
                                     if let bundleIdentifier = Bundle.main.bundleIdentifier,
-                                       let url = URL(string: "\(UIApplication.openSettingsURLString)&path=HEALTH/\(bundleIdentifier)") {
+                                       let url = requestingAuth == .health ? URL(string: "App-Prefs:HEALTH&path=SOURCES")! : URL(string: "\(UIApplication.openSettingsURLString)\(bundleIdentifier)") {
                                         UIApplication.shared.open(url, options: [:], completionHandler: nil)
                                     }
                                 } label: {

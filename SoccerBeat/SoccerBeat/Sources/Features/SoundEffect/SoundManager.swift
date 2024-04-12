@@ -18,7 +18,6 @@ final class SoundManager: ObservableObject {
     
     init() {
         isMusicPlaying = UserDefaults.standard.bool(forKey: "isMusicPlaying")
-        print("musicPlaying? ", isMusicPlaying)
         setupPlayer()
     }
     
