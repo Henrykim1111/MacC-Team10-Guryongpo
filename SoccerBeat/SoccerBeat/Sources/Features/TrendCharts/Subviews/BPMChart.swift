@@ -58,6 +58,7 @@ struct BPMChart: View {
     let fastestWorkout: WorkoutData
     let slowestWorkout: WorkoutData
     let averageBPM: Double
+    let betweenBarSpace: CGFloat = 70
     
     private func isMax(_ workout: WorkoutData) -> Bool {
         workout == fastestWorkout
@@ -68,45 +69,94 @@ struct BPMChart: View {
     }
     
     var body: some View {
-        Chart {
-            ForEach(0..<workouts.count, id: \.self) { index in
-                let workout = workouts[index]
-                
-                BarMark(
-                    x: .value("Order", index),
-                    yStart: .value("HeartRate", 0),
-                    yEnd: .value("HeartRate", workout.maxHeartRate)
-                )
-                .foregroundStyle(isMax(workout) ? .bpmMax
-                                 : (isMin(workout) ? .bpmMin : .chartDefault))
-                .cornerRadius(300, style: .continuous)
-                // MARK: - Bar Chart Data, value 표시
-                // MARK: - 가장 밑에 일자 표시, 실제 보이는 용
-                .annotation(position: .bottom, alignment: .center) {
-                    let isMaxOrMin = isMin(workout) || isMax(workout)
-                    VStack(spacing: 6) {
-                        Text(isMaxOrMin ? workout.maxHeartRate.formatted() + "Bpm" : "000Bpm" )
-                            .font(.maxValueUint)
-                            .foregroundStyle(.maxValueStyle)
-                            .opacity(isMaxOrMin ? 1.0 : 0.0)
-                            .padding(.top, 8)
+        if #available(iOS 17.0, *) {
+            ScrollView(.horizontal, showsIndicators: false) {
+                Chart {
+                    ForEach(0..<workouts.count, id: \.self) { index in
+                        let workout = workouts[index]
                         
-                        Text("\(workout.day)일")
-                            .font(isMaxOrMin ? .maxDayUnit : .defaultDayUnit)
-                            .foregroundStyle(.defaultDayStyle)
+                        BarMark(
+                            x: .value("Order", index),
+                            yStart: .value("HeartRate", 0),
+                            yEnd: .value("HeartRate", workout.maxHeartRate)
+                        )
+                        .foregroundStyle(isMax(workout) ? .bpmMax
+                                         : (isMin(workout) ? .bpmMin : .chartDefault))
+                        .cornerRadius(300, style: .continuous)
+                        // MARK: - Bar Chart Data, value 표시
+                        // MARK: - 가장 밑에 일자 표시, 실제 보이는 용
+                        .annotation(position: .bottom, alignment: .center) {
+                            let isMaxOrMin = isMin(workout) || isMax(workout)
+                            VStack(spacing: 6) {
+                                Text(workout.maxHeartRate.formatted() + "Bpm")
+                                    .font(.maxValueUint)
+                                    .foregroundStyle(.maxValueStyle)
+                                    .opacity(isMaxOrMin ? 1.0 : 0.5)
+                                    .padding(.top, 8)
+                                
+                                Text("\(workout.day)일")
+                                    .font(isMaxOrMin ? .maxDayUnit : .defaultDayUnit)
+                                    .foregroundStyle(.defaultDayStyle)
+                            }
+                        }
+                        
                     }
                 }
-                
+                // MARK: - 가장 밑에 일자 표시, 자리잡기용
+                .chartXAxis {
+                    AxisMarks(values: .stride(by: .day)) { _ in
+                        AxisValueLabel(format: .dateTime.day(), centered: true)
+                            .font(.defaultDayUnit)
+                    }
+                }
+                .chartYAxis(.hidden)
+                .frame(width: CGFloat(workouts.count) * betweenBarSpace)
+            }
+            .defaultScrollAnchor(.trailing)
+        } else {
+            ScrollView(.horizontal, showsIndicators: false) {
+                Chart {
+                    ForEach(0..<workouts.count, id: \.self) { index in
+                        let workout = workouts[index]
+                        
+                        BarMark(
+                            x: .value("Order", index),
+                            yStart: .value("HeartRate", 0),
+                            yEnd: .value("HeartRate", workout.maxHeartRate)
+                        )
+                        .foregroundStyle(isMax(workout) ? .bpmMax
+                                         : (isMin(workout) ? .bpmMin : .chartDefault))
+                        .cornerRadius(300, style: .continuous)
+                        // MARK: - Bar Chart Data, value 표시
+                        // MARK: - 가장 밑에 일자 표시, 실제 보이는 용
+                        .annotation(position: .bottom, alignment: .center) {
+                            let isMaxOrMin = isMin(workout) || isMax(workout)
+                            VStack(spacing: 6) {
+                                Text(workout.maxHeartRate.formatted() + "Bpm")
+                                    .font(.maxValueUint)
+                                    .foregroundStyle(.maxValueStyle)
+                                    .opacity(isMaxOrMin ? 1.0 : 0.5)
+                                    .padding(.top, 8)
+                                
+                                Text("\(workout.day)일")
+                                    .font(isMaxOrMin ? .maxDayUnit : .defaultDayUnit)
+                                    .foregroundStyle(.defaultDayStyle)
+                            }
+                        }
+                        
+                    }
+                }
+                // MARK: - 가장 밑에 일자 표시, 자리잡기용
+                .chartXAxis {
+                    AxisMarks(values: .stride(by: .day)) { _ in
+                        AxisValueLabel(format: .dateTime.day(), centered: true)
+                            .font(.defaultDayUnit)
+                    }
+                }
+                .chartYAxis(.hidden)
+                .frame(width: CGFloat(workouts.count) * betweenBarSpace)
             }
         }
-        // MARK: - 가장 밑에 일자 표시, 자리잡기용
-        .chartXAxis {
-            AxisMarks(values: .stride(by: .day)) { _ in
-                AxisValueLabel(format: .dateTime.day(), centered: true)
-                    .font(.defaultDayUnit)
-            }
-        }
-        .chartYAxis(.hidden)
     }
 }
 

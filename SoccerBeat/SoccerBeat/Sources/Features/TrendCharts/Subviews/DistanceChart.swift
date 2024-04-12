@@ -59,7 +59,7 @@ struct DistanceChart: View {
     let fastestWorkout: WorkoutData
     let slowestWorkout: WorkoutData
     let averageDistance: Double
-    let betweenBarSpace: CGFloat = 65
+    let betweenBarSpace: CGFloat = 70
     
     private func isMax(_ workout: WorkoutData) -> Bool {
         workout == fastestWorkout
@@ -71,7 +71,7 @@ struct DistanceChart: View {
     
     var body: some View {
         if #available(iOS 17.0, *) {
-            ScrollView(.horizontal) {
+            ScrollView(.horizontal, showsIndicators: false) {
                 Chart {
                     ForEach(0..<workouts.count, id: \.self) { index in
                         let workout = workouts[index]
@@ -113,9 +113,8 @@ struct DistanceChart: View {
                 .frame(width: CGFloat(workouts.count) * betweenBarSpace)
             }
             .defaultScrollAnchor(.trailing)
-            .scrollIndicators(.never)
         } else {
-            ScrollView(.horizontal) {
+            ScrollView(.horizontal, showsIndicators: false) {
                 Chart {
                     ForEach(0..<workouts.count, id: \.self) { index in
                         let workout = workouts[index]
@@ -156,7 +155,6 @@ struct DistanceChart: View {
                 .chartYAxis(.hidden)
                 .frame(width: CGFloat(workouts.count) * betweenBarSpace)
             }
-            .scrollIndicators(.never)
         }
     }
 }

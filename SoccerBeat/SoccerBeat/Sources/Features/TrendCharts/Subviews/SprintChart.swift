@@ -58,6 +58,7 @@ struct SprintChart: View {
     let fastestWorkout: WorkoutData
     let slowestWorkout: WorkoutData
     let averageSprint: Double
+    let betweenBarSpace: CGFloat = 65
     
     private func isMax(_ workout: WorkoutData) -> Bool {
         workout == fastestWorkout
