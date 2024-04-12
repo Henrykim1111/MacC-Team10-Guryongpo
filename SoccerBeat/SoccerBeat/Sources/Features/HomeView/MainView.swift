@@ -52,23 +52,23 @@ struct MainView: View {
                             .stroke(lineWidth: 0.8)
                             .frame(height: 24)
                     }
-                    .padding(.horizontal)
+                    .padding(.top, 5)
                     .alert(
-                                alertTitle,
-                                isPresented: $isShowingBug
-                            ) {
-                                Button("취소", role: .cancel) {
-                                    // Handle the acknowledgement.
-                                    isShowingBug.toggle()
-                                }
-                                Button("문의하기") {
-                                    let url = createEmailUrl(to: "guryongpo23@gmail.com", subject: "", body: "")
-                                    openURL(urlString: url)
-                                    // TODO: 로그인 안될 때엔 어떻게 됩니까?
-                                }
-                            } message: {
-                               Text("불편을 드려 죄송합니다. \n\nSoccerBeat의 개발자 계정으로 문의를 주시면 빠른 시일 안에 답변드리겠습니다. ")
-                            }
+                        alertTitle,
+                        isPresented: $isShowingBug
+                    ) {
+                        Button("취소", role: .cancel) {
+                            // Handle the acknowledgement.
+                            isShowingBug.toggle()
+                        }
+                        Button("문의하기") {
+                            let url = createEmailUrl(to: "guryongpo23@gmail.com", subject: "", body: "")
+                            openURL(urlString: url)
+                            // TODO: 로그인 안될 때엔 어떻게 됩니까?
+                        }
+                    } message: {
+                        Text("불편을 드려 죄송합니다. \n\nSoccerBeat의 개발자 계정으로 문의를 주시면 빠른 시일 안에 답변드리겠습니다. ")
+                    }
                 }
                 .padding(.horizontal)
                 
@@ -101,8 +101,8 @@ struct MainView: View {
                                     let average = DataConverter.toLevels(profileModel.averageAbility)
                                     
                                     ViewControllerContainer(RadarViewController(radarAverageValue: average, radarAtypicalValue: recent))                              .scaleEffect(CGSize(width: 0.7, height: 0.7))
-                                        .fixedSize()
-                                        .frame(width: 210, height: 210)
+                                                                            .fixedSize()
+                                                                            .frame(width: 210, height: 210)
                                     
                                     Spacer()
                                     
@@ -192,16 +192,16 @@ struct MainView: View {
             }
         }
     }
-
+    
     func createEmailUrl(to: String, subject: String, body: String) -> String {
         let subjectEncoded = subject.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
         let bodyEncoded = body.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
-            
+        
         let defaultUrl = "mailto:\(to)?subject=\(subjectEncoded)&body=\(bodyEncoded)"
-            
+        
         return defaultUrl
     }
-
+    
 }
 
 #Preview {
