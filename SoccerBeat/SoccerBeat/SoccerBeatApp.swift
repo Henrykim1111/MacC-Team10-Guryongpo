@@ -39,6 +39,11 @@ struct SoccerBeatApp: App {
             .onReceive(NotificationCenter.default.publisher(for: UIApplication.didBecomeActiveNotification)) { _ in
                 noHealth = healthInteracter.haveNoHealthAuthorization()
                 noLocation = healthInteracter.haveNoLocationAuthorization()
+                Task {
+                    if !noHealth && !noLocation {
+                        await self.healthInteracter.fetchWorkoutData()
+                    }
+                }
             }
         }
     }
