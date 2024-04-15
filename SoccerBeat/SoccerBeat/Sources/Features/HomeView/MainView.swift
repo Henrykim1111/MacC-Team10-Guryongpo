@@ -38,7 +38,6 @@ struct MainView: View {
                         }
                     }
                     .foregroundStyle(.white)
-                    .padding(.top, 5)
                     Spacer()
                     
                     Button(action: { isShowingBug.toggle() } ) {
@@ -52,7 +51,6 @@ struct MainView: View {
                             .stroke(lineWidth: 0.8)
                             .frame(height: 24)
                     }
-                    .padding(.top, 5)
                     .alert(
                         alertTitle,
                         isPresented: $isShowingBug
@@ -71,6 +69,7 @@ struct MainView: View {
                     }
                 }
                 .padding(.horizontal)
+                .padding(.top, 5)
                 
                 HStack(alignment: .bottom) {
                     VStack(alignment: .leading) {
