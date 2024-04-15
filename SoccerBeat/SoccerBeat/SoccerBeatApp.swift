@@ -23,7 +23,7 @@ struct SoccerBeatApp: App {
         WindowGroup {
             //             if Authorization == sharingDenied, 명시적으로 거절함.
             ZStack {
-                if noHealth || noLocation {
+                if noHealth {
                     NoAuthorizationView(requestingAuth: .health)
                 } else if noLocation {
                     NoAuthorizationView(requestingAuth: .location)
@@ -39,6 +39,11 @@ struct SoccerBeatApp: App {
             .onReceive(NotificationCenter.default.publisher(for: UIApplication.didBecomeActiveNotification)) { _ in
                 noHealth = healthInteracter.haveNoHealthAuthorization()
                 noLocation = healthInteracter.haveNoLocationAuthorization()
+                Task {
+                    if !noHealth && !noLocation {
+                        await self.healthInteracter.fetchWorkoutData()
+                    }
+                }
             }
         }
     }

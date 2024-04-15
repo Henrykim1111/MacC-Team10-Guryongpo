@@ -5,6 +5,7 @@
 //  Created by daaan on 10/21/23.
 //
 
+import SkeletonUI
 import SwiftUI
 import HealthKit
 
@@ -23,7 +24,9 @@ struct ContentView: View {
                 // TODO: - 건강 경보라고만 되어있는데 어떤 경보인지 알 수 있도록 renaming
                 if healthAlert {
                     HealthAlertView(showingAlert: $healthAlert)
-                } else {
+                } else if healthInteractor.isLoading {
+                    LoadingView(workouts: $workouts)
+                } else if !healthInteractor.isLoading {
                     if workouts.isEmpty {
                         EmptyDataView()
                     } else {
@@ -43,7 +46,6 @@ struct ContentView: View {
             .onAppear {
                 // 음악을 틀기
                 if soundManager.isMusicPlaying {
-                    print("this worked")
                     soundManager.playBackground()
                 }
             }
