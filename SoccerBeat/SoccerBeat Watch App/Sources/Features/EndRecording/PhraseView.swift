@@ -18,7 +18,7 @@ struct PhraseView: View {
     }
 
     var body: some View {
-        VStack {
+        VStack(spacing: nil) {
             Text(phrase)
                 .fixedSize(horizontal: false, vertical: true)
                 .font(.wiseSaying)
