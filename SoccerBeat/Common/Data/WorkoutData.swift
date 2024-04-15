@@ -120,7 +120,13 @@ struct WorkoutData: Hashable, Equatable, Identifiable {
         WorkoutData(dataID: 5, date: "2023-10-20T01:20:32Z", time: "60:10", distance: 4.5, sprint: 11, velocity: 17.2, acceleration: 3.0, heartRate: ["max": 175, "min": 60], route: [], center: [0, 0]),
         WorkoutData(dataID: 6, date: "2023-10-21T01:20:32Z", time: "60:10", distance: 3.6, sprint: 5, velocity: 24.4, acceleration: 3.0, heartRate: ["max": 190, "min": 79], route: [], center: [0, 0]),
         WorkoutData(dataID: 7, date: "2023-10-23T01:20:32Z", time: "60:10", distance: 3.8, sprint: 13, velocity: 15.9, acceleration: 3.0, heartRate: ["max": 183, "min": 91], route: [], center: [0, 0]),
-        WorkoutData(dataID: 8, date: "2023-10-24T01:20:32Z", time: "60:10", distance: 2.9, sprint: 17, velocity: 17.3, acceleration: 3.0, heartRate: ["max": 169, "min": 79], route: [], center: [0, 0]),
+        WorkoutData(dataID: 8, date: "2023-10-24T01:20:32Z", time: "60:10", distance: 2.5, sprint: 17, velocity: 17.3, acceleration: 3.0, heartRate: ["max": 159, "min": 69], route: [], center: [0, 0]),
+        WorkoutData(dataID: 8, date: "2023-10-24T01:20:32Z", time: "60:10", distance: 2.1, sprint: 1, velocity: 17.3, acceleration: 3.0, heartRate: ["max": 144, "min": 73], route: [], center: [0, 0]),
+        WorkoutData(dataID: 8, date: "2023-10-24T01:20:32Z", time: "60:10", distance: 3.2, sprint: 7, velocity: 16.3, acceleration: 3.0, heartRate: ["max": 159, "min": 72], route: [], center: [0, 0]),
+        WorkoutData(dataID: 8, date: "2023-10-24T01:20:32Z", time: "60:10", distance: 0.5, sprint: 8, velocity: 14.3, acceleration: 3.0, heartRate: ["max": 162, "min": 63], route: [], center: [0, 0]),
+        WorkoutData(dataID: 8, date: "2023-10-24T01:20:32Z", time: "60:10", distance: 1.9, sprint: 9, velocity: 12.3, acceleration: 3.0, heartRate: ["max": 168, "min": 59], route: [], center: [0, 0]),
+        WorkoutData(dataID: 8, date: "2023-10-24T01:20:32Z", time: "60:10", distance: 4.9, sprint: 10, velocity: 13.3, acceleration: 3.0, heartRate: ["max": 171, "min": 68], route: [], center: [0, 0]),
+        WorkoutData(dataID: 8, date: "2023-10-24T01:20:32Z", time: "60:10", distance: 2.9, sprint: 17, velocity: 11.3, acceleration: 3.0, heartRate: ["max": 158, "min": 69], route: [], center: [0, 0]),
         WorkoutData(dataID: 9, date: "2023-10-27T01:20:32Z", time: "60:10", distance: 5.3, sprint: 12, velocity: 23.5, acceleration: 3.0, heartRate: ["max": 187, "min": 60], route: [], center: [0, 0])
     ]
     

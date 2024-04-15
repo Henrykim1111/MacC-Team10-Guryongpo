@@ -136,6 +136,7 @@
 		FB2EC9C62B0B527F0050B0E8 /* SF-Pro-Text-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = FB2EC9C52B0B527F0050B0E8 /* SF-Pro-Text-Bold.otf */; };
 		FB2EC9C72B0B527F0050B0E8 /* SF-Pro-Text-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = FB2EC9C52B0B527F0050B0E8 /* SF-Pro-Text-Bold.otf */; };
 		FB5859972B14F0A2002617E0 /* InformationButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB5859962B14F0A2002617E0 /* InformationButton.swift */; };
+		FB61FFB32BCD518800EF0D1B /* Backport+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB61FFB22BCD518800EF0D1B /* Backport+extension.swift */; };
 		FB954AFF2BB2BAAF00A365FB /* HealthInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3D4F1892AF248CE006C6B8A /* HealthInteractor.swift */; };
 		FBA3DA622B00E6EF0025AD7B /* ShareView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBA3DA612B00E6EF0025AD7B /* ShareView.swift */; };
 		FBA3DA812B03B5770025AD7B /* SF-Pro-Display-HeavyItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = FBA3DA802B03B5770025AD7B /* SF-Pro-Display-HeavyItalic.otf */; };
@@ -274,6 +275,7 @@
 		FB2EC9C22B0B50BB0050B0E8 /* BadgeImageDictionary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BadgeImageDictionary.swift; sourceTree = "<group>"; };
 		FB2EC9C52B0B527F0050B0E8 /* SF-Pro-Text-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Text-Bold.otf"; sourceTree = "<group>"; };
 		FB5859962B14F0A2002617E0 /* InformationButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InformationButton.swift; sourceTree = "<group>"; };
+		FB61FFB22BCD518800EF0D1B /* Backport+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Backport+extension.swift"; sourceTree = "<group>"; };
 		FBA3DA612B00E6EF0025AD7B /* ShareView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareView.swift; sourceTree = "<group>"; };
 		FBA3DA802B03B5770025AD7B /* SF-Pro-Display-HeavyItalic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Display-HeavyItalic.otf"; sourceTree = "<group>"; };
 		FBA3DA862B03B9F20025AD7B /* SF-Pro-Display-RegularItalic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Display-RegularItalic.otf"; sourceTree = "<group>"; };
@@ -390,6 +392,7 @@
 				BE40699E2AF0F2F500FA3030 /* Bundle+extension.swift */,
 				BE010D3B2B0512680093A5FE /* Double+extension.swift */,
 				6851E6E22B0C8E7F007D1DD8 /* Text+extension.swift */,
+				FB61FFB22BCD518800EF0D1B /* Backport+extension.swift */,
 			);
 			name = Extensions;
 			path = Utiles;
@@ -977,6 +980,7 @@
 				D3C500132AE36F3F00EFAEFF /* SoccerBeatApp.swift in Sources */,
 				BE4A91582B011C8B004AAFA3 /* SprintChart.swift in Sources */,
 				D3A1F1112B06847600EB2049 /* ProfileView.swift in Sources */,
+				FB61FFB32BCD518800EF0D1B /* Backport+extension.swift in Sources */,
 				FBCED9322AE4218E00C57BF9 /* MatchRecapView.swift in Sources */,
 				BE010D392B0511CC0093A5FE /* FloatingCapsuleModifier.swift in Sources */,
 				BECCFAB82B066B38009F4BE5 /* SprintChartOverview.swift in Sources */,
