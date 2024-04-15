@@ -27,14 +27,14 @@ struct PhraseView: View {
                 .frame(width: .infinity, height: 85)
             
             Spacer()
-            
-                Image(.blueHeart)
-                    .resizable()
-                    .scaledToFit()
-                    .frame(width: 42, height: 25)
-                    .scaleEffect(beatAnimation ? 1.1 : 1)
-                    .animation(.spring.repeatForever(autoreverses: true).speed(3),
-                               value: beatAnimation)
+        
+            Image(.blueHeart)
+                .resizable()
+                .scaledToFit()
+                .frame(width: 42, height: 25)
+                .scaleEffect(beatAnimation ? 1.1 : 1)
+                .animation(.spring.repeatForever(autoreverses: true).speed(3),
+                           value: beatAnimation)
 
         }
         .onAppear {
