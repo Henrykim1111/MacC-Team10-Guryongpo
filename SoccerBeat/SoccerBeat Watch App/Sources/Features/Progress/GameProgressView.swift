@@ -31,10 +31,12 @@ struct GameProgressView: View {
                     progressView
                     
                     ZStack {
-                        zoneBar
-
+                            zoneBar
+                                .scaledToFit()
+                                .offset(y: 10)
                         BPMView()
                     }
+                    .offset(y: 20)
                 }
                 .rotationEffect(.degrees(-90)) // Rotate content
                 .frame(
@@ -213,10 +215,10 @@ extension GameProgressView {
     private var zoneBar: some View {
 
         GeometryReader { geo in
-            let circleHeight = 22.0
-            let currentZoneWidth = 55.0
+            let circleHeight = 16.0
+            let currentZoneWidth = 50.0
             
-            HStack(spacing: 8) {
+            HStack(spacing: 4) {
                 ForEach(1...5, id: \.self) { index in
                     if zone.rawValue == index {
                         currentZone
@@ -233,9 +235,9 @@ extension GameProgressView {
     
     @ViewBuilder
     private var currentZone: some View {
-        let circleHeight = CGFloat(14.0)
+        let circleHeight = CGFloat(16.0)
         let strokeWidth = CGFloat(0.6)
-        let roundedRectangle = RoundedRectangle(cornerRadius: circleHeight / 2)
+        let roundedRectangle = RoundedRectangle(cornerRadius: 8)
         let text = Text(zone.text)
             .font(.zoneCapsule)
             .foregroundStyle(.currentZoneText)

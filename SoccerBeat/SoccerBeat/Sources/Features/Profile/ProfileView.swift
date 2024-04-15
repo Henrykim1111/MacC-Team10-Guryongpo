@@ -71,7 +71,7 @@ struct ProfileView: View {
                                             .opacity(isFlipped ? 1 : 0)
                                             .padding(.top, 10)
                                     }
-                                    .offset(y: 16)
+                                    .offset(y: 20)
 
                                 }
                                 .font(.custom("SFProDisplay-HeavyItalic", size: 36))

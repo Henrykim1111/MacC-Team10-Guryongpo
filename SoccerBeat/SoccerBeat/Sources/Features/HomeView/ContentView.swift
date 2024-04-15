@@ -40,7 +40,6 @@ struct ContentView: View {
             .onAppear {
                 // 음악을 틀기
                 if soundManager.isMusicPlaying {
-                    print("this worked")
                     soundManager.playBackground()
                 }
             }

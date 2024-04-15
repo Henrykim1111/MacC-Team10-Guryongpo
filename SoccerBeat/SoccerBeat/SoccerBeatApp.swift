@@ -23,7 +23,7 @@ struct SoccerBeatApp: App {
         WindowGroup {
             //             if Authorization == sharingDenied, 명시적으로 거절함.
             ZStack {
-                if noHealth || noLocation {
+                if noHealth {
                     NoAuthorizationView(requestingAuth: .health)
                 } else if noLocation {
                     NoAuthorizationView(requestingAuth: .location)
