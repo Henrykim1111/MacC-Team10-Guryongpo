@@ -4,7 +4,6 @@
 //
 //  Created by Gucci on 4/15/24.
 //
-
 import SwiftUI
 
 struct EmptyDataView: View {
@@ -94,10 +93,12 @@ struct EmptyDataView: View {
 }
 
 #Preview {
+    @StateObject var healthInteractor = HealthInteractor.shared
     @StateObject var profileModel = ProfileModel(healthInteractor: HealthInteractor.shared)
     
     return NavigationStack {
         EmptyDataView()
               .environmentObject(profileModel)
+              .environmentObject(healthInteractor)
     }
 }

@@ -80,7 +80,6 @@ struct MainView: View {
                         }
                         Text("최근 경기")
                             .font(.mainTitleText)
-                            .skeleton(with: workouts.isEmpty)
                     }
                     
                     
@@ -89,7 +88,6 @@ struct MainView: View {
                         ProfileView()
                     } label: {
                         CardFront(degree: .constant(0), width: 72, height: 110)
-                            .skeleton(with: workouts.isEmpty)
                     }
                 }
                 .padding()
@@ -112,7 +110,6 @@ struct MainView: View {
                                                                                 .fixedSize()
                                                                                 .frame(width: 210, height: 210)
                                     }
-                                    
                                     Spacer()
                                     
                                     // 최근 경기 미리보기 오른쪽
@@ -121,7 +118,6 @@ struct MainView: View {
                                         VStack(alignment: .leading) {
                                             Text(currentLocation)
                                                 .font(.mainDateLocation)
-                                                .skeleton(with: workouts.isEmpty)
                                                 .foregroundStyle(.mainDateTime)
                                                 .opacity(0.8)
                                                 .task {
@@ -131,7 +127,7 @@ struct MainView: View {
                                                 }
                                             Group {
                                                 Text("경기 시간")
-                                                    .skeleton(with: workouts.isEmpty)
+
                                                 if !workouts.isEmpty {
                                                     Text(workouts[0].time)
                                                 }
@@ -182,7 +178,6 @@ struct MainView: View {
                             
                             Spacer()
                         }
-                        .skeleton(with: workouts.isEmpty)
                         .padding()
                     }
                 }
@@ -191,11 +186,10 @@ struct MainView: View {
                     .frame(height: 80)
                 
                 AnalyticsView()
-                    .skeleton(with: workouts.isEmpty)
             }
         }
         .refreshable {
-            healthInteractor.requestAuthorization()
+            await healthInteractor.fetchWorkoutData()
         }
         .padding(.horizontal)
         .navigationTitle("")
