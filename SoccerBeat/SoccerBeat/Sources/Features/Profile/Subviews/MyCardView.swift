@@ -15,8 +15,8 @@ struct MyCardView: View {
     @State private var frontDegree = -90.0
     @Binding var isFlipped: Bool
     
-    private let width = 200.0
-    private let height = 280.0
+    private let width = 95.0
+    private let height = 125.0
     private let durationAndDelay = 0.25
     
     var body: some View {

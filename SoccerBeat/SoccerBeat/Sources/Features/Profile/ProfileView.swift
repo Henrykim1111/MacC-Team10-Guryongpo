@@ -10,10 +10,8 @@ import SwiftUI
 struct ProfileView: View {
     @EnvironmentObject var profileModel: ProfileModel
     @State private var isFlipped = false
-    @State private var userName = ""
     @State private var userImage: UIImage?
     @FocusState private var isFocused: Bool
-    let nameLength = 15
     
     var body: some View {
         NavigationStack {
@@ -22,59 +20,56 @@ struct ProfileView: View {
                     HStack {
                         VStack {
                             HStack {
-                                InformationButton(message: "나의 선수 카드와 최대 능력치를 만나보세요.")
+                                InformationButton(message: " 나의 선수 카드와 최대 능력치를 만나보세요.")
                                 Spacer()
                             }
                             .padding(.top, 48)
                             .padding(.bottom, 30)
                             
-                                VStack(spacing: 0) {
-                                    HStack {
-                                        Text("선수 프로필")
-                                            .font(.matchDetailSubTitle)
-                                            .foregroundStyle(.shareViewSubTitleTint)
-                                        Spacer()
-                                    }
-                                    
-                                    VStack(spacing: 0) {
-                                        ZStack {
-                                            if !userName.isEmpty {
-                                                Text(userName)
-                                                    .foregroundStyle(.clear)
-                                                    .padding(.horizontal)
-                                                    .frame(height: 40)
-                                                    .overlay {
-                                                        Capsule()
-                                                            .stroke(style: .init(lineWidth: 0.8))
-                                                            .frame(height: 40)
-                                                            .foregroundColor(userName.count >= nameLength + 1 ? .red : .brightmint)
-                                                    }
-                                            }
-                                            
-                                            TextField("Name", text: $userName)
-                                                .padding(.horizontal)
-                                                .frame(height: 40)
-                                                .limitText($userName, to: nameLength)
-                                                .multilineTextAlignment(.center)
-                                                .lineLimit(1)
-                                                .onChange(of: userName) { _ in
-                                                    UserDefaults.standard.set(userName, forKey: "userName")
-                                                }
-                                        }
-                                    }
-                                    .offset(y: 24)
-                                    
+                            VStack(spacing: 0) {
+                                HStack {
                                     VStack {
+                                        Spacer()
+                                        
                                         MyCardView(isFlipped: $isFlipped)
-                                            .frame(width: 210)
+                                            .frame(width: 95)
+                                        
                                         PhotoSelectButtonView()
                                             .opacity(isFlipped ? 1 : 0)
                                             .padding(.top, 10)
                                     }
-                                    .offset(y: 20)
-
+                                    //                                    .offset(y: 20)
+                                    
+                                    Spacer()
+                                        .frame(width: 24)
+                                    
+                                    VStack(alignment: .leading, spacing: nil) {
+                                        
+                                        Text("SBeat Card")
+                                            .font(.matchDetailSubTitle)
+                                            .foregroundStyle(.shareViewSubTitleTint)
+                                            .offset(y: -10)
+                                        HStack(spacing: nil) {
+                                            Text("How ")
+                                            Text("you")
+                                                .bold()
+                                                .foregroundStyle(.brightmint)
+                                        }
+                                        HStack(spacing: nil) {
+                                            Text("like")
+                                            Text("that?")
+                                                .foregroundStyle(.brightmint)
+                                                .highlighter(activity: .heartrate, isDefault: true)
+                                        }
+                                        .offset(y: -8)
+                                    }
+                                    Spacer()
                                 }
-                                .font(.custom("SFProDisplay-HeavyItalic", size: 36))
+                                
+                                NameFieldView()
+                                
+                            }
+                            .font(.custom("SFProDisplay-HeavyItalic", size: 36))
                         }
                     }
                     
@@ -112,9 +107,9 @@ struct ProfileView: View {
                     let maximumAbility = DataConverter.toLevels(profileModel.maxAbility)
                     
                     ViewControllerContainer(ProfileViewController(radarAverageValue: average, radarAtypicalValue: maximumAbility))
-                        .fixedSize()
-                        .frame(width: 304, height: 348)
-                        .zIndex(-1)
+                                            .fixedSize()
+                                            .frame(width: 304, height: 348)
+                                            .zIndex(-1)
                     
                     Spacer()
                         .frame(height: 110)
@@ -126,9 +121,7 @@ struct ProfileView: View {
                     hideKeyboard()
                 }
             }
-            .onAppear {
-                userName = UserDefaults.standard.string(forKey: "userName") ?? ""
-            }
+            
         }
         .toolbar {
             NavigationLink {
@@ -146,5 +139,48 @@ struct ProfileView: View {
 extension View {
     func hideKeyboard() {
         UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+    }
+}
+
+#Preview {
+    ProfileView()
+        .environmentObject(ProfileModel(healthInteractor: HealthInteractor()))
+}
+
+struct NameFieldView: View {
+    @State private var userName = ""
+    let nameLength = 15
+    
+    var body: some View {
+        VStack(spacing: 0) {
+            ZStack {
+                if !userName.isEmpty {
+                    Text(userName)
+                        .foregroundStyle(.clear)
+                        .padding(.horizontal, 32)
+                        .frame(height: 40)
+                        .overlay {
+                            Capsule()
+                                .stroke(style: .init(lineWidth: 0.8))
+                                .frame(height: 40)
+                                .foregroundColor(userName.count >= nameLength + 1 ? .red : .brightmint)
+                        }
+                }
+                
+                TextField("Name", text: $userName)
+                    .padding(.horizontal, 32)
+                    .frame(height: 40)
+                    .limitText($userName, to: nameLength)
+                    .multilineTextAlignment(.center)
+                    .lineLimit(1)
+                    .onChange(of: userName) { _ in
+                        UserDefaults.standard.set(userName, forKey: "userName")
+                    }
+            }
+        }
+        .offset(y: 24)
+        .onAppear {
+            userName = UserDefaults.standard.string(forKey: "userName") ?? ""
+        }
     }
 }
