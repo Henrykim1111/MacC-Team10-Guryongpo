@@ -49,28 +49,26 @@ struct RadarChartView: View {
     var body: some View {
         ZStack {
             // MARK: - max line border
-//            ForEach(0..<averageDataPoints.count) { index in
-//                RadarChartShape(dataPoints: Array(repeating: limitValue, count: averageDataPoints.count), maxValue: limitValue)
-//                    .stroke(Color.gray, lineWidth: 0.5)
-//            }
             
             // MARK: - 평균 데이터 레이어
             RadarChartShape(dataPoints: averageDataPoints, maxValue: limitValue)
-                .fill(Color.blue.opacity(0.3))
+                .fill(Color(UIColor(red:0.282,  green:1,  blue:1, alpha:0.5)))
                 .overlay(
                     RadarChartShape(dataPoints: averageDataPoints, maxValue: limitValue)
-                        .stroke(Color.blue, lineWidth: 2)
+                        .stroke(style: StrokeStyle(lineWidth: 4, lineCap: .round, lineJoin: .round))
+                        .foregroundStyle(Color(UIColor(red:0,  green:1,  blue:0.878, alpha:1)))
                 )
             
             // MARK: - 최고 데이터 레이어
             RadarChartShape(dataPoints: maximumDataPoints, maxValue: limitValue)
-                .fill(Color.red.opacity(0.3))
+                .fill(Color.clear)
                 .overlay(
                     RadarChartShape(dataPoints: maximumDataPoints, maxValue: limitValue)
-                        .stroke(Color.red, lineWidth: 2)
+                        .stroke(style: StrokeStyle(lineWidth: 4, lineCap: .round, lineJoin: .round))
+                        .foregroundStyle(Color(UIColor(red:1,  green:0,  blue:0.478, alpha:0.7)))
                 )
         }
-//        .frame(width: 300, height: 300)
+        .rotationEffect(.degrees(-90))
     }
 }
 
