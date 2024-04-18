@@ -11,6 +11,13 @@ struct MatchRecapView: View {
     @EnvironmentObject var healthInteractor: HealthInteractor
     @State private var userName = ""
     @Binding var userWorkouts: [WorkoutData]
+    
+    private var lastName: String {
+        guard let lastName = userName
+            .split(separator: " ")
+            .compactMap({ String($0) }).last else { return "" }
+        return lastName
+    }
 
     var body: some View {
         VStack(spacing: 0) {
@@ -35,7 +42,8 @@ struct MatchRecapView: View {
             
             HStack {
                 VStack(alignment: .leading, spacing: 0.0) {
-                    Text(userName.isEmpty ? "Player, " : "Player \(userName.split(separator: " ").last!),")
+                    // view
+                    Text("Player \(lastName),")
                         .lineLimit(1)
                     Text("Your past games")
                 }
