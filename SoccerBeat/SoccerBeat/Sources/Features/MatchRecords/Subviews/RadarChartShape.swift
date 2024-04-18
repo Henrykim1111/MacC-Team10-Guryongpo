@@ -52,20 +52,20 @@ struct RadarChartView: View {
             
             // MARK: - 평균 데이터 레이어
             RadarChartShape(dataPoints: averageDataPoints, maxValue: limitValue)
-                .fill(Color(UIColor(red:0.282,  green:1,  blue:1, alpha:0.5)))
+                .fill(.averageFillColor)
                 .overlay(
                     RadarChartShape(dataPoints: averageDataPoints, maxValue: limitValue)
-                        .stroke(style: StrokeStyle(lineWidth: 4, lineCap: .round, lineJoin: .round))
-                        .foregroundStyle(Color(UIColor(red:0,  green:1,  blue:0.878, alpha:1)))
+                        .stroke(style: StrokeStyle(lineWidth: 3.5, lineCap: .round, lineJoin: .round))
+                        .foregroundStyle(.averageStokeColor)
                 )
             
             // MARK: - 최고 데이터 레이어
             RadarChartShape(dataPoints: maximumDataPoints, maxValue: limitValue)
-                .fill(Color.clear)
+                .fill(.maxFillColor)
                 .overlay(
                     RadarChartShape(dataPoints: maximumDataPoints, maxValue: limitValue)
-                        .stroke(style: StrokeStyle(lineWidth: 4, lineCap: .round, lineJoin: .round))
-                        .foregroundStyle(Color(UIColor(red:1,  green:0,  blue:0.478, alpha:0.7)))
+                        .stroke(style: StrokeStyle(lineWidth: 3.5, lineCap: .round, lineJoin: .round))
+                        .foregroundStyle(.maxStrokeColor)
                 )
         }
         .rotationEffect(.degrees(-90))
@@ -78,4 +78,5 @@ struct RadarChartView: View {
     let maxValue = 1.0
     
     return RadarChartView(averageDataPoints: averageDataPoints, maximumDataPoints: currentDataPoints, limitValue: maxValue)
+ 
 }

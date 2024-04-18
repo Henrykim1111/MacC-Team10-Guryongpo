@@ -117,6 +117,11 @@ extension ShapeStyle where Self == Color {
     static var tooltipTextColor: Self { .init(hex: 0xABFFE6) }
     static var tooltipBackgroundColor: Self { .init(hex: 0x191919)}
     
+    // MARK: - MatchRecapView Graph
+    static var averageFillColor: Self { .init(hex: 0x47FFFF, alpha: 0.5) }
+    static var averageStokeColor: Self { .init(hex: 0x03FFE0) }
+    static var maxFillColor: Self { Color.clear }
+    static var maxStrokeColor: Self { .init(hex: 0xFF007A, alpha: 0.7) }
 }
 
 extension ShapeStyle where Self == LinearGradient {
