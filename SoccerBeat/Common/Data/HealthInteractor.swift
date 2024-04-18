@@ -46,7 +46,7 @@ final class HealthInteractor: ObservableObject {
         return formatter
     }()
     
-    @Published var recent9Games = [WorkoutData]()
+    @Published var recentGames = [WorkoutData]()
     @Published var recent4Games = [WorkoutData]()
     
     private(set) var monthly = [String: [WorkoutData]]()
@@ -225,25 +225,17 @@ final class HealthInteractor: ObservableObject {
 // MARK: - Chart Methods
 
 extension HealthInteractor {
-    
+
     private func settingForChartView(_ workouts: [WorkoutData]) async {
-        let nineGames: [WorkoutData] = {
-            let games = readRecentMatches(with: workouts, for: 9)
-            return sortWorkoutsForChart(games)
-        }()
         let fourGames: [WorkoutData] = {
             let games = readRecentMatches(with: workouts, for: 4)
             let sorted = sortWorkoutsForChart(games)
             return makeBlankWorkouts(with: sorted)
         }()
-        
-//        DispatchQueue.main.async { [unowned self] in
-//            recent4Games = fourGames
-//            recent9Games = nineGames
-//        }
+
         await MainActor.run {
             recent4Games = fourGames
-            recent9Games = nineGames
+            recentGames = sortWorkoutsForChart(workouts)
         }
     }
     

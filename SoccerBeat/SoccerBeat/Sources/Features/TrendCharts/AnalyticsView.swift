@@ -28,10 +28,10 @@ struct AnalyticsView: View {
                 ForEach(ActivityEnum.allCases, id: \.self) { activityType in
                     NavigationLink {
                         switch activityType {
-                        case .distance: DistanceChartView(workouts: healthInteractor.recent9Games)
-                        case .heartrate: BPMChartView(workouts: healthInteractor.recent9Games)
-                        case .speed: SpeedChartView(workouts: healthInteractor.recent9Games)
-                        case .sprint: SprintChartView(workouts: healthInteractor.recent9Games)
+                        case .distance: DistanceChartView(workouts: healthInteractor.recentGames)
+                        case .heartrate: BPMChartView(workouts: healthInteractor.recentGames)
+                        case .speed: SpeedChartView(workouts: healthInteractor.recentGames)
+                        case .sprint: SprintChartView(workouts: healthInteractor.recentGames)
                         }
                     } label: {
                         AnalyticsComponent(userWorkouts: healthInteractor.recent4Games, activityType: activityType)
