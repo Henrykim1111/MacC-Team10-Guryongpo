@@ -38,7 +38,6 @@ struct ProfileView: View {
                                             .opacity(isFlipped ? 1 : 0)
                                             .padding(.top, 10)
                                     }
-                                    //                                    .offset(y: 20)
                                     
                                     Spacer()
                                         .frame(width: 24)
@@ -65,9 +64,7 @@ struct ProfileView: View {
                                     }
                                     Spacer()
                                 }
-                                
                                 NameFieldView()
-                                
                             }
                             .font(.mainTitleText)
                         }
