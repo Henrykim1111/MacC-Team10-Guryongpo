@@ -41,6 +41,8 @@
 		BE010D3D2B0512680093A5FE /* Double+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE010D3B2B0512680093A5FE /* Double+extension.swift */; };
 		BE0639D82AE61BC2008D1D4E /* SplitControlsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE0639D72AE61BC2008D1D4E /* SplitControlsView.swift */; };
 		BE0639DA2AE66D93008D1D4E /* SessionPagingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE0639D92AE66D93008D1D4E /* SessionPagingView.swift */; };
+		BE0D7D7D2BD14B4800966FF7 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = BE0D7D7C2BD14B4800966FF7 /* PrivacyInfo.xcprivacy */; };
+		BE0D7D7E2BD14B4800966FF7 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = BE0D7D7C2BD14B4800966FF7 /* PrivacyInfo.xcprivacy */; };
 		BE16B7C32B0B7D0300192C3B /* TrophyCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE16B7C22B0B7D0300192C3B /* TrophyCollectionView.swift */; };
 		BE22D6352AE586AA009035C9 /* GameProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE22D6302AE586AA009035C9 /* GameProgressView.swift */; };
 		BE22D6372AE586AA009035C9 /* SprintStatusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE22D6322AE586AA009035C9 /* SprintStatusView.swift */; };
@@ -204,6 +206,7 @@
 		BE010D3B2B0512680093A5FE /* Double+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double+extension.swift"; sourceTree = "<group>"; };
 		BE0639D72AE61BC2008D1D4E /* SplitControlsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitControlsView.swift; sourceTree = "<group>"; };
 		BE0639D92AE66D93008D1D4E /* SessionPagingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionPagingView.swift; sourceTree = "<group>"; };
+		BE0D7D7C2BD14B4800966FF7 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		BE16B7C22B0B7D0300192C3B /* TrophyCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrophyCollectionView.swift; sourceTree = "<group>"; };
 		BE22D6302AE586AA009035C9 /* GameProgressView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameProgressView.swift; sourceTree = "<group>"; };
 		BE22D6322AE586AA009035C9 /* SprintStatusView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SprintStatusView.swift; sourceTree = "<group>"; };
@@ -361,6 +364,14 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		BE0D7D7B2BD14B2100966FF7 /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+				BE0D7D7C2BD14B4800966FF7 /* PrivacyInfo.xcprivacy */,
+			);
+			path = Resource;
+			sourceTree = "<group>";
+		};
 		BE22D62F2AE586AA009035C9 /* Progress */ = {
 			isa = PBXGroup;
 			children = (
@@ -375,6 +386,7 @@
 		BE4069DC2AF212B500FA3030 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				BE0D7D7B2BD14B2100966FF7 /* Resource */,
 				FB954B002BB2BB0700A365FB /* Data */,
 				BE4069DF2AF2139B00FA3030 /* Extensions */,
 				FBCED9212AE3DAC700C57BF9 /* Fonts */,
@@ -873,6 +885,7 @@
 				BE4069C72AF1F80D00FA3030 /* SF-Pro-Text-BlackItalic.otf in Resources */,
 				BE4069CD2AF1F80D00FA3030 /* SF-Compact-Text-LightItalic.otf in Resources */,
 				BE4069C92AF1F80D00FA3030 /* SF-Compact-Text-Regular.otf in Resources */,
+				BE0D7D7D2BD14B4800966FF7 /* PrivacyInfo.xcprivacy in Resources */,
 				D3C500172AE36F3F00EFAEFF /* Assets.xcassets in Resources */,
 				FBA3DA812B03B5770025AD7B /* SF-Pro-Display-HeavyItalic.otf in Resources */,
 				BE4069CB2AF1F80D00FA3030 /* SF-Compact-Text-Medium.otf in Resources */,
@@ -891,6 +904,7 @@
 				685D7B5A2AE38D1A00783433 /* .swiftlint.yml in Resources */,
 				BE4069D82AF1F98B00FA3030 /* NotoSans-Regular.ttf in Resources */,
 				BE4069E52AF27ADF00FA3030 /* SF-Pro-Text-LightItalic.otf in Resources */,
+				BE0D7D7E2BD14B4800966FF7 /* PrivacyInfo.xcprivacy in Resources */,
 				BE4069BF2AF1D22B00FA3030 /* NotoSans-Black.ttf in Resources */,
 				BE323D432B0CC49500F289D4 /* SF-Pro-Text-Medium.otf in Resources */,
 				BE4069D02AF1F80D00FA3030 /* SF-Compact-Text-SemiboldItalic.otf in Resources */,
