@@ -105,53 +105,22 @@ extension ShareView {
             }
         }
     }
-}
 
-extension ShareView {
-    func screenShot() {
-        let screenshot = body.takeScreenshot(origin: UIScreen.main.bounds.origin, size: UIScreen.main.bounds.size)
-        UIImageWriteToSavedPhotosAlbum(screenshot, self, nil, nil)
-        
-        PHPhotoLibrary.requestAuthorization( { status in
-            switch status {
-            case .authorized:
-                showingAlert = true
-            case .denied:
-                break
-            case .restricted, .notDetermined:
-                break
-            default:
-                break
-            }
-        })
-    }
-    
-    func share() {
-        let screenshot = body.takeScreenshot(origin: UIScreen.main.bounds.origin, size: UIScreen.main.bounds.size)
+    private func share() {
+        guard let screenshot = UIWindow.screenshot() else { return }
         let activityViewController = UIActivityViewController(activityItems: [screenshot], applicationActivities: nil)
         UIApplication.shared.windows.first?.rootViewController?.present(activityViewController, animated: true)
     }
 }
 
-extension UIView {
-    var screenShot: UIImage {
-        let rect = self.bounds
-        UIGraphicsBeginImageContextWithOptions(rect.size, false, 0.0)
-        let context: CGContext = UIGraphicsGetCurrentContext()!
-        self.layer.render(in: context)
-        let capturedImage: UIImage = UIGraphicsGetImageFromCurrentImageContext()!
-        return capturedImage
-    }
-}
+extension UIWindow {
+    static func screenshot() -> UIImage? {
+        guard let window = UIApplication.shared.windows.first(where: { $0.isKeyWindow }) else { return nil }
 
-extension View {
-    func takeScreenshot(origin: CGPoint, size: CGSize) -> UIImage {
-        let window = UIWindow(frame: CGRect(origin: origin, size: size))
-        let hosting = UIHostingController(rootView: self)
-        hosting.view.frame = window.frame
-        window.addSubview(hosting.view)
-        window.makeKeyAndVisible()
-        return hosting.view.screenShot
+        let renderer = UIGraphicsImageRenderer(bounds: window.bounds)
+        return renderer.image { context in
+            window.drawHierarchy(in: window.bounds, afterScreenUpdates: true)
+        }
     }
 }
 
