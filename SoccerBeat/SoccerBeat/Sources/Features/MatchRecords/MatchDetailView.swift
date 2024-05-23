@@ -163,7 +163,7 @@ struct FieldMovementView: View {
             HStack {
                 VStack(alignment: .leading) {
                     HStack {
-                        InformationButton(message: "경기 중 나의 위치를 확인해 보세요.")
+                        InformationButton(message: "설정에서 '정확한 위치'를 허용하면 보다 정확한 데이터를 얻을 수 있어요.")
                         Spacer()
                     }
                     
@@ -246,16 +246,13 @@ struct FieldRecordDataView: View {
                     }
                     
                     VStack(alignment: .leading) {
-                        Text("가속도")
+                        Text("파워")
                             .font(.fieldRecordTitle)
                         HStack(alignment: .bottom,spacing: 0) {
-                            Text(workoutData.acceleration.rounded(at: 1))
+                            Text(workoutData.power.rounded(at: 1))
                                 .font(.fieldRecordMeasure)
-                            Text(" m/s")
+                            Text(" w")
                                 .font(.fieldRecordUnit)
-                            Text("2")
-                                .font(.fieldRecordSquare)
-                                .baselineOffset(10.0)
                         }
                     }
                     
