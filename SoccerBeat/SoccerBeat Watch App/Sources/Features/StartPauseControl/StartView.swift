@@ -9,7 +9,7 @@ import SwiftUI
 
 struct StartView: View {
     @EnvironmentObject var workoutManager: WorkoutManager
-    @State var isShowingAlert = false
+    @State private var isShowingAlert = false
     
     var body: some View {
         VStack {
