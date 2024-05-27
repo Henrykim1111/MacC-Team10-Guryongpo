@@ -20,13 +20,14 @@ struct StartView: View {
                         .aspectRatio(contentMode: .fill)
                     
                     Button {
-                        if workoutManager.hasNoLocationAuthorization || workoutManager.hasNoHealthAuthorization {
-                            isShowingAlert.toggle()
-                        } else {
-                            workoutManager.showingPrecount.toggle()
-                        }
+                        workoutManager.showingPrecount.toggle()
                     } label: {
                         Image(.startButton)
+                    }
+                }
+                .onAppear {
+                    if workoutManager.hasNoLocationAuthorization || workoutManager.hasNoHealthAuthorization {
+                        isShowingAlert.toggle()
                     }
                 }
                 .alert(isPresented: $isShowingAlert) {
