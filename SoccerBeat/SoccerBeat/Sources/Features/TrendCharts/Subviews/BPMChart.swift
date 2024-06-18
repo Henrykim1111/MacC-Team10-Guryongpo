@@ -25,7 +25,6 @@ struct BPMChartView: View {
                 InformationButton(message: "최근 심박수의 변화입니다.")
                 Spacer()
             }
-            .padding(.top, 54)
             
             VStack(alignment: .leading) {
                 Text("심박수")

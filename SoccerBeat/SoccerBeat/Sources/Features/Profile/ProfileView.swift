@@ -23,7 +23,6 @@ struct ProfileView: View {
                                 InformationButton(message: "나의 선수 카드와 최대 능력치를 만나보세요.")
                                 Spacer()
                             }
-                            .padding(.top, 48)
                             .padding(.bottom, 30)
                             
                             VStack(spacing: 0) {

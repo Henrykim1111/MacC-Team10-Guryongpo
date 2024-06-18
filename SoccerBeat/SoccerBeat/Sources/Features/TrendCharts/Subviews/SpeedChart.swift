@@ -27,7 +27,7 @@ struct SpeedChartView: View {
                 
                 Spacer()
             }
-            .padding(.top, 54)
+            
             
             VStack(alignment: .leading) {
                 Text("최대 속도")

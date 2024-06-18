@@ -21,9 +21,6 @@ struct MatchRecapView: View {
 
     var body: some View {
         VStack(spacing: 0) {
-            
-            Spacer()
-                .frame(height: 56)
             HStack {
                 InformationButton(message: "모든 경기를 한 눈에 확인해 보세요.")
                     .padding(.leading, 16)

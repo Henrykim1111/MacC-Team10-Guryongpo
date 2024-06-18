@@ -26,7 +26,6 @@ struct DistanceChartView: View {
                 
                 Spacer()
             }
-            .padding(.top, 54)
             
             VStack(alignment: .leading) {
                 Text("뛴 거리")
