@@ -40,10 +40,6 @@ struct MatchTimeView: View {
     
     var body: some View {
         VStack(alignment: .leading) {
-            
-            Spacer()
-                .frame(minHeight: 50)
-            
             HStack {
                 InformationButton(message: "경기의 상세 리포트를 만나보세요.")
                 Spacer()

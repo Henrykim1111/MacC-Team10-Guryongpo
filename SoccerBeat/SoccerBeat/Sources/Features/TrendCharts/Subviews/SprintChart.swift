@@ -25,7 +25,6 @@ struct SprintChartView: View {
                 InformationButton(message: "최근 스프린트 횟수의 변화입니다.")
                 Spacer()
             }
-            .padding(.top, 54)
             
             VStack(alignment: .leading) {
                 Text("스프린트")
