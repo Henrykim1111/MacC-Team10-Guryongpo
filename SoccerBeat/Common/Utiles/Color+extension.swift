@@ -158,6 +158,13 @@ extension ShapeStyle where Self == LinearGradient {
                                startPoint: .topLeading, endPoint: .bottomTrailing)
     }
     
+    // MARK: - OnboardingView
+    static var onboardingText: Self {
+        let start = Color(hex: 0x03FFC3)
+        let end = Color(hex: 0xFFFFFF)
+        return .linearGradient(colors: [start, end], startPoint: .topLeading, endPoint: .bottomTrailing)
+    }
+    
     // MARK: - HeartRate BPM
     
     static var zone1Bpm: Self {
