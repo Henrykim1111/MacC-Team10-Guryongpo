@@ -7,6 +7,8 @@
 import SwiftUI
 
 struct EmptyDataView: View {
+    @State private var isShowingOnboardingView = true
+    
     private let emptyDataMessage = "저장된 경기 기록이 없습니다."
     
     var body: some View {
@@ -82,6 +84,10 @@ struct EmptyDataView: View {
                 Spacer()
                     .frame(height: 170)
             }
+        }
+        .sheet(isPresented: $isShowingOnboardingView) {
+            OnboardingView()
+                .presentationDetents([.medium])
         }
     }
 

@@ -66,6 +66,11 @@ extension Font {
     public static let summaryLeadingBottom = Font.sfCompactText(size: 13.5)
     public static let summaryDoneButton = Font.sfCompactText(size: 13.5, weight: .semiboldItalic)
     
+    // MARK: - Onboarding View
+    
+    public static let onboardingTop = Font.notoSans(size: 24, weight: .black)
+    public static let onboardingBottom = Font.notoSans(size: 28, weight: .black)
+    
     // MARK: - MainView
     public static let mainInfoText = Font.notoSans(size: 14, weight: .regular)
     public static let mainSubTitleText = Font.sfProDisplay(size: 24, weight: .semiboldItalic)
