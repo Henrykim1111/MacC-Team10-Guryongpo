@@ -9,8 +9,9 @@ import SwiftUI
 
 struct StartView: View {
     @EnvironmentObject var workoutManager: WorkoutManager
-    @State private var isShowingAlert = false
-    
+    @State private var isShowingHealthAlert = false
+    @State private var isShowingLocationAlert = false
+
     var body: some View {
         VStack {
             if !workoutManager.showingPrecount {
@@ -18,25 +19,34 @@ struct StartView: View {
                     Image(.backgroundGlow)
                         .resizable()
                         .aspectRatio(contentMode: .fill)
-                    
-                    Button {
-                        workoutManager.showingPrecount.toggle()
-                    } label: {
+                        .alert(isPresented: $isShowingHealthAlert) {
+                            Alert(title: Text("건강 액세스 권한 필요"),
+                                  message: Text(
+                                    """
+                                    원활한 앱 사용을 위해
+                                    아이폰의 설정 앱에서 SoccerBeat의
+                                    건강 권한을 허용한 후 다시 실행해주세요.
+                                    """
+                                  ),
+                                  dismissButton: .default(Text("닫기")))
+                        }
+
+                    Button(action: handleButtonPress) {
                         Image(.startButton)
                     }
-                }
-                .onAppear {
-                    if workoutManager.hasNoLocationAuthorization || workoutManager.hasNoHealthAuthorization {
-                        isShowingAlert.toggle()
+                    .alert(isPresented: $isShowingLocationAlert) {
+                        Alert(title: Text("위치 엑세스 권한 필요"),
+                              message: Text(
+                                """
+                                원활한 앱 사용을 위해
+                                아이폰의 설정 앱에서 SoccerBeat의
+                                위치 권한을 허용한 후 다시 실행해주세요.
+                                """
+                              ),
+                              dismissButton: .default(Text("닫기")))
                     }
                 }
-                .alert(isPresented: $isShowingAlert) {
-                    // TODO: - Magic number, Magic String
-                    Alert(title: Text("위치 권한 또는 건강 정보 권한이 허용되지 않았습니다."),
-                          message: Text("원활한 앱 사용을 위해\n아이폰의 설정 앱에서 SoccerBeat의 위치 권한 또는 설정의 건강에서 건강 권한을 허용한 후 다시 실행해주세요."),
-                          dismissButton: .default(Text("요청하기"), action: { requestAuthorization()
-                    }))
-                }
+
             } else {
                 PrecountView()
             }
@@ -44,14 +54,50 @@ struct StartView: View {
         .buttonStyle(.borderless)
     }
 
-    private func requestAuthorization() {
-        workoutManager.requestAuthorization()
+    private func handleButtonPress() {
+        checkLocationAuthorization()
+        checkHealthAuthorization()
+        handleWorkoutStart()
+    }
+
+    private func checkLocationAuthorization() {
+//        workoutManager.checkIfLocationServicesIsEnabled {
+//
+//            if !workoutManager.hasLocationAuthorization {
+//                isShowingLocationAlert.toggle()
+//            }
+//        }
+        workoutManager.checkLocationAuthorization()
+        if !workoutManager.hasLocationAuthorization {
+            isShowingLocationAlert.toggle()
+        }
+
+//        if workoutManager.hasNoLocationAuthorization {
+//            isShowingLocationAlert.toggle()
+//        }
+    }
+
+    private func checkHealthAuthorization() {
+        if workoutManager.hasNoHealthAuthorization {
+            isShowingHealthAlert.toggle()
+        }
+    }
+
+    private func handleWorkoutStart() {
+//        let hasAllAuthorization = !workoutManager.hasNoHealthAuthorization
+//        && workoutManager.hasLocationAuthorization
+        let hasAllAuthorization = !workoutManager.hasNoHealthAuthorization
+        && !workoutManager.hasNoLocationAuthorization
+
+        if hasAllAuthorization && workoutManager.isHealthDataAvailable {
+            workoutManager.showingPrecount.toggle()
+        }
     }
 }
 
 #Preview {
     @StateObject var workoutManager = DIContianer.makeWorkoutManager()
-    
+
     return StartView()
         .environmentObject(workoutManager)
 }

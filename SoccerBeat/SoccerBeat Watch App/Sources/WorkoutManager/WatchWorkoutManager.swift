@@ -17,15 +17,16 @@ final class WorkoutManager: NSObject, ObservableObject {
     
     init(matrics: MatricsIndicator) {
         self.matrics = matrics
+        super.init()
+        locationManager.delegate = self
+        locationManager.allowsBackgroundLocationUpdates = true
+        locationManager.requestWhenInUseAuthorization()
     }
-    
+
     // 헬스킷 세션 기록용 빌더 선언
     var session: HKWorkoutSession?
     var builder: HKLiveWorkoutBuilder?
     var routeBuilder: HKWorkoutRouteBuilder?
-    
-    // MARK: - 헬스킷과 위치데이터 권한 받기
-    var authHealthKit = PassthroughSubject<(), Never>()
     
     let typesToShare: Set = [HKQuantityType.workoutType(),
                                      HKSeriesType.workoutRoute(),
@@ -96,7 +97,6 @@ final class WorkoutManager: NSObject, ObservableObject {
         }
         
         // 델리게이트 선언
-        locationManager.delegate = self
         session?.delegate = self
         builder?.delegate = self
         builder?.dataSource = HKLiveWorkoutDataSource(healthStore: healthStore,
@@ -110,10 +110,6 @@ final class WorkoutManager: NSObject, ObservableObject {
             // The workout has started.
         }
         
-        locationManager.desiredAccuracy = locationManager.accuracyAuthorization == .fullAccuracy
-        ? kCLLocationAccuracyBestForNavigation
-        : kCLLocationAccuracyBest
-        
         // 위치 정보 수집
         locationManager.startUpdatingLocation()
 
@@ -126,8 +122,7 @@ final class WorkoutManager: NSObject, ObservableObject {
         setupWorkoutConfig()
         startWorkoutSession()
     }
-    
-    
+
     // MARK: - 세션 관리
     @Published var running = false
     

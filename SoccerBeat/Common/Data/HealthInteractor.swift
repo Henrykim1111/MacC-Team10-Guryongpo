@@ -10,7 +10,7 @@ import CoreLocation
 import HealthKit
 import SwiftUI
 
-final class HealthInteractor: ObservableObject {
+final class HealthInteractor: NSObject, ObservableObject {
     // Object to request permission to read HealthKit data.
     var healthStore = HKHealthStore()
     let locationManager = CLLocationManager()
@@ -33,6 +33,11 @@ final class HealthInteractor: ObservableObject {
     // Entire user workouts in HealthKit data.
     private var hkWorkouts = [HKWorkout]()
     
+    override init() {
+        super.init()
+        locationManager.delegate = self
+    }
+
     // Send when permission is granted by the user.
     var authSuccess = PassthroughSubject<(), Never>()
     // Send when data fetch is successful.
@@ -307,4 +312,23 @@ extension HealthInteractor {
         return dict
     }
     
+}
+
+extension HealthInteractor: CLLocationManagerDelegate {
+    func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
+        switch manager.authorizationStatus {
+        case .authorizedAlways:
+            print("항상 허용")
+        case .notDetermined:
+            print("not decision")
+        case .restricted:
+            print("ask later")
+        case .denied:
+            print("denied")
+        case .authorizedWhenInUse:
+            print("when in use")
+        @unknown default:
+            print("default")
+        }
+    }
 }

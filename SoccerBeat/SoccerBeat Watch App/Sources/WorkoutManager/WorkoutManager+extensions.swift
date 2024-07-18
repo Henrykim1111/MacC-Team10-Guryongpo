@@ -102,24 +102,46 @@ extension WorkoutManager: CLLocationManagerDelegate {
     
     // MARK: - 위치 공유 권한 정보가 업데이트 되면 불리는 메서드
     func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
-        switch manager.authorizationStatus {
+        print("✅✅✅✅✅✅✅✅델리게이트 위치 권한 업데이트 호출됨✅✅✅✅✅✅✅✅")
+        print("✅✅✅✅✅✅✅✅델리게이트 위치 권한 업데이트 호출됨✅✅✅✅✅✅✅✅")
+        print("✅✅✅✅✅✅✅✅델리게이트 위치 권한 업데이트 호출됨✅✅✅✅✅✅✅✅")
+        print("✅✅✅✅✅✅✅✅델리게이트 위치 권한 업데이트 호출됨✅✅✅✅✅✅✅✅")
+        checkLocationAuthorization()
+    }
+
+    // MARK: - 위치 정보를 수집하는 기능이 가능한지 알려주는 메서드
+    func checkIfLocationServicesIsEnabled(completion: @escaping () -> Void) {
+        DispatchQueue.main.async { [unowned self] in
+            if CLLocationManager.locationServicesEnabled() {
+//                locationManager.delegate = self
+                locationManager.desiredAccuracy = locationManager.accuracyAuthorization == .fullAccuracy
+                ? kCLLocationAccuracyBestForNavigation
+                : kCLLocationAccuracyBest                
+                checkLocationAuthorization()
+                completion()
+            } else {
+                // show message: Services desabled!
+                hasLocationAuthorization = false
+            }
+        }
+    }
+
+    func checkLocationAuthorization() {
+        hasLocationAuthorization = false
+        switch locationManager.authorizationStatus {
         case .notDetermined:
             NSLog("위치 권한 결정 안됨")
-            manager.requestWhenInUseAuthorization()
+            locationManager.requestWhenInUseAuthorization()
         case .restricted:
             NSLog("위치 권한 제한됨")
-            manager.requestAlwaysAuthorization()
         case .denied:
             NSLog("위치 권한 거부")
-            manager.requestAlwaysAuthorization()
-        case .authorizedAlways:
-            NSLog("위치 권한 항상 허용")
-            manager.startUpdatingLocation()
-        case .authorizedWhenInUse:
-            NSLog("위치 권한 사용중 허용")
-            manager.startUpdatingLocation()
+        case .authorizedAlways, .authorizedWhenInUse:
+            NSLog("위치 권한 항상 허용 혹은 사용 중 허용")
+            locationManager.startUpdatingLocation()
+            hasLocationAuthorization = true
         @unknown default:
-            NSLog(manager.authorizationStatus.rawValue.description)
+            NSLog(locationManager.authorizationStatus.rawValue.description)
         }
     }
 }
