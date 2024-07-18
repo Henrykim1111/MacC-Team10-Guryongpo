@@ -46,41 +46,23 @@ final class WorkoutManager: NSObject, ObservableObject {
     ]
     
     @Published var workout: HKWorkout?
+    var isHealthDataAvailable: Bool {
+        HKHealthStore.isHealthDataAvailable()
+    }
+
     var hasNoLocationAuthorization: Bool {
         [CLAuthorizationStatus.notDetermined, .denied, .restricted].contains(locationManager.authorizationStatus)
     }
-    
+
+    @Published var hasLocationAuthorization = false
+
+    // `authorizationStatus` API로는 readType에 대한 확인이 불가함
     var hasNoHealthAuthorization: Bool {
-        var right = false
-        for type in typesToShare  {
-            if [HKAuthorizationStatus.notDetermined, .sharingDenied].contains(healthStore.authorizationStatus(for: type)) {
-                print(type, healthStore.authorizationStatus(for: type).rawValue)
-                right = true
-            }
+        for shareType in typesToShare 
+        where healthStore.authorizationStatus(for: shareType) == .sharingDenied {
+            return true
         }
-
-        return right
-    }
-
-    func requestAuthorization() {
-
-            // 위치 정보 권한 요청
-            if self.hasNoLocationAuthorization {
-                self.locationManager.requestAlwaysAuthorization()
-            }
-    
-            // 헬스킷 권한이 없다면
-            if self.hasNoHealthAuthorization {
-            healthStore.requestAuthorization(toShare: typesToShare,
-                                                 read: typesToRead) { (success, error) in
-                    
-                    if success {
-                        print("Success in HealthKit Authorization!")
-                    } else {
-                        print("HealthKit authorization in watch has problems. ")
-                    }
-                }
-        }
+        return false
     }
     
     // 세션 시작과 종료 시에 뷰 관리 변수
