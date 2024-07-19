@@ -30,8 +30,10 @@ struct StartView: View {
                                     합니다. 설정 > 개인정보
                                     보호 및 보안 > 건강 >
                                     SoccerBeat로 이동하세요.
-                                    건강 권한을 모두 켜기한
-                                    후 다시 실행해주세요.
+                                    건강 권한을 모두 활성화를
+                                    마친 후, SoccerBeat로
+                                    돌아가 시작을 누르고
+                                    경기를 시작하세요.
                                     """
                                   ),
                                   dismissButton: .default(Text("닫기")))
