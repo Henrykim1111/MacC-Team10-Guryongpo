@@ -24,7 +24,7 @@ struct SoccerBeat_Watch_AppApp: App {
             }
             .environmentObject(workoutManager)
             .environmentObject(matricsIndicator)
-
+            .environment(\.locale, .current)
         }
     }
 }
