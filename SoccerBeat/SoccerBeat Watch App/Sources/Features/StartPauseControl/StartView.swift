@@ -24,8 +24,14 @@ struct StartView: View {
                                   message: Text(
                                     """
                                     원활한 앱 사용을 위해
-                                    아이폰의 설정 앱에서 SoccerBeat의
-                                    건강 권한을 허용한 후 다시 실행해주세요.
+                                    iPhone을 사용하여
+                                    SoccerBeat에서 건강
+                                    정보에 엑세스하도록 허용
+                                    합니다. 설정 > 개인정보
+                                    보호 및 보안 > 건강 >
+                                    SoccerBeat로 이동하세요.
+                                    건강 권한을 모두 켜기한
+                                    후 다시 실행해주세요.
                                     """
                                   ),
                                   dismissButton: .default(Text("닫기")))
@@ -39,8 +45,16 @@ struct StartView: View {
                               message: Text(
                                 """
                                 원활한 앱 사용을 위해
-                                아이폰의 설정 앱에서 SoccerBeat의
-                                위치 권한을 허용한 후 다시 실행해주세요.
+                                SoccerBeat가 Apple
+                                Watch에서 위치 정보에
+                                액세스해야 합니다. 위치 
+                                정보 액세스를 활성화하려면
+                                iPhone에서 설정 > 개인정보
+                                보호 및 보안 > 위치 서비스
+                                > SoccerBeat로 이동하세요.
+                                활성화를 마친 후, SoccerBeat로
+                                돌아가 시작을 누르고
+                                경기를 시작하세요.
                                 """
                               ),
                               dismissButton: .default(Text("닫기")))
