@@ -15,39 +15,25 @@ extension WorkoutManager: HKWorkoutSessionDelegate {
     func workoutSession(_ workoutSession: HKWorkoutSession, didChangeTo toState: HKWorkoutSessionState,
                         from fromState: HKWorkoutSessionState, date: Date) {
         NSLog("WorkOutSession 변화 감지: \(toState)")
-        DispatchQueue.main.async {
+        Task { @MainActor in
             self.running = toState == .running
         }
         /// Save Wokrout, Route
         if toState == .ended {
-            
-            builder?.endCollection(withEnd: date) { (_, _) in
-                self.builder?.finishWorkout { [weak self] (workout, _) in
-                    DispatchQueue.main.async {
-                        self?.workout = workout
-                    }
-                    
-                    guard let workout else {
-                        NSLog("workout is nil")
-                        return
-                    }
-                    
-                    // custom data 를 routedata의 metadata에 저장
-                    let metadata = self?.matrics.getMetadata()
-                    
-                    self?.routeBuilder?.finishRoute(with: workout, metadata: metadata) { (newRoute, _) in
-                        guard newRoute != nil else {
-                            NSLog("새로운 루트가 없습니다.")
-                            return
-                        }
-                        NSLog("새로운 루트가 저장되었습니다.")
-                    }
+            Task {
+                do {
+                    try await endWorkoutSession(date)
+                } catch {
+                    NSLog(error.localizedDescription)
                 }
-                
             }
         }
     }
     
+    // MARK: - 앱이 비정상적으로 Workout을 종료 시킨다.
+    /// 시기상 아래 함수보다 먼저 불림
+    /// `func workoutSession(_ workoutSession: HKWorkoutSession, didChangeTo toState: HKWorkoutSessionState,`
+    // TODO: - 어떤 일을 해야할까? 비정상 종료를 할 때 어떻게 해야할까? 워치가 절전 모드로 간다던가, 이런 데이터들은...?
     func workoutSession(_ workoutSession: HKWorkoutSession, didFailWithError error: Error) {
         
     }
@@ -66,7 +52,8 @@ extension WorkoutManager: HKLiveWorkoutBuilderDelegate {
                 return // Nothing to do.
             }
             
-            let statistics = workoutBuilder.statistics(for: quantityType)
+            guard let statistics = workoutBuilder.statistics(for: quantityType) else { continue
+            }
             // Update the published values.
             matrics.updateForStatistics(statistics)
         }
@@ -86,11 +73,13 @@ extension WorkoutManager: CLLocationManagerDelegate {
         
         // 성공치를 외부에 데이터로 넘기기, 혹은 에러 뭐시기를 하는게 좋으려나?
         guard !filteredLocations.isEmpty else {
+            // 실패해도 저장을 하네?
             routeBuilder?.insertRouteData(locations, completion: { _, _ in
             })
             return
         }
         
+        // 성공해도 저장을 하네?
         // Add the filtered data to the route.
         routeBuilder?.insertRouteData(filteredLocations) { (success, error) in
             if !success {

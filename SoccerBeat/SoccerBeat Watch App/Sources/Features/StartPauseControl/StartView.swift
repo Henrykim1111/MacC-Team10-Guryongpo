@@ -75,7 +75,7 @@ struct StartView: View {
 
     private func handleWorkoutStart() {
         let hasAllAuthorization = !workoutManager.hasNoHealthAuthorization
-        && !workoutManager.hasNoLocationAuthorization
+        && workoutManager.hasLocationAuthorization
 
         if hasAllAuthorization && workoutManager.isHealthDataAvailable {
             workoutManager.showingPrecount.toggle()
