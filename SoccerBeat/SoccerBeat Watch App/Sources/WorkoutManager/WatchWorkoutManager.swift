@@ -52,7 +52,12 @@ final class WorkoutManager: NSObject, ObservableObject {
     }
 
     var hasNoLocationAuthorization: Bool {
-        [CLAuthorizationStatus.notDetermined, .denied, .restricted].contains(locationManager.authorizationStatus)
+        [
+            CLAuthorizationStatus.notDetermined,
+            .denied,
+            .restricted
+        ]
+            .contains(locationManager.authorizationStatus)
     }
 
     @Published var hasLocationAuthorization = false
@@ -67,8 +72,8 @@ final class WorkoutManager: NSObject, ObservableObject {
     }
     
     // 세션 시작과 종료 시에 뷰 관리 변수
-    @Published var showingPrecount: Bool = false
-    @Published var showingSummaryView: Bool = false {
+    @Published var showingPrecount = false
+    @Published var showingSummaryView = false {
         didSet {
             if showingSummaryView == false {
                 resetWorkout()
@@ -92,15 +97,17 @@ final class WorkoutManager: NSObject, ObservableObject {
             session = try HKWorkoutSession(healthStore: healthStore, configuration: configuration)
             builder = session?.associatedWorkoutBuilder()
             routeBuilder = HKWorkoutRouteBuilder(healthStore: healthStore, device: .local())
+            // 델리게이트 선언
+            session?.delegate = self
+            builder?.delegate = self
+            builder?.dataSource = HKLiveWorkoutDataSource(healthStore: healthStore,
+                                                          workoutConfiguration: configuration)
         } catch {
+            // TODO: - 여기서 리턴을 내보낸다는 건 델리게이트 설정이나 객체 선언 없이 경기를 실행한다는 건데,
+            /// 이 메서드는 절대 실패가 나면 안되는 거면, Throw 등으로 오류 처리를 하는게 필요해보이는데?
             return
         }
-        
-        // 델리게이트 선언
-        session?.delegate = self
-        builder?.delegate = self
-        builder?.dataSource = HKLiveWorkoutDataSource(healthStore: healthStore,
-                                                      workoutConfiguration: configuration)
+
     }
     
     private func startWorkoutSession() {
@@ -139,8 +146,7 @@ final class WorkoutManager: NSObject, ObservableObject {
     }
     
     func endWorkout() {
-        session?.end()
-        showingSummaryView = true
+        session?.endCurrentActivity(on: .now)
     }
     
     // 두 부분으로 나누기

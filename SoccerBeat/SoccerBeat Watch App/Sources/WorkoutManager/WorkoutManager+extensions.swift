@@ -102,28 +102,7 @@ extension WorkoutManager: CLLocationManagerDelegate {
     
     // MARK: - 위치 공유 권한 정보가 업데이트 되면 불리는 메서드
     func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
-        print("✅✅✅✅✅✅✅✅델리게이트 위치 권한 업데이트 호출됨✅✅✅✅✅✅✅✅")
-        print("✅✅✅✅✅✅✅✅델리게이트 위치 권한 업데이트 호출됨✅✅✅✅✅✅✅✅")
-        print("✅✅✅✅✅✅✅✅델리게이트 위치 권한 업데이트 호출됨✅✅✅✅✅✅✅✅")
-        print("✅✅✅✅✅✅✅✅델리게이트 위치 권한 업데이트 호출됨✅✅✅✅✅✅✅✅")
         checkLocationAuthorization()
-    }
-
-    // MARK: - 위치 정보를 수집하는 기능이 가능한지 알려주는 메서드
-    func checkIfLocationServicesIsEnabled(completion: @escaping () -> Void) {
-        DispatchQueue.main.async { [unowned self] in
-            if CLLocationManager.locationServicesEnabled() {
-//                locationManager.delegate = self
-                locationManager.desiredAccuracy = locationManager.accuracyAuthorization == .fullAccuracy
-                ? kCLLocationAccuracyBestForNavigation
-                : kCLLocationAccuracyBest                
-                checkLocationAuthorization()
-                completion()
-            } else {
-                // show message: Services desabled!
-                hasLocationAuthorization = false
-            }
-        }
     }
 
     func checkLocationAuthorization() {
