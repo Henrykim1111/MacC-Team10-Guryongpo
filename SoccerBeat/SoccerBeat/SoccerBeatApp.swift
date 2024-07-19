@@ -36,7 +36,13 @@ struct SoccerBeatApp: App {
             .environmentObject(soundManager)
             .environmentObject(healthInteracter)
             .environmentObject(profileModel)
-            .onReceive(NotificationCenter.default.publisher(for: UIApplication.didBecomeActiveNotification)) { _ in
+            .onReceive(
+                NotificationCenter
+                    .default
+                    .publisher(
+                        for: UIApplication.didBecomeActiveNotification
+                    )
+            ) { _ in
                 noHealth = healthInteracter.haveNoHealthAuthorization()
                 noLocation = healthInteracter.haveNoLocationAuthorization()
                 Task {
