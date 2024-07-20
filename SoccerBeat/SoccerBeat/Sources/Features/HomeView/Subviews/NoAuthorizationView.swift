@@ -18,7 +18,7 @@ struct NoAuthorizationView: View {
     var body: some View {
         NavigationStack {
             ZStack(alignment: .top) {
-                Image("BackgroundPattern")
+                Image(.backgroundPattern)
                     .frame(maxHeight: UIScreen.screenHeight)
                 VStack {
                     HStack {

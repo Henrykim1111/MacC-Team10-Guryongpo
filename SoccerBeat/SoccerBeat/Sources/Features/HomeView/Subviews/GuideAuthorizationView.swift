@@ -13,7 +13,7 @@ struct GuideAuthorizationView: View {
     var body: some View {
         NavigationView {
             ZStack(alignment: .top) {
-                Image("BackgroundPattern")
+                Image(.backgroundPattern)
                     .frame(maxHeight: UIScreen.screenHeight)
                 VStack {
                     HStack {

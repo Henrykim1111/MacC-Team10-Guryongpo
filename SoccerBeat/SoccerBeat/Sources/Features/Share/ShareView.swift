@@ -13,10 +13,11 @@ struct ShareView: View {
     
     var body: some View {
         ZStack(alignment: .top) {
-            Image("BackgroundPattern")
-                .frame(maxHeight: UIScreen.screenHeight)
-            Image("FlameEffect")
-                .frame(maxHeight: UIScreen.screenHeight)
+            Group {
+                Image(.backgroundPattern)
+                Image(.flameEffect)
+            }
+            .frame(maxHeight: UIScreen.screenHeight)
             VStack {
                 Spacer()
                 HStack(alignment: .bottom) {
