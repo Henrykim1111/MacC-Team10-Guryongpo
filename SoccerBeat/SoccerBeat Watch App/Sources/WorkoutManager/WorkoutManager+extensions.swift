@@ -20,9 +20,10 @@ extension WorkoutManager: HKWorkoutSessionDelegate {
         }
         /// Save Wokrout, Route
         if toState == .ended {
-            Task {
+            Task { @MainActor in
                 do {
                     try await endWorkoutSession(date)
+                    self.showingSummaryView.toggle()
                 } catch {
                     NSLog(error.localizedDescription)
                 }
