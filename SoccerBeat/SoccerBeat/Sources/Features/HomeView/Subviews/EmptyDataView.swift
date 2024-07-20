@@ -7,8 +7,8 @@
 import SwiftUI
 
 struct EmptyDataView: View {
-    @State private var isShowingOnboardingView = true
-    
+    @State private var isShowingOnboardingView = false
+
     private let emptyDataMessage = "저장된 경기 기록이 없습니다."
     
     var body: some View {
@@ -88,6 +88,11 @@ struct EmptyDataView: View {
         .sheet(isPresented: $isShowingOnboardingView) {
             OnboardingView()
                 .presentationDetents([.medium])
+                .presentationDragIndicator(.visible)
+        }
+        .task {
+            try? await Task.sleep(nanoseconds: 2_000_000_000) // 2 second delay
+            isShowingOnboardingView.toggle()
         }
     }
 
