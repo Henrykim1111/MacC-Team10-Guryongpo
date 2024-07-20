@@ -12,10 +12,7 @@ struct LoadingView: View {
     @EnvironmentObject var healthInteractor: HealthInteractor
     
     var body: some View {
-        ForEach(0..<6) { _ in
-            Text("Loading Now")
-                .skeleton(with: healthInteractor.isLoading)
-        }
+        ProgressView()
     }
 }
 
