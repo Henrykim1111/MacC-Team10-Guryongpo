@@ -57,12 +57,12 @@ final class WorkoutManager: NSObject, ObservableObject {
     @Published var hasLocationAuthorization = false
 
     // `authorizationStatus` API로는 readType에 대한 확인이 불가함
-    var hasNoHealthAuthorization: Bool {
+    var hasHealthAuthorization: Bool {
         for shareType in typesToShare
         where healthStore.authorizationStatus(for: shareType) == .sharingDenied {
-            return true
+            return false
         }
-        return false
+        return true
     }
 
     // 세션 시작과 종료 시에 뷰 관리 변수
