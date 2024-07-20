@@ -132,8 +132,10 @@ final class MatricsIndicator: NSObject, ObservableObject {
         self.zone5Count = 0
     }
     
-    func updateForStatistics(_ statistics: HKStatistics?) {
-        guard let statistics = statistics else { return }
+    /// 이게 한번만 불리는게 아니라, 여러 세트가 있을 수 있음
+    /// 예를들어 경기를 1쿼터, 2쿼터 나눠서 할거면, 지금처럼 메트릭스 인디케이터가 여러개가 생길 수도 있는 것임.
+    /// 아니면 애초에 heartRate, distanceMeter, SpeedMPS 등을 배열로 선언해서 각 쿼터에 얼마나 했는지를 추정할 수도 있겠음
+    func updateForStatistics(_ statistics: HKStatistics) {
         DispatchQueue.main.async {
             switch statistics.quantityType {
             case HKQuantityType.quantityType(forIdentifier: .heartRate):

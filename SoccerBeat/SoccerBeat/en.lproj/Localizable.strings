@@ -95,3 +95,10 @@
 "최고속도\n25 km/h 초과" = "Maximum speed\nOver 25 km/h";
 "설정에서 '정확한 위치'를 허용하면 보다 정확한 데이터를 얻을 수 있어요." = "Allowing the 'Precise Location' in the settings will give you more accurate data.";
 "파워" = "Power";
+
+// [watch] StartView
+"need_health_authorization" = "Health Access Permission Required";
+"need_location_authorization" = "Location Access Permission Required";
+"inform_need_health" = "For optimal app usage, please allow SoccerBeat to access health information using your iPhone. Go to Settings > Privacy & Security > Health > SoccerBeat. After enabling all health permissions, return to SoccerBeat, press Start, and begin the game.";
+"inform_need_location" = "For optimal app usage, SoccerBeat needs to access location information from your Apple Watch. To enable location access, go to Settings > Privacy & Security > Location Services > SoccerBeat on your iPhone. After enabling it, return to SoccerBeat, press Start, and begin the game.";
+"close" = "close";

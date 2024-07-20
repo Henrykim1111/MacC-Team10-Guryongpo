@@ -95,3 +95,10 @@
 "최고속도\n25 km/h 초과" = "最高速度\n超过25km/h";
 "설정에서 '정확한 위치'를 허용하면 보다 정확한 데이터를 얻을 수 있어요." = "在设置中允许'精确位置'可以获得更准确的数据。";
 "파워" = "力量";
+
+// [watch] StartView
+"need_health_authorization" = "需要健康访问权限";
+"need_location_authorization" = "需要位置访问权限";
+"inform_need_health" = "为了优化应用程序的使用，请允许 SoccerBeat 使用您的 iPhone 访问健康信息。请前往 设置 > 隐私与安全 > 健康 > SoccerBeat。在启用所有健康权限后，返回 SoccerBeat，按下开始并开始比赛。";
+"inform_need_location" = "为了优化应用程序的使用，SoccerBeat 需要访问您的 Apple Watch 上的位置信息。要启用位置访问，请在 iPhone 上前往 设置 > 隐私与安全 > 位置服务 > SoccerBeat。启用后，返回 SoccerBeat，按下开始并开始比赛。";
+"close" = "關閉";

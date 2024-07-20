@@ -24,11 +24,12 @@ struct SoccerBeat_Watch_AppApp: App {
             }
             .environmentObject(workoutManager)
             .environmentObject(matricsIndicator)
-
+            .environment(\.locale, .current)
         }
     }
 }
 
+// TODO: - MOVE DI Container 
 final class DIContianer {
     static private(set) var matrics: MatricsIndicator?
     

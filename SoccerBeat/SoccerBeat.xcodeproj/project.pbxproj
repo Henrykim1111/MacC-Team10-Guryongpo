@@ -94,7 +94,7 @@
 		BE4A91582B011C8B004AAFA3 /* SprintChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE4A91572B011C8B004AAFA3 /* SprintChart.swift */; };
 		BE4B72742BAAA87300034C0F /* Dictionary+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE4B72732BAAA87300034C0F /* Dictionary+extension.swift */; };
 		BE4B72752BAAA87300034C0F /* Dictionary+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE4B72732BAAA87300034C0F /* Dictionary+extension.swift */; };
-		BE4CAB152BCE044100CE0020 /* SkeletonUI in Frameworks */ = {isa = PBXBuildFile; productRef = BE4CAB142BCE044100CE0020 /* SkeletonUI */; };
+		BE87AC0C2C4B1D0700803A25 /* SkeletonUI in Frameworks */ = {isa = PBXBuildFile; productRef = BE87AC0B2C4B1D0700803A25 /* SkeletonUI */; };
 		BE91CF402BBE43BC00F0EB6F /* RadarChartShape.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE91CF3F2BBE43BC00F0EB6F /* RadarChartShape.swift */; };
 		BE93F1912B00937000C33756 /* TextBorder+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE93F1902B00937000C33756 /* TextBorder+extension.swift */; };
 		BE93F1922B00937000C33756 /* TextBorder+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE93F1902B00937000C33756 /* TextBorder+extension.swift */; };
@@ -303,7 +303,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BE4CAB152BCE044100CE0020 /* SkeletonUI in Frameworks */,
+				BE87AC0C2C4B1D0700803A25 /* SkeletonUI in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -801,7 +801,7 @@
 			);
 			name = SoccerBeat;
 			packageProductDependencies = (
-				BE4CAB142BCE044100CE0020 /* SkeletonUI */,
+				BE87AC0B2C4B1D0700803A25 /* SkeletonUI */,
 			);
 			productName = SoccerBeat;
 			productReference = D3C5000F2AE36F3F00EFAEFF /* SoccerBeat.app */;
@@ -1266,7 +1266,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.SoccerBeat.Guryongpo.watchkitapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				"PROVISIONING_PROFILE_SPECIFIER[sdk=watchos*]" = "watchOS Dev";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=watchos*]" = SoccerBeat_watchOS_Development;
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -1309,7 +1309,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.SoccerBeat.Guryongpo.watchkitapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				"PROVISIONING_PROFILE_SPECIFIER[sdk=watchos*]" = "watchOS Appstore";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=watchos*]" = SoccerBeat_watchOS_AppStore;
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -1359,7 +1359,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.SoccerBeat.Guryongpo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "iOS Dev";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = SoccerBeat_iOS_Development;
 				SDKROOT = iphoneos;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
@@ -1408,7 +1408,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.SoccerBeat.Guryongpo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "iOS Appstore";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = SoccerBeat_iOS_AppStore;
 				SDKROOT = iphoneos;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
@@ -1463,7 +1463,7 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		BE4CAB142BCE044100CE0020 /* SkeletonUI */ = {
+		BE87AC0B2C4B1D0700803A25 /* SkeletonUI */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = BE4982B32BC7A74F003208E3 /* XCRemoteSwiftPackageReference "SkeletonUI" */;
 			productName = SkeletonUI;
