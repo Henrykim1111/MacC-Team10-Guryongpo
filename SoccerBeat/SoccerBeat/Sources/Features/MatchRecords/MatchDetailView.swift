@@ -258,10 +258,10 @@ struct FieldRecordDataView: View {
                     }
                     
                     VStack(alignment: .leading) {
-                        Text("최대 심박수")
+                        Text("최소 심박수")
                             .font(.fieldRecordTitle)
                         HStack(alignment: .bottom, spacing: 0) {
-                            Text(workoutData.maxHeartRate.formatted())
+                            Text(workoutData.minHeartRate.formatted())
                                 .font(.fieldRecordMeasure)
                             Text(" Bpm")
                                 .font(.fieldRecordUnit)
@@ -293,10 +293,10 @@ struct FieldRecordDataView: View {
                     }
                     
                     VStack(alignment: .leading) {
-                        Text("최소 심박수")
+                        Text("최대 심박수")
                             .font(.fieldRecordTitle)
                         HStack(alignment: .bottom, spacing: 0) {
-                            Text(workoutData.minHeartRate.formatted())
+                            Text(workoutData.maxHeartRate.formatted())
                                 .font(.fieldRecordMeasure)
                             Text(" Bpm")
                                 .font(.fieldRecordUnit)

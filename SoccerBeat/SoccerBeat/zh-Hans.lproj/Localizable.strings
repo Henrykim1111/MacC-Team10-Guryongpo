@@ -97,12 +97,18 @@
 "파워" = "力量";
 
 // [watch] StartView
-"need_health_authorization" = "需要健康访问权限";
-"need_location_authorization" = "需要位置访问权限";
-"inform_need_health" = "为了优化应用程序的使用，请允许 SoccerBeat 使用您的 iPhone 访问健康信息。请前往 设置 > 隐私与安全 > 健康 > SoccerBeat。在启用所有健康权限后，返回 SoccerBeat，按下开始并开始比赛。";
-"inform_need_location" = "为了优化应用程序的使用，SoccerBeat 需要访问您的 Apple Watch 上的位置信息。要启用位置访问，请在 iPhone 上前往 设置 > 隐私与安全 > 位置服务 > SoccerBeat。启用后，返回 SoccerBeat，按下开始并开始比赛。";
-"close" = "關閉";
+"need_health_authorization" = "请设置健康信息权限";
+"need_location_authorization" = "请设置位置信息权限";
+"inform_need_health" = "为了正常使用软件，请允许 SoccerBeat使用您的iPhone健康信息。请前往设置>隐私与安全>健康>SoccerBeat。启用所有健康权限后，返回 SoccerBeat，按下开始按钮并开始记录比赛。";
+"inform_need_location" = "为了正常使用软件，SoccerBeat需要您的Apple Watch上的位置信息。要启用位置信息，请在iPhone上前往设置>隐私与安全>位置服务>SoccerBeat允许位置信息。之后返回 SoccerBeat，按下开始按钮并开始记录比赛。";
+"close" = "关闭";
 
 // [iphone]
 "workout_empty" = "目前没有记录的比赛。";
 "try_game_in_watch" = "在您的 Apple Watch 上打开 SoccerBeat 以记录您的第一场比赛！";
+
+
+// 데이터 오류
+"데이터에 오류가 발생했습니다. " = "信息记录发生异常";
+"건강 및 위치 권한을 재확인하거나" = "请在设置检查健康及位置信息权限";
+"삭제 및 재설치를 권장드립니다." = "或删除及重新下载软件";
