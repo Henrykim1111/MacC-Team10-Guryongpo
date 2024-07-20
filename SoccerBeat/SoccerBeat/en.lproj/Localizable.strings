@@ -102,3 +102,7 @@
 "inform_need_health" = "For optimal app usage, please allow SoccerBeat to access health information using your iPhone. Go to Settings > Privacy & Security > Health > SoccerBeat. After enabling all health permissions, return to SoccerBeat, press Start, and begin the game.";
 "inform_need_location" = "For optimal app usage, SoccerBeat needs to access location information from your Apple Watch. To enable location access, go to Settings > Privacy & Security > Location Services > SoccerBeat on your iPhone. After enabling it, return to SoccerBeat, press Start, and begin the game.";
 "close" = "close";
+
+// [iphone]
+"workout_empty" = "There are no recorded games currently.";
+"try_game_in_watch" = "Turn on SoccerBeat on your Apple Watch to record your first game!";
