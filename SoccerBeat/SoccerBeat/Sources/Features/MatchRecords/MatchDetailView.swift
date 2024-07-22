@@ -81,7 +81,7 @@ struct MatchTimeView: View {
             VStack(alignment: .leading, spacing: -8) {
                 HStack(spacing: 0) {
                     Text("경기 시간")
-                    if workouts.isEmpty {
+                    if !workouts.isEmpty {
                         Text(" \(workouts[0].time)")
                     } else {
                         Text(" --:--")
@@ -125,7 +125,7 @@ struct PlayerAbilityView: View {
                     }
                     HStack {
                         Spacer()
-                        if workouts.isEmpty {
+                        if !workouts.isEmpty {
                             let recent = DataConverter.toLevels(workouts[0])
                             let average = DataConverter.toLevels(profileModel.averageAbility)
                             
@@ -252,9 +252,6 @@ struct FieldMovementView: View {
     return MatchDetailView(workouts: .constant(WorkoutData.exampleWorkouts))
         .environmentObject(ProfileModel(healthInteractor: HealthInteractor()))
         .environmentObject(HealthInteractor())
-//    return ErrorView(workouts: .constant(WorkoutData.exampleWorkouts))
-//        .environmentObject(ProfileModel(healthInteractor: HealthInteractor()))
-//        .environmentObject(HealthInteractor())
 }
 
 struct FieldRecordDataView: View {

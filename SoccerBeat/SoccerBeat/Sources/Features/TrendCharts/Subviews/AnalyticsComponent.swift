@@ -9,7 +9,7 @@ import SwiftUI
 
 struct AnalyticsComponent: View {
     
-    let userWorkouts: [WorkoutData]
+    let workouts: [WorkoutData]
     let activityType: ActivityEnum
     
     private var navigationAssistantTitle: String {
@@ -29,13 +29,13 @@ struct AnalyticsComponent: View {
     private var lastGameValue: String {
         switch activityType {
         case .distance:
-            return "\(userWorkouts.last?.distance.rounded(at: 1) ?? "0.0")" + " km"
+            return "\(workouts.last?.distance.rounded(at: 1) ?? "0.0")" + " km"
         case .sprint:
-            return "\(userWorkouts.last?.sprint ?? 0)" + " Times"
+            return "\(workouts.last?.sprint ?? 0)" + " Times"
         case .speed:
-            return "\(userWorkouts.last?.velocity.rounded(at: 0) ?? "0")" + " km/h"
+            return "\(workouts.last?.velocity.rounded(at: 0) ?? "0")" + " km/h"
         case .heartrate:
-            return "\(userWorkouts.last?.maxHeartRate ?? 0)" + " Bpm"
+            return "\(workouts.last?.maxHeartRate ?? 0)" + " Bpm"
         }
     }
     
@@ -56,13 +56,13 @@ struct AnalyticsComponent: View {
     private var overview: some View {
         switch activityType {
         case .distance:
-            DistanceChartOverview(workouts: userWorkouts)
+            DistanceChartOverview(workouts: workouts)
         case .sprint:
-            SprintChartOverview(workouts: userWorkouts)
+            SprintChartOverview(workouts: workouts)
         case .speed:
-            SpeedChartOverview(workouts: userWorkouts)
+            SpeedChartOverview(workouts: workouts)
         case .heartrate:
-            BPMChartOverview(workouts: userWorkouts)
+            BPMChartOverview(workouts: workouts)
                 .offset(y: 10)
         }
     }
@@ -110,7 +110,7 @@ struct AnalyticsComponent: View {
 
 #Preview {
     ForEach(ActivityEnum.allCases, id: \.self) { act in
-        AnalyticsComponent(userWorkouts: WorkoutData.exampleWorkouts,
+        AnalyticsComponent(workouts: WorkoutData.exampleWorkouts,
                            activityType: act)
     }
     .padding(.horizontal, 16)
