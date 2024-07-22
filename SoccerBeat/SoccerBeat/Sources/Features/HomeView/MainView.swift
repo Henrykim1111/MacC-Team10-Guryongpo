@@ -22,14 +22,10 @@ struct MainView: View {
         ScrollView(showsIndicators: false) {
             VStack(spacing: 0) {
                 headerView
-                if workouts.isEmpty {
-                    emptyStateView
-                } else {
-                    contentView
-                    Spacer()
-                        .frame(height: 80)
-                    AnalyticsView()
-                }
+                contentView
+                Spacer()
+                    .frame(height: 80)
+                AnalyticsView()
             }
         }
         .refreshable {
@@ -98,12 +94,6 @@ struct MainView: View {
         }
     }
 
-    private var emptyStateView: some View {
-        EmptyDataView()
-              .environmentObject(profileModel)
-              .environmentObject(healthInteractor)
-    }
-
     private var contentView: some View {
         VStack(spacing: 0) {
             recentMatchHeaderView
@@ -115,9 +105,15 @@ struct MainView: View {
     private var recentMatchHeaderView: some View {
         HStack(alignment: .bottom) {
             VStack(alignment: .leading) {
-                Text(workouts[0].yearMonthDay)
-                    .font(.mainSubTitleText)
-                    .opacity(0.7)
+                Group {
+                    if workouts.isEmpty {
+                        Text("----.--.--")
+                    } else {
+                        Text(workouts[0].yearMonthDay)
+                    }
+                }
+                .font(.mainSubTitleText)
+                .opacity(0.7)
                 Text("최근 경기")
                     .font(.mainTitleText)
             }
@@ -144,7 +140,6 @@ struct MainView: View {
                         HStack {
                             let recent = DataConverter.toLevels(lastWorkoutData)
                             let average = DataConverter.toLevels(profileModel.averageAbility)
-
                             ViewControllerContainer(RadarViewController(
                                 radarAverageValue: average,
                                 radarAtypicalValue: recent
@@ -162,11 +157,19 @@ struct MainView: View {
                                         .foregroundStyle(.mainDateTime)
                                         .opacity(0.8)
                                         .task {
-                                            currentLocation = await lastWorkoutData.location
+                                            if !workouts.isEmpty {
+                                                currentLocation = await lastWorkoutData.location
+                                            }
                                         }
                                     Group {
                                         Text("경기 시간")
-                                        Text(lastWorkoutData.time)
+                                        Group {
+                                            if workouts.isEmpty {
+                                                Text("--:--")
+                                            } else {
+                                                Text(lastWorkoutData.time)
+                                            }
+                                        }
                                     }
                                     .font(.mainTime)
                                     .foregroundStyle(.mainMatchTime)
@@ -197,7 +200,7 @@ struct MainView: View {
 
     private var allMatchesLink: some View {
         NavigationLink {
-            MatchRecapView(userWorkouts: $workouts)
+            MatchRecapView(workouts: $workouts)
         } label: {
             ZStack {
                 LightRectangleView(alpha: 0.15, color: .seeAllMatch, radius: 22)

@@ -10,7 +10,7 @@ import SwiftUI
 struct MatchRecapView: View {
     @EnvironmentObject var healthInteractor: HealthInteractor
     @State private var userName = ""
-    @Binding var userWorkouts: [WorkoutData]
+    @Binding var workouts: [WorkoutData]
     
     private var lastName: String {
         guard let lastName = userName
@@ -18,7 +18,7 @@ struct MatchRecapView: View {
             .compactMap({ String($0) }).last else { return "" }
         return lastName
     }
-
+    
     var body: some View {
         VStack(spacing: 0) {
             HStack {
@@ -52,32 +52,37 @@ struct MatchRecapView: View {
             .padding(.leading, 32)
             .padding(.bottom, 45)
             
-            List {
-                ForEach(userWorkouts) { workout in
-                    ZStack {
-                        NavigationLink {
-                            MatchDetailView(workoutData: workout)
-                                .toolbarRole(.editor)
-                        } label: {
-                            EmptyView()
+            if !workouts.isEmpty {
+                List {
+                    ForEach(workouts) { workout in
+                        ZStack {
+                            NavigationLink {
+                                MatchDetailView(workoutData: workout)
+                                    .toolbarRole(.editor)
+                            } label: {
+                                EmptyView()
+                            }
+                            .opacity(0.0)
+                            
+                            MatchListItemView(workoutData: workout)
+                                .buttonStyle(.plain)
                         }
-                        .opacity(0.0)
-                        
-                        MatchListItemView(workoutData: workout)
-                            .buttonStyle(.plain)
+                        .offset(y: 4)
+                        .padding(.vertical, 2)
+                        .listRowSeparator(.hidden)
                     }
-                    .offset(y: 4)
-                    .padding(.vertical, 2)
-                    .listRowSeparator(.hidden)
-                }
-                
-                .onDelete { offset in
-                    Task {
-                        await delete(offset)
+                    
+                    .onDelete { offset in
+                        Task {
+                            await delete(offset)
+                        }
                     }
                 }
+                .listStyle(.plain)
+            } else {
+                Text("empty")
+                Spacer()
             }
-            .listStyle(.plain)
         }
         .onAppear {
             userName = UserDefaults.standard.string(forKey: "userName") ?? ""
@@ -85,7 +90,7 @@ struct MatchRecapView: View {
     }
     
     private func delete(_ offset: IndexSet) async {
-        userWorkouts.remove(atOffsets: offset)
+        workouts.remove(atOffsets: offset)
         do {
             try await healthInteractor.delete(at: offset)
         } catch {
@@ -105,7 +110,6 @@ struct MatchListItemView: View {
             LightRectangleView(alpha: 0.2, color: .white, radius: 15)
             
             // 좌상단 뱃지뷰
-            
             VStack {
                 HStack(spacing: 0) {
                     badges
@@ -154,12 +158,12 @@ extension MatchListItemView {
                             .frame(width: 32, height: 36)
                     }
                 } else {
-                        EmptyView()
-                    }
+                    EmptyView()
+                }
             }
         } else {
-                EmptyView()
-            }
+            EmptyView()
+        }
     }
     
     @ViewBuilder
@@ -221,7 +225,7 @@ extension MatchListItemView {
                     Text("회")
                 }
                 
-                    .bold()
+                .bold()
             }
         }
         .padding(.vertical, 8)
@@ -229,6 +233,8 @@ extension MatchListItemView {
     }
 }
 
-//#Preview {
-//    MatchRecapView(userWorkouts: .constant(WorkoutData.exampleWorkouts))
-//}
+#Preview {
+    MatchRecapView(workouts: .constant(WorkoutData.exampleWorkouts))
+        .environmentObject(ProfileModel(healthInteractor: HealthInteractor()))
+        .environmentObject(HealthInteractor())
+}
