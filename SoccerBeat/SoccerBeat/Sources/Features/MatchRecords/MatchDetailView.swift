@@ -10,24 +10,24 @@ import Charts
 import CoreLocation
 
 struct MatchDetailView: View {
-    let workoutData: WorkoutData
+    @Binding var workouts: [WorkoutData]
     
     var body: some View {
         ScrollView(showsIndicators: false) {
             ZStack {
                 VStack {
-                    MatchTimeView(workoutData: workoutData)
+                    MatchTimeView(workouts: $workouts)
                     Spacer()
                         .frame(height: 48)
-                    ErrorView(workoutData: workoutData)
-                    PlayerAbilityView(workoutData: workoutData)
+                    ErrorView(workouts: $workouts)
+                    PlayerAbilityView(workouts: $workouts)
                         .zIndex(-1)
                     Spacer()
                         .frame(height: 100)
-                    FieldRecordView(workoutData: workoutData)
+                    FieldRecordView(workouts: $workouts)
                     Spacer()
                         .frame(height: 100)
-                    FieldMovementView(workoutData: workoutData)
+                    FieldMovementView(workouts: $workouts)
                         .padding()
                     }
                 }
@@ -37,34 +37,38 @@ struct MatchDetailView: View {
     }
 
 struct ErrorView: View {
-    let workoutData: WorkoutData
+    @Binding var workouts: [WorkoutData]
     
     var body: some View {
-        if !workoutData.error {
-            EmptyView()
-        } else {
-            VStack {
-                Image(.errormark)
-                    .resizable()
-                    .aspectRatio(contentMode: .fit)
-                    .frame(width: 74, height: 80)
-                    .padding()
-                Text("데이터에 오류가 발생했습니다. ")
-                    .font(.averageValue)
-                    .foregroundStyle(.white)
-                    .padding(2)
-                Text("건강 및 위치 권한을 재확인하거나")
-                Text("삭제 및 재설치를 권장드립니다.")
+        if !workouts.isEmpty {
+            if !workouts[0].error {
+                EmptyView()
+            } else {
+                VStack {
+                    Image(.errormark)
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .frame(width: 74, height: 80)
+                        .padding()
+                    Text("데이터에 오류가 발생했습니다. ")
+                        .font(.averageValue)
+                        .foregroundStyle(.white)
+                        .padding(2)
+                    Text("건강 및 위치 권한을 재확인하거나")
+                    Text("삭제 및 재설치를 권장드립니다.")
+                }
+                .font(.fieldRecordTitle)
+                .foregroundStyle(.mainSubTitleColor)
+                .padding(32)
             }
-            .font(.fieldRecordTitle)
-            .foregroundStyle(.mainSubTitleColor)
-            .padding(32)
+        } else {
+            EmptyView()
         }
     }
 }
 
 struct MatchTimeView: View {
-    let workoutData: WorkoutData
+    @Binding var workouts: [WorkoutData]
     
     var body: some View {
         VStack(alignment: .leading) {
@@ -77,7 +81,11 @@ struct MatchTimeView: View {
             VStack(alignment: .leading, spacing: -8) {
                 HStack(spacing: 0) {
                     Text("경기 시간")
-                    Text(" \(workoutData.time)")
+                    if workouts.isEmpty {
+                        Text(" \(workouts[0].time)")
+                    } else {
+                        Text(" --:--")
+                    }
                 }
             }
             .font(.matchDetailTitle)
@@ -88,7 +96,7 @@ struct MatchTimeView: View {
 
 struct PlayerAbilityView: View {
     @EnvironmentObject var profileModel: ProfileModel
-    let workoutData: WorkoutData
+    @Binding var workouts: [WorkoutData]
     
     var body: some View {
         VStack {
@@ -117,17 +125,28 @@ struct PlayerAbilityView: View {
                     }
                     HStack {
                         Spacer()
-
-                        let recent = DataConverter.toLevels(workoutData)
-                        let average = DataConverter.toLevels(profileModel.averageAbility)
-                        
-                        ViewControllerContainer(RadarViewController(radarAverageValue: average, radarAtypicalValue: recent))
-                            .scaleEffect(CGSize(width: 0.9, height: 0.9))
-                            .padding()
-                            .fixedSize()
-                            .frame(width: 304, height: 348)
-                            .zIndex(-1)
-                        
+                        if workouts.isEmpty {
+                            let recent = DataConverter.toLevels(workouts[0])
+                            let average = DataConverter.toLevels(profileModel.averageAbility)
+                            
+                            ViewControllerContainer(RadarViewController(radarAverageValue: average, radarAtypicalValue: recent))
+                                .scaleEffect(CGSize(width: 0.9, height: 0.9))
+                                .padding()
+                                .fixedSize()
+                                .frame(width: 304, height: 348)
+                                .zIndex(-1)
+                        } else {
+                            let blankRecent = DataConverter.toLevels(WorkoutData.blankExample)
+                            let blankAverage = DataConverter.toLevels(WorkoutAverageData.blankAverage)
+                            
+                            ViewControllerContainer(RadarViewController(radarAverageValue: blankAverage, radarAtypicalValue: blankRecent))
+                                .scaleEffect(CGSize(width: 0.9, height: 0.9))
+                                .padding()
+                                .fixedSize()
+                                .frame(width: 304, height: 348)
+                                .zIndex(-1)
+                            
+                        }
                         Spacer()
                     }
                 }
@@ -138,7 +157,7 @@ struct PlayerAbilityView: View {
 }
 
 struct FieldRecordView: View {
-    let workoutData: WorkoutData
+    @Binding var workouts: [WorkoutData]
     @State var isInfoOpen: Bool = false
     var body: some View {
         VStack {
@@ -159,34 +178,40 @@ struct FieldRecordView: View {
             Spacer()
                 .frame(minHeight: 30)
             HStack {
-                if !workoutData.error {
-                    ForEach(workoutData.matchBadge.indices, id: \.self) { index in
-                        if let badgeName = BadgeImageDictionary[index][workoutData.matchBadge[index]] {
-                            if badgeName.isEmpty {
-                                EmptyView()
+                if !workouts.isEmpty {
+                    if !workouts[0].error {
+                        ForEach(workouts[0].matchBadge.indices, id: \.self) { index in
+                            if let badgeName = BadgeImageDictionary[index][workouts[0].matchBadge[index]] {
+                                if badgeName.isEmpty {
+                                    EmptyView()
+                                } else {
+                                    Image(badgeName)
+                                        .resizable()
+                                        .aspectRatio(contentMode: .fit)
+                                        .frame(width: 74, height: 82)
+                                }
                             } else {
-                                Image(badgeName)
-                                    .resizable()
-                                    .aspectRatio(contentMode: .fit)
-                                    .frame(width: 74, height: 82)
+                                EmptyView()
                             }
-                        } else {
-                            EmptyView()
                         }
+                    } else {
+                        EmptyView()
                     }
                 } else {
                     EmptyView()
                 }
             }
-            FieldRecordDataView(workoutData: workoutData)
+            FieldRecordDataView(workouts: $workouts)
         }
     }
 }
 
 struct FieldMovementView: View {
-    let workoutData: WorkoutData
+    @Binding var workouts: [WorkoutData]
     @State var isInfoOpen: Bool = false
     @State private var slider = 0.0
+    private let emptyDataRoute: [CLLocationCoordinate2D] = []
+    private let emptyDataCenter: [Double] = [0, 0]
     var body: some View {
         VStack {
             HStack {
@@ -202,15 +227,18 @@ struct FieldMovementView: View {
                     }
                 }
             }
-            
-            HeatmapView(slider: $slider, coordinate: CLLocationCoordinate2D(latitude: workoutData.center[0], longitude: workoutData.center[1]), polylineCoordinates: workoutData.route)
-                .frame(height: 500)
-                .cornerRadius(15.0)
-            
-            Slider(
-                value: $slider,
-                in: 0...1
-            )
+            if !workouts.isEmpty {
+                HeatmapView(slider: $slider, coordinate: CLLocationCoordinate2D(latitude: workouts[0].center[0], longitude: workouts[0].center[1]), polylineCoordinates: workouts[0].route)
+                    .frame(height: 500)
+                    .cornerRadius(15.0)
+                
+                Slider(
+                    value: $slider,
+                    in: 0...1
+                )
+            } else {
+                HeatmapView(slider: $slider, coordinate: CLLocationCoordinate2D(latitude: emptyDataCenter[0], longitude: emptyDataCenter[1]), polylineCoordinates: emptyDataRoute)
+            }
             
         }
         
@@ -221,13 +249,16 @@ struct FieldMovementView: View {
 
 #Preview {
     @StateObject var healthInteractor = HealthInteractor.shared
-//    return MatchDetailView(workoutData: WorkoutData.example)
-    return ErrorView(workoutData: WorkoutData.example)
-    .environmentObject(healthInteractor)
+    return MatchDetailView(workouts: .constant(WorkoutData.exampleWorkouts))
+        .environmentObject(ProfileModel(healthInteractor: HealthInteractor()))
+        .environmentObject(HealthInteractor())
+//    return ErrorView(workouts: .constant(WorkoutData.exampleWorkouts))
+//        .environmentObject(ProfileModel(healthInteractor: HealthInteractor()))
+//        .environmentObject(HealthInteractor())
 }
 
 struct FieldRecordDataView: View {
-    let workoutData: WorkoutData
+    @Binding var workouts: [WorkoutData]
     var body: some View {
         ZStack {
             LightRectangleView(alpha: 0.4, color: .black, radius: 15)
@@ -239,8 +270,12 @@ struct FieldRecordDataView: View {
                         Text("뛴 거리")
                             .font(.fieldRecordTitle)
                         HStack(alignment: .bottom, spacing: 0) {
-                            Text(workoutData.distance.formatted())
-                                .font(.fieldRecordMeasure)
+                            if !workouts.isEmpty {
+                                Text(workouts[0].distance.formatted())
+                                    .font(.fieldRecordMeasure)
+                            } else {
+                                Text("--")
+                            }
                             Text(" km")
                                 .font(.fieldRecordUnit)
                         }
@@ -250,8 +285,12 @@ struct FieldRecordDataView: View {
                         Text("스프린트")
                             .font(.fieldRecordTitle)
                         HStack(alignment: .bottom, spacing: 0) {
-                            Text(workoutData.sprint.formatted())
-                                .font(.fieldRecordMeasure)
+                            if !workouts.isEmpty {
+                                Text(workouts[0].sprint.formatted())
+                                    .font(.fieldRecordMeasure)
+                            }  else {
+                                Text("--")
+                            }
                             Text(" Times")
                                 .font(.fieldRecordUnit)
                         }
@@ -261,8 +300,12 @@ struct FieldRecordDataView: View {
                         Text("최소 심박수")
                             .font(.fieldRecordTitle)
                         HStack(alignment: .bottom, spacing: 0) {
-                            Text(workoutData.minHeartRate.formatted())
-                                .font(.fieldRecordMeasure)
+                            if !workouts.isEmpty {
+                                Text(workouts[0].minHeartRate.formatted())
+                                    .font(.fieldRecordMeasure)
+                            } else {
+                                Text("--")
+                            }
                             Text(" Bpm")
                                 .font(.fieldRecordUnit)
                         }
@@ -274,8 +317,12 @@ struct FieldRecordDataView: View {
                         Text("최고 속도")
                             .font(.fieldRecordTitle)
                         HStack(alignment: .bottom,spacing: 0) {
-                            Text(Int(workoutData.velocity).formatted())
-                                .font(.fieldRecordMeasure)
+                            if !workouts.isEmpty {
+                                Text(Int(workouts[0].velocity).formatted())
+                                    .font(.fieldRecordMeasure)
+                            } else {
+                                Text("--")
+                            }
                             Text(" km/h")
                                 .font(.fieldRecordUnit)
                         }
@@ -285,8 +332,12 @@ struct FieldRecordDataView: View {
                         Text("파워")
                             .font(.fieldRecordTitle)
                         HStack(alignment: .bottom,spacing: 0) {
-                            Text(workoutData.power.rounded(at: 1))
-                                .font(.fieldRecordMeasure)
+                            if !workouts.isEmpty {
+                                Text(workouts[0].power.rounded(at: 1))
+                                    .font(.fieldRecordMeasure)
+                            }  else {
+                                Text("--")
+                            }
                             Text(" w")
                                 .font(.fieldRecordUnit)
                         }
@@ -296,8 +347,12 @@ struct FieldRecordDataView: View {
                         Text("최대 심박수")
                             .font(.fieldRecordTitle)
                         HStack(alignment: .bottom, spacing: 0) {
-                            Text(workoutData.maxHeartRate.formatted())
-                                .font(.fieldRecordMeasure)
+                            if !workouts.isEmpty {
+                                Text(workouts[0].maxHeartRate.formatted())
+                                    .font(.fieldRecordMeasure)
+                            } else {
+                                Text("--")
+                            }
                             Text(" Bpm")
                                 .font(.fieldRecordUnit)
                         }

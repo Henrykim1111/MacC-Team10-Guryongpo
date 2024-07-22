@@ -106,10 +106,10 @@ struct MainView: View {
         HStack(alignment: .bottom) {
             VStack(alignment: .leading) {
                 Group {
-                    if workouts.isEmpty {
-                        Text("----.--.--")
-                    } else {
+                    if !workouts.isEmpty {
                         Text(workouts[0].yearMonthDay)
+                    } else {
+                        Text("----.--.--")
                     }
                 }
                 .font(.mainSubTitleText)
@@ -128,17 +128,15 @@ struct MainView: View {
     }
 
     private var recentMatchPreview: some View {
-        let lastWorkoutData = workouts[0]
-
-        return NavigationLink {
-            MatchDetailView(workoutData: lastWorkoutData)
+        NavigationLink {
+            MatchDetailView(workouts: $workouts)
         } label: {
             ZStack {
                 LightRectangleView(alpha: 0.6, color: .black, radius: 15)
                 HStack {
                     VStack {
                         HStack {
-                            let recent = DataConverter.toLevels(lastWorkoutData)
+                            let recent = DataConverter.toLevels(workouts[0])
                             let average = DataConverter.toLevels(profileModel.averageAbility)
                             ViewControllerContainer(RadarViewController(
                                 radarAverageValue: average,
@@ -158,7 +156,7 @@ struct MainView: View {
                                         .opacity(0.8)
                                         .task {
                                             if !workouts.isEmpty {
-                                                currentLocation = await lastWorkoutData.location
+                                                currentLocation = await workouts[0].location
                                             }
                                         }
                                     Group {
@@ -167,7 +165,7 @@ struct MainView: View {
                                             if workouts.isEmpty {
                                                 Text("--:--")
                                             } else {
-                                                Text(lastWorkoutData.time)
+                                                Text(workouts[0].time)
                                             }
                                         }
                                     }
@@ -176,9 +174,9 @@ struct MainView: View {
                                 }
                                 Spacer()
                                 HStack {
-                                    ForEach(lastWorkoutData.matchBadge.indices, id: \.self) { index in
+                                    ForEach(workouts[0].matchBadge.indices, id: \.self) { index in
                                         let row = index
-                                        let column = lastWorkoutData.matchBadge[index]
+                                        let column = workouts[0].matchBadge[index]
                                         if let badgeName = ShortenedBadgeImageDictionary[row][column],
                                            !badgeName.isEmpty {
                                             Image(badgeName)

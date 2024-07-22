@@ -104,15 +104,15 @@ struct WorkoutData: Hashable, Equatable, Identifiable {
                               error: true)
     
     static let blankExample = Self(dataID: 0,
-                                   date: "2023-10-09T01:20:32Z",
-                                   time: "34:43",
-                                   distance: 0.1,
-                                   sprint: 1,
-                                   velocity: 0.5,
-                                   power: 1.0,
-                                   heartRate: ["max": 80, "min": 60],
+                                   date: "0000-00-00T00:00:00Z",
+                                   time: "00:00",
+                                   distance: 0,
+                                   sprint: 0,
+                                   velocity: 0,
+                                   power: 0,
+                                   heartRate: ["max": 0, "min": 0],
                                    route: [],
-                                   center: [37.58647414212885, 126.9748537678651])
+                                   center: [0, 0])
     
     // TODO: - Factory Method Pattern으로 빼내는건 어떨까요?
     static let exampleWorkouts = [
@@ -160,6 +160,15 @@ struct WorkoutAverageData: Hashable, Equatable, Identifiable {
                                                              maxVelocity: 22.4,
                                                              sprintCount: 3,
                                                              totalMatchTime: 80)
+    
+    static let blankAverage: WorkoutAverageData = WorkoutAverageData(maxHeartRate: 0,
+                                                             minHeartRate: 0,
+                                                             rangeHeartRate: 0,
+                                                             totalDistance: 0,
+                                                             maxPower: 0,
+                                                             maxVelocity: 0,
+                                                             sprintCount: 0,
+                                                             totalMatchTime: 0)
     
     init(maxHeartRate: Int, minHeartRate: Int, rangeHeartRate: Int, totalDistance: Double, maxPower: Double, maxVelocity: Double, sprintCount: Int, totalMatchTime: Int) {
         self.maxHeartRate = maxHeartRate
