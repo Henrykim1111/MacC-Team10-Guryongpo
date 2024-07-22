@@ -175,7 +175,7 @@ final class WorkoutManager: NSObject, ObservableObject {
     }
     
     func endWorkout() {
-        session?.endCurrentActivity(on: .now)
+        session?.end()
     }
     
     // 두 부분으로 나누기
