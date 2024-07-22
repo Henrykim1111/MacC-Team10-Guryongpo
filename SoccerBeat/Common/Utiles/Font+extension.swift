@@ -99,6 +99,10 @@ extension Font {
     public static let fieldRecordUnit = Font.sfProText(size: 20, weight: .heavyItalic)
     public static let fieldRecordSquare = Font.sfProText(size: 15, weight: .heavyItalic)
     
+    // MARK: - MatchRecapView
+    public static let matchRecapEmptyDataTop = Font.sfProDisplay(size: 18, weight: .semiboldItalic)
+    public static let matchRecapEmptyDataBottom = Font.sfProDisplay(size: 16, weight: .semiboldItalic)
+    
     // MARK: - Navigation Title Style
     
     public static let navigationSportyTitle = Font.sfProText(size: 36, weight: .heavyItalic)
