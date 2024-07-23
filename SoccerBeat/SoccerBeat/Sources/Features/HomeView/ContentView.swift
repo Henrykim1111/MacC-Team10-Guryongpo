@@ -10,10 +10,11 @@ import SwiftUI
 import HealthKit
 
 struct ContentView: View {
+    @Binding var isShowingOnboardingView : Bool
     @EnvironmentObject var profileModel: ProfileModel
     @EnvironmentObject var healthInteractor: HealthInteractor
     @EnvironmentObject var soundManager: SoundManager
-
+    
     @AppStorage("healthAlert") var healthAlert = true
     @State private var workouts: [WorkoutData] = []
     
@@ -24,11 +25,12 @@ struct ContentView: View {
             } else if healthInteractor.isLoading {
                 LoadingView()
             } else {
-                MainView(workouts: $workouts)
+                MainView(isShowingOnboardingView: $isShowingOnboardingView, workouts: $workouts)
             }
         }
         .onReceive(healthInteractor.fetchWorkoutsSuccess) { workouts in
             self.workouts = workouts
+            isShowingOnboardingView = workouts.isEmpty
         }
         .onAppear {
             // 음악을 틀기
@@ -41,8 +43,7 @@ struct ContentView: View {
 }
 
 #Preview {
-    ContentView()
-        .preferredColorScheme(.dark)
+    ContentView(isShowingOnboardingView: .constant(true))        .preferredColorScheme(.dark)
         .environmentObject(ProfileModel(healthInteractor: HealthInteractor()))
         .environmentObject(SoundManager())
         .environmentObject(HealthInteractor())

@@ -11,6 +11,19 @@ struct OnboardingView: View {
     @Environment(\.dismiss) var dismiss
     var body: some View {
         VStack {
+            Spacer()
+            HStack {
+                Spacer()
+                Button {
+                    dismiss()
+                } label: {
+                    Image(systemName: "x.circle.fill")
+                        .foregroundStyle(.white)
+                        .font(.system(size: 20))
+                }
+                
+            }
+            Spacer()
             Text("workout_empty")
                 .font(.onboardingTop)
                 .foregroundStyle(.onboardingText)

@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct MainView: View {
+    @Binding var isShowingOnboardingView: Bool
+    
     @EnvironmentObject var profileModel: ProfileModel
     @EnvironmentObject var healthInteractor: HealthInteractor
     @EnvironmentObject var soundManager: SoundManager
@@ -27,6 +29,20 @@ struct MainView: View {
                     .frame(height: 80)
                 AnalyticsView(workouts: $workouts)
             }
+        }
+        .onReceive(/*@START_MENU_TOKEN@*//*@PLACEHOLDER=Publisher@*/NotificationCenter.default.publisher(for: .NSCalendarDayChanged)/*@END_MENU_TOKEN@*/, perform: { _ in
+            /*@START_MENU_TOKEN@*//*@PLACEHOLDER=code@*/ /*@END_MENU_TOKEN@*/
+        })
+//        .onAppear {
+//            print("checkpoint : \(isShowingOnboardingView)")
+//            print("before: \(isShowingOnboardingView)")
+//            isShowingOnboardingView = workouts.isEmpty
+//            print("after: \(isShowingOnboardingView)")
+//        }
+        .sheet(isPresented: $isShowingOnboardingView) {
+            OnboardingView()
+                .presentationDetents([.medium])
+                .presentationDragIndicator(.visible)
         }
         .refreshable {
             await healthInteractor.fetchWorkoutData()
@@ -248,8 +264,9 @@ struct MainView: View {
     @StateObject var sound = SoundManager()
     @StateObject var profileModel = ProfileModel(healthInteractor: .shared)
     @State var workouts = WorkoutData.exampleWorkouts
+    @State var isShowingOnboardingView = false
     
-    return MainView(workouts: $workouts)
+    return MainView(isShowingOnboardingView: $isShowingOnboardingView, workouts: $workouts)
         .environmentObject(health)
         .environmentObject(sound)
         .environmentObject(profileModel)

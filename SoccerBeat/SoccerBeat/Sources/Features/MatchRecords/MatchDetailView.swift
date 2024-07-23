@@ -28,13 +28,13 @@ struct MatchDetailView: View {
                     Spacer()
                         .frame(height: 100)
                     FieldMovementView(workouts: $workouts)
-                        .padding()
-                    }
                 }
+                .padding()
             }
-            .scrollIndicators(.hidden)
         }
+        .scrollIndicators(.hidden)
     }
+}
 
 struct ErrorView: View {
     @Binding var workouts: [WorkoutData]
