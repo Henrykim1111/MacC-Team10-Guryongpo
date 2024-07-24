@@ -9,6 +9,7 @@ import SwiftUI
 
 @main
 struct SoccerBeatApp: App {
+    @State var isShowingOnboardingView : Bool
     @StateObject var soundManager = SoundManager()
     @StateObject var healthInteracter = HealthInteractor.shared
     @StateObject var profileModel = ProfileModel(healthInteractor: HealthInteractor.shared)
@@ -18,12 +19,13 @@ struct SoccerBeatApp: App {
     init() {
         self.hasHealthAuthorization = HealthInteractor.shared.haveHealthAuthorization()
         self.hasLocationAuthorization = HealthInteractor.shared.hasLocationAuthorization()
+        self.isShowingOnboardingView = false
     }
     var body: some Scene {
         WindowGroup {
             Group {
                 if hasHealthAuthorization && hasLocationAuthorization {
-                    ContentView()
+                    ContentView(isShowingOnboardingView: $isShowingOnboardingView)
                 } else if !hasHealthAuthorization {
                     NoAuthorizationView(requestingAuth: .health)
                 } else if !hasLocationAuthorization {

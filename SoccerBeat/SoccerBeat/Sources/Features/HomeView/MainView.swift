@@ -8,29 +8,41 @@
 import SwiftUI
 
 struct MainView: View {
+    @Binding var isShowingOnboardingView: Bool
+    
     @EnvironmentObject var profileModel: ProfileModel
     @EnvironmentObject var healthInteractor: HealthInteractor
     @EnvironmentObject var soundManager: SoundManager
     @State private var isFlipped = false
     @State private var currentLocation = "---"
     @Binding var workouts: [WorkoutData]
-
+    
     @State private var isShowingBug = false
     private let alertTitle = "문제가 있으신가요?"
-
+    
     var body: some View {
         ScrollView(showsIndicators: false) {
             VStack(spacing: 0) {
                 headerView
-                if workouts.isEmpty {
-                    emptyStateView
-                } else {
-                    contentView
-                    Spacer()
-                        .frame(height: 80)
-                    AnalyticsView()
-                }
+                contentView
+                Spacer()
+                    .frame(height: 80)
+                AnalyticsView(workouts: $workouts)
             }
+        }
+        .onReceive(/*@START_MENU_TOKEN@*//*@PLACEHOLDER=Publisher@*/NotificationCenter.default.publisher(for: .NSCalendarDayChanged)/*@END_MENU_TOKEN@*/, perform: { _ in
+            /*@START_MENU_TOKEN@*//*@PLACEHOLDER=code@*/ /*@END_MENU_TOKEN@*/
+        })
+//        .onAppear {
+//            print("checkpoint : \(isShowingOnboardingView)")
+//            print("before: \(isShowingOnboardingView)")
+//            isShowingOnboardingView = workouts.isEmpty
+//            print("after: \(isShowingOnboardingView)")
+//        }
+        .sheet(isPresented: $isShowingOnboardingView) {
+            OnboardingView()
+                .presentationDetents([.medium])
+                .presentationDragIndicator(.visible)
         }
         .refreshable {
             await healthInteractor.fetchWorkoutData()
@@ -38,7 +50,7 @@ struct MainView: View {
         .padding(.horizontal)
         .navigationTitle("")
     }
-
+    
     private var headerView: some View {
         HStack {
             soundButton
@@ -48,7 +60,7 @@ struct MainView: View {
         .padding(.horizontal)
         .padding(.top, 5)
     }
-
+    
     private var soundButton: some View {
         Button {
             soundManager.toggleMusic()
@@ -67,7 +79,7 @@ struct MainView: View {
         }
         .foregroundStyle(.white)
     }
-
+    
     private var bugButton: some View {
         Button {
             isShowingBug.toggle()
@@ -97,13 +109,7 @@ struct MainView: View {
             Text("불편을 드려 죄송합니다. \n\nSoccerBeat의 개발자 계정으로 문의를 주시면 빠른 시일 안에 답변드리겠습니다. ")
         }
     }
-
-    private var emptyStateView: some View {
-        EmptyDataView()
-              .environmentObject(profileModel)
-              .environmentObject(healthInteractor)
-    }
-
+    
     private var contentView: some View {
         VStack(spacing: 0) {
             recentMatchHeaderView
@@ -111,13 +117,19 @@ struct MainView: View {
             allMatchesLink
         }
     }
-
+    
     private var recentMatchHeaderView: some View {
         HStack(alignment: .bottom) {
             VStack(alignment: .leading) {
-                Text(workouts[0].yearMonthDay)
-                    .font(.mainSubTitleText)
-                    .opacity(0.7)
+                Group {
+                    if !workouts.isEmpty {
+                        Text(workouts[0].yearMonthDay)
+                    } else {
+                        Text("----.--.--")
+                    }
+                }
+                .font(.mainSubTitleText)
+                .opacity(0.7)
                 Text("최근 경기")
                     .font(.mainTitleText)
             }
@@ -130,30 +142,35 @@ struct MainView: View {
         }
         .padding()
     }
-
+    
     private var recentMatchPreview: some View {
-        let lastWorkoutData = workouts[0]
-
-        return NavigationLink {
-            MatchDetailView(workoutData: lastWorkoutData)
+        NavigationLink {
+            MatchDetailView(workouts: $workouts)
         } label: {
             ZStack {
                 LightRectangleView(alpha: 0.6, color: .black, radius: 15)
                 HStack {
                     VStack {
                         HStack {
-                            let recent = DataConverter.toLevels(lastWorkoutData)
-                            let average = DataConverter.toLevels(profileModel.averageAbility)
-
-                            ViewControllerContainer(RadarViewController(
-                                radarAverageValue: average,
-                                radarAtypicalValue: recent
-                            ))
-                            .scaleEffect(CGSize(width: 0.6, height: 0.6))
-                            .padding()
-                            .fixedSize()
-                            .frame(width: 220, height: 210)
-
+                            if !workouts.isEmpty {
+                                let recent = DataConverter.toLevels(workouts[0])
+                                let average = DataConverter.toLevels(profileModel.averageAbility)
+                                
+                                ViewControllerContainer(RadarViewController(radarAverageValue: average, radarAtypicalValue: recent))
+                                    .scaleEffect(CGSize(width: 0.6, height: 0.6))
+                                    .padding()
+                                    .fixedSize()
+                                    .frame(width: 220, height: 210)
+                            } else {
+                                let blankRecent = DataConverter.toLevels(WorkoutData.blankExample)
+                                let blankAverage = DataConverter.toLevels(WorkoutAverageData.blankAverage)
+                                
+                                ViewControllerContainer(RadarViewController(radarAverageValue: blankAverage, radarAtypicalValue: blankRecent))
+                                    .scaleEffect(CGSize(width: 0.6, height: 0.6))
+                                    .padding()
+                                    .fixedSize()
+                                    .frame(width: 220, height: 210)
+                            }
                             Spacer()
                             VStack(alignment: .trailing) {
                                 VStack(alignment: .leading) {
@@ -162,28 +179,40 @@ struct MainView: View {
                                         .foregroundStyle(.mainDateTime)
                                         .opacity(0.8)
                                         .task {
-                                            currentLocation = await lastWorkoutData.location
+                                            if !workouts.isEmpty {
+                                                currentLocation = await workouts[0].location
+                                            }
                                         }
                                     Group {
                                         Text("경기 시간")
-                                        Text(lastWorkoutData.time)
+                                        Group {
+                                            if !workouts.isEmpty {
+                                                Text(workouts[0].time)
+                                            } else {
+                                                Text("--:--")
+                                            }
+                                        }
                                     }
                                     .font(.mainTime)
                                     .foregroundStyle(.mainMatchTime)
                                 }
                                 Spacer()
-                                HStack {
-                                    ForEach(lastWorkoutData.matchBadge.indices, id: \.self) { index in
-                                        let row = index
-                                        let column = lastWorkoutData.matchBadge[index]
-                                        if let badgeName = ShortenedBadgeImageDictionary[row][column],
-                                           !badgeName.isEmpty {
-                                            Image(badgeName)
-                                                .resizable()
-                                                .aspectRatio(contentMode: .fit)
-                                                .frame(width: 32, height: 36)
+                                if !workouts.isEmpty {
+                                    HStack {
+                                        ForEach(workouts[0].matchBadge.indices, id: \.self) { index in
+                                            let row = index
+                                            let column = workouts[0].matchBadge[index]
+                                            if let badgeName = ShortenedBadgeImageDictionary[row][column],
+                                               !badgeName.isEmpty {
+                                                Image(badgeName)
+                                                    .resizable()
+                                                    .aspectRatio(contentMode: .fit)
+                                                    .frame(width: 25, height: 35)
+                                            }
                                         }
                                     }
+                                } else {
+                                    EmptyView()
                                 }
                             }
                         }
@@ -194,10 +223,10 @@ struct MainView: View {
             }
         }
     }
-
+    
     private var allMatchesLink: some View {
         NavigationLink {
-            MatchRecapView(userWorkouts: $workouts)
+            MatchRecapView(workouts: $workouts)
         } label: {
             ZStack {
                 LightRectangleView(alpha: 0.15, color: .seeAllMatch, radius: 22)
@@ -212,7 +241,7 @@ struct MainView: View {
             }
         }
     }
-
+    
     func openURL(urlString: String) {
         if let url = URL(string: "\(urlString)") {
             if #available(iOS 10.0, *) {
@@ -222,7 +251,7 @@ struct MainView: View {
             }
         }
     }
-
+    
     func createEmailUrl(to: String, subject: String, body: String) -> String {
         let subjectEncoded = subject.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
         let bodyEncoded = body.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
@@ -235,8 +264,9 @@ struct MainView: View {
     @StateObject var sound = SoundManager()
     @StateObject var profileModel = ProfileModel(healthInteractor: .shared)
     @State var workouts = WorkoutData.exampleWorkouts
-
-    return MainView(workouts: $workouts)
+    @State var isShowingOnboardingView = false
+    
+    return MainView(isShowingOnboardingView: $isShowingOnboardingView, workouts: $workouts)
         .environmentObject(health)
         .environmentObject(sound)
         .environmentObject(profileModel)

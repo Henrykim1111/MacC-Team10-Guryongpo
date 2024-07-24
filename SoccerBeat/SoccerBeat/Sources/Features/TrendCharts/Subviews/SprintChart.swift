@@ -154,23 +154,43 @@ extension SprintChartView {
         LightRectangleView(color: .chartBoxBackground.opacity(0.4))
             .frame(height: 200)
             .overlay {
-                VStack {
-                    
-                    Text("\(startDate) - \(endDate)")
-                        .font(.durationStyle)
-                        .foregroundStyle(.durationStyle)
-                    
+                if !workouts.isEmpty {
+                    VStack {
+                        
+                        Text("\(startDate) - \(endDate)")
+                            .font(.durationStyle)
+                            .foregroundStyle(.durationStyle)
+                        
+                        Spacer()
+                        SprintChart(
+                            workouts: workouts,
+                            fastestWorkout: fastest,
+                            slowestWorkout: slowest,
+                            averageSprint: average(of: workouts)
+                        )
+                        .frame(height: 120)
+                    }
+                    .padding(.horizontal, 30)
+                    .padding(.vertical, 24)
+                } else {
+                    ZStack {
+                        Image("MyCardBack")
+                            .resizable()
+                            .frame(width: 107, height: 140)
+                            .opacity(0.3)
+                        VStack {
+                            Text("저장된 데이터가 없습니다.")
+                            .font(.matchRecapEmptyDataTop)
+                            Group {
+                                Text("워치에서 사커비트로")
+                                Text("당신의 첫 경기를 시작해보세요!")
+                            }
+                            .font(.matchRecapEmptyDataBottom)
+                            .foregroundStyle(.mainSubTitleColor)
+                        }
+                    }
                     Spacer()
-                    SprintChart(
-                        workouts: workouts,
-                        fastestWorkout: fastest,
-                        slowestWorkout: slowest,
-                        averageSprint: average(of: workouts)
-                    )
-                    .frame(height: 120)
                 }
-                .padding(.horizontal, 30)
-                .padding(.vertical, 24)
             }
     }
     
@@ -188,8 +208,13 @@ extension SprintChartView {
                         .font(.averageText)
                         .foregroundStyle(.averageTextStyle)
                     Group {
-                        Text(average(of: workouts).rounded(at: 0))
-                        + Text(" 회")
+                        if !workouts.isEmpty {
+                            Text(average(of: workouts).rounded(at: 0))
+                            + Text(" 회")
+                        } else {
+                            Text("--")
+                            + Text(" 회")
+                        }
                     }
                     .font(.averageValue)
                     .foregroundStyle(.navigationSportySprintTitle)
