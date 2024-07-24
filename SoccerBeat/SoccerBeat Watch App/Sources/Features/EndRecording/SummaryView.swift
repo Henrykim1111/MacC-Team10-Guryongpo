@@ -26,12 +26,18 @@ struct SummaryView: View {
 
                 Button {
                     workoutManager.showingSummaryView = false
-
                 } label: {
                     Text("완료")
                         .font(.summaryDoneButton)
+                        .padding(.horizontal, 16)
+                        .padding(.vertical, 10)
                         .foregroundStyle(.summaryGradient)
+                        .background(
+                            Capsule()
+                                .fill(.columnTitle)
+                        )
                 }
+
             }
             .navigationTitle("")
             .navigationBarTitleDisplayMode(.inline)
