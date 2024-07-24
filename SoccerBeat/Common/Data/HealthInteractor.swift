@@ -314,7 +314,11 @@ extension HealthInteractor {
 
     private func readRecentMatches(from workouts: [WorkoutData], count: Int) -> [WorkoutData] {
         guard !workouts.isEmpty else { return [] }
-        return Array(workouts[0..<count])
+        if workouts.count < count {
+            return Array(workouts[0..<workouts.count])
+        } else {
+            return Array(workouts[0..<count])
+        }
     }
 
     private func divideWorkoutsByMonthly(_ workouts: [WorkoutData]) -> [String: [WorkoutData]] {
