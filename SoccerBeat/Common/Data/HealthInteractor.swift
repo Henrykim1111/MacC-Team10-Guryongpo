@@ -137,12 +137,14 @@ final class HealthInteractor: NSObject, ObservableObject {
             do {
                 let workoutDatum = try await convert(from: workout, at: index)
                 workoutData.append(workoutDatum)
+                print("CONVERT WORKOUT  DATA \(index)")
+                print(workoutDatum.distance)
             } catch {
                 NSLog(error.localizedDescription)
                 continue
             }
         }
-
+        print("FETCH WORKOUT DATA")
         await settingForChartView(workoutData)
         monthly = divideWorkoutsByMonthly(workoutData)
 
@@ -309,13 +311,17 @@ extension HealthInteractor {
         }
         await MainActor.run {
             recent4Games = fourGames
+            print("RECENT 4 GAMES")
+            recent4Games.forEach { game in
+                print(game.distance)
+            }
             recentGames = workouts.sorted(by: { $0.formattedDate < $1.formattedDate })
         }
     }
 
     private func readRecentMatches(from workouts: [WorkoutData], count: Int) -> [WorkoutData] {
         guard !workouts.isEmpty else { return [] }
-        return Array(workouts.suffix(count))
+        return Array(workouts[0..<count])
     }
 
     private func divideWorkoutsByMonthly(_ workouts: [WorkoutData]) -> [String: [WorkoutData]] {
