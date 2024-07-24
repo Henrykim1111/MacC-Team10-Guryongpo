@@ -105,13 +105,10 @@ private extension SplitControlsView {
     func sessionControlButton(type sessionControl: SessionControl) -> some View {
         let action = {
             switch sessionControl {
-            // TODO: - pause, resume 인 경우에는 어떻게 화면전환이 되는지 모르겠음(end 일 때는 dismiss)
             case .resumeAndStop:
                 workoutManager.togglePause()
             case .end:
                 workoutManager.endWorkout()
-                workoutManager.showingPrecount = false
-                dismiss()
             }
         }
         

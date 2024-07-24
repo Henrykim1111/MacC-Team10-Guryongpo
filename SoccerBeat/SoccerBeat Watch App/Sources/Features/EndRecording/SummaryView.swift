@@ -10,6 +10,7 @@ import HealthKit
 
 struct SummaryView: View {
     @Environment(\.dismiss) var dismiss
+    @EnvironmentObject var workoutManager: WorkoutManager
     @EnvironmentObject var matricsIndicator: MatricsIndicator
     @State private var isShowingSummary = false
     
@@ -24,7 +25,8 @@ struct SummaryView: View {
                 SummaryComponent(title: "파워", content:  matricsIndicator.power.rounded(at: 1) + " w")
 
                 Button {
-                    dismiss()
+                    workoutManager.showingSummaryView = false
+
                 } label: {
                     Text("완료")
                         .font(.summaryDoneButton)
@@ -37,11 +39,11 @@ struct SummaryView: View {
         } else {
             PhraseView()
                 .navigationBarHidden(true)
-                .onAppear {
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 3.0 ) {
-                        withAnimation {
-                            isShowingSummary.toggle()
-                        }
+                .task {
+                    try? await Task.sleep(nanoseconds: 3_000_000_000) // 3 seconds
+                    withAnimation {
+                        isShowingSummary.toggle()
+                        workoutManager.showingPrecount = false
                     }
                 }
         }

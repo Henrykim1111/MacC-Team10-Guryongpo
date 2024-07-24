@@ -94,7 +94,6 @@ final class WorkoutManager: NSObject, ObservableObject {
                 configuration: configuration
             )
         } catch {
-            // session init은 실패할 가능성이 없어요. 저렇게 `.running` 처럼 점을 찍어서 선언하면 말이죠.
             NSLog(error.localizedDescription)
         }
         builder = session?.associatedWorkoutBuilder()
@@ -176,6 +175,7 @@ final class WorkoutManager: NSObject, ObservableObject {
     
     func endWorkout() {
         session?.end()
+        showingSummaryView.toggle()
     }
     
     // 두 부분으로 나누기
@@ -185,33 +185,5 @@ final class WorkoutManager: NSObject, ObservableObject {
         session = nil
         
         matrics.reset()
-    }
-    
-
-    private func readRoutes() {
-        guard let route else { return }
-        let query = HKWorkoutRouteQuery(route: route) { (query, locationsOrNil, done, errorOrNil) in
-
-            if let error = errorOrNil {
-                return
-            }
-
-            guard let locations = locationsOrNil else {
-                fatalError("*** Invalid State: This can only fail if there was an error. ***")
-            }
-
-            // Do something with this batch of location data.
-            // HealthKit에서 얻는 정확성 50m 혹은 그보다 적다고 합니다.
-            // 지도에 라인이나 점을 찍기에는 추가적인 작업이 필요하다네요.
-            // 여기서 locations를 찍어보면 돼요.
-
-            /* 예시
-             for loc in locations {
-                 print(loc.coordinate.latitude)
-                 print(loc.coordinate.longitude)
-             }
-             */
-        }
-        healthStore.execute(query)
     }
 }

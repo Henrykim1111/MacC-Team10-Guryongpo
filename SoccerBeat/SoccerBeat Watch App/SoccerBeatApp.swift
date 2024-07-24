@@ -19,9 +19,6 @@ struct SoccerBeat_Watch_AppApp: App {
             NavigationView {
                 StartView()
             }
-            .sheet(isPresented: $workoutManager.showingSummaryView) {
-                SummaryView()
-            }
             .environmentObject(workoutManager)
             .environmentObject(matricsIndicator)
             .environment(\.locale, .current)
