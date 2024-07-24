@@ -23,10 +23,10 @@ extension WorkoutManager: HKWorkoutSessionDelegate {
             Task { @MainActor in
                 do {
                     try await endWorkoutSession(date)
-                    self.showingSummaryView.toggle()
                 } catch {
                     NSLog(error.localizedDescription)
                 }
+                self.showingSummaryView.toggle()
             }
         }
     }

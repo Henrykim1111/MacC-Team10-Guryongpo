@@ -14,7 +14,11 @@ struct StartView: View {
 
     var body: some View {
         VStack {
-            if !workoutManager.showingPrecount {
+            if workoutManager.showingSummaryView {
+                SummaryView()
+            } else if workoutManager.showingPrecount {
+                PrecountView()
+            } else {
                 ZStack {
                     Image(.backgroundGlow)
                         .resizable()
@@ -34,9 +38,6 @@ struct StartView: View {
                               dismissButton: .default(Text("close")))
                     }
                 }
-
-            } else {
-                PrecountView()
             }
         }
         .buttonStyle(.borderless)
