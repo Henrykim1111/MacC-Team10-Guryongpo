@@ -9,13 +9,7 @@ import SwiftUI
 
 struct PhraseView: View {
     @State private var beatAnimation = true
-    private var phrase: String {
-        if let decoded: PhraseResponse = Bundle.main.decode(by: "Phrase.json"),
-           let phrase = decoded.phrase.randomElement() {
-            return phrase.saying
-        }
-        return "..Like son\nGood\nPlayer"
-    }
+    @State private var phrase: String = ""
 
     var body: some View {
         VStack(spacing: nil) {
@@ -41,6 +35,13 @@ struct PhraseView: View {
             withAnimation {
                 beatAnimation.toggle()
             }
+            self.phrase = {
+                if let decoded: PhraseResponse = Bundle.main.decode(by: "Phrase.json"),
+                   let phrase = decoded.phrase.randomElement() {
+                    return phrase.saying
+                }
+                return "..Like son\nGood\nPlayer"
+            }()
         }
     }
 }

@@ -64,7 +64,7 @@ extension Font {
     public static let summaryContent = Font.notoSans(size: 26, weight: .blackItalic)
     public static let summaryTraillingTop = Font.sfCompactText(size: 13.5)
     public static let summaryLeadingBottom = Font.sfCompactText(size: 13.5)
-    public static let summaryDoneButton = Font.sfCompactText(size: 13.5, weight: .semiboldItalic)
+    public static let summaryDoneButton = Font.sfCompactText(size: 15.0, weight: .semiboldItalic)
     
     // MARK: - Onboarding View
     
