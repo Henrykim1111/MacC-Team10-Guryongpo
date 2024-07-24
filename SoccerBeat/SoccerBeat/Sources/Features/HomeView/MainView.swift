@@ -30,15 +30,6 @@ struct MainView: View {
                 AnalyticsView(workouts: $workouts)
             }
         }
-        .onReceive(/*@START_MENU_TOKEN@*//*@PLACEHOLDER=Publisher@*/NotificationCenter.default.publisher(for: .NSCalendarDayChanged)/*@END_MENU_TOKEN@*/, perform: { _ in
-            /*@START_MENU_TOKEN@*//*@PLACEHOLDER=code@*/ /*@END_MENU_TOKEN@*/
-        })
-//        .onAppear {
-//            print("checkpoint : \(isShowingOnboardingView)")
-//            print("before: \(isShowingOnboardingView)")
-//            isShowingOnboardingView = workouts.isEmpty
-//            print("after: \(isShowingOnboardingView)")
-//        }
         .sheet(isPresented: $isShowingOnboardingView) {
             OnboardingView()
                 .presentationDetents([.medium])
@@ -145,7 +136,11 @@ struct MainView: View {
     
     private var recentMatchPreview: some View {
         NavigationLink {
-            MatchDetailView(workouts: $workouts)
+            if workouts.isEmpty {
+                MatchDetailView(workout: nil)
+            } else {
+                MatchDetailView(workout: workouts[0])
+            }
         } label: {
             ZStack {
                 LightRectangleView(alpha: 0.6, color: .black, radius: 15)

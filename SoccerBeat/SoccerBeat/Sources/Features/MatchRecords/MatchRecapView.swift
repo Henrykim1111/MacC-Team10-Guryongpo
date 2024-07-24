@@ -57,7 +57,7 @@ struct MatchRecapView: View {
                     ForEach(workouts) { workout in
                         ZStack {
                             NavigationLink {
-                                MatchDetailView(workouts: $workouts)
+                                MatchDetailView(workout: workout)
                                     .toolbarRole(.editor)
                             } label: {
                                 EmptyView()
@@ -223,21 +223,20 @@ extension MatchListItemView {
         HStack(spacing: 16) {
             VStack(alignment: .leading) {
                 Text("뛴 거리")
-                Text(String(format: "%.1f", workoutData.distance) + "km")
+                Text((workoutData.error ? "--" : String(format: "%.1f", workoutData.distance)) + " km")
                     .bold()
             }
             
             VStack(alignment: .leading) {
                 Text("최고 속도")
-                Text("\(Int(workoutData.velocity).formatted()) km/h")
+                Text((workoutData.error ? "--" :  "\(Int(workoutData.velocity).formatted())") + " km/h")
                     .bold()
             }
             
             VStack(alignment: .leading) {
                 Text("스프린트")
                 HStack(spacing: 0) {
-                    Text("\(workoutData.sprint) ")
-                    Text("회")
+                    Text((workoutData.error ? "--" : "\(workoutData.sprint)") + " 회")
                 }
                 
                 .bold()

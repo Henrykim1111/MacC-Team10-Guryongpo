@@ -10,24 +10,24 @@ import Charts
 import CoreLocation
 
 struct MatchDetailView: View {
-    @Binding var workouts: [WorkoutData]
+    var workout: WorkoutData?
     
     var body: some View {
         ScrollView(showsIndicators: false) {
             ZStack {
                 VStack {
-                    MatchTimeView(workouts: $workouts)
+                    MatchTimeView(workout: workout)
                     Spacer()
                         .frame(height: 48)
-                    ErrorView(workouts: $workouts)
-                    PlayerAbilityView(workouts: $workouts)
+                    ErrorView(workout: workout)
+                    PlayerAbilityView(workout: workout)
                         .zIndex(-1)
                     Spacer()
                         .frame(height: 100)
-                    FieldRecordView(workouts: $workouts)
+                    FieldRecordView(workout: workout)
                     Spacer()
                         .frame(height: 100)
-                    FieldMovementView(workouts: $workouts)
+                    FieldMovementView(workout: workout)
                 }
                 .padding()
             }
@@ -37,11 +37,11 @@ struct MatchDetailView: View {
 }
 
 struct ErrorView: View {
-    @Binding var workouts: [WorkoutData]
+    var workout: WorkoutData?
     
     var body: some View {
-        if !workouts.isEmpty {
-            if !workouts[0].error {
+        if let workout = workout {
+            if !workout.error {
                 EmptyView()
             } else {
                 VStack {
@@ -68,7 +68,7 @@ struct ErrorView: View {
 }
 
 struct MatchTimeView: View {
-    @Binding var workouts: [WorkoutData]
+    var workout: WorkoutData?
     
     var body: some View {
         VStack(alignment: .leading) {
@@ -81,8 +81,8 @@ struct MatchTimeView: View {
             VStack(alignment: .leading, spacing: -8) {
                 HStack(spacing: 0) {
                     Text("경기 시간")
-                    if !workouts.isEmpty {
-                        Text(" \(workouts[0].time)")
+                    if let workout = workout {
+                        Text(" \(workout.time)")
                     } else {
                         Text(" --:--")
                     }
@@ -96,7 +96,7 @@ struct MatchTimeView: View {
 
 struct PlayerAbilityView: View {
     @EnvironmentObject var profileModel: ProfileModel
-    @Binding var workouts: [WorkoutData]
+    var workout: WorkoutData?
     
     var body: some View {
         VStack {
@@ -125,8 +125,8 @@ struct PlayerAbilityView: View {
                     }
                     HStack {
                         Spacer()
-                        if !workouts.isEmpty {
-                            let recent = DataConverter.toLevels(workouts[0])
+                        if let workout = workout {
+                            let recent = DataConverter.toLevels(workout)
                             let average = DataConverter.toLevels(profileModel.averageAbility)
                             
                             ViewControllerContainer(RadarViewController(radarAverageValue: average, radarAtypicalValue: recent))
@@ -157,7 +157,7 @@ struct PlayerAbilityView: View {
 }
 
 struct FieldRecordView: View {
-    @Binding var workouts: [WorkoutData]
+    var workout: WorkoutData?
     @State var isInfoOpen: Bool = false
     var body: some View {
         VStack {
@@ -178,10 +178,10 @@ struct FieldRecordView: View {
             Spacer()
                 .frame(minHeight: 30)
             HStack {
-                if !workouts.isEmpty {
-                    if !workouts[0].error {
-                        ForEach(workouts[0].matchBadge.indices, id: \.self) { index in
-                            if let badgeName = BadgeImageDictionary[index][workouts[0].matchBadge[index]] {
+                if let workout = workout {
+                    if workout.error {
+                        ForEach(workout.matchBadge.indices, id: \.self) { index in
+                            if let badgeName = BadgeImageDictionary[index][workout.matchBadge[index]] {
                                 if badgeName.isEmpty {
                                     EmptyView()
                                 } else {
@@ -201,13 +201,13 @@ struct FieldRecordView: View {
                     EmptyView()
                 }
             }
-            FieldRecordDataView(workouts: $workouts)
+            FieldRecordDataView(workout: workout)
         }
     }
 }
 
 struct FieldMovementView: View {
-    @Binding var workouts: [WorkoutData]
+    var workout: WorkoutData?
     @State var isInfoOpen: Bool = false
     @State private var slider = 0.0
     private let emptyDataRoute: [CLLocationCoordinate2D] = []
@@ -217,7 +217,7 @@ struct FieldMovementView: View {
             HStack {
                 VStack(alignment: .leading) {
                     HStack {
-                        InformationButton(message: "설정에서 '정확한 위치'를 허용하면 보다 정확한 데이터를 얻을 수 있어요.")
+                        InformationButton(message: "슬라이더를 움직여 경기 중 위치를 확인해보세요.")
                         Spacer()
                     }
                     
@@ -227,8 +227,8 @@ struct FieldMovementView: View {
                     }
                 }
             }
-            if !workouts.isEmpty {
-                HeatmapView(slider: $slider, coordinate: CLLocationCoordinate2D(latitude: workouts[0].center[0], longitude: workouts[0].center[1]), polylineCoordinates: workouts[0].route)
+            if let workout = workout {
+                HeatmapView(slider: $slider, coordinate: CLLocationCoordinate2D(latitude: workout.center[0], longitude: workout.center[1]), polylineCoordinates: workout.route)
                     .frame(height: 500)
                     .cornerRadius(15.0)
                 
@@ -249,13 +249,13 @@ struct FieldMovementView: View {
 
 #Preview {
     @StateObject var healthInteractor = HealthInteractor.shared
-    return MatchDetailView(workouts: .constant(WorkoutData.exampleWorkouts))
+    return MatchDetailView(workout: WorkoutData.blankExample)
         .environmentObject(ProfileModel(healthInteractor: HealthInteractor()))
         .environmentObject(HealthInteractor())
 }
 
 struct FieldRecordDataView: View {
-    @Binding var workouts: [WorkoutData]
+    var workout: WorkoutData?
     var body: some View {
         ZStack {
             LightRectangleView(alpha: 0.4, color: .black, radius: 15)
@@ -267,8 +267,8 @@ struct FieldRecordDataView: View {
                         Text("뛴 거리")
                             .font(.fieldRecordTitle)
                         HStack(alignment: .bottom, spacing: 0) {
-                            if !workouts.isEmpty {
-                                Text(workouts[0].distance.formatted())
+                            if let workout = workout {
+                                Text(workout.error ? "--" : workout.distance.formatted())
                                     .font(.fieldRecordMeasure)
                             } else {
                                 Text("--")
@@ -282,8 +282,8 @@ struct FieldRecordDataView: View {
                         Text("스프린트")
                             .font(.fieldRecordTitle)
                         HStack(alignment: .bottom, spacing: 0) {
-                            if !workouts.isEmpty {
-                                Text(workouts[0].sprint.formatted())
+                            if let workout = workout {
+                                Text(workout.error ? "--" : workout.sprint.formatted())
                                     .font(.fieldRecordMeasure)
                             }  else {
                                 Text("--")
@@ -297,8 +297,8 @@ struct FieldRecordDataView: View {
                         Text("최소 심박수")
                             .font(.fieldRecordTitle)
                         HStack(alignment: .bottom, spacing: 0) {
-                            if !workouts.isEmpty {
-                                Text(workouts[0].minHeartRate.formatted())
+                            if let workout = workout {
+                                Text(workout.error ? "--" : workout.minHeartRate.formatted())
                                     .font(.fieldRecordMeasure)
                             } else {
                                 Text("--")
@@ -314,8 +314,8 @@ struct FieldRecordDataView: View {
                         Text("최고 속도")
                             .font(.fieldRecordTitle)
                         HStack(alignment: .bottom,spacing: 0) {
-                            if !workouts.isEmpty {
-                                Text(Int(workouts[0].velocity).formatted())
+                            if let workout = workout {
+                                Text(workout.error ? "--" : workout.velocity.formatted())
                                     .font(.fieldRecordMeasure)
                             } else {
                                 Text("--")
@@ -329,9 +329,8 @@ struct FieldRecordDataView: View {
                         Text("파워")
                             .font(.fieldRecordTitle)
                         HStack(alignment: .bottom,spacing: 0) {
-                            if !workouts.isEmpty {
-                                Text(workouts[0].power.rounded(at: 1))
-                                    .font(.fieldRecordMeasure)
+                            if let workout = workout {
+                                Text(workout.error ? "--" : workout.power.rounded(at: 1)).font(.fieldRecordMeasure)
                             }  else {
                                 Text("--")
                             }
@@ -344,8 +343,8 @@ struct FieldRecordDataView: View {
                         Text("최대 심박수")
                             .font(.fieldRecordTitle)
                         HStack(alignment: .bottom, spacing: 0) {
-                            if !workouts.isEmpty {
-                                Text(workouts[0].maxHeartRate.formatted())
+                            if let workout = workout {
+                                Text(workout.error ? "--" : workout.maxHeartRate.formatted())
                                     .font(.fieldRecordMeasure)
                             } else {
                                 Text("--")

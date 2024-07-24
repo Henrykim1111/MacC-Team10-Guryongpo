@@ -29,13 +29,29 @@ struct AnalyticsComponent: View {
     private var lastGameValue: String {
         switch activityType {
         case .distance:
-            return "\(workouts.last?.distance.rounded(at: 1) ?? "0.0")" + " km"
+            if let workout = workouts.last {
+                if !workout.error {
+                    return "\(workout.distance.rounded(at: 1))" + " km"
+                } }
+            return "-- km"
         case .sprint:
-            return "\(workouts.last?.sprint ?? 0)" + " Times"
+            if let workout = workouts.last {
+                if !workout.error {
+                    return "\(workout.sprint.formatted())" + " Times"
+                } }
+            return "-- Times"
         case .speed:
-            return "\(workouts.last?.velocity.rounded(at: 0) ?? "0")" + " km/h"
+            if let workout = workouts.last {
+                if !workout.error {
+                    return "\(workout.velocity.rounded(at: 0))" + " km/h"
+                } }
+            return "-- km/h"
         case .heartrate:
-            return "\(workouts.last?.maxHeartRate ?? 0)" + " Bpm"
+            if let workout = workouts.last {
+                if !workout.error {
+                    return "\(workout.maxHeartRate.formatted())" + " Bpm"
+                } }
+            return "-- Bpm"
         }
     }
     
