@@ -217,7 +217,7 @@ struct FieldMovementView: View {
             HStack {
                 VStack(alignment: .leading) {
                     HStack {
-                        InformationButton(message: "설정에서 '정확한 위치'를 허용하면 보다 정확한 데이터를 얻을 수 있어요.")
+                        InformationButton(message: "슬라이더를 움직여 경기 중 위치를 확인해보세요.")
                         Spacer()
                     }
                     

@@ -93,7 +93,7 @@
 "최고속도\n15 km/h 초과" = "Maximum speed\nOver 15 km/h";
 "최고속도\n20 km/h 초과" = "Maximum speed\nOver 20 km/h";
 "최고속도\n25 km/h 초과" = "Maximum speed\nOver 25 km/h";
-"설정에서 '정확한 위치'를 허용하면 보다 정확한 데이터를 얻을 수 있어요." = "Allowing the 'Precise Location' in the settings will give you more accurate data.";
+"슬라이더를 움직여 경기 중 위치를 확인해보세요." = "Move Slider to check out your position during the match.";
 "파워" = "Power";
 
 // [watch] StartView
