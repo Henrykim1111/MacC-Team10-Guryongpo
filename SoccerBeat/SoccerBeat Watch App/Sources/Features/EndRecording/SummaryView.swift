@@ -26,7 +26,7 @@ struct SummaryView: View {
 
                 Button {
                     workoutManager.showingSummaryView = false
-                    workoutManager.showingPrecount = false
+
                 } label: {
                     Text("완료")
                         .font(.summaryDoneButton)
@@ -43,6 +43,7 @@ struct SummaryView: View {
                     try? await Task.sleep(nanoseconds: 3_000_000_000) // 3 seconds
                     withAnimation {
                         isShowingSummary.toggle()
+                        workoutManager.showingPrecount = false
                     }
                 }
         }

@@ -175,6 +175,7 @@ final class WorkoutManager: NSObject, ObservableObject {
     
     func endWorkout() {
         session?.end()
+        showingSummaryView.toggle()
     }
     
     // 두 부분으로 나누기

@@ -26,7 +26,6 @@ extension WorkoutManager: HKWorkoutSessionDelegate {
                 } catch {
                     NSLog(error.localizedDescription)
                 }
-                self.showingSummaryView.toggle()
             }
         }
     }
