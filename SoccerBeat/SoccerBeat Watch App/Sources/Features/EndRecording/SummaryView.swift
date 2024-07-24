@@ -29,8 +29,8 @@ struct SummaryView: View {
                 } label: {
                     Text("완료")
                         .font(.summaryDoneButton)
-                        .padding(.horizontal, 16)
-                        .padding(.vertical, 10)
+                        .padding(.horizontal, 20)
+                        .padding(.vertical, 14)
                         .foregroundStyle(.summaryGradient)
                         .background(
                             Capsule()
