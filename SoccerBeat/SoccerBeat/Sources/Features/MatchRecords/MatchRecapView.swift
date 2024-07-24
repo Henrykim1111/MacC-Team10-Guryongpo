@@ -57,7 +57,7 @@ struct MatchRecapView: View {
                     ForEach(workouts) { workout in
                         ZStack {
                             NavigationLink {
-                                MatchDetailView(workouts: $workouts)
+                                MatchDetailView(workout: workout)
                                     .toolbarRole(.editor)
                             } label: {
                                 EmptyView()
