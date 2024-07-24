@@ -27,8 +27,11 @@ struct HeatmapView: UIViewRepresentable {
             uiView.addOverlay(polyline)
         } else {
             let convertIndex = Int(Double(polylineCoordinates.count) * slider)
-            let polyline = MKPolyline(coordinates: Array(polylineCoordinates[0..<convertIndex]),
-                                      count: convertIndex)
+            let coordinates = Array(polylineCoordinates[0..<convertIndex]).enumerated()
+                .filter { $0.offset % 10 == 0 && $0.element.latitude != 0}
+                .map { $0.element }
+            let polyline = MKPolyline(coordinates: coordinates,
+                                      count: coordinates.count)
             polyline.title = String(convertIndex)
             uiView.addOverlay(polyline)
         }
@@ -71,7 +74,9 @@ class Coordinator: NSObject, MKMapViewDelegate {
                     mkoverlayRenderer = []
                 }
                 if curIndex == -1 { // slider value == 0
-                    return MKOverlayRenderer()
+                    let renderer = MKOverlayRenderer()
+                    renderer.alpha = 0.0
+                    return renderer
                 }
             }
                 let renderer = MKPolylineRenderer(polyline: routePolyDot)
@@ -82,6 +87,8 @@ class Coordinator: NSObject, MKMapViewDelegate {
                 self.mkoverlayRenderer.append(renderer)
                 return renderer
         }
-        return MKOverlayRenderer()
+        let renderer = MKOverlayRenderer()
+        renderer.alpha = 0.0
+        return renderer
     }
 }

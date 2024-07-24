@@ -136,7 +136,6 @@ final class ProfileModel: ObservableObject {
         
         static var transferRepresentation: some TransferRepresentation {
             DataRepresentation(importedContentType: .image) { data in
-                print("data transported")
             #if canImport(UIKit)
                 guard let uiImage = UIImage(data: data) else {
                     throw TransferError.importFailed
