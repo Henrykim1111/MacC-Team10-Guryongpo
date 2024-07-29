@@ -86,11 +86,11 @@ struct MatchRecapView: View {
                         .frame(width: 107, height: 140)
                         .opacity(0.3)
                     VStack {
-                        Text("저장된 데이터가 없습니다.")
+                        Text("저장된 경기 기록이 없습니다.")
                         .font(.matchRecapEmptyDataTop)
                         Group {
-                            Text("워치에서 사커비트로")
-                            Text("당신의 첫 경기를 시작해보세요!")
+                            Text("애플워치를 차고 사커비트로")
+                            Text("당신의 첫 번째 경기를 기록해 보세요!")
                         }
                         .font(.matchRecapEmptyDataBottom)
                         .foregroundStyle(.mainSubTitleColor)
