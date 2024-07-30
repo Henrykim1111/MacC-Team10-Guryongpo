@@ -35,6 +35,8 @@
 		6898F2852AEFD7FC0075A573 /* SprintView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6898F2842AEFD7FC0075A573 /* SprintView.swift */; };
 		68B0732E2AF11847004C723F /* AlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68B0732C2AF11847004C723F /* AlertView.swift */; };
 		68D5A6002BAD503100C80831 /* GuideAuthorizationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68D5A5FF2BAD503100C80831 /* GuideAuthorizationView.swift */; };
+		68D89FF42C58B0300057B8E9 /* SDWebImageSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 68D89FF32C58B0300057B8E9 /* SDWebImageSwiftUI */; };
+		68D89FF62C59401E0057B8E9 /* StartGlow.gif in Resources */ = {isa = PBXBuildFile; fileRef = 68D89FF52C59401E0057B8E9 /* StartGlow.gif */; };
 		68FDD5DA2AE60FAA00B8ACB9 /* Color+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE22D6342AE586AA009035C9 /* Color+extension.swift */; };
 		68FDD5DD2AE61D6B00B8ACB9 /* SummaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68FDD5DC2AE61D6B00B8ACB9 /* SummaryView.swift */; };
 		BA8C99142C4115FD00C57E90 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA8C99132C4115FD00C57E90 /* OnboardingView.swift */; };
@@ -209,6 +211,7 @@
 		6898F2842AEFD7FC0075A573 /* SprintView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SprintView.swift; sourceTree = "<group>"; };
 		68B0732C2AF11847004C723F /* AlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertView.swift; sourceTree = "<group>"; };
 		68D5A5FF2BAD503100C80831 /* GuideAuthorizationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideAuthorizationView.swift; sourceTree = "<group>"; };
+		68D89FF52C59401E0057B8E9 /* StartGlow.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = StartGlow.gif; sourceTree = "<group>"; };
 		68FDD5DC2AE61D6B00B8ACB9 /* SummaryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryView.swift; sourceTree = "<group>"; };
 		BA8C99132C4115FD00C57E90 /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
 		BE010D382B0511CC0093A5FE /* FloatingCapsuleModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloatingCapsuleModifier.swift; sourceTree = "<group>"; };
@@ -311,6 +314,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				68D89FF42C58B0300057B8E9 /* SDWebImageSwiftUI in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -485,6 +489,7 @@
 		D3C500232AE36F3F00EFAEFF /* SoccerBeat Watch App */ = {
 			isa = PBXGroup;
 			children = (
+				68D89FF52C59401E0057B8E9 /* StartGlow.gif */,
 				FB954B0F2BB3BC0000A365FB /* Sources */,
 				FB954B102BB3BC1600A365FB /* Resources */,
 				D3C5002A2AE36F4000EFAEFF /* Preview Content */,
@@ -822,6 +827,7 @@
 			);
 			name = "SoccerBeat Watch App";
 			packageProductDependencies = (
+				68D89FF32C58B0300057B8E9 /* SDWebImageSwiftUI */,
 			);
 			productName = "SoccerBeat Watch App";
 			productReference = D3C5001F2AE36F3F00EFAEFF /* SoccerBeat Watch App.app */;
@@ -858,6 +864,7 @@
 			mainGroup = D3C500062AE36F3E00EFAEFF;
 			packageReferences = (
 				BE4982B32BC7A74F003208E3 /* XCRemoteSwiftPackageReference "SkeletonUI" */,
+				688150DF2C58AFBF00CCC34B /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */,
 			);
 			productRefGroup = D3C500102AE36F3F00EFAEFF /* Products */;
 			projectDirPath = "";
@@ -910,6 +917,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				68D89FF62C59401E0057B8E9 /* StartGlow.gif in Resources */,
 				BE323D462B0CC4A700F289D4 /* SF-Pro-Text-Light.otf in Resources */,
 				BEDE52432B04D69400BBFD94 /* SF-Pro-Text-SemiboldItalic.otf in Resources */,
 				BE323D492B0CC5DE00F289D4 /* SF-Pro-Text-MediumItalic.otf in Resources */,
@@ -1454,6 +1462,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		688150DF2C58AFBF00CCC34B /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SDWebImage/SDWebImageSwiftUI.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 3.0.0;
+			};
+		};
 		BE4982B32BC7A74F003208E3 /* XCRemoteSwiftPackageReference "SkeletonUI" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/CSolanaM/SkeletonUI.git";
@@ -1465,6 +1481,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		68D89FF32C58B0300057B8E9 /* SDWebImageSwiftUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 688150DF2C58AFBF00CCC34B /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */;
+			productName = SDWebImageSwiftUI;
+		};
 		BE87AC0B2C4B1D0700803A25 /* SkeletonUI */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = BE4982B32BC7A74F003208E3 /* XCRemoteSwiftPackageReference "SkeletonUI" */;

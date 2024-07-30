@@ -6,6 +6,8 @@
 //
 
 import SwiftUI
+import SDWebImage
+import SDWebImageSwiftUI
 
 struct StartView: View {
     @EnvironmentObject var workoutManager: WorkoutManager
@@ -20,14 +22,17 @@ struct StartView: View {
                 PrecountView()
             } else {
                 ZStack {
-                    Image(.backgroundGlow)
-                        .resizable()
-                        .aspectRatio(contentMode: .fill)
-                        .alert(isPresented: $isShowingHealthAlert) {
-                            Alert(title: Text("need_health_authorization"),
-                                  message: Text("inform_need_health"),
-                                  dismissButton: .default(Text("close")))
-                        }
+                    if let url = Bundle.main.path(forResource: "StartGlow", ofType: "gif") {
+                        WebImage(url: URL(fileURLWithPath: url))
+                            .resizable()
+                            .customLoopCount(1)
+                            .playbackRate(0.8)
+                            .playbackMode(.normal)
+                            .scaledToFill()
+                            .frame(width: 250)
+                            .background(Color.clear)
+                            .opacity(0.5)
+                    }
 
                     Button(action: handleButtonPress) {
                         Image(.startButton)
@@ -37,6 +42,11 @@ struct StartView: View {
                               message: Text("inform_need_location"),
                               dismissButton: .default(Text("close")))
                     }
+                }
+                .alert(isPresented: $isShowingHealthAlert) {
+                    Alert(title: Text("need_health_authorization"),
+                          message: Text("inform_need_health"),
+                          dismissButton: .default(Text("close")))
                 }
             }
         }

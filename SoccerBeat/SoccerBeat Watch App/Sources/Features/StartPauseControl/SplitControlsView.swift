@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import SDWebImageSwiftUI
 
 // TODO: - 전체적으로 오프셋으로 조정하는 방식인데 이는 화면 크기가 달라질 때마다 차이가 있을 수 있으니 padding 값을 기반으로 해서 변화하는 것을 도입 고려
 struct SplitControlsView: View {
@@ -19,9 +20,16 @@ struct SplitControlsView: View {
     
     var body: some View {
         ZStack {
-            Image(.backgroundGlow)
+            if let url = Bundle.main.path(forResource: "StartGlow", ofType: "gif") {
+                WebImage(url: URL(fileURLWithPath: url))
                     .resizable()
+                    .customLoopCount(1)
+                    .playbackRate(0.8)
+                    .playbackMode(.normal)
                     .aspectRatio(contentMode: .fill)
+                    .scaleEffect(1.5)
+                    .opacity(0.5)
+            }
             HStack {
                 // MARK: - 나눠진 후 왼쪽, pause & resume
                 VStack {
