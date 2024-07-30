@@ -25,7 +25,7 @@ struct SplitControlsView: View {
                     .resizable()
                     .customLoopCount(1)
                     .playbackRate(1.0)
-                    .playbackMode(.normal)
+                    .playbackMode(.reverse)
                     .aspectRatio(contentMode: .fill)
                     .scaleEffect(1.5)
                     .opacity(0.3)

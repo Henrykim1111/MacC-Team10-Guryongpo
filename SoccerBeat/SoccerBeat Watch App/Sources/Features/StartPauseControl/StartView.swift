@@ -27,7 +27,7 @@ struct StartView: View {
                             .resizable()
                             .customLoopCount(1)
                             .playbackRate(1.0)
-                            .playbackMode(.normal)
+                            .playbackMode(.reverse)
                             .scaledToFill()
                             .frame(width: 250)
                             .background(Color.clear)
