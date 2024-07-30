@@ -24,11 +24,11 @@ struct SplitControlsView: View {
                 WebImage(url: URL(fileURLWithPath: url))
                     .resizable()
                     .customLoopCount(1)
-                    .playbackRate(0.8)
+                    .playbackRate(1.0)
                     .playbackMode(.normal)
                     .aspectRatio(contentMode: .fill)
                     .scaleEffect(1.5)
-                    .opacity(0.5)
+                    .opacity(0.3)
             }
             HStack {
                 // MARK: - 나눠진 후 왼쪽, pause & resume

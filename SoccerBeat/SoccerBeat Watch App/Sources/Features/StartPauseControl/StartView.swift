@@ -26,12 +26,12 @@ struct StartView: View {
                         WebImage(url: URL(fileURLWithPath: url))
                             .resizable()
                             .customLoopCount(1)
-                            .playbackRate(0.8)
+                            .playbackRate(1.0)
                             .playbackMode(.normal)
                             .scaledToFill()
                             .frame(width: 250)
                             .background(Color.clear)
-                            .opacity(0.5)
+                            .opacity(0.3)
                     }
 
                     Button(action: handleButtonPress) {
