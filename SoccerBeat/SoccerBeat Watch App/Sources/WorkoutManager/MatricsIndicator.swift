@@ -64,7 +64,7 @@ final class MatricsIndicator: NSObject, ObservableObject {
     private var zone5Count = 0
     // 데이터 상수 선언
     var properMaxHeartRate: Double? // 신체 나이에 맞는 적절한 최대심박수.
-    let sprintSpeed: Double = 2.78 // 2.78ms == 10km/h 비교에 사용되는 스프린트 변수 상수 값.
+    let sprintSpeed: Double = 5.56 // 2.78ms == 10km/h 비교에 사용되는 스프린트 변수 상수 값. 현재는 20km/h 기준
 
     // 데이터 기록 변수
     var saveMinHeartRate: Int = 300 // 심박최고수 저장
