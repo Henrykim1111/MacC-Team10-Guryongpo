@@ -36,6 +36,10 @@ struct MyCardView: View {
                     soundManager.playPhotoSelectEffect()
                 }
             }
+            .task {
+                try? await Task.sleep(nanoseconds: 100_000_000)
+                flipCard()
+            }
         }
     }
     
