@@ -129,7 +129,7 @@ struct PlayerAbilityView: View {
                             let recent = DataConverter.toLevels(workout)
                             let average = DataConverter.toLevels(profileModel.averageAbility)
                             
-                            ViewControllerContainer(RadarViewController(radarAverageValue: average, radarAtypicalValue: recent))
+                            ViewControllerContainer(RadarViewController(radarAverageValue: average, radarAtypicalValue: recent, error: workout.error))
                                 .scaleEffect(CGSize(width: 0.9, height: 0.9))
                                 .padding()
                                 .fixedSize()
@@ -139,7 +139,7 @@ struct PlayerAbilityView: View {
                             let blankRecent = DataConverter.toLevels(WorkoutData.blankExample)
                             let blankAverage = DataConverter.toLevels(WorkoutAverageData.blankAverage)
                             
-                            ViewControllerContainer(RadarViewController(radarAverageValue: blankAverage, radarAtypicalValue: blankRecent))
+                            ViewControllerContainer(RadarViewController(radarAverageValue: blankAverage, radarAtypicalValue: blankRecent, error: true))
                                 .scaleEffect(CGSize(width: 0.9, height: 0.9))
                                 .padding()
                                 .fixedSize()

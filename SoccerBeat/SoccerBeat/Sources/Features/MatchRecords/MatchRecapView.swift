@@ -140,6 +140,7 @@ struct MatchListItemView: View {
                 // 스파이더 차트
                 radarCharts
                     .padding(.top, 16)
+                    .opacity(workoutData.error ? 0 : 1)
                 
                 // 경기 데이터들
                 VStack(alignment: .leading) {
