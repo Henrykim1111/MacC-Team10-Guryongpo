@@ -42,41 +42,30 @@ struct RadarChartShape: Shape {
 
 struct RadarChartView: View {
     let averageDataPoints: [Double]
-    let maximumDataPoints: [Double]
+//    let maximumDataPoints: [Double]
     
     let limitValue: Double
     
     var body: some View {
-        ZStack {
-            // MARK: - max line border
-            
-            // MARK: - 평균 데이터 레이어
-            RadarChartShape(dataPoints: averageDataPoints, maxValue: limitValue)
-                .fill(.averageFillColor)
-                .overlay(
-                    RadarChartShape(dataPoints: averageDataPoints, maxValue: limitValue)
-                        .stroke(style: StrokeStyle(lineWidth: 3.5, lineCap: .round, lineJoin: .round))
-                        .foregroundStyle(.averageStokeColor)
-                )
-            
-            // MARK: - 최고 데이터 레이어
-            RadarChartShape(dataPoints: maximumDataPoints, maxValue: limitValue)
-                .fill(.maxFillColor)
-                .overlay(
-                    RadarChartShape(dataPoints: maximumDataPoints, maxValue: limitValue)
-                        .stroke(style: StrokeStyle(lineWidth: 3.5, lineCap: .round, lineJoin: .round))
-                        .foregroundStyle(.maxStrokeColor)
-                )
-        }
+        // MARK: - 평균 데이터 레이어, MatchRecapView에서 현재 경기를 보여줌
+        RadarChartShape(dataPoints: averageDataPoints, maxValue: limitValue)
+            .fill(.averageFillColor)
+            .overlay(
+                RadarChartShape(dataPoints: averageDataPoints, maxValue: limitValue)
+                    .stroke(style: StrokeStyle(lineWidth: 3.5, lineCap: .round, lineJoin: .round))
+                    .foregroundStyle(.averageStokeColor)
+            )
         .rotationEffect(.degrees(-90))
     }
 }
 
 #Preview {
     let averageDataPoints = [0.7, 0.6, 0.8, 0.9, 1.0, 0.6]
-    let currentDataPoints = [1.0, 0.3, 0.4, 0.7, 0.4, 0.3]
     let maxValue = 1.0
     
-    return RadarChartView(averageDataPoints: averageDataPoints, maximumDataPoints: currentDataPoints, limitValue: maxValue)
- 
+    return RadarChartView(
+        averageDataPoints: averageDataPoints,
+        limitValue: maxValue
+    )
+
 }

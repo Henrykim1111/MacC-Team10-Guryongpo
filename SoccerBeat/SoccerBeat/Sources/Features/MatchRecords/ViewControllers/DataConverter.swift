@@ -129,7 +129,7 @@ final class DataConverter {
                                        totalMatchTime: workout.playtimeSec)
         
         
-        return toTriple(recentLevel)
+        return Amplify(recentLevel)
     }
     
     static func toLevels(_ averageWorkout: WorkoutAverageData) -> [Double] {
@@ -141,10 +141,10 @@ final class DataConverter {
                                              minHeartRate: averageWorkout.minHeartRate,
                                              rangeHeartRate: averageWorkout.maxHeartRate-averageWorkout.minHeartRate,
                                              totalMatchTime: averageWorkout.totalMatchTime)
-        return toTriple(averageLevel)
+        return Amplify(averageLevel)
     }
     
-    static private func toTriple(_ level: [String: Double]) -> [Double] {
+    static private func Amplify(_ level: [String: Double]) -> [Double] {
         return [
             (level["totalDistance"] ?? 1.0) * 0.15 + (level["maxHeartRate"] ?? 1.0) * 0.35,
             (level["maxVelocity"] ?? 1.0) * 0.3 + (level["maxPower"] ?? 1.0) * 0.2,
@@ -152,6 +152,8 @@ final class DataConverter {
             (level["maxPower"] ?? 1.0) * 0.4 + (level["minHeartRate"] ?? 1.0) * 0.1,
             (level["totalDistance"] ?? 1.0) * 0.15 + (level["rangeHeartRate"] ?? 1.0) * 0.15 + (level["totalMatchTime"] ?? 1.0) * 0.2,
             (level["totalDistance"] ?? 1.0) * 0.3 + (level["sprintCount"] ?? 1.0) * 0.1 + (level["maxHeartRate"] ?? 1.0) * 0.1
-        ]
+        ].map { value in
+            value * 1.5
+        }
     }
 }

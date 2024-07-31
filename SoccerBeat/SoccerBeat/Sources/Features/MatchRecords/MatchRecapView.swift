@@ -198,7 +198,8 @@ extension MatchListItemView {
         let recent = DataConverter.toLevels(workoutData)
         let average = DataConverter.toLevels(profileModel.averageAbility)
         
-        RadarChartView(averageDataPoints: recent, maximumDataPoints: average, limitValue: 2.5)
+//        RadarChartView(averageDataPoints: recent, maximumDataPoints: average, limitValue: 2.5)
+        RadarChartView(averageDataPoints: recent, limitValue: 2.5)
     }
     
     @ViewBuilder
