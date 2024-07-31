@@ -33,15 +33,19 @@ struct WorkoutData: Hashable, Equatable, Identifiable {
     var error = false
     
     var matchBadge: [Int] {
+        // MARK: Badge 기준
+        // Distance(km) : [1, 2, 3, 4]
+        // Sprint(회) : [1, 3, 5, 7]
+        // Velocity(km/h) : [10, 15, 20, 25]
         var badge = [0,0,0]
 
-        if distance < 0.2 {
+        if distance < 1 {
             badge[0] = -1
-        } else if (0.2 <= distance && distance < 0.4) {
+        } else if (1 <= distance && distance < 2) {
             badge[0] = 0
-        } else if (0.4 <= distance && distance < 0.6) {
+        } else if (2 <= distance && distance < 3) {
             badge[0] = 1
-        } else if (0.6 <= distance && distance < 0.8) {
+        } else if (3 <= distance && distance < 4) {
             badge[0] = 2
         } else {
             badge[0] = 3
@@ -49,11 +53,11 @@ struct WorkoutData: Hashable, Equatable, Identifiable {
 
         if sprint < 1 {
             badge[1] = -1
-        } else if (1 <= sprint && sprint < 2) {
+        } else if (1 <= sprint && sprint < 3) {
             badge[1] = 0
-        } else if (2 <= sprint && sprint < 3) {
+        } else if (3 <= sprint && sprint < 5) {
             badge[1] = 1
-        } else if (3 <= sprint && sprint < 4) {
+        } else if (5 <= sprint && sprint < 7) {
             badge[1] = 2
         } else {
             badge[1] = 3
