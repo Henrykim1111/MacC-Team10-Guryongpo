@@ -22,16 +22,22 @@ struct StartView: View {
                 PrecountView()
             } else {
                 ZStack {
-                    if let url = Bundle.main.path(forResource: "StartGlow", ofType: "gif") {
-                        WebImage(url: URL(fileURLWithPath: url))
-                            .resizable()
-                            .customLoopCount(1)
-                            .playbackRate(0.9)
-                            .playbackMode(.normal)
-                            .scaledToFill()
-                            .frame(width: 250)
-                            .background(Color.clear)
-                            .opacity(0.3)
+                    ZStack {
+                        if let url = Bundle.main.path(forResource: "StartGlow", ofType: "gif") {
+                            WebImage(url: URL(fileURLWithPath: url))
+                                .resizable()
+                                .customLoopCount(1)
+                                .playbackRate(0.9)
+                                .playbackMode(.normal)
+                                .scaledToFill()
+                                .frame(width: 250)
+                                .background(Color.clear)
+                                .opacity(0.3)
+                        }
+                    }.alert(isPresented: $isShowingHealthAlert) {
+                        Alert(title: Text("need_health_authorization"),
+                              message: Text("inform_need_health"),
+                              dismissButton: .default(Text("close")))
                     }
 
                     Button(action: handleButtonPress) {
@@ -43,11 +49,7 @@ struct StartView: View {
                               dismissButton: .default(Text("close")))
                     }
                 }
-                .alert(isPresented: $isShowingHealthAlert) {
-                    Alert(title: Text("need_health_authorization"),
-                          message: Text("inform_need_health"),
-                          dismissButton: .default(Text("close")))
-                }
+
             }
         }
         .buttonStyle(.borderless)
