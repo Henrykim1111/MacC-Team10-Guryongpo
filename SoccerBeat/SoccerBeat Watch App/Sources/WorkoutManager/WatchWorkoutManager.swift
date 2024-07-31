@@ -21,6 +21,7 @@ final class WorkoutManager: NSObject, ObservableObject {
         locationManager.delegate = self
         locationManager.allowsBackgroundLocationUpdates = true
         locationManager.requestWhenInUseAuthorization()
+        requestHealthAuthorization()
     }
 
     // 헬스킷 세션 기록용 빌더 선언
@@ -185,5 +186,19 @@ final class WorkoutManager: NSObject, ObservableObject {
         session = nil
         
         matrics.reset()
+    }
+
+    func requestHealthAuthorization() {
+        healthStore.requestAuthorization(toShare: typesToShare, read: typesToRead) { success, error in
+            guard let error else {
+                NSLog(error.debugDescription)
+                return
+            }
+            if success {
+
+            } else {
+                NSLog("Error in getting healthstore reading authorization. ")
+            }
+        }
     }
 }

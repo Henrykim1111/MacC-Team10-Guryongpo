@@ -109,7 +109,7 @@ extension ShapeStyle where Self == Color {
     
     static var matchDetailViewTitleColor: Self { .init(hex: 0xFF077E) }
     static var matchDetailViewSubTitleColor: Self { .init(hex: 0xB4B4B4) }
-    static var matchDetailViewAverageStatColor: Self { .init(hex: 0x00FFE0) }
+    static var matchDetailViewAverageStatColor: Self { .maxStrokeColor }
     
     static var raderMaximumColor: Self { .init(hex: 0x369EFF) }
     
@@ -120,7 +120,7 @@ extension ShapeStyle where Self == Color {
     // MARK: - MatchRecapView Graph
     static var averageFillColor: Self { .init(hex: 0x47FFFF, alpha: 0.5) }
     static var averageStokeColor: Self { .init(hex: 0x03FFE0) }
-    static var maxFillColor: Self { Color.clear }
+    static var maxFillColor: Self { .maxStrokeColor.opacity(0.5) }
     static var maxStrokeColor: Self { .init(hex: 0xFF007A, alpha: 0.7) }
 }
 

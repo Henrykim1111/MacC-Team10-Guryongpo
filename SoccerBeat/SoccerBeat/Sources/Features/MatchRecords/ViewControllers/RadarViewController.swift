@@ -185,17 +185,21 @@ class ProfileViewController: UIViewController, TKRadarChartDataSource, TKRadarCh
     // Color of inside area of the graph.
     func colorOfSectionFillForRadarChart(_ radarChart: TKRadarChart, section: Int) -> UIColor {
         if section == 0 {
-            return UIColor(red:0.282,  green:1,  blue:1, alpha:0.5)
+            // average
+            return UIColor(.maxFillColor)
         } else {
+            // season high
             return UIColor.clear
         }
     }
     
     func colorOfSectionBorderForRadarChart(_ radarChart: TKRadarChart, section: Int) -> UIColor {
         if section == 0 {
-            return UIColor(red:0,  green:1,  blue:0.878, alpha:1)
+            // average
+            return UIColor(.maxStrokeColor)
         } else {
-            return UIColor(red:0.211,  green:0.619,  blue:1, alpha:1)
+            // season high
+            return UIColor(red:53 / 255.0,  green: 158.0 / 255.0,  blue: 255.0 / 255.0, alpha:1)
         }
     }
     

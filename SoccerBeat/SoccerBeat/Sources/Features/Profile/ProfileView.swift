@@ -91,7 +91,7 @@ struct ProfileView: View {
                         HStack {
                             HStack(spacing: 0) {
                                 Text("")
-                                Text("민트색")
+                                Text("빨간색")
                                     .bold()
                                     .foregroundStyle(.matchDetailViewAverageStatColor)
                                 Text("은 경기 평균 능력치입니다.")
@@ -104,11 +104,12 @@ struct ProfileView: View {
                     let average = DataConverter.toLevels(profileModel.averageAbility)
                     let maximumAbility = DataConverter.toLevels(profileModel.maxAbility)
                     
-                    ViewControllerContainer(ProfileViewController(radarAverageValue: average, radarAtypicalValue: maximumAbility))
-                                            .fixedSize()
-                                            .frame(width: 304, height: 348)
-                                            .zIndex(-1)
-                    
+                    ViewControllerContainer(ProfileViewController(radarAverageValue: average,
+                                                                  radarAtypicalValue: maximumAbility))
+                    .fixedSize()
+                    .frame(width: 304, height: 348)
+                    .zIndex(-1)
+
                     Spacer()
                         .frame(height: 110)
                     
