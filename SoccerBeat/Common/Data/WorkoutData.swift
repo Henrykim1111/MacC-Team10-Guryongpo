@@ -64,6 +64,7 @@ struct WorkoutData: Hashable, Equatable, Identifiable {
         }
 
         if velocity < 10 {
+            badge[2] = -1
         } else if (10 <= velocity && velocity < 15) {
             badge[2] = 0
         } else if (15 <= velocity && velocity < 20) {
