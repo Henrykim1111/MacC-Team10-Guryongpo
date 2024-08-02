@@ -18,10 +18,12 @@ import UIKit
 class RadarViewController: UIViewController, TKRadarChartDataSource, TKRadarChartDelegate, UITableViewDelegate {
     var radarAverageValue: [Double]
     var radarAtypicalValue: [Double]
+    var error: Bool
     
-    init(radarAverageValue: [Double], radarAtypicalValue: [Double]) {
+    init(radarAverageValue: [Double], radarAtypicalValue: [Double], error: Bool) {
         self.radarAverageValue = radarAverageValue
         self.radarAtypicalValue = radarAtypicalValue
+        self.error = error
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -90,7 +92,7 @@ class RadarViewController: UIViewController, TKRadarChartDataSource, TKRadarChar
     // Color of inside area of the graph.
     func colorOfSectionFillForRadarChart(_ radarChart: TKRadarChart, section: Int) -> UIColor {
         if section == 0 {
-            return UIColor(red:0.282,  green:1,  blue:1, alpha:0.5)
+            return UIColor(red:0.282,  green:1,  blue:1, alpha: error ? 0 : 0.5)
         } else {
             return UIColor.clear
         }
@@ -98,9 +100,9 @@ class RadarViewController: UIViewController, TKRadarChartDataSource, TKRadarChar
     
     func colorOfSectionBorderForRadarChart(_ radarChart: TKRadarChart, section: Int) -> UIColor {
         if section == 0 {
-            return UIColor(red:0,  green:1,  blue:0.878, alpha:1)
+            return UIColor(red:0,  green:1,  blue:0.878, alpha: error ? 0 : 1)
         } else {
-            return UIColor(red:1,  green:0,  blue:0.478, alpha:0.7)
+            return UIColor(red:1,  green:0,  blue:0.478, alpha: error ? 0 : 0.7)
         }
     }
     
@@ -271,7 +273,7 @@ final class ThumbnailViewController: UIViewController, TKRadarChartDataSource, T
     // Color of inside area of the graph.
     func colorOfSectionFillForRadarChart(_ radarChart: TKRadarChart, section: Int) -> UIColor {
         if section == 0 {
-            return UIColor(red:0.282,  green:1,  blue:1, alpha:0.5)
+            return UIColor(red:0.282,  green:1,  blue:1, alpha: 0.5)
         } else {
             return UIColor.clear
         }
@@ -279,9 +281,9 @@ final class ThumbnailViewController: UIViewController, TKRadarChartDataSource, T
     
     func colorOfSectionBorderForRadarChart(_ radarChart: TKRadarChart, section: Int) -> UIColor {
         if section == 0 {
-            return UIColor(red:0,  green:1,  blue:0.878, alpha:1)
+            return UIColor(red:0,  green:1,  blue:0.878, alpha: 1.0)
         } else {
-            return UIColor(red:1,  green:0,  blue:0.478, alpha:0.7)
+            return UIColor(red:1,  green:0,  blue:0.478, alpha: 0.7)
         }
     }
     
