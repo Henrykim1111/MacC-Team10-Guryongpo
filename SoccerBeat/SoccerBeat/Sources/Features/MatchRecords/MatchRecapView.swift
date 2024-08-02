@@ -238,7 +238,11 @@ extension MatchListItemView {
             VStack(alignment: .leading) {
                 Text("스프린트")
                 HStack(spacing: 0) {
-                    Text((workoutData.error ? "--" : "\(workoutData.sprint)") + " 회")
+                    if workoutData.sprint == 1 {
+                        Text((workoutData.error ? "--" : "\(workoutData.sprint)") + " " + "time")
+                    } else {
+                        Text((workoutData.error ? "--" : "\(workoutData.sprint)") + " " + "times")
+                    }
                 }
                 
                 .bold()

@@ -108,6 +108,8 @@
 // [iphone]
 "workout_empty" = "目前没有记录的比赛。";
 "try_game_in_watch" = "在您的 Apple Watch 上打开 SoccerBeat 以记录您的第一场比赛！";
+"time" = "次";
+"times" = "次";
 
 
 // 데이터 오류
