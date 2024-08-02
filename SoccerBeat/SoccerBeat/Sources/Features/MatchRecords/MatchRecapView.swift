@@ -140,6 +140,7 @@ struct MatchListItemView: View {
                 // 스파이더 차트
                 radarCharts
                     .padding(.top, 16)
+                    .opacity(workoutData.error ? 0 : 1)
                 
                 // 경기 데이터들
                 VStack(alignment: .leading) {
@@ -224,20 +225,36 @@ extension MatchListItemView {
         HStack(spacing: 16) {
             VStack(alignment: .leading) {
                 Text("뛴 거리")
-                Text((workoutData.error ? "--" : String(format: "%.1f", workoutData.distance)) + " km")
-                    .bold()
+                HStack(spacing: 0) {
+                    Text((workoutData.error ? "--" : String(format: "%.1f", workoutData.distance)))
+                    Text(" ")
+                    Text("km")
+                }
+                .bold()
             }
             
             VStack(alignment: .leading) {
                 Text("최고 속도")
-                Text((workoutData.error ? "--" :  "\(Int(workoutData.velocity).formatted())") + " km/h")
-                    .bold()
+                HStack(spacing: 0) {
+                    Text((workoutData.error ? "--" :  "\(Int(workoutData.velocity).formatted())"))
+                    Text(" ")
+                    Text("km/h")
+                }
+                .bold()
             }
             
             VStack(alignment: .leading) {
                 Text("스프린트")
                 HStack(spacing: 0) {
-                    Text((workoutData.error ? "--" : "\(workoutData.sprint)") + " 회")
+                    if workoutData.sprint == 1 {
+                        Text((workoutData.error ? "--" : "\(workoutData.sprint)"))
+                        Text(" ")
+                        Text("time")
+                    } else {
+                        Text((workoutData.error ? "--" : "\(workoutData.sprint)"))
+                        Text(" ")
+                        Text("times")
+                    }
                 }
                 
                 .bold()

@@ -151,7 +151,7 @@ struct MainView: View {
                                 let recent = DataConverter.toLevels(workouts[0])
                                 let average = DataConverter.toLevels(profileModel.averageAbility)
                                 
-                                ViewControllerContainer(RadarViewController(radarAverageValue: average, radarAtypicalValue: recent))
+                                ViewControllerContainer(RadarViewController(radarAverageValue: average, radarAtypicalValue: recent, error: workouts[0].error))
                                     .scaleEffect(CGSize(width: 0.6, height: 0.6))
                                     .padding()
                                     .fixedSize()
@@ -160,7 +160,7 @@ struct MainView: View {
                                 let blankRecent = DataConverter.toLevels(WorkoutData.blankExample)
                                 let blankAverage = DataConverter.toLevels(WorkoutAverageData.blankAverage)
                                 
-                                ViewControllerContainer(RadarViewController(radarAverageValue: blankAverage, radarAtypicalValue: blankRecent))
+                                ViewControllerContainer(RadarViewController(radarAverageValue: blankAverage, radarAtypicalValue: blankRecent, error: true))
                                     .scaleEffect(CGSize(width: 0.6, height: 0.6))
                                     .padding()
                                     .fixedSize()
@@ -192,7 +192,7 @@ struct MainView: View {
                                     .foregroundStyle(.mainMatchTime)
                                 }
                                 Spacer()
-                                if !workouts.isEmpty {
+                                if !workouts.isEmpty && !workouts[0].error {
                                     HStack {
                                         ForEach(workouts[0].matchBadge.indices, id: \.self) { index in
                                             let row = index
@@ -206,6 +206,11 @@ struct MainView: View {
                                             }
                                         }
                                     }
+                                } else if !workouts.isEmpty && workouts[0].error {
+                                    Image(.errormark)
+                                        .resizable()
+                                        .aspectRatio(contentMode: .fit)
+                                        .frame(width: 25, height: 35)
                                 } else {
                                     EmptyView()
                                 }

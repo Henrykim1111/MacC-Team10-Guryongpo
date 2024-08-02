@@ -80,8 +80,6 @@
 "해리 케인의 평소 심박수는 40bpm 입니다." = "Harry's normal heart rate is 40bpm.";
 "최근 스프린트 횟수의 변화입니다." = "Recent changes in the number of sprints.";
 "음바페의 평균 스프린트 횟수는 21회 입니다." = "Mbappé's average sprints is 21 times.";
-"회" = "times";
-" 회" = " times";
 "경기 기록에 따라 수집된 뱃지입니다." = "Badges are collected from game records.";
 "뛴거리\n1 km 초과" = "Run distance\nOver 1 km";
 "뛴거리\n2 km 초과" = "Run distance\nOver 2 km";
@@ -95,7 +93,7 @@
 "최고속도\n15 km/h 초과" = "Maximum speed\nOver 15 km/h";
 "최고속도\n20 km/h 초과" = "Maximum speed\nOver 20 km/h";
 "최고속도\n25 km/h 초과" = "Maximum speed\nOver 25 km/h";
-"슬라이더를 움직여 경기 중 위치를 확인해보세요." = "Move Slider to check out your position during the match.";
+"슬라이더를 움직여 경기 중 위치를 확인해보세요." = "Move Slider to check out your position.";
 "파워" = "Power";
 
 // [watch] StartView
@@ -108,6 +106,8 @@
 // [iphone]
 "workout_empty" = "There are no recorded games currently.";
 "try_game_in_watch" = "Turn on SoccerBeat on your Apple Watch to record your first game!";
+"time" = "time";
+"times" = "times";
 
 // 데이터 오류
 "데이터에 오류가 발생했습니다. " = "Error occurred in this data. ";
