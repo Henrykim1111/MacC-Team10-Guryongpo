@@ -7,12 +7,19 @@
 
 import SwiftUI
 
-struct UIImage_extension: View {
-    var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
-    }
-}
+extension UIImage {
+    func resizeImageTo(size: CGSize) -> UIImage? {
 
-#Preview {
-    UIImage_extension()
+        UIGraphicsBeginImageContextWithOptions(size, false, 0.0)
+
+        self.draw(in: CGRect(origin: CGPoint.zero, size: size))
+
+        guard let resizedImage = UIGraphicsGetImageFromCurrentImageContext() else {
+            return nil
+        }
+        
+        UIGraphicsEndImageContext()
+        
+        return resizedImage
+    }
 }
