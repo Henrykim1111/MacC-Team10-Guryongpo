@@ -21,16 +21,18 @@ struct ElapsedTimeView: View {
         let radius = CGFloat(0.15)
         HStack(alignment: .center, spacing: 0) {
             // MARK: - Minute
-            Text(spendingTimeDevidedColone[0])
-                .kerning(-0.9)
-                .overlay {
-                    Text(spendingTimeDevidedColone[0])
-                        .kerning(-0.9)
-                        .viewBorder(color: .white, radius: radius, outline: true)
-                        .offset(x: 2, y: 2.5)
-                }
-            
-            Spacer()
+            HStack {
+                Text(spendingTimeDevidedColone[0])
+                    .kerning(-0.9)
+                    .overlay {
+                        Text(spendingTimeDevidedColone[0])
+                            .allowsTightening(false)
+                            .kerning(-0.9)
+                            .viewBorder(color: .white, radius: radius, outline: true)
+                            .offset(x: 2, y: 2.5)
+                    }
+                Spacer()
+            }
             
             Text(":")
                 .overlay {
@@ -40,20 +42,27 @@ struct ElapsedTimeView: View {
                 }
                 .frame(width: 13)
             
-            Spacer()
-            
-            Text(spendingTimeDevidedColone[1])
-                .kerning(-0.9)
-                .overlay {
-                    
-                    Text(spendingTimeDevidedColone[1])
-                        .kerning(-0.9)
-                        .viewBorder(color: .white, radius: radius, outline: true)
-                        .offset(x: 2, y: 2.5)
-                }
+            HStack {
+                
+                Spacer()
+                
+                Text(spendingTimeDevidedColone[1])
+                    .kerning(-0.9)
+                    .overlay {
+                        Text(spendingTimeDevidedColone[1])
+                            .allowsTightening(false)
+                            .kerning(-0.9)
+                            .viewBorder(color: .white, radius: radius, outline: true)
+                            .offset(x: 2, y: 2.5)
+                    }
+            }
         }
         .font(.playTimeNumber)
-        .foregroundStyle(.gameTimeGradient)
+        // Pink Blue Gradient Color
+        // .foregroundStyle(.gameTimeGradient)
+        // Blue Gradient Color
+        .foregroundStyle(.zone2Bpm)
+        .edgesIgnoringSafeArea(.all)
     }
 }
 

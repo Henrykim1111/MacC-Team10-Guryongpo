@@ -139,7 +139,7 @@ struct BasicLineView: View {
             HStack(alignment: .lastTextBaseline, spacing: 8) {
                 Group {
                     text
-                        .font(.beatPerMinute)
+                        .font(.beatPerMinuteShadow)
                 }
                 .scaleEffect(startAnimation ? 3 : 1)
                 .opacity(startAnimation ? 0 : 0.2 )
