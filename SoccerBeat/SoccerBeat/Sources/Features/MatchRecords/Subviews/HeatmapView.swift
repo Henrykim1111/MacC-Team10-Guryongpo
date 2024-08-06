@@ -21,20 +21,11 @@ struct HeatmapView: UIViewRepresentable {
 
     func updateUIView(_ uiView: MKMapView, context: Context) {
         
-        if slider == 0 {
-         let polyline = MKPolyline()
-            polyline.title = "-1"
-            uiView.addOverlay(polyline)
-        } else {
-            let convertIndex = Int(Double(polylineCoordinates.count) * slider)
-            let coordinates = Array(polylineCoordinates[0..<convertIndex]).enumerated()
-                .filter { $0.offset % 10 == 0 && $0.element.latitude != 0}
-                .map { $0.element }
-            let polyline = MKPolyline(coordinates: coordinates,
-                                      count: coordinates.count)
-            polyline.title = String(convertIndex)
-            uiView.addOverlay(polyline)
-        }
+        let convertIndex = Int(Double(polylineCoordinates.count - 1) * slider)
+        let coordinates = polylineCoordinates[convertIndex]
+        let movePoint = MKPolyline(points: [MKMapPoint(CLLocationCoordinate2D(latitude: coordinates.latitude, longitude: coordinates.longitude)), MKMapPoint(CLLocationCoordinate2D(latitude: coordinates.latitude + 0.0000001, longitude: coordinates.longitude + 0.0000001))], count: 2)
+        movePoint.title = String("Point")
+        uiView.addOverlay(movePoint)
     }
     
     func makeUIView(context: Context) -> MKMapView {
@@ -43,6 +34,17 @@ struct HeatmapView: UIViewRepresentable {
         mapView.region = MKCoordinateRegion(center: coordinate,
                                                 latitudinalMeters: 100,
                                                 longitudinalMeters: 100)
+        let coordinates = Array(polylineCoordinates).enumerated()
+            .filter { $0.offset % 5 == 0 && $0.element.latitude != 0}
+            .map { $0.element }
+        let polyline = MKPolyline(coordinates: coordinates,
+                                  count: coordinates.count)
+        mapView.addOverlay(polyline)
+        
+        let startPoint = MKPolyline(points: [MKMapPoint(CLLocationCoordinate2D(latitude: coordinates[0].latitude, longitude: coordinates[0].longitude)), MKMapPoint(CLLocationCoordinate2D(latitude: coordinates[0].latitude + 0.0000001, longitude: coordinates[0].longitude + 0.0000001))], count: 2)
+        
+        startPoint.title = String("Point")
+        mapView.addOverlay(startPoint)
             
         return mapView
     }
@@ -54,41 +56,38 @@ struct HeatmapView: UIViewRepresentable {
 
 class Coordinator: NSObject, MKMapViewDelegate {
     var parent: HeatmapView
-    var mkoverlayRenderer: [MKOverlayRenderer]
+    var currentPoint: MKOverlayRenderer?
     
     init(_ parent: HeatmapView) {
         self.parent = parent
-        self.mkoverlayRenderer = []
+        self.currentPoint = nil
     }
     
     func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
 //        mkoverlayRenderer.alpha = 0.0
         if let routePolyDot = overlay as? MKPolyline {
-            if let curIndexString = overlay.title, let prevIndexString = mkoverlayRenderer.last?.overlay.title {
-                let curIndex = Int(curIndexString ?? "0")!
-                let prevIndex = Int(prevIndexString ?? "0")!
-                if curIndex < prevIndex {
-                    mkoverlayRenderer.forEach { overlay in
-                        overlay.alpha = 0.0
-                    }
-                    mkoverlayRenderer = []
-                }
-                if curIndex == -1 { // slider value == 0
-                    let renderer = MKOverlayRenderer()
-                    renderer.alpha = 0.0
-                    return renderer
-                }
-            }
+            if routePolyDot.title == "Point" {
+                // Current Position Point
+                self.currentPoint?.alpha = 0.0
                 let renderer = MKPolylineRenderer(polyline: routePolyDot)
-                renderer.strokeColor = .red
+                renderer.strokeColor = .white
+                renderer.alpha = CGFloat(1.0)
+                renderer.lineWidth = 20
+                renderer.blendMode = .lighten
+                self.currentPoint = renderer
+                return renderer
+            } else {
+                // Full line
+                let renderer = MKPolylineRenderer(polyline: routePolyDot)
+                renderer.strokeColor = .cyan
                 renderer.alpha = CGFloat(1.0)
                 renderer.lineWidth = 8
                 renderer.blendMode = .lighten
-                self.mkoverlayRenderer.append(renderer)
+                renderer.alpha = 0.8
                 return renderer
+            }
         }
         let renderer = MKOverlayRenderer()
-        renderer.alpha = 0.0
         return renderer
     }
 }
