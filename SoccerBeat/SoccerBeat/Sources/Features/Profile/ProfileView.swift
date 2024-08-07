@@ -94,7 +94,7 @@ struct ProfileView: View {
                                 Text("")
                                 Text("빨간색")
                                     .bold()
-                                    .foregroundStyle(.matchDetailViewAverageStatColor)
+                                    .foregroundStyle(.matchDetailViewTitleColor)
                                 Text("은 경기 평균 능력치입니다.")
                             }
                             .floatingCapsuleStyle()

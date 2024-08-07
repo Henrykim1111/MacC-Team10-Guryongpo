@@ -108,10 +108,12 @@ struct PlayerAbilityView: View {
                     
                     VStack(alignment: .leading, spacing: 6) {
                         HStack(spacing: 0) {
+                            // 현재 빨간색이 이번경기로 보이고, 민트색이 평균으로 보임
+                            // 빨강 - 평균, 민트색 - 이번 경기 로 해야함
                             Text("빨간색")
                                 .bold()
                                 .foregroundStyle(.matchDetailViewTitleColor)
-                            Text("은 이번 경기의 능력치입니다.")
+                            Text("은 경기의 평균 능력치입니다.")
                         }
                         .floatingCapsuleStyle()
                         
@@ -119,7 +121,7 @@ struct PlayerAbilityView: View {
                             Text("민트색")
                                 .bold()
                                 .foregroundStyle(.matchDetailViewAverageStatColor)
-                            Text("은 경기의 평균 능력치입니다.")
+                            Text("은 이번 경기의 능력치입니다.")
                         }
                         .floatingCapsuleStyle()
                     }
