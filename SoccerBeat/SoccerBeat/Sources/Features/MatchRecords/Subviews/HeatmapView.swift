@@ -23,7 +23,11 @@ struct HeatmapView: UIViewRepresentable {
         
         let convertIndex = Int(Double(polylineCoordinates.count - 1) * slider)
         let coordinates = polylineCoordinates[convertIndex]
-        let movePoint = MKPolyline(points: [MKMapPoint(CLLocationCoordinate2D(latitude: coordinates.latitude, longitude: coordinates.longitude)), MKMapPoint(CLLocationCoordinate2D(latitude: coordinates.latitude + 0.0000001, longitude: coordinates.longitude + 0.0000001))], count: 2)
+        let pointStart = MKMapPoint(CLLocationCoordinate2D(latitude: coordinates.latitude, 
+                                                           longitude: coordinates.longitude))
+        let pointEnd = MKMapPoint(CLLocationCoordinate2D(latitude: coordinates.latitude + 0.0000001, 
+                                                         longitude: coordinates.longitude + 0.0000001))
+        let movePoint = MKPolyline(points: [pointStart, pointEnd], count: 2)
         movePoint.title = String("Point")
         uiView.addOverlay(movePoint)
     }
@@ -41,7 +45,11 @@ struct HeatmapView: UIViewRepresentable {
                                   count: coordinates.count)
         mapView.addOverlay(polyline)
         
-        let startPoint = MKPolyline(points: [MKMapPoint(CLLocationCoordinate2D(latitude: coordinates[0].latitude, longitude: coordinates[0].longitude)), MKMapPoint(CLLocationCoordinate2D(latitude: coordinates[0].latitude + 0.0000001, longitude: coordinates[0].longitude + 0.0000001))], count: 2)
+        let pointStart = MKMapPoint(CLLocationCoordinate2D(latitude: coordinates[0].latitude,
+                                                           longitude: coordinates[0].longitude))
+        let pointEnd = MKMapPoint(CLLocationCoordinate2D(latitude: coordinates[0].latitude + 0.0000001,
+                                                         longitude: coordinates[0].longitude + 0.0000001))
+        let startPoint = MKPolyline(points: [pointStart, pointEnd], count: 2)
         
         startPoint.title = String("Point")
         mapView.addOverlay(startPoint)
@@ -64,7 +72,6 @@ class Coordinator: NSObject, MKMapViewDelegate {
     }
     
     func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
-//        mkoverlayRenderer.alpha = 0.0
         if let routePolyDot = overlay as? MKPolyline {
             if routePolyDot.title == "Point" {
                 // Current Position Point

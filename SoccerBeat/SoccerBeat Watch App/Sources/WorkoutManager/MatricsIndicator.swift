@@ -28,13 +28,13 @@ final class MatricsIndicator: NSObject, ObservableObject {
     @Published var isSprint: Bool = false
     @Published var recentSprintSpeedMPS = 0.0
     @Published var speedMPS: Double = 0.0
-    
+
 
     // MARK: - Distance
     @Published var distanceMeter: Double = 0
     @Published var sprintCount: Int = 0 // default setup
     
-    
+
     // MARK: - 심박수 위험 지대 감지
     @Published var isInZone5For2Min = false
     @Published var heartZone: Int = 1 {
