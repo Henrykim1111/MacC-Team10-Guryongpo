@@ -236,6 +236,14 @@ struct FieldMovementView: View {
                     value: $slider,
                     in: 0...1
                 )
+                .padding(.vertical)
+//                .onAppear {
+//                    let image = UIImage(named: "SoccerbeatHeart")
+//
+//                    let convertedImage = image?.resizeImageTo(size: CGSize(width: 50, height: 41))
+//                    
+//                    UISlider.appearance().setThumbImage(convertedImage, for: .normal)
+//                 }
             } else {
                 HeatmapView(slider: $slider, coordinate: CLLocationCoordinate2D(latitude: emptyDataCenter[0], longitude: emptyDataCenter[1]), polylineCoordinates: emptyDataRoute)
             }

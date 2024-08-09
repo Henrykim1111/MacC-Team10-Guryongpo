@@ -62,12 +62,12 @@ struct SplitControlsView: View {
                 .clipShape(Circle())
         }
         .onAppear {
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.3 ) {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.2 ) {
                 withAnimation {
                     isClicked = true
                 }
             }
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5 ) {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.4 ) {
                 withAnimation {
                     isMoving = true
                 }
