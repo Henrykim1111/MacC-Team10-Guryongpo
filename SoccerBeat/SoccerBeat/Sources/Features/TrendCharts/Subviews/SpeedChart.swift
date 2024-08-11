@@ -27,8 +27,7 @@ struct SpeedChartView: View {
                 
                 Spacer()
             }
-            
-            
+
             VStack(alignment: .leading) {
                 Text("최대 속도")
                     .font(.navigationSportySubTitle)
@@ -43,12 +42,10 @@ struct SpeedChartView: View {
             
             speedChartView(fastest: fastest, slowest: slowest)
             
-            Spacer()
-                .frame(height: 30)
-            
             averageSpeedView
                 .padding(.horizontal, 48)
-            
+                .padding(.top, 30)
+
             Spacer()
         }
         .padding()
@@ -196,31 +193,31 @@ extension SpeedChartView {
     
     @ViewBuilder
     private var averageSpeedView: some View {
-        LightRectangleView(color: .chartBoxBackground.opacity(0.4))
-            .frame(height: 100)
-            .overlay {
-                VStack(spacing: 4) {
-                    Text("음바페의 경기 최고 속도는 36km/h 입니다.")
-                        .font(.playerComapareSaying)
-                        .foregroundStyle(.playerCompareStyle)
-                    Spacer()
-                    Text("최근 경기 평균")
-                        .font(.averageText)
-                        .foregroundStyle(.averageTextStyle)
-                    Group {
-                        if !workouts.isEmpty {
-                            Text(average(of: workouts).rounded(at: 1))
-                            + Text(" km/h")
-                        } else {
-                            Text("--")
-                            + Text(" km/h")
-                        }
-                    }
-                    .font(.averageValue)
-                    .foregroundStyle(.navigationSportySpeedTitle)
+        VStack(spacing: 16) {
+            Text(Phrase.randomElement.saying)
+                .font(.playerComapareSaying)
+                .multilineTextAlignment(.center)
+                .foregroundStyle(.playerCompareStyle)
+
+            Text("최근 경기 평균")
+                .font(.averageText)
+                .foregroundStyle(.averageTextStyle)
+            Group {
+                if !workouts.isEmpty {
+                    Text(average(of: workouts).rounded(at: 1))
+                    + Text(" km/h")
+                } else {
+                    Text("--")
+                    + Text(" km/h")
                 }
-                .padding()
             }
+            .font(.averageValue)
+            .foregroundStyle(.navigationSportySpeedTitle)
+        }
+        .padding()
+        .overlay {
+            LightRectangleView(color: .chartBoxBackground.opacity(0.4))
+        }
     }
 }
 

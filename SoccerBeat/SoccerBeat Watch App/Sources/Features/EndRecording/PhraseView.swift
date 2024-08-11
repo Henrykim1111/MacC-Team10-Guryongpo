@@ -9,11 +9,10 @@ import SwiftUI
 
 struct PhraseView: View {
     @State private var beatAnimation = true
-    @State private var phrase: String = ""
 
     var body: some View {
         VStack(spacing: nil) {
-            Text(phrase)
+            Text(Phrase.randomElement.saying)
                 .fixedSize(horizontal: false, vertical: true)
                 .font(.wiseSaying)
                 .multilineTextAlignment(.center)
@@ -30,18 +29,6 @@ struct PhraseView: View {
                 .animation(.spring.repeatForever(autoreverses: true).speed(3),
                            value: beatAnimation)
 
-        }
-        .onAppear {
-            withAnimation {
-                beatAnimation.toggle()
-            }
-            self.phrase = {
-                if let decoded: PhraseResponse = Bundle.main.decode(by: "Phrase.json"),
-                   let phrase = decoded.phrase.randomElement() {
-                    return phrase.saying
-                }
-                return "..Like son\nGood\nPlayer"
-            }()
         }
     }
 }

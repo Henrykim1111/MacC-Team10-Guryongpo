@@ -41,12 +41,10 @@ struct DistanceChartView: View {
             
             distanceChartView(fastest: fastest, slowest: slowest)
             
-            Spacer()
-                .frame(height: 30)
-            
             averageDistanceView
                 .padding(.horizontal, 48)
-            
+                .padding(.top, 30)
+
             Spacer()
         }
         .padding()
@@ -192,31 +190,31 @@ extension DistanceChartView {
     
     @ViewBuilder
     private var averageDistanceView: some View {
-        LightRectangleView(color: .chartBoxBackground.opacity(0.4))
-            .frame(height: 100)
-            .overlay {
-                VStack(spacing: 4) {
-                    Text("음바페의 경기 평균 뛴 거리는 12km 입니다.")
-                        .font(.playerComapareSaying)
-                        .foregroundStyle(.playerCompareStyle)
-                    Spacer()
-                    Text("최근 경기 평균")
-                        .font(.averageText)
-                        .foregroundStyle(.averageTextStyle)
-                    Group {
-                        if !workouts.isEmpty {
-                            Text(average(of: workouts).rounded())
-                            + Text(" km")
-                        } else {
-                            Text("--")
-                            + Text(" km")
-                        }
-                    }
-                    .font(.averageValue)
-                    .foregroundStyle(.navigationSportyDistanceTitle)
+        VStack(spacing: 16) {
+            Text(Phrase.randomElement.saying)
+                .multilineTextAlignment(.center)
+                .font(.playerComapareSaying)
+                .foregroundStyle(.playerCompareStyle)
+
+            Text("최근 경기 평균")
+                .font(.averageText)
+                .foregroundStyle(.averageTextStyle)
+            Group {
+                if !workouts.isEmpty {
+                    Text(average(of: workouts).rounded())
+                    + Text(" km")
+                } else {
+                    Text("--")
+                    + Text(" km")
                 }
-                .padding()
             }
+            .font(.averageValue)
+            .foregroundStyle(.navigationSportyDistanceTitle)
+        }
+        .padding()
+        .overlay {
+            LightRectangleView(color: .chartBoxBackground.opacity(0.4))
+        }
     }
 }
 

@@ -40,11 +40,9 @@ struct BPMChartView: View {
             
             BPMChartView(fastest: fastest, slowest: slowest)
             
-            Spacer()
-                .frame(height: 30)
-            
             averageMaximumBpmView
                 .padding(.horizontal, 48)
+                .padding(.top, 30)
             
             Spacer()
         }
@@ -194,31 +192,31 @@ extension BPMChartView {
     
     @ViewBuilder
     private var averageMaximumBpmView: some View {
-        LightRectangleView(color: .chartBoxBackground.opacity(0.4))
-            .frame(height: 100)
-            .overlay {
-                VStack(spacing: 4) {
-                    Text("해리 케인의 평소 심박수는 40bpm 입니다.")
-                        .font(.playerComapareSaying)
-                        .foregroundStyle(.playerCompareStyle)
-                    Spacer()
-                    Text("최근 경기 평균")
-                        .font(.averageText)
-                        .foregroundStyle(.averageTextStyle)
-                    Group {
-                        if !workouts.isEmpty {
-                            Text(average(of: workouts).rounded(at: 0))
-                            + Text(" Bpm")
-                        } else {
-                            Text("--")
-                            + Text(" Bpm")
-                        }
-                    }
-                    .font(.averageValue)
-                    .foregroundStyle(.navigationSportyBPMTitle)
+        VStack(spacing: 16) {
+            Text(Phrase.randomElement.saying)
+                .font(.playerComapareSaying)
+                .multilineTextAlignment(.center)
+                .foregroundStyle(.playerCompareStyle)
+
+            Text("최근 경기 평균")
+                .font(.averageText)
+                .foregroundStyle(.averageTextStyle)
+            Group {
+                if !workouts.isEmpty {
+                    Text(average(of: workouts).rounded(at: 0))
+                    + Text(" Bpm")
+                } else {
+                    Text("--")
+                    + Text(" Bpm")
                 }
-                .padding()
             }
+            .font(.averageValue)
+            .foregroundStyle(.navigationSportyBPMTitle)
+        }
+        .padding()
+        .overlay {
+            LightRectangleView(color: .chartBoxBackground.opacity(0.4))
+        }
     }
 }
 

@@ -40,12 +40,10 @@ struct SprintChartView: View {
             
             sprintChartView(fastest: fastest, slowest: slowest)
             
-            Spacer()
-                .frame(height: 30)
-            
             averageSprintView
                 .padding(.horizontal, 48)
-            
+                .padding(.top, 30)
+
             Spacer()
         }
         .padding()
@@ -196,31 +194,31 @@ extension SprintChartView {
     
     @ViewBuilder
     private var averageSprintView: some View {
-        LightRectangleView(color: .chartBoxBackground.opacity(0.4))
-            .frame(height: 100)
-            .overlay {
-                VStack(alignment: .center, spacing: 4) {
-                    Text("음바페의 평균 스프린트 횟수는 21회 입니다.")
-                        .font(.playerComapareSaying)
-                        .foregroundStyle(.playerCompareStyle)
-                    Spacer()
-                    Text("최근 경기 평균")
-                        .font(.averageText)
-                        .foregroundStyle(.averageTextStyle)
-                    Group {
-                        if !workouts.isEmpty {
-                            Text(average(of: workouts).rounded(at: 0))
-                            + Text(" 회")
-                        } else {
-                            Text("--")
-                            + Text(" 회")
-                        }
-                    }
-                    .font(.averageValue)
-                    .foregroundStyle(.navigationSportySprintTitle)
+        VStack(alignment: .center, spacing: 16) {
+            Text(Phrase.randomElement.saying)
+                .font(.playerComapareSaying)
+                .multilineTextAlignment(.center)
+                .foregroundStyle(.playerCompareStyle)
+
+            Text("최근 경기 평균")
+                .font(.averageText)
+                .foregroundStyle(.averageTextStyle)
+            Group {
+                if !workouts.isEmpty {
+                    Text(average(of: workouts).rounded(at: 0))
+                    + Text(" 회")
+                } else {
+                    Text("--")
+                    + Text(" 회")
                 }
-                .padding()
             }
+            .font(.averageValue)
+            .foregroundStyle(.navigationSportySprintTitle)
+        }
+        .padding()
+        .overlay {
+            LightRectangleView(color: .chartBoxBackground.opacity(0.4))
+        }
     }
 }
 
