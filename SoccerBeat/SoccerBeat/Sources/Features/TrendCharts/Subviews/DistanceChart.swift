@@ -20,24 +20,25 @@ struct DistanceChartView: View {
         let fastest = maximum(of: workouts)
         let slowest = minimum(of: workouts)
         
-        return VStack(alignment: .leading) {
+        return VStack(alignment: .center) {
             HStack {
-                InformationButton(message: "최근 뛴 거리의 변화입니다.")
-                
+                VStack(alignment: .leading) {
+                    InformationButton(message: "최근 뛴 거리의 변화입니다.")
+
+                    Text("뛴 거리")
+                        .font(.navigationSportySubTitle)
+                        .foregroundStyle(.navigationSportyHead)
+                    Text("The trends of")
+                    Text("Distance")
+                        .foregroundStyle(.navigationSportyDistanceTitle)
+                        .highlighter(activity: .distance, isDefault: false)
+                }
+                .font(.navigationSportyTitle)
+                .padding(.top, 32)
+
                 Spacer()
             }
-            
-            VStack(alignment: .leading) {
-                Text("뛴 거리")
-                    .font(.navigationSportySubTitle)
-                    .foregroundStyle(.navigationSportyHead)
-                Text("The trends of")
-                Text("Distance")
-                    .foregroundStyle(.navigationSportyDistanceTitle)
-                    .highlighter(activity: .distance, isDefault: false)
-            }
-            .font(.navigationSportyTitle)
-            .padding(.top, 32)
+
             
             distanceChartView(fastest: fastest, slowest: slowest)
             

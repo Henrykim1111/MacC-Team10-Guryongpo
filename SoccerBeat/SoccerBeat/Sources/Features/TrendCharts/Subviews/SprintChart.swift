@@ -20,23 +20,23 @@ struct SprintChartView: View {
         let fastest = maximum(of: workouts)
         let slowest = minimum(of: workouts)
         
-        return VStack(alignment: .leading) {
+        return VStack(alignment: .center) {
             HStack {
-                InformationButton(message: "최근 스프린트 횟수의 변화입니다.")
+                VStack(alignment: .leading) {
+                    InformationButton(message: "최근 스프린트 횟수의 변화입니다.")
+                    Text("스프린트")
+                        .font(.navigationSportySubTitle)
+                        .foregroundStyle(.navigationSportyHead)
+                    Text("The trends of")
+                    Text("Sprint")
+                        .foregroundStyle(.navigationSportySprintTitle)
+                        .highlighter(activity: .sprint, isDefault: false)
+                }
+                .font(.navigationSportyTitle)
+                .padding(.top, 32)
+
                 Spacer()
             }
-            
-            VStack(alignment: .leading) {
-                Text("스프린트")
-                    .font(.navigationSportySubTitle)
-                    .foregroundStyle(.navigationSportyHead)
-                Text("The trends of")
-                Text("Sprint")
-                    .foregroundStyle(.navigationSportySprintTitle)
-                    .highlighter(activity: .sprint, isDefault: false)
-            }
-            .font(.navigationSportyTitle)
-            .padding(.top, 32)
             
             sprintChartView(fastest: fastest, slowest: slowest)
             

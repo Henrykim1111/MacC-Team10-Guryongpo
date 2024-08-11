@@ -20,23 +20,23 @@ struct BPMChartView: View {
         let fastest = maximum(of: workouts)
         let slowest = minimum(of: workouts)
         
-        return VStack(alignment: .leading) {
+        return VStack(alignment: .center) {
             HStack {
-                InformationButton(message: "최근 심박수의 변화입니다.")
+                VStack(alignment: .leading) {
+                    InformationButton(message: "최근 심박수의 변화입니다.")
+                    Text("심박수")
+                        .font(.navigationSportySubTitle)
+                        .foregroundStyle(.navigationSportyHead)
+                    Text("The trends of")
+                    Text("Heartbeat")
+                        .foregroundStyle(.navigationSportyBPMTitle)
+                        .highlighter(activity: .heartrate, isDefault: false)
+                }
+                .font(.navigationSportyTitle)
+                .padding(.top, 32)
+                
                 Spacer()
             }
-            
-            VStack(alignment: .leading) {
-                Text("심박수")
-                    .font(.navigationSportySubTitle)
-                    .foregroundStyle(.navigationSportyHead)
-                Text("The trends of")
-                Text("Heartbeat")
-                    .foregroundStyle(.navigationSportyBPMTitle)
-                    .highlighter(activity: .heartrate, isDefault: false)
-            }
-            .font(.navigationSportyTitle)
-            .padding(.top, 32)
             
             BPMChartView(fastest: fastest, slowest: slowest)
             
