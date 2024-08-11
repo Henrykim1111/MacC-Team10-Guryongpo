@@ -32,6 +32,9 @@ struct ContentView: View {
             self.workouts = workouts
             isShowingOnboardingView = workouts.isEmpty
         }
+        .onReceive(healthInteractor.onWorkoutRemoved) { indexSet in
+            self.workouts.remove(atOffsets: indexSet)
+        }
         .onAppear {
             // 음악을 틀기
             if soundManager.isMusicPlaying {

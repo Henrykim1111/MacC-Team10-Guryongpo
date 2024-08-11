@@ -44,6 +44,7 @@ final class HealthInteractor: NSObject, ObservableObject {
 
     // Send when permission is granted by the user.
     var authSuccess = PassthroughSubject<(), Never>()
+    private(set) var onWorkoutRemoved = PassthroughSubject<(IndexSet), Never>()
     // Send when data fetch is successful.
     var fetchWorkoutsSuccess = PassthroughSubject<([WorkoutData]), Never>()
 
@@ -119,6 +120,9 @@ final class HealthInteractor: NSObject, ObservableObject {
             try await healthStore.delete(hkWorkouts[index])
         }
         hkWorkouts.remove(atOffsets: offset)
+        Task { @MainActor in
+            self.onWorkoutRemoved.send(offset)
+        }
     }
 
     @Published var isLoading = false
