@@ -31,7 +31,9 @@ struct ElapsedTimeView: View {
                             .viewBorder(color: .white, radius: radius, outline: true)
                             .offset(x: 2, y: 2.5)
                     }
-                Spacer()
+                if spendingTimeDevidedColone[0].count < 3 {
+                    Spacer()
+                }
             }
             
             Text(":")
@@ -44,7 +46,9 @@ struct ElapsedTimeView: View {
             
             HStack {
                 
-                Spacer()
+                if spendingTimeDevidedColone[0].count < 3 {
+                    Spacer()
+                }
                 
                 Text(spendingTimeDevidedColone[1])
                     .kerning(-0.9)
@@ -58,9 +62,6 @@ struct ElapsedTimeView: View {
             }
         }
         .font(.playTimeNumber)
-        // Pink Blue Gradient Color
-        // .foregroundStyle(.gameTimeGradient)
-        // Blue Gradient Color
         .foregroundStyle(.zone2Bpm)
         .edgesIgnoringSafeArea(.all)
     }
