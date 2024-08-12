@@ -2,6 +2,7 @@ import SwiftUI
 import Photos
 
 struct ShareView: View {
+    @Binding var isBackButtonHidden: Bool
     @EnvironmentObject var profileModel: ProfileModel
     @EnvironmentObject var healthInteractor: HealthInteractor
     @State var degree: Double = 0
@@ -20,6 +21,7 @@ struct ShareView: View {
             .frame(maxHeight: UIScreen.screenHeight)
             VStack {
                 Spacer()
+                    .frame(height: 50)
                 HStack(alignment: .bottom) {
                     CardFront(degree: $degree, width: 100, height: 140)
                     VStack(alignment: .leading, spacing: 0) {
@@ -55,12 +57,20 @@ struct ShareView: View {
             }
             .padding()
         }
+        .navigationBarBackButtonHidden(isBackButtonHidden)
         .toolbar {
             Button {
-                share()
+                isBackButtonHidden = true
+                DispatchQueue.main.async {
+                            share()
+                        }
+                DispatchQueue.main.async {
+                    isBackButtonHidden = false
+                        }
             } label: {
                 Text("공유하기")
                     .foregroundStyle(.shareViewTitleTint)
+                    .opacity(isBackButtonHidden ? 0 : 1)
             }
         }
     }
@@ -108,13 +118,13 @@ extension ShareView {
     }
 
     private func share() {
-        guard let screenshot = UIWindow.screenshot() else { return }
+        guard let screenshot = ShareView.screenshot() else { return }
         let activityViewController = UIActivityViewController(activityItems: [screenshot], applicationActivities: nil)
         UIApplication.shared.windows.first?.rootViewController?.present(activityViewController, animated: true)
     }
 }
 
-extension UIWindow {
+extension ShareView {
     static func screenshot() -> UIImage? {
         guard let window = UIApplication.shared.windows.first(where: { $0.isKeyWindow }) else { return nil }
 
@@ -126,6 +136,6 @@ extension UIWindow {
 }
 
 #Preview {
-    ShareView()
+    ShareView(isBackButtonHidden: .constant(false))
         .environmentObject(ProfileModel(healthInteractor: HealthInteractor()))
 }

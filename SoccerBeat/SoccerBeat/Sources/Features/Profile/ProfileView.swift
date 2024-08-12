@@ -10,6 +10,7 @@
 import SwiftUI
 
 struct ProfileView: View {
+    @State private var isBackButtonHidden = false
     @EnvironmentObject var profileModel: ProfileModel
     @State private var isFlipped = false
     @State private var userImage: UIImage?
@@ -124,7 +125,7 @@ struct ProfileView: View {
         }
         .toolbar {
             NavigationLink {
-                ShareView()
+                ShareView(isBackButtonHidden: $isBackButtonHidden)
             } label: {
                 Text("공유하기")
                     .foregroundStyle(.shareViewTitleTint)
