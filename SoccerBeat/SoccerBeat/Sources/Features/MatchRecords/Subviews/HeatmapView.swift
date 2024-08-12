@@ -22,14 +22,16 @@ struct HeatmapView: UIViewRepresentable {
     func updateUIView(_ uiView: MKMapView, context: Context) {
         
         let convertIndex = Int(Double(polylineCoordinates.count - 1) * slider)
-        let coordinates = polylineCoordinates[convertIndex]
-        let pointStart = MKMapPoint(CLLocationCoordinate2D(latitude: coordinates.latitude, 
-                                                           longitude: coordinates.longitude))
-        let pointEnd = MKMapPoint(CLLocationCoordinate2D(latitude: coordinates.latitude + 0.0000001, 
-                                                         longitude: coordinates.longitude + 0.0000001))
-        let movePoint = MKPolyline(points: [pointStart, pointEnd], count: 2)
-        movePoint.title = String("Point")
-        uiView.addOverlay(movePoint)
+        if (convertIndex < polylineCoordinates.count - 1) {
+            let coordinates = polylineCoordinates[convertIndex]
+            let pointStart = MKMapPoint(CLLocationCoordinate2D(latitude: coordinates.latitude,
+                                                               longitude: coordinates.longitude))
+            let pointEnd = MKMapPoint(CLLocationCoordinate2D(latitude: coordinates.latitude + 0.0000001,
+                                                             longitude: coordinates.longitude + 0.0000001))
+            let movePoint = MKPolyline(points: [pointStart, pointEnd], count: 2)
+            movePoint.title = String("Point")
+            uiView.addOverlay(movePoint)
+        }
     }
     
     func makeUIView(context: Context) -> MKMapView {
@@ -45,14 +47,16 @@ struct HeatmapView: UIViewRepresentable {
                                   count: coordinates.count)
         mapView.addOverlay(polyline)
         
-        let pointStart = MKMapPoint(CLLocationCoordinate2D(latitude: coordinates[0].latitude,
-                                                           longitude: coordinates[0].longitude))
-        let pointEnd = MKMapPoint(CLLocationCoordinate2D(latitude: coordinates[0].latitude + 0.0000001,
-                                                         longitude: coordinates[0].longitude + 0.0000001))
-        let startPoint = MKPolyline(points: [pointStart, pointEnd], count: 2)
-        
-        startPoint.title = String("Point")
-        mapView.addOverlay(startPoint)
+        if let coordinate = coordinates.first {
+            let pointStart = MKMapPoint(CLLocationCoordinate2D(latitude: coordinate.latitude,
+                                                               longitude: coordinate.longitude))
+            let pointEnd = MKMapPoint(CLLocationCoordinate2D(latitude: coordinate.latitude + 0.0000001,
+                                                             longitude: coordinate.longitude + 0.0000001))
+            let startPoint = MKPolyline(points: [pointStart, pointEnd], count: 2)
+            
+            startPoint.title = String("Point")
+            mapView.addOverlay(startPoint)
+        }
             
         return mapView
     }
