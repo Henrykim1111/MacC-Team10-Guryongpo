@@ -95,6 +95,9 @@
 "최고속도\n25 km/h 초과" = "Maximum speed\nOver 25 km/h";
 "슬라이더를 움직여 경기 중 위치를 확인해보세요." = "Move Slider to check out your position.";
 "파워" = "Power";
+"🏆 Level Up! ⚽️🏃‍♂️\n\n사커비트가 유저분들의 의견을 반영하여 사용성을 개선했어요\n\n지금 바로 업데이트하고 즐겨보세요!" = "🏆 Level Up! ⚽️🏃‍♂️\n\nSoccerBeat has improved usability based on user feedback.\n\nUpdate now and enjoy the new experience!";
+"업데이트" = "Update";
+"나중에" = "Later";
 
 // [watch] StartView
 "need_health_authorization" = "Health Access Permission Required";
