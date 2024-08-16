@@ -194,8 +194,8 @@ final class HealthInteractor: NSObject, ObservableObject {
             velocity = Double(((velocityMeta) * 3.6).rounded(at: 2)) ?? 0
         } else { dataError = true }
 
-        if let powerMeta: Double = metadata.getValue(forKey: "Power") ??
-            metadata.getValue(forKey: "Acceleration") {
+        if let powerMeta: Double = metadata.getValue(forKey: "MaxPower") ??
+            metadata.getValue(forKey: "Power") {
             power = powerMeta
         } else { dataError = true }
 

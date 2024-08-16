@@ -74,6 +74,7 @@ final class MatricsIndicator: NSObject, ObservableObject {
     var energy: Double = 0 // 칼로리
     var power: Double = 0.0
     var maxSpeedMPS: Double = 0.0
+    var maxPower: Double = 0.0
 
     // TODO: - WorkoutData로 반환하도록 설정
     func getMetadata() -> [String: Any] {
@@ -83,7 +84,10 @@ final class MatricsIndicator: NSObject, ObservableObject {
             "MinHeartRate": saveMinHeartRate != 300 ? saveMinHeartRate : 0,
             "MaxHeartRate": saveMaxHeartRate,
             "Distance": Double((distanceMeter / 1000).rounded(at: 1)), // km
-            "Power": Double(power.rounded(at: 1)) // w
+            "MaxPower": Double(maxPower.rounded(at: 1)), // w
+            
+            //MARK: 기존의 유저들의 데이터가 날아가지 않도록 하기 위한 데이터
+            "Power": Double(power.rounded(at: 1))
         ]
     }
     
@@ -151,7 +155,9 @@ final class MatricsIndicator: NSObject, ObservableObject {
             case HKQuantityType.quantityType(forIdentifier: .activeEnergyBurned):
                 self.energy = statistics.sumQuantity()?.doubleValue(for: HKUnit(from: "kcal")) ?? 0
             case HKQuantityType.quantityType(forIdentifier: .runningPower):
+                let oldPower = self.power
                 self.power = statistics.sumQuantity()?.doubleValue(for: HKUnit(from: "W")) ?? 0
+                self.calculateMaxPower(before: oldPower, current: self.power)
             default:
                 return
             }
@@ -174,5 +180,9 @@ final class MatricsIndicator: NSObject, ObservableObject {
         if isSprint {
             recentSprintSpeedMPS = max(recentSprintSpeedMPS, current)
         }
+    }
+    
+    private func calculateMaxPower(before: Double, current: Double) {
+        maxPower = max(maxPower, current)
     }
 }

@@ -22,7 +22,7 @@ struct SummaryView: View {
                 SummaryComponent(title: "최고 속도", content: (matricsIndicator.maxSpeedMPS * 3.6).rounded(at: 1) + " km/h")
                 SummaryComponent(title: "스프린트 횟수", content:  matricsIndicator.sprintCount.formatted() + " Times")
                 
-                SummaryComponent(title: "파워", content:  matricsIndicator.power.rounded(at: 1) + " w")
+                SummaryComponent(title: "파워", content:  matricsIndicator.maxPower.rounded(at: 1) + " w")
 
                 Button {
                     workoutManager.showingSummaryView = false
