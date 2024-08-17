@@ -192,9 +192,12 @@ extension DistanceChartView {
     @ViewBuilder
     private var averageDistanceView: some View {
         let player = FileLoader.distance.randomElement()
-        let distanceMessage = "%@의 평균 활동량은 %@km입니다.".localized(with: [
+
+        let distanceMessage = String(
+            format: "%@의 평균 활동량은 %@km입니다.".localized(),
             player?.name ?? "Lionel Messi",
-            player?.distancePer90min ?? "7.2"], comment: "distanceAverageMessage")
+            player?.distancePer90min ?? "7.2"
+        )
 
         VStack(spacing: 16) {
             Text(distanceMessage)
