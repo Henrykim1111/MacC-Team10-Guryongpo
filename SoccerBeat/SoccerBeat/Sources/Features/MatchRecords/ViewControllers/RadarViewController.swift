@@ -72,7 +72,7 @@ class RadarViewController: UIViewController, TKRadarChartDataSource, TKRadarChar
     }
     
     func valueOfSectionForRadarChart(withRow row: Int, section: Int) -> CGFloat {
-        if section == 0 {
+        if section == 1 {
             return radarAverageValue[row]
         } else {
             return radarAtypicalValue[row]
@@ -91,7 +91,7 @@ class RadarViewController: UIViewController, TKRadarChartDataSource, TKRadarChar
     
     // Color of inside area of the graph.
     func colorOfSectionFillForRadarChart(_ radarChart: TKRadarChart, section: Int) -> UIColor {
-        if section == 0 {
+        if section == 1 {
             return UIColor.clear
         } else {
             return UIColor(red:0.282,  green:1,  blue:1, alpha: error ? 0 : 0.5)
@@ -99,7 +99,7 @@ class RadarViewController: UIViewController, TKRadarChartDataSource, TKRadarChar
     }
     
     func colorOfSectionBorderForRadarChart(_ radarChart: TKRadarChart, section: Int) -> UIColor {
-        if section == 0 {
+        if section == 1 {
             return UIColor(.matchDetailViewTitleColor)
         } else {
             return UIColor(red:0,  green:1,  blue:0.878, alpha: error ? 0 : 1)
@@ -167,7 +167,7 @@ class ProfileViewController: UIViewController, TKRadarChartDataSource, TKRadarCh
     }
     
     func valueOfSectionForRadarChart(withRow row: Int, section: Int) -> CGFloat {
-        if section == 0 {
+        if section == 1 {
             return radarAverageValue[row]
         } else {
             return radarAtypicalValue[row]
@@ -186,7 +186,7 @@ class ProfileViewController: UIViewController, TKRadarChartDataSource, TKRadarCh
     
     // Color of inside area of the graph.
     func colorOfSectionFillForRadarChart(_ radarChart: TKRadarChart, section: Int) -> UIColor {
-        if section == 0 {
+        if section == 1 {
             // average
             return UIColor(.maxFillColor)
         } else {
@@ -196,7 +196,7 @@ class ProfileViewController: UIViewController, TKRadarChartDataSource, TKRadarCh
     }
     
     func colorOfSectionBorderForRadarChart(_ radarChart: TKRadarChart, section: Int) -> UIColor {
-        if section == 0 {
+        if section == 1 {
             // average
             return UIColor(.maxStrokeColor)
         } else {
@@ -253,7 +253,7 @@ final class ThumbnailViewController: UIViewController, TKRadarChartDataSource, T
     }
     
     func valueOfSectionForRadarChart(withRow row: Int, section: Int) -> CGFloat {
-        if section == 0 {
+        if section == 1 {
             return radarAverageValue[row]
         } else {
             return radarAtypicalValue[row]
@@ -272,7 +272,7 @@ final class ThumbnailViewController: UIViewController, TKRadarChartDataSource, T
     
     // Color of inside area of the graph.
     func colorOfSectionFillForRadarChart(_ radarChart: TKRadarChart, section: Int) -> UIColor {
-        if section == 0 {
+        if section == 1 {
             return UIColor(red:0.282,  green:1,  blue:1, alpha: 0.5)
         } else {
             return UIColor.clear
@@ -280,7 +280,7 @@ final class ThumbnailViewController: UIViewController, TKRadarChartDataSource, T
     }
     
     func colorOfSectionBorderForRadarChart(_ radarChart: TKRadarChart, section: Int) -> UIColor {
-        if section == 0 {
+        if section == 1 {
             return UIColor(red:0,  green:1,  blue:0.878, alpha: 1.0)
         } else {
             return UIColor(red:1,  green:0,  blue:0.478, alpha: 0.7)

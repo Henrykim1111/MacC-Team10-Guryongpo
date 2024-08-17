@@ -9,7 +9,6 @@
 import UIKit
 import SwiftUI
 
-
 #if swift( >=4.2)
 typealias NSAttributedStringKey = NSAttributedString.Key
 #endif
