@@ -116,7 +116,7 @@ extension ShareView {
             }
         }
     }
-
+    
     private func share() {
         guard let screenshot = ShareView.screenshot() else { return }
         let activityViewController = UIActivityViewController(activityItems: [screenshot], applicationActivities: nil)
@@ -127,7 +127,7 @@ extension ShareView {
 extension ShareView {
     static func screenshot() -> UIImage? {
         guard let window = UIApplication.shared.windows.first(where: { $0.isKeyWindow }) else { return nil }
-
+        
         let renderer = UIGraphicsImageRenderer(bounds: window.bounds)
         return renderer.image { context in
             window.drawHierarchy(in: window.bounds, afterScreenUpdates: true)
