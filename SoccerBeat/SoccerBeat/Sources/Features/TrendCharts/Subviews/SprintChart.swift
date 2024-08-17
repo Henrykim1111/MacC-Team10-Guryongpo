@@ -195,11 +195,10 @@ extension SprintChartView {
     @ViewBuilder
     private var averageSprintView: some View {
         let player = FileLoader.sprints.randomElement()
-        let sprintsMessage = String(
-            format: "%@의 평균 스프린트 횟수는 %@입니다.",
-            player?.name ?? "Lionel Messi",
-            player?.sprintCount ?? "14"
-        )
+
+        let sprintsMessage = "%@의 평균 스프린트 횟수는 %@입니다.".localized(with:
+            [(player?.name ?? "Lionel Messi"),
+            (player?.sprintCount ?? "13")], comment: "sprintsMessage")
 
         VStack(alignment: .center, spacing: 16) {
             Text(sprintsMessage)
