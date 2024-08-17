@@ -121,9 +121,9 @@ struct WorkoutData: Hashable, Equatable, Identifiable {
     
     // TODO: - Factory Method Pattern으로 빼내는건 어떨까요?
     static let exampleWorkouts = [
-        WorkoutData(dataID: 1, date: "2023-10-09T01:20:32Z", time: "61:10", distance: 3.5, sprint: 3, velocity: 10.5, power: 3.0, heartRate: ["max": 171, "min": 53], route: [], center: [0, 0]),
-        WorkoutData(dataID: 2, date: "2023-10-09T01:20:35Z", time: "62:10", distance: 2.1, sprint: 5, velocity: 11.5, power: 3.0, heartRate: ["max": 152, "min": 70], route: [], center: [0, 0]),
-        WorkoutData(dataID: 3, date: "2023-10-09T01:20:38Z", time: "60:10", distance: 1.1, sprint: 7, velocity: 8.5, power: 3.0, heartRate: ["max": 167, "min": 92], route: [], center: [0, 0]),
+        WorkoutData(dataID: 1, date: "2023-10-09T01:20:32Z", time: "99:99", distance: 999.0, sprint: 999, velocity: 999.0, power: 999.0, heartRate: ["max": 999, "min": 1], route: [], center: [0, 0]),
+        WorkoutData(dataID: 2, date: "2023-10-09T01:20:35Z", time: "62:10", distance: 2.1, sprint: 5, velocity: 11.5, power: 32.0, heartRate: ["max": 152, "min": 70], route: [], center: [0, 0]),
+        WorkoutData(dataID: 3, date: "2023-10-09T01:20:38Z", time: "60:10", distance: 1.1, sprint: 7, velocity: 8.5, power: 97.0, heartRate: ["max": 167, "min": 92], route: [], center: [0, 0]),
         WorkoutData(dataID: 4, date: "2023-10-19T01:20:32Z", time: "60:10", distance: 5.1, sprint: 9, velocity: 12.5, power: 3.0, heartRate: ["max": 185, "min": 100], route: [], center: [0, 0]),
         WorkoutData(dataID: 5, date: "2023-10-20T01:20:32Z", time: "60:10", distance: 4.5, sprint: 11, velocity: 17.2, power: 3.0, heartRate: ["max": 175, "min": 60], route: [], center: [0, 0]),
         WorkoutData(dataID: 6, date: "2023-10-21T01:20:32Z", time: "60:10", distance: 3.6, sprint: 5, velocity: 24.4, power: 3.0, heartRate: ["max": 190, "min": 79], route: [], center: [0, 0]),

@@ -139,6 +139,7 @@ struct MatchListItemView: View {
             HStack(spacing: 0) {
                 // 스파이더 차트
                 radarCharts
+//                    .frame(width: 60, height: 60)
                     .padding(.top, 16)
                     .opacity(workoutData.error ? 0 : 1)
                 
@@ -199,8 +200,8 @@ extension MatchListItemView {
         let recent = DataConverter.toLevels(workoutData)
         let average = DataConverter.toLevels(profileModel.averageAbility)
         
-//        RadarChartView(averageDataPoints: recent, maximumDataPoints: average, limitValue: 2.5)
-        RadarChartView(averageDataPoints: recent, limitValue: 2.5)
+        RadarChartView(averageDataPoints: recent, limitValue: 5.0)
+
     }
     
     @ViewBuilder

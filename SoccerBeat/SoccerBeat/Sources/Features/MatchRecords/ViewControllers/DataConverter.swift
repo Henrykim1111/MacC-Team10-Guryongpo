@@ -55,15 +55,15 @@ final class DataConverter {
             levels["maxVelocity"] = 5.0
         }
         
-        if maxPower <= 2.0 {
+        if maxPower <= 50.0 {
             levels["maxPower"] = 1.0
-        } else if maxPower > 2.0 && maxPower <= 3.0 {
+        } else if maxPower > 50.0 && maxPower <= 100.0 {
             levels["maxPower"] = 2.0
-        } else if maxPower > 3.0 && maxPower <= 4.0 {
+        } else if maxPower > 100.0 && maxPower <= 150.0 {
             levels["maxPower"] = 3.0
-        } else if maxPower > 4.0 && maxPower <= 5.0 {
+        } else if maxPower > 150.0 && maxPower <= 200.0 {
             levels["maxPower"] = 4.0
-        } else if maxPower > 5.0 {
+        } else if maxPower > 200.0 {
             levels["maxPower"] = 5.0
         }
         
