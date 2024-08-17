@@ -102,6 +102,15 @@
 		BE93F1912B00937000C33756 /* TextBorder+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE93F1902B00937000C33756 /* TextBorder+extension.swift */; };
 		BE93F1922B00937000C33756 /* TextBorder+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE93F1902B00937000C33756 /* TextBorder+extension.swift */; };
 		BE93F1952B009FA300C33756 /* ElapsedTimeFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE93F1932B009FA300C33756 /* ElapsedTimeFormatter.swift */; };
+		BEA576442C704E7A00B88773 /* HeartRate.json in Resources */ = {isa = PBXBuildFile; fileRef = BEA576432C704E7A00B88773 /* HeartRate.json */; };
+		BEA576462C704E8800B88773 /* TopSpeed.json in Resources */ = {isa = PBXBuildFile; fileRef = BEA576452C704E8800B88773 /* TopSpeed.json */; };
+		BEA576482C704EA800B88773 /* Sprints.json in Resources */ = {isa = PBXBuildFile; fileRef = BEA576472C704EA800B88773 /* Sprints.json */; };
+		BEA5764A2C704EBF00B88773 /* Distance.json in Resources */ = {isa = PBXBuildFile; fileRef = BEA576492C704EBF00B88773 /* Distance.json */; };
+		BEA5764D2C704FF200B88773 /* FileLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEA5764C2C704FF200B88773 /* FileLoader.swift */; };
+		BEA5764F2C7052A200B88773 /* Sprints.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEA5764E2C7052A200B88773 /* Sprints.swift */; };
+		BEA576512C7052AB00B88773 /* DistancePer90.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEA576502C7052AB00B88773 /* DistancePer90.swift */; };
+		BEA576532C7052B500B88773 /* HeartRate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEA576522C7052B500B88773 /* HeartRate.swift */; };
+		BEA576552C7052FB00B88773 /* TopSpeed.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEA576542C7052FB00B88773 /* TopSpeed.swift */; };
 		BEA63A612B0AF608000A309D /* HighlightModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEA63A602B0AF608000A309D /* HighlightModifier.swift */; };
 		BEA63A622B0AFD29000A309D /* HighlightModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEA63A602B0AF608000A309D /* HighlightModifier.swift */; };
 		BEA63A662B0AFDFF000A309D /* ActivityEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEA63A652B0AFDFF000A309D /* ActivityEnum.swift */; };
@@ -252,6 +261,15 @@
 		BE91CF3F2BBE43BC00F0EB6F /* RadarChartShape.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RadarChartShape.swift; sourceTree = "<group>"; };
 		BE93F1902B00937000C33756 /* TextBorder+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TextBorder+extension.swift"; sourceTree = "<group>"; };
 		BE93F1932B009FA300C33756 /* ElapsedTimeFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElapsedTimeFormatter.swift; sourceTree = "<group>"; };
+		BEA576432C704E7A00B88773 /* HeartRate.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = HeartRate.json; sourceTree = "<group>"; };
+		BEA576452C704E8800B88773 /* TopSpeed.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = TopSpeed.json; sourceTree = "<group>"; };
+		BEA576472C704EA800B88773 /* Sprints.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Sprints.json; sourceTree = "<group>"; };
+		BEA576492C704EBF00B88773 /* Distance.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Distance.json; sourceTree = "<group>"; };
+		BEA5764C2C704FF200B88773 /* FileLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileLoader.swift; sourceTree = "<group>"; };
+		BEA5764E2C7052A200B88773 /* Sprints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sprints.swift; sourceTree = "<group>"; };
+		BEA576502C7052AB00B88773 /* DistancePer90.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DistancePer90.swift; sourceTree = "<group>"; };
+		BEA576522C7052B500B88773 /* HeartRate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeartRate.swift; sourceTree = "<group>"; };
+		BEA576542C7052FB00B88773 /* TopSpeed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopSpeed.swift; sourceTree = "<group>"; };
 		BEA63A602B0AF608000A309D /* HighlightModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HighlightModifier.swift; sourceTree = "<group>"; };
 		BEA63A652B0AFDFF000A309D /* ActivityEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityEnum.swift; sourceTree = "<group>"; };
 		BEA63A692B0B386C000A309D /* AnalyticsComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsComponent.swift; sourceTree = "<group>"; };
@@ -364,6 +382,7 @@
 		685D7B662AE52A2100783433 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				BEA576422C704E5900B88773 /* Research */,
 				D3C500162AE36F3F00EFAEFF /* Assets.xcassets */,
 			);
 			path = Resources;
@@ -421,6 +440,25 @@
 			);
 			name = Extensions;
 			path = Utiles;
+			sourceTree = "<group>";
+		};
+		BEA576422C704E5900B88773 /* Research */ = {
+			isa = PBXGroup;
+			children = (
+				BEA576432C704E7A00B88773 /* HeartRate.json */,
+				BEA576472C704EA800B88773 /* Sprints.json */,
+				BEA576492C704EBF00B88773 /* Distance.json */,
+				BEA576452C704E8800B88773 /* TopSpeed.json */,
+			);
+			path = Research;
+			sourceTree = "<group>";
+		};
+		BEA5764B2C704FB400B88773 /* Infrastructure */ = {
+			isa = PBXGroup;
+			children = (
+				BEA5764C2C704FF200B88773 /* FileLoader.swift */,
+			);
+			path = Infrastructure;
 			sourceTree = "<group>";
 		};
 		BEB666BE2AE4E13E0090195A /* Features */ = {
@@ -515,6 +553,7 @@
 			children = (
 				FB954AF62BB2AE0300A365FB /* Features */,
 				FB954AF72BB2AE0800A365FB /* Components */,
+				BEA5764B2C704FB400B88773 /* Infrastructure */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -663,6 +702,10 @@
 			isa = PBXGroup;
 			children = (
 				BEDE523D2B03BFF800BBFD94 /* Analyzable.swift */,
+				BEA5764E2C7052A200B88773 /* Sprints.swift */,
+				BEA576502C7052AB00B88773 /* DistancePer90.swift */,
+				BEA576522C7052B500B88773 /* HeartRate.swift */,
+				BEA576542C7052FB00B88773 /* TopSpeed.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -888,11 +931,15 @@
 				6876C0BF2B0B7F73005C6872 /* FifaBackground.mp3 in Resources */,
 				BED269762AFC6FB200153DE8 /* SF-Pro-Text-RegularItalic.otf in Resources */,
 				BEDE52422B04D69400BBFD94 /* SF-Pro-Text-SemiboldItalic.otf in Resources */,
+				BEA576482C704EA800B88773 /* Sprints.json in Resources */,
+				BEA5764A2C704EBF00B88773 /* Distance.json in Resources */,
 				BE4069D72AF1F98B00FA3030 /* NotoSans-Regular.ttf in Resources */,
 				BE4069E42AF27ADF00FA3030 /* SF-Pro-Text-LightItalic.otf in Resources */,
+				BEA576442C704E7A00B88773 /* HeartRate.json in Resources */,
 				682D64B12AFE90A000D7F07B /* CardFlipEffect.mp3 in Resources */,
 				BE4069BE2AF1D22B00FA3030 /* NotoSans-Black.ttf in Resources */,
 				FBA3DA872B03B9F20025AD7B /* SF-Pro-Display-RegularItalic.otf in Resources */,
+				BEA576462C704E8800B88773 /* TopSpeed.json in Resources */,
 				BE323D452B0CC4A700F289D4 /* SF-Pro-Text-Light.otf in Resources */,
 				BE4069CF2AF1F80D00FA3030 /* SF-Compact-Text-SemiboldItalic.otf in Resources */,
 				BE323D422B0CC49500F289D4 /* SF-Pro-Text-Medium.otf in Resources */,
@@ -992,6 +1039,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BEA5764D2C704FF200B88773 /* FileLoader.swift in Sources */,
+				BEA576512C7052AB00B88773 /* DistancePer90.swift in Sources */,
 				BEA63A612B0AF608000A309D /* HighlightModifier.swift in Sources */,
 				BE91CF402BBE43BC00F0EB6F /* RadarChartShape.swift in Sources */,
 				BECCFAB42B06698F009F4BE5 /* DistanceChartOverview.swift in Sources */,
@@ -1016,6 +1065,7 @@
 				BE4A91582B011C8B004AAFA3 /* SprintChart.swift in Sources */,
 				D3A1F1112B06847600EB2049 /* ProfileView.swift in Sources */,
 				FB61FFB32BCD518800EF0D1B /* Backport+extension.swift in Sources */,
+				BEA576532C7052B500B88773 /* HeartRate.swift in Sources */,
 				FBCED9322AE4218E00C57BF9 /* MatchRecapView.swift in Sources */,
 				BE010D392B0511CC0093A5FE /* FloatingCapsuleModifier.swift in Sources */,
 				BA8C99142C4115FD00C57E90 /* OnboardingView.swift in Sources */,
@@ -1046,8 +1096,10 @@
 				D3A1F10F2B067E8F00EB2049 /* MainView.swift in Sources */,
 				682D64832AFD1B6B00D7F07B /* ProfileModel.swift in Sources */,
 				685D7B652AE529E800783433 /* AnalyticsView.swift in Sources */,
+				BEA576552C7052FB00B88773 /* TopSpeed.swift in Sources */,
 				68D5A6002BAD503100C80831 /* GuideAuthorizationView.swift in Sources */,
 				BE010D3C2B0512680093A5FE /* Double+extension.swift in Sources */,
+				BEA5764F2C7052A200B88773 /* Sprints.swift in Sources */,
 				BE323D402B0C80C200F289D4 /* TooltipView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

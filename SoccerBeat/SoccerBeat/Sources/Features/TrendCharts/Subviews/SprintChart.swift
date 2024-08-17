@@ -194,8 +194,10 @@ extension SprintChartView {
     
     @ViewBuilder
     private var averageSprintView: some View {
+        let player = FileLoader.sprints.randomElement()
+
         VStack(alignment: .center, spacing: 16) {
-            Text(Phrase.randomElement.saying)
+            Text("\(player?.name ?? "Lionel Messi")의 평균 스프린트 횟수는 \(player?.sprintCount ?? "10")회 입니다.")
                 .font(.playerComapareSaying)
                 .multilineTextAlignment(.center)
                 .foregroundStyle(.playerCompareStyle)

@@ -191,8 +191,10 @@ extension DistanceChartView {
     
     @ViewBuilder
     private var averageDistanceView: some View {
+        let player = FileLoader.distance.randomElement()
+
         VStack(spacing: 16) {
-            Text(Phrase.randomElement.saying)
+            Text("\(player?.name ?? "Lionel Messi")의 경기당 뛴거리는 \(player?.distancePer90min ?? "7.2")km입니다.")
                 .multilineTextAlignment(.center)
                 .font(.playerComapareSaying)
                 .foregroundStyle(.playerCompareStyle)
