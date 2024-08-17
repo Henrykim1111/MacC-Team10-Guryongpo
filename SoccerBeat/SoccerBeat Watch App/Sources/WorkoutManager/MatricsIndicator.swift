@@ -74,7 +74,7 @@ final class MatricsIndicator: NSObject, ObservableObject {
     var energy: Double = 0 // 칼로리
     var power: Double = 0.0
     var maxSpeedMPS: Double = 0.0
-    var maxPower: Double = 0.0
+    var acceleration: Double = 0.0
 
     // TODO: - WorkoutData로 반환하도록 설정
     func getMetadata() -> [String: Any] {
@@ -84,10 +84,8 @@ final class MatricsIndicator: NSObject, ObservableObject {
             "MinHeartRate": saveMinHeartRate != 300 ? saveMinHeartRate : 0,
             "MaxHeartRate": saveMaxHeartRate,
             "Distance": Double((distanceMeter / 1000).rounded(at: 1)), // km
-            "MaxPower": Double(maxPower.rounded(at: 1)), // w
-            
-            //MARK: 기존의 유저들의 데이터가 날아가지 않도록 하기 위한 데이터
-            "Power": Double(power.rounded(at: 1))
+            "Power": Double(power.rounded(at: 1)), // w
+            "Acceleration": Double(acceleration.rounded(at: 2))
         ]
     }
     
@@ -165,6 +163,7 @@ final class MatricsIndicator: NSObject, ObservableObject {
     }
     
     private func calculateSpeedMatrics(before: Double, current: Double) {
+        acceleration = max(current - before, acceleration)
         // 최고 속도
         maxSpeedMPS = max(maxSpeedMPS, current)
         // 스프린트 카운트
@@ -183,6 +182,6 @@ final class MatricsIndicator: NSObject, ObservableObject {
     }
     
     private func calculateMaxPower(before: Double, current: Double) {
-        maxPower = max(maxPower, current)
+        power = max(power, current)
     }
 }

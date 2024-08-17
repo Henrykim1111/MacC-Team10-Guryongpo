@@ -64,7 +64,6 @@ final class ProfileModel: ObservableObject {
             }
             
             if workout.velocity < 10 {
-                1
             } else if (10 <= workout.velocity && workout.velocity < 15) {
                 
                 allBadges[2][0] = true
