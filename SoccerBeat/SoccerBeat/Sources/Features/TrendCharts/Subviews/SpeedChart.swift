@@ -194,9 +194,14 @@ extension SpeedChartView {
     @ViewBuilder
     private var averageSpeedView: some View {
         let player = FileLoader.topSpeed.randomElement()
+        let topSpeedMessage = String(
+            format: "%@의 최고 속도는 %@km/h입니다.",
+            player?.name ?? "Lionel Messi",
+            player?.topSpeed ?? "33.2"
+        )
 
         VStack(spacing: 16) {
-            Text("\(player?.name ?? "Lionel Messi")의 최고 속도는 \(player?.topSpeed ?? "33.8")km/h입니다.")
+            Text(topSpeedMessage)
                 .font(.playerComapareSaying)
                 .multilineTextAlignment(.center)
                 .foregroundStyle(.playerCompareStyle)

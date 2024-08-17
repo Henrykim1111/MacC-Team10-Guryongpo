@@ -193,9 +193,14 @@ extension BPMChartView {
     @ViewBuilder
     private var averageMaximumBpmView: some View {
         let player = FileLoader.heartRate.randomElement()
+        let heartRateMessage = String(
+            format: "%@의 결승골 득점시 심박수는 %@입니다.",
+            player?.name ?? "Lionel Messi",
+            player?.heartRate.gameWinningGoal ?? "175"
+        )
 
         VStack(spacing: 16) {
-            Text("\(player?.name ?? "Lionel Messi")의 결승골을 넣을 때 심박수는 \(player?.heartRate.gameWinningGoal ?? "178")입니다.")
+            Text(heartRateMessage)
                 .font(.playerComapareSaying)
                 .multilineTextAlignment(.center)
                 .foregroundStyle(.playerCompareStyle)
