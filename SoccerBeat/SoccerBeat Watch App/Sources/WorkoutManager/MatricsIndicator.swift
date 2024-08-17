@@ -85,7 +85,7 @@ final class MatricsIndicator: NSObject, ObservableObject {
             "MaxHeartRate": saveMaxHeartRate,
             "Distance": Double((distanceMeter / 1000).rounded(at: 1)), // km
             "Power": Double(power.rounded(at: 1)), // w
-            "Acceleration": Double(acceleration.rounded(at: 2))
+            "Acceleration": Double(acceleration.rounded(at: 1))
         ]
     }
     
