@@ -154,7 +154,7 @@ final class MatricsIndicator: NSObject, ObservableObject {
                 self.energy = statistics.sumQuantity()?.doubleValue(for: HKUnit(from: "kcal")) ?? 0
             case HKQuantityType.quantityType(forIdentifier: .runningPower):
                 let oldPower = self.power
-                self.power = statistics.sumQuantity()?.doubleValue(for: HKUnit(from: "W")) ?? 0
+                self.power = statistics.mostRecentQuantity()?.doubleValue(for: HKUnit.watt()) ?? 0
                 self.calculateMaxPower(before: oldPower, current: self.power)
             default:
                 return
