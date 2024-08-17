@@ -19,7 +19,6 @@ final class WorkoutManager: NSObject, ObservableObject {
         self.matrics = matrics
         super.init()
         locationManager.delegate = self
-        locationManager.allowsBackgroundLocationUpdates = true
         locationManager.requestWhenInUseAuthorization()
         requestHealthAuthorization()
     }

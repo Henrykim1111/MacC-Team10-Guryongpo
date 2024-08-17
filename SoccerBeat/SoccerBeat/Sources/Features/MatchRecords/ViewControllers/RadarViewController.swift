@@ -92,17 +92,17 @@ class RadarViewController: UIViewController, TKRadarChartDataSource, TKRadarChar
     // Color of inside area of the graph.
     func colorOfSectionFillForRadarChart(_ radarChart: TKRadarChart, section: Int) -> UIColor {
         if section == 0 {
-            return UIColor(red:0.282,  green:1,  blue:1, alpha: error ? 0 : 0.5)
-        } else {
             return UIColor.clear
+        } else {
+            return UIColor(red:0.282,  green:1,  blue:1, alpha: error ? 0 : 0.5)
         }
     }
     
     func colorOfSectionBorderForRadarChart(_ radarChart: TKRadarChart, section: Int) -> UIColor {
         if section == 0 {
-            return UIColor(red:0,  green:1,  blue:0.878, alpha: error ? 0 : 1)
+            return UIColor(.matchDetailViewTitleColor)
         } else {
-            return UIColor(red:1,  green:0,  blue:0.478, alpha: error ? 0 : 0.7)
+            return UIColor(red:0,  green:1,  blue:0.878, alpha: error ? 0 : 1)
         }
     }
     

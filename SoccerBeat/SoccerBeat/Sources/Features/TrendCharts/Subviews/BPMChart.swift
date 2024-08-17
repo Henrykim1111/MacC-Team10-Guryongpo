@@ -20,31 +20,29 @@ struct BPMChartView: View {
         let fastest = maximum(of: workouts)
         let slowest = minimum(of: workouts)
         
-        return VStack(alignment: .leading) {
+        return VStack(alignment: .center) {
             HStack {
-                InformationButton(message: "최근 심박수의 변화입니다.")
+                VStack(alignment: .leading) {
+                    InformationButton(message: "최근 심박수의 변화입니다.")
+                    Text("심박수")
+                        .font(.navigationSportySubTitle)
+                        .foregroundStyle(.navigationSportyHead)
+                    Text("The trends of")
+                    Text("Heartbeat")
+                        .foregroundStyle(.navigationSportyBPMTitle)
+                        .highlighter(activity: .heartrate, isDefault: false)
+                }
+                .font(.navigationSportyTitle)
+                .padding(.top, 32)
+                
                 Spacer()
             }
             
-            VStack(alignment: .leading) {
-                Text("심박수")
-                    .font(.navigationSportySubTitle)
-                    .foregroundStyle(.navigationSportyHead)
-                Text("The trends of")
-                Text("Heartbeat")
-                    .foregroundStyle(.navigationSportyBPMTitle)
-                    .highlighter(activity: .heartrate, isDefault: false)
-            }
-            .font(.navigationSportyTitle)
-            .padding(.top, 32)
-            
             BPMChartView(fastest: fastest, slowest: slowest)
-            
-            Spacer()
-                .frame(height: 30)
             
             averageMaximumBpmView
                 .padding(.horizontal, 48)
+                .padding(.top, 30)
             
             Spacer()
         }
@@ -194,31 +192,39 @@ extension BPMChartView {
     
     @ViewBuilder
     private var averageMaximumBpmView: some View {
-        LightRectangleView(color: .chartBoxBackground.opacity(0.4))
-            .frame(height: 100)
-            .overlay {
-                VStack(spacing: 4) {
-                    Text("해리 케인의 평소 심박수는 40bpm 입니다.")
-                        .font(.playerComapareSaying)
-                        .foregroundStyle(.playerCompareStyle)
-                    Spacer()
-                    Text("최근 경기 평균")
-                        .font(.averageText)
-                        .foregroundStyle(.averageTextStyle)
-                    Group {
-                        if !workouts.isEmpty {
-                            Text(average(of: workouts).rounded(at: 0))
-                            + Text(" Bpm")
-                        } else {
-                            Text("--")
-                            + Text(" Bpm")
-                        }
-                    }
-                    .font(.averageValue)
-                    .foregroundStyle(.navigationSportyBPMTitle)
+        let player = FileLoader.heartRate.randomElement()
+
+        let heartRateMessage = String(
+            format: "%@의 결승골 득점시 심박수는 %@입니다.".localized(),
+            player?.name ?? "Lionel Messi",
+            player?.heartRate.gameWinningGoal ?? "175"
+        )
+
+        VStack(spacing: 16) {
+            Text(heartRateMessage)
+                .font(.playerComapareSaying)
+                .multilineTextAlignment(.center)
+                .foregroundStyle(.playerCompareStyle)
+
+            Text("최근 경기 평균")
+                .font(.averageText)
+                .foregroundStyle(.averageTextStyle)
+            Group {
+                if !workouts.isEmpty {
+                    Text(average(of: workouts).rounded(at: 0))
+                    + Text(" Bpm")
+                } else {
+                    Text("--")
+                    + Text(" Bpm")
                 }
-                .padding()
             }
+            .font(.averageValue)
+            .foregroundStyle(.navigationSportyBPMTitle)
+        }
+        .padding()
+        .overlay {
+            LightRectangleView(color: .chartBoxBackground.opacity(0.4))
+        }
     }
 }
 

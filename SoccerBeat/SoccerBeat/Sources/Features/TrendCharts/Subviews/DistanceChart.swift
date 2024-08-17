@@ -20,33 +20,32 @@ struct DistanceChartView: View {
         let fastest = maximum(of: workouts)
         let slowest = minimum(of: workouts)
         
-        return VStack(alignment: .leading) {
+        return VStack(alignment: .center) {
             HStack {
-                InformationButton(message: "최근 뛴 거리의 변화입니다.")
-                
+                VStack(alignment: .leading) {
+                    InformationButton(message: "최근 뛴 거리의 변화입니다.")
+
+                    Text("뛴 거리")
+                        .font(.navigationSportySubTitle)
+                        .foregroundStyle(.navigationSportyHead)
+                    Text("The trends of")
+                    Text("Distance")
+                        .foregroundStyle(.navigationSportyDistanceTitle)
+                        .highlighter(activity: .distance, isDefault: false)
+                }
+                .font(.navigationSportyTitle)
+                .padding(.top, 32)
+
                 Spacer()
             }
-            
-            VStack(alignment: .leading) {
-                Text("뛴 거리")
-                    .font(.navigationSportySubTitle)
-                    .foregroundStyle(.navigationSportyHead)
-                Text("The trends of")
-                Text("Distance")
-                    .foregroundStyle(.navigationSportyDistanceTitle)
-                    .highlighter(activity: .distance, isDefault: false)
-            }
-            .font(.navigationSportyTitle)
-            .padding(.top, 32)
+
             
             distanceChartView(fastest: fastest, slowest: slowest)
             
-            Spacer()
-                .frame(height: 30)
-            
             averageDistanceView
                 .padding(.horizontal, 48)
-            
+                .padding(.top, 30)
+
             Spacer()
         }
         .padding()
@@ -192,31 +191,39 @@ extension DistanceChartView {
     
     @ViewBuilder
     private var averageDistanceView: some View {
-        LightRectangleView(color: .chartBoxBackground.opacity(0.4))
-            .frame(height: 100)
-            .overlay {
-                VStack(spacing: 4) {
-                    Text("음바페의 경기 평균 뛴 거리는 12km 입니다.")
-                        .font(.playerComapareSaying)
-                        .foregroundStyle(.playerCompareStyle)
-                    Spacer()
-                    Text("최근 경기 평균")
-                        .font(.averageText)
-                        .foregroundStyle(.averageTextStyle)
-                    Group {
-                        if !workouts.isEmpty {
-                            Text(average(of: workouts).rounded())
-                            + Text(" km")
-                        } else {
-                            Text("--")
-                            + Text(" km")
-                        }
-                    }
-                    .font(.averageValue)
-                    .foregroundStyle(.navigationSportyDistanceTitle)
+        let player = FileLoader.distance.randomElement()
+
+        let distanceMessage = String(
+            format: "%@의 평균 활동량은 %@km입니다.".localized(),
+            player?.name ?? "Lionel Messi",
+            player?.distancePer90min ?? "7.2"
+        )
+
+        VStack(spacing: 16) {
+            Text(distanceMessage)
+                .multilineTextAlignment(.center)
+                .font(.playerComapareSaying)
+                .foregroundStyle(.playerCompareStyle)
+
+            Text("최근 경기 평균")
+                .font(.averageText)
+                .foregroundStyle(.averageTextStyle)
+            Group {
+                if !workouts.isEmpty {
+                    Text(average(of: workouts).rounded())
+                    + Text(" km")
+                } else {
+                    Text("--")
+                    + Text(" km")
                 }
-                .padding()
             }
+            .font(.averageValue)
+            .foregroundStyle(.navigationSportyDistanceTitle)
+        }
+        .padding()
+        .overlay {
+            LightRectangleView(color: .chartBoxBackground.opacity(0.4))
+        }
     }
 }
 

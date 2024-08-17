@@ -21,34 +21,31 @@ struct SpeedChartView: View {
         let fastest = maximum(of: workouts)
         let slowest = minimum(of: workouts)
         
-        return VStack(alignment: .leading) {
+        return VStack(alignment: .center) {
             HStack {
-                InformationButton(message: "최근 최고 속도의 변화입니다.")
-                
+                VStack(alignment: .leading) {
+                    InformationButton(message: "최근 최고 속도의 변화입니다.")
+                    Text("최대 속도")
+                        .font(.navigationSportySubTitle)
+                        .foregroundStyle(.navigationSportyHead)
+                    Text("The trends of")
+                    Text("Maximum Speed")
+                        .foregroundStyle(.navigationSportySpeedTitle)
+                        .highlighter(activity: .speed, isDefault: false)
+                }
+                .font(.navigationSportyTitle)
+                .padding(.top, 32)
+
                 Spacer()
             }
-            
-            
-            VStack(alignment: .leading) {
-                Text("최대 속도")
-                    .font(.navigationSportySubTitle)
-                    .foregroundStyle(.navigationSportyHead)
-                Text("The trends of")
-                Text("Maximum Speed")
-                    .foregroundStyle(.navigationSportySpeedTitle)
-                    .highlighter(activity: .speed, isDefault: false)
-            }
-            .font(.navigationSportyTitle)
-            .padding(.top, 32)
+
             
             speedChartView(fastest: fastest, slowest: slowest)
             
-            Spacer()
-                .frame(height: 30)
-            
             averageSpeedView
                 .padding(.horizontal, 48)
-            
+                .padding(.top, 30)
+
             Spacer()
         }
         .padding()
@@ -196,31 +193,39 @@ extension SpeedChartView {
     
     @ViewBuilder
     private var averageSpeedView: some View {
-        LightRectangleView(color: .chartBoxBackground.opacity(0.4))
-            .frame(height: 100)
-            .overlay {
-                VStack(spacing: 4) {
-                    Text("음바페의 경기 최고 속도는 36km/h 입니다.")
-                        .font(.playerComapareSaying)
-                        .foregroundStyle(.playerCompareStyle)
-                    Spacer()
-                    Text("최근 경기 평균")
-                        .font(.averageText)
-                        .foregroundStyle(.averageTextStyle)
-                    Group {
-                        if !workouts.isEmpty {
-                            Text(average(of: workouts).rounded(at: 1))
-                            + Text(" km/h")
-                        } else {
-                            Text("--")
-                            + Text(" km/h")
-                        }
-                    }
-                    .font(.averageValue)
-                    .foregroundStyle(.navigationSportySpeedTitle)
+        let player = FileLoader.topSpeed.randomElement()
+
+        let topSpeedMessage = String(
+            format: "%@의 최고 속도는 %@km/h입니다.".localized(),
+            player?.name ?? "Lionel Messi",
+            player?.topSpeed ?? "33.2"
+        )
+
+        VStack(spacing: 16) {
+            Text(topSpeedMessage)
+                .font(.playerComapareSaying)
+                .multilineTextAlignment(.center)
+                .foregroundStyle(.playerCompareStyle)
+
+            Text("최근 경기 평균")
+                .font(.averageText)
+                .foregroundStyle(.averageTextStyle)
+            Group {
+                if !workouts.isEmpty {
+                    Text(average(of: workouts).rounded(at: 1))
+                    + Text(" km/h")
+                } else {
+                    Text("--")
+                    + Text(" km/h")
                 }
-                .padding()
             }
+            .font(.averageValue)
+            .foregroundStyle(.navigationSportySpeedTitle)
+        }
+        .padding()
+        .overlay {
+            LightRectangleView(color: .chartBoxBackground.opacity(0.4))
+        }
     }
 }
 
