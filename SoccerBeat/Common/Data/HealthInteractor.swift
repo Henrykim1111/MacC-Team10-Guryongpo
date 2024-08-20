@@ -186,6 +186,9 @@ final class HealthInteractor: NSObject, ObservableObject {
         var minHeartRate = 0
         var heartRates:[Int] = []
         var power = 0.0
+        var calories = 0
+        
+        print(metadata)
 
         if let distanceMeta: Double = metadata.getValue(forKey: "Distance") {
             distance = distanceMeta
@@ -215,6 +218,10 @@ final class HealthInteractor: NSObject, ObservableObject {
         if let heartRatesMeta: String = metadata.getValue(forKey: "HeartRates") {
             heartRates = heartRatesMeta.split(separator: ",").map { Int($0) ?? 0 }
         } // if no heartRates, but this is not an error
+        
+        if let caloriesMeta: Int = metadata.getValue(forKey: "Calories") {
+            calories = caloriesMeta
+        }
 
         return WorkoutData(dataID: index+1,
                            date: dateFormatter.string(from: workout.startDate),
@@ -229,6 +236,7 @@ final class HealthInteractor: NSObject, ObservableObject {
                            route: routes,
                            center: [latSum / Double(dotCount),
                                     lonSum / Double(dotCount)],
+                           calories: calories,
                            error: dataError)
     }
 
