@@ -84,7 +84,6 @@ final class WorkoutManager: NSObject, ObservableObject {
         // workout configuration 설정
         let configuration = HKWorkoutConfiguration()
         configuration.activityType = .running
-        // TODO: - .indoor 하면 실내 풋살 가능?
         configuration.locationType = .outdoor
 
         // 세션, 빌더, 루트 빌더, 로케이션 매니저 초기화

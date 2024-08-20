@@ -21,6 +21,11 @@ final class MatricsIndicator: NSObject, ObservableObject {
             if saveMaxHeartRate < Int(heartRate) {
                 saveMaxHeartRate = Int(heartRate)
             }
+            
+            if heartRate != 0 {
+                self.saveHeartRates.append(Int(heartRate))
+                print(saveHeartRates)
+            }
         }
     }
     
@@ -69,6 +74,7 @@ final class MatricsIndicator: NSObject, ObservableObject {
     // 데이터 기록 변수
     var saveMinHeartRate: Int = 300 // 심박최고수 저장
     var saveMaxHeartRate: Int = 0
+    var saveHeartRates: [Int] = []
 
     // 데이터 표기 변수
     var energy: Double = 0 // 칼로리
@@ -83,6 +89,7 @@ final class MatricsIndicator: NSObject, ObservableObject {
             "SprintCount": sprintCount,
             "MinHeartRate": saveMinHeartRate != 300 ? saveMinHeartRate : 0,
             "MaxHeartRate": saveMaxHeartRate,
+            "HeartRates": saveHeartRates.map {String($0)}.joined(separator: ","),
             "Distance": Double((distanceMeter / 1000).rounded(at: 1)), // km
             "Power": Double(power.rounded(at: 1)), // w
             "Acceleration": Double(acceleration.rounded(at: 1))
@@ -120,6 +127,7 @@ final class MatricsIndicator: NSObject, ObservableObject {
         zone5Count = 0
         saveMaxHeartRate = 0
         saveMinHeartRate = 300
+        saveHeartRates = []
         
         distanceMeter = 0
         maxSpeedMPS = 0
@@ -142,7 +150,7 @@ final class MatricsIndicator: NSObject, ObservableObject {
             switch statistics.quantityType {
             case HKQuantityType.quantityType(forIdentifier: .heartRate):
                 let heartRateUnit = HKUnit.count().unitDivided(by: HKUnit.minute())
-                self.heartRate  = statistics.mostRecentQuantity()?.doubleValue(for: heartRateUnit) ?? 0.0
+                self.heartRate = statistics.mostRecentQuantity()?.doubleValue(for: heartRateUnit) ?? 0.0
             case HKQuantityType.quantityType(forIdentifier: .distanceWalkingRunning):
                 let meterUnit = HKUnit.meter()
                 self.distanceMeter = statistics.sumQuantity()?.doubleValue(for: meterUnit) ?? 0
