@@ -38,7 +38,6 @@ final class MatricsIndicator: NSObject, ObservableObject {
     // MARK: - Distance
     @Published var distanceMeter: Double = 0
     @Published var sprintCount: Int = 0 // default setup
-    
 
     // MARK: - 심박수 위험 지대 감지
     @Published var isInZone5For2Min = false
@@ -92,7 +91,8 @@ final class MatricsIndicator: NSObject, ObservableObject {
             "HeartRates": saveHeartRates.map {String($0)}.joined(separator: ","),
             "Distance": Double((distanceMeter / 1000).rounded(at: 1)), // km
             "Power": Double(power.rounded(at: 1)), // w
-            "Acceleration": Double(acceleration.rounded(at: 1))
+            "Acceleration": Double(acceleration.rounded(at: 1)),
+            "Calories": Int(energy)
         ]
     }
     

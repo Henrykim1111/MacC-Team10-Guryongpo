@@ -32,7 +32,6 @@ final class WorkoutManager: NSObject, ObservableObject {
                                      HKSeriesType.workoutRoute(),
                                      HKQuantityType.quantityType(forIdentifier: .runningSpeed)!,
                                      HKQuantityType.quantityType(forIdentifier: .distanceWalkingRunning)!
-
     ]
 
     private let typesToRead: Set = [
@@ -41,6 +40,7 @@ final class WorkoutManager: NSObject, ObservableObject {
         HKQuantityType.quantityType(forIdentifier: .runningSpeed)!,
         HKQuantityType.quantityType(forIdentifier: .walkingSpeed)!,
         HKQuantityType.quantityType(forIdentifier: .runningPower)!,
+        HKQuantityType.quantityType(forIdentifier: .activeEnergyBurned)!,
         HKSeriesType.workoutType(),
         HKSeriesType.workoutRoute(),
         HKObjectType.activitySummaryType()
