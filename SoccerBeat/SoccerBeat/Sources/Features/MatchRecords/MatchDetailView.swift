@@ -318,16 +318,16 @@ struct FieldRecordDataView: View {
                     }
                     
                     VStack(alignment: .leading) {
-                        Text("최소 심박수")
+                        Text(workout?.calories != 0 ? "칼로리" : "최소 심박수")
                             .font(.fieldRecordTitle)
                         HStack(alignment: .bottom, spacing: 0) {
                             if let workout = workout {
-                                Text(workout.error ? "--" : workout.minHeartRate.formatted())
+                                Text(workout.error ? "--" :  workout.calories != 0  ? workout.calories.formatted() : workout.minHeartRate.formatted())
                                     .font(.fieldRecordMeasure)
                             } else {
                                 Text("--")
                             }
-                            Text(" Bpm")
+                            Text(workout?.calories != 0 ? " Kcal" : "Bpm")
                                 .font(.fieldRecordUnit)
                         }
                     }
