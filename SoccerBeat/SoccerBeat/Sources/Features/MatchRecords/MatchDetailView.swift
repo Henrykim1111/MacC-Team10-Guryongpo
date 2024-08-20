@@ -204,6 +204,28 @@ struct FieldRecordView: View {
                 }
             }
             FieldRecordDataView(workout: workout)
+            
+            Spacer()
+                .frame(minHeight: 30)
+            
+            if let rates = workout?.heartRates {
+                if !rates.isEmpty {
+                    HStack {
+                        VStack(alignment: .leading) {
+                            Spacer()
+                            VStack(alignment: .leading, spacing: -8) {
+                                Text("Heart Beat")
+                            }
+                            .font(.matchDetailTitle)
+                        }
+                        Spacer()
+                    }
+
+                    HeartRatesView(rates: rates)
+                        .frame(height: 200)
+                        .padding(.vertical)
+                }
+            }
         }
     }
 }

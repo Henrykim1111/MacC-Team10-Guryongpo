@@ -10,7 +10,7 @@ import SwiftUI
 
 struct HeartRatesView: View {
     let symbolSize: CGFloat = 30
-    let rates:[Int]
+    let rates: [Int]
     
     var body: some View {
             Chart(0..<rates.count, id: \.self) { count in
@@ -32,10 +32,9 @@ struct HeartRatesView: View {
                     AxisValueLabel(format: .dateTime.weekday(.narrow), centered: true)
                 }
             }
-            .chartYScale(domain: 50...240)
+            .chartYScale(domain: ((rates.min() ?? 50) - 10)...((rates.max() ?? 200) + 10))
             .chartYScale(range: .plotDimension(endPadding: 8))
             .chartXScale(range: .plotDimension(startPadding: 10, endPadding: 10))
-            .chartLegend(.hidden)
     }
 }
 
