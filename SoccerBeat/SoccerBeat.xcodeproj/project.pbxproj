@@ -30,8 +30,6 @@
 		685D7B752AE53DC400783433 /* SpeedChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 685D7B742AE53DC400783433 /* SpeedChart.swift */; };
 		686E998A2BD0DB4900B9FD56 /* NameFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 686E99892BD0DB4900B9FD56 /* NameFieldView.swift */; };
 		6876C0BF2B0B7F73005C6872 /* FifaBackground.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 6876C0BE2B0B7F73005C6872 /* FifaBackground.mp3 */; };
-		688DEBDD2BF4A4B300F75E1A /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 688DEBDB2BF4A4B300F75E1A /* Localizable.strings */; };
-		688DEBDE2BF4A4B300F75E1A /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 688DEBDB2BF4A4B300F75E1A /* Localizable.strings */; };
 		6898F2852AEFD7FC0075A573 /* SprintView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6898F2842AEFD7FC0075A573 /* SprintView.swift */; };
 		68B0732E2AF11847004C723F /* AlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68B0732C2AF11847004C723F /* AlertView.swift */; };
 		68C47FAD2C746A0700019099 /* HeartRatesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68C47FAC2C746A0700019099 /* HeartRatesView.swift */; };
@@ -122,6 +120,7 @@
 		BEB666C22AE4E16D0090195A /* StartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEB666C12AE4E16D0090195A /* StartView.swift */; };
 		BEB7684B2BC3E5B500C5DA05 /* BPMView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEB7684A2BC3E5B500C5DA05 /* BPMView.swift */; };
 		BEC1E5CE2AE6A254008B285E /* ElapsedTimeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEC1E5CD2AE6A254008B285E /* ElapsedTimeView.swift */; };
+		BEC953A32C75FDE400EFF3C2 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = BEC953A22C75FDE400EFF3C2 /* Localizable.xcstrings */; };
 		BECCFAB22B0665D2009F4BE5 /* SpeedChartOverview.swift in Sources */ = {isa = PBXBuildFile; fileRef = BECCFAB12B0665D2009F4BE5 /* SpeedChartOverview.swift */; };
 		BECCFAB42B06698F009F4BE5 /* DistanceChartOverview.swift in Sources */ = {isa = PBXBuildFile; fileRef = BECCFAB32B06698F009F4BE5 /* DistanceChartOverview.swift */; };
 		BECCFAB62B066AC4009F4BE5 /* BPMChartOverview.swift in Sources */ = {isa = PBXBuildFile; fileRef = BECCFAB52B066AC4009F4BE5 /* BPMChartOverview.swift */; };
@@ -214,11 +213,8 @@
 		685D7B6D2AE5396200783433 /* LightRectangleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LightRectangleView.swift; sourceTree = "<group>"; };
 		685D7B742AE53DC400783433 /* SpeedChart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeedChart.swift; sourceTree = "<group>"; };
 		686E99892BD0DB4900B9FD56 /* NameFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NameFieldView.swift; sourceTree = "<group>"; };
-		687606A52BFB61D50023B4F0 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		687606A62BFB61D50023B4F0 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.json; name = "zh-Hans"; path = "zh-Hans.lproj/Phrase.json"; sourceTree = "<group>"; };
 		6876C0BE2B0B7F73005C6872 /* FifaBackground.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = FifaBackground.mp3; sourceTree = "<group>"; };
-		688DEBDC2BF4A4B300F75E1A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
-		688DEBDF2BF4A4C400F75E1A /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/Localizable.strings; sourceTree = "<group>"; };
 		688DEBE52BF4E07200F75E1A /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.json; name = ko; path = ko.lproj/Phrase.json; sourceTree = "<group>"; };
 		6898F2842AEFD7FC0075A573 /* SprintView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SprintView.swift; sourceTree = "<group>"; };
 		68B0732C2AF11847004C723F /* AlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertView.swift; sourceTree = "<group>"; };
@@ -283,6 +279,7 @@
 		BEB7684A2BC3E5B500C5DA05 /* BPMView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BPMView.swift; sourceTree = "<group>"; };
 		BEC1E5CD2AE6A254008B285E /* ElapsedTimeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElapsedTimeView.swift; sourceTree = "<group>"; };
 		BEC1E5CF2AE6B4AF008B285E /* SoccerBeat-Watch-App-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "SoccerBeat-Watch-App-Info.plist"; sourceTree = SOURCE_ROOT; };
+		BEC953A22C75FDE400EFF3C2 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
 		BECCFAB12B0665D2009F4BE5 /* SpeedChartOverview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeedChartOverview.swift; sourceTree = "<group>"; };
 		BECCFAB32B06698F009F4BE5 /* DistanceChartOverview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DistanceChartOverview.swift; sourceTree = "<group>"; };
 		BECCFAB52B066AC4009F4BE5 /* BPMChartOverview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BPMChartOverview.swift; sourceTree = "<group>"; };
@@ -309,7 +306,7 @@
 		D3D1749F2B00FE230022F631 /* RadarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RadarViewController.swift; sourceTree = "<group>"; };
 		D3D4F1892AF248CE006C6B8A /* HealthInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthInteractor.swift; sourceTree = "<group>"; };
 		D3D4F18C2AF26662006C6B8A /* WorkoutData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutData.swift; sourceTree = "<group>"; };
-		D3D7D1262AF23CA000B89196 /* SoccerBeat.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SoccerBeat.entitlements; sourceTree = "<group>"; };
+		D3D7D1262AF23CA000B89196 /* SoccerBeat.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = SoccerBeat.entitlements; path = Common/Resource/SoccerBeat.entitlements; sourceTree = SOURCE_ROOT; };
 		FB2EC9BF2B0AF8BB0050B0E8 /* SF-Pro-Text-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Text-Regular.otf"; sourceTree = "<group>"; };
 		FB2EC9C22B0B50BB0050B0E8 /* BadgeImageDictionary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BadgeImageDictionary.swift; sourceTree = "<group>"; };
 		FB2EC9C52B0B527F0050B0E8 /* SF-Pro-Text-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Text-Bold.otf"; sourceTree = "<group>"; };
@@ -319,7 +316,7 @@
 		FBA3DA802B03B5770025AD7B /* SF-Pro-Display-HeavyItalic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Display-HeavyItalic.otf"; sourceTree = "<group>"; };
 		FBA3DA862B03B9F20025AD7B /* SF-Pro-Display-RegularItalic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Display-RegularItalic.otf"; sourceTree = "<group>"; };
 		FBCED91F2AE3D38900C57BF9 /* MyCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCardView.swift; sourceTree = "<group>"; };
-		FBCED9252AE3DF5900C57BF9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FBCED9252AE3DF5900C57BF9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = Common/Resource/Info.plist; sourceTree = SOURCE_ROOT; };
 		FBCED9312AE4218E00C57BF9 /* MatchRecapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchRecapView.swift; sourceTree = "<group>"; };
 		FBCED9342AE4A83900C57BF9 /* MatchDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchDetailView.swift; sourceTree = "<group>"; };
 		FBE203932AF1ED7B000E47FE /* NotoSansDisplay-BlackItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSansDisplay-BlackItalic.ttf"; sourceTree = "<group>"; };
@@ -412,7 +409,10 @@
 		BE0D7D7B2BD14B2100966FF7 /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				D3D7D1262AF23CA000B89196 /* SoccerBeat.entitlements */,
+				FBCED9252AE3DF5900C57BF9 /* Info.plist */,
 				BE0D7D7C2BD14B4800966FF7 /* PrivacyInfo.xcprivacy */,
+				BEC953A22C75FDE400EFF3C2 /* Localizable.xcstrings */,
 			);
 			path = Resource;
 			sourceTree = "<group>";
@@ -497,6 +497,14 @@
 			path = StartPauseControl;
 			sourceTree = "<group>";
 		};
+		BEC953A12C75FDB700EFF3C2 /* Application */ = {
+			isa = PBXGroup;
+			children = (
+				D3C500122AE36F3F00EFAEFF /* SoccerBeatApp.swift */,
+			);
+			path = Application;
+			sourceTree = "<group>";
+		};
 		D3C500062AE36F3E00EFAEFF = {
 			isa = PBXGroup;
 			children = (
@@ -524,10 +532,6 @@
 				FB954AF52BB2ADFA00A365FB /* Sources */,
 				685D7B662AE52A2100783433 /* Resources */,
 				D3C500182AE36F3F00EFAEFF /* Preview Content */,
-				D3C500122AE36F3F00EFAEFF /* SoccerBeatApp.swift */,
-				D3D7D1262AF23CA000B89196 /* SoccerBeat.entitlements */,
-				FBCED9252AE3DF5900C57BF9 /* Info.plist */,
-				688DEBDB2BF4A4B300F75E1A /* Localizable.strings */,
 			);
 			path = SoccerBeat;
 			sourceTree = "<group>";
@@ -566,6 +570,7 @@
 		FB954AF52BB2ADFA00A365FB /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				BEC953A12C75FDB700EFF3C2 /* Application */,
 				FB954AF62BB2AE0300A365FB /* Features */,
 				FB954AF72BB2AE0800A365FB /* Components */,
 				BEA5764B2C704FB400B88773 /* Infrastructure */,
@@ -913,13 +918,14 @@
 			};
 			buildConfigurationList = D3C5000A2AE36F3E00EFAEFF /* Build configuration list for PBXProject "SoccerBeat" */;
 			compatibilityVersion = "Xcode 14.0";
-			developmentRegion = en;
+			developmentRegion = ko;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
 				ko,
 				Base,
 				"zh-Hans",
+				es,
 			);
 			mainGroup = D3C500062AE36F3E00EFAEFF;
 			packageReferences = (
@@ -959,10 +965,10 @@
 				BEA576462C704E8800B88773 /* TopSpeed.json in Resources */,
 				BE323D452B0CC4A700F289D4 /* SF-Pro-Text-Light.otf in Resources */,
 				BE4069CF2AF1F80D00FA3030 /* SF-Compact-Text-SemiboldItalic.otf in Resources */,
+				BEC953A32C75FDE400EFF3C2 /* Localizable.xcstrings in Resources */,
 				BE323D422B0CC49500F289D4 /* SF-Pro-Text-Medium.otf in Resources */,
 				BE323D482B0CC5DE00F289D4 /* SF-Pro-Text-MediumItalic.otf in Resources */,
 				D3C5001A2AE36F3F00EFAEFF /* Preview Assets.xcassets in Resources */,
-				688DEBDD2BF4A4B300F75E1A /* Localizable.strings in Resources */,
 				FB2EC9C02B0AF8BB0050B0E8 /* SF-Pro-Text-Regular.otf in Resources */,
 				BE4069D12AF1F80D00FA3030 /* SF-Pro-Text-HeavyItalic.otf in Resources */,
 				BE4069C72AF1F80D00FA3030 /* SF-Pro-Text-BlackItalic.otf in Resources */,
@@ -996,7 +1002,6 @@
 				D3C5002C2AE36F4000EFAEFF /* Preview Assets.xcassets in Resources */,
 				FB2EC9C12B0AF8BB0050B0E8 /* SF-Pro-Text-Regular.otf in Resources */,
 				BE4069D22AF1F80D00FA3030 /* SF-Pro-Text-HeavyItalic.otf in Resources */,
-				688DEBDE2BF4A4B300F75E1A /* Localizable.strings in Resources */,
 				FBA3DA882B03B9F20025AD7B /* SF-Pro-Display-RegularItalic.otf in Resources */,
 				BED269772AFC6FB200153DE8 /* SF-Pro-Text-RegularItalic.otf in Resources */,
 				BE4069C82AF1F80D00FA3030 /* SF-Pro-Text-BlackItalic.otf in Resources */,
@@ -1174,16 +1179,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		688DEBDB2BF4A4B300F75E1A /* Localizable.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				688DEBDC2BF4A4B300F75E1A /* en */,
-				688DEBDF2BF4A4C400F75E1A /* ko */,
-				687606A52BFB61D50023B4F0 /* zh-Hans */,
-			);
-			name = Localizable.strings;
-			sourceTree = "<group>";
-		};
 		BE4069962AF0E84300FA3030 /* Phrase.json */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -1408,7 +1403,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = SoccerBeat/SoccerBeat.entitlements;
+				CODE_SIGN_ENTITLEMENTS = Common/Resource/SoccerBeat.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
@@ -1418,7 +1413,7 @@
 				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = 8S86367NT3;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = SoccerBeat/Info.plist;
+				INFOPLIST_FILE = Common/Resource/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = SoccerBeat;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.sports";
 				INFOPLIST_KEY_NSHealthShareUsageDescription = "축구 기록을 활용하기 위해 건강 정보가 필요합니다.";
@@ -1457,7 +1452,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = SoccerBeat/SoccerBeat.entitlements;
+				CODE_SIGN_ENTITLEMENTS = Common/Resource/SoccerBeat.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
@@ -1467,7 +1462,7 @@
 				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = 8S86367NT3;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = SoccerBeat/Info.plist;
+				INFOPLIST_FILE = Common/Resource/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = SoccerBeat;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.sports";
 				INFOPLIST_KEY_NSHealthShareUsageDescription = "축구 기록을 활용하기 위해 건강 정보가 필요합니다.";
