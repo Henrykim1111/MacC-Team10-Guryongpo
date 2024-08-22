@@ -31,6 +31,7 @@ struct WorkoutData: Hashable, Equatable, Identifiable {
         heartRate["min", default: 50] // Minimum heart rate during the match.
     }
     var calories: Int
+    var vo2Max: Double
     
     var error = false
     
@@ -110,6 +111,7 @@ struct WorkoutData: Hashable, Equatable, Identifiable {
                               route: [],
                               center: [37.58647414212885, 126.9748537678651],
                               calories: 0,
+                              vo2Max: 0,
                               error: true)
     
     static let blankExample = Self(dataID: 0,
@@ -123,25 +125,26 @@ struct WorkoutData: Hashable, Equatable, Identifiable {
                                    heartRates: [100, 120, 130, 100, 120],
                                    route: [],
                                    center: [0, 0],
-                                   calories: 0)
+                                   calories: 3,
+                                   vo2Max: 3)
     
     // TODO: - Factory Method Pattern으로 빼내는건 어떨까요?
     static let exampleWorkouts = [
-        WorkoutData(dataID: 1, date: "2023-10-09T01:20:32Z", time: "99:99", distance: 999.0, sprint: 999, velocity: 999.0, power: 999.0, heartRate: ["max": 999, "min": 1], heartRates: [100, 120, 130, 100, 120], route: [], center: [0, 0], calories: 0),
-        WorkoutData(dataID: 2, date: "2023-10-09T01:20:35Z", time: "62:10", distance: 2.1, sprint: 5, velocity: 11.5, power: 32.0, heartRate: ["max": 152, "min": 70], heartRates: [100, 120, 130, 100, 120], route: [], center: [0, 0], calories: 0),
-        WorkoutData(dataID: 3, date: "2023-10-09T01:20:38Z", time: "60:10", distance: 1.1, sprint: 7, velocity: 8.5, power: 97.0, heartRate: ["max": 167, "min": 92], heartRates: [100, 120, 130, 100, 120], route: [], center: [0, 0], calories: 0),
-        WorkoutData(dataID: 4, date: "2023-10-19T01:20:32Z", time: "60:10", distance: 5.1, sprint: 9, velocity: 12.5, power: 3.0, heartRate: ["max": 185, "min": 100], heartRates: [100, 120, 130, 100, 120], route: [], center: [0, 0], calories: 0),
-        WorkoutData(dataID: 5, date: "2023-10-20T01:20:32Z", time: "60:10", distance: 4.5, sprint: 11, velocity: 17.2, power: 3.0, heartRate: ["max": 175, "min": 60], heartRates: [100, 120, 130, 100, 120], route: [], center: [0, 0], calories: 0),
-        WorkoutData(dataID: 6, date: "2023-10-21T01:20:32Z", time: "60:10", distance: 3.6, sprint: 5, velocity: 24.4, power: 3.0, heartRate: ["max": 190, "min": 79], heartRates: [100, 120, 130, 100, 120], route: [], center: [0, 0], calories: 0),
-        WorkoutData(dataID: 7, date: "2023-10-23T01:20:32Z", time: "60:10", distance: 3.8, sprint: 13, velocity: 15.9, power: 3.0, heartRate: ["max": 183, "min": 91], heartRates: [100, 120, 130, 100, 120], route: [], center: [0, 0], calories: 0),
-        WorkoutData(dataID: 8, date: "2023-10-24T01:20:32Z", time: "60:10", distance: 2.5, sprint: 17, velocity: 17.3, power: 3.0, heartRate: ["max": 159, "min": 69], heartRates: [100, 120, 130, 100, 120], route: [], center: [0, 0], calories: 0),
-        WorkoutData(dataID: 8, date: "2023-10-24T01:20:32Z", time: "60:10", distance: 2.1, sprint: 1, velocity: 17.3, power: 3.0, heartRate: ["max": 144, "min": 73], heartRates: [100, 120, 130, 100, 120], route: [], center: [0, 0], calories: 0),
-        WorkoutData(dataID: 8, date: "2023-10-24T01:20:32Z", time: "60:10", distance: 3.2, sprint: 7, velocity: 16.3, power: 3.0, heartRate: ["max": 159, "min": 72], heartRates: [100, 120, 130, 100, 120], route: [], center: [0, 0], calories: 0),
-        WorkoutData(dataID: 8, date: "2023-10-24T01:20:32Z", time: "60:10", distance: 0.5, sprint: 8, velocity: 14.3, power: 3.0, heartRate: ["max": 162, "min": 63], heartRates: [100, 120, 130, 100, 120], route: [], center: [0, 0], calories: 0),
-        WorkoutData(dataID: 8, date: "2023-10-24T01:20:32Z", time: "60:10", distance: 1.9, sprint: 9, velocity: 12.3, power: 3.0, heartRate: ["max": 168, "min": 59], heartRates: [100, 120, 130, 100, 120], route: [], center: [0, 0], calories: 0),
-        WorkoutData(dataID: 8, date: "2023-10-24T01:20:32Z", time: "60:10", distance: 4.9, sprint: 10, velocity: 13.3, power: 3.0, heartRate: ["max": 171, "min": 68], heartRates: [100, 120, 130, 100, 120],  route: [], center: [0, 0], calories: 0),
-        WorkoutData(dataID: 8, date: "2023-10-24T01:20:32Z", time: "60:10", distance: 2.9, sprint: 17, velocity: 11.3, power: 3.0, heartRate: ["max": 158, "min": 69], heartRates: [100, 120, 130, 100, 120], route: [], center: [0, 0], calories: 0),
-        WorkoutData(dataID: 9, date: "2023-10-27T01:20:32Z", time: "60:10", distance: 5.3, sprint: 12, velocity: 23.5, power: 3.0, heartRate: ["max": 187, "min": 60], heartRates: [100, 120, 130, 100, 120], route: [], center: [0, 0], calories: 0)
+        WorkoutData(dataID: 1, date: "2023-10-09T01:20:32Z", time: "99:99", distance: 999.0, sprint: 999, velocity: 999.0, power: 999.0, heartRate: ["max": 999, "min": 1], heartRates: [100, 120, 130, 100, 120], route: [], center: [0, 0], calories: 0, vo2Max: 0),
+        WorkoutData(dataID: 2, date: "2023-10-09T01:20:35Z", time: "62:10", distance: 2.1, sprint: 5, velocity: 11.5, power: 32.0, heartRate: ["max": 152, "min": 70], heartRates: [100, 120, 130, 100, 120], route: [], center: [0, 0], calories: 0, vo2Max: 0),
+        WorkoutData(dataID: 3, date: "2023-10-09T01:20:38Z", time: "60:10", distance: 1.1, sprint: 7, velocity: 8.5, power: 97.0, heartRate: ["max": 167, "min": 92], heartRates: [100, 120, 130, 100, 120], route: [], center: [0, 0], calories: 0, vo2Max: 0),
+        WorkoutData(dataID: 4, date: "2023-10-19T01:20:32Z", time: "60:10", distance: 5.1, sprint: 9, velocity: 12.5, power: 3.0, heartRate: ["max": 185, "min": 100], heartRates: [100, 120, 130, 100, 120], route: [], center: [0, 0], calories: 0, vo2Max: 0),
+        WorkoutData(dataID: 5, date: "2023-10-20T01:20:32Z", time: "60:10", distance: 4.5, sprint: 11, velocity: 17.2, power: 3.0, heartRate: ["max": 175, "min": 60], heartRates: [100, 120, 130, 100, 120], route: [], center: [0, 0], calories: 0, vo2Max: 0),
+        WorkoutData(dataID: 6, date: "2023-10-21T01:20:32Z", time: "60:10", distance: 3.6, sprint: 5, velocity: 24.4, power: 3.0, heartRate: ["max": 190, "min": 79], heartRates: [100, 120, 130, 100, 120], route: [], center: [0, 0], calories: 0, vo2Max: 0),
+        WorkoutData(dataID: 7, date: "2023-10-23T01:20:32Z", time: "60:10", distance: 3.8, sprint: 13, velocity: 15.9, power: 3.0, heartRate: ["max": 183, "min": 91], heartRates: [100, 120, 130, 100, 120], route: [], center: [0, 0], calories: 0, vo2Max: 0),
+        WorkoutData(dataID: 8, date: "2023-10-24T01:20:32Z", time: "60:10", distance: 2.5, sprint: 17, velocity: 17.3, power: 3.0, heartRate: ["max": 159, "min": 69], heartRates: [100, 120, 130, 100, 120], route: [], center: [0, 0], calories: 0, vo2Max: 0),
+        WorkoutData(dataID: 8, date: "2023-10-24T01:20:32Z", time: "60:10", distance: 2.1, sprint: 1, velocity: 17.3, power: 3.0, heartRate: ["max": 144, "min": 73], heartRates: [100, 120, 130, 100, 120], route: [], center: [0, 0], calories: 0, vo2Max: 0),
+        WorkoutData(dataID: 8, date: "2023-10-24T01:20:32Z", time: "60:10", distance: 3.2, sprint: 7, velocity: 16.3, power: 3.0, heartRate: ["max": 159, "min": 72], heartRates: [100, 120, 130, 100, 120], route: [], center: [0, 0], calories: 0, vo2Max: 0),
+        WorkoutData(dataID: 8, date: "2023-10-24T01:20:32Z", time: "60:10", distance: 0.5, sprint: 8, velocity: 14.3, power: 3.0, heartRate: ["max": 162, "min": 63], heartRates: [100, 120, 130, 100, 120], route: [], center: [0, 0], calories: 0, vo2Max: 0),
+        WorkoutData(dataID: 8, date: "2023-10-24T01:20:32Z", time: "60:10", distance: 1.9, sprint: 9, velocity: 12.3, power: 3.0, heartRate: ["max": 168, "min": 59], heartRates: [100, 120, 130, 100, 120], route: [], center: [0, 0], calories: 0, vo2Max: 0),
+        WorkoutData(dataID: 8, date: "2023-10-24T01:20:32Z", time: "60:10", distance: 4.9, sprint: 10, velocity: 13.3, power: 3.0, heartRate: ["max": 171, "min": 68], heartRates: [100, 120, 130, 100, 120],  route: [], center: [0, 0], calories: 0, vo2Max: 0),
+        WorkoutData(dataID: 8, date: "2023-10-24T01:20:32Z", time: "60:10", distance: 2.9, sprint: 17, velocity: 11.3, power: 3.0, heartRate: ["max": 158, "min": 69], heartRates: [100, 120, 130, 100, 120], route: [], center: [0, 0], calories: 0, vo2Max: 0),
+        WorkoutData(dataID: 9, date: "2023-10-27T01:20:32Z", time: "60:10", distance: 5.3, sprint: 12, velocity: 23.5, power: 3.0, heartRate: ["max": 187, "min": 60], heartRates: [100, 120, 130, 100, 120], route: [], center: [0, 0], calories: 0, vo2Max: 0)
     ]
     
     private let dateFormatter: ISO8601DateFormatter = {

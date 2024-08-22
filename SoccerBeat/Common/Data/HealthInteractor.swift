@@ -187,6 +187,7 @@ final class HealthInteractor: NSObject, ObservableObject {
         var heartRates:[Int] = []
         var power = 0.0
         var calories = 0
+        var vo2Max = 0.0
         
         print(metadata)
 
@@ -222,6 +223,10 @@ final class HealthInteractor: NSObject, ObservableObject {
         if let caloriesMeta: Int = metadata.getValue(forKey: "Calories") {
             calories = caloriesMeta
         }
+        
+        if let vo2MaxMeta: Double = metadata.getValue(forKey: "Vo2Max") {
+            vo2Max = vo2MaxMeta
+        }
 
         return WorkoutData(dataID: index+1,
                            date: dateFormatter.string(from: workout.startDate),
@@ -237,6 +242,7 @@ final class HealthInteractor: NSObject, ObservableObject {
                            center: [latSum / Double(dotCount),
                                     lonSum / Double(dotCount)],
                            calories: calories,
+                           vo2Max: vo2Max,
                            error: dataError)
     }
 
