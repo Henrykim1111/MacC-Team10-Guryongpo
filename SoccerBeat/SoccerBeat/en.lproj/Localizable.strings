@@ -122,3 +122,7 @@
 "%@의 평균 활동량은 %@km입니다." = "Average distance per 90min in %@ is %@km.";
 "%@의 결승골 득점시 심박수는 %@입니다." = "%@'s heart rate was %@ when he scored the winning goal.";
 "%@의 평균 스프린트 횟수는 %@입니다." = "The average number of sprints for %@ is %@.";
+
+"Heart Beat" = "Heart Beat";
+"칼로리" = "Calories";
+"최대산소섭취량" = "VO2Max";

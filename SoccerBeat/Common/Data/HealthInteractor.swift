@@ -184,7 +184,12 @@ final class HealthInteractor: NSObject, ObservableObject {
         var velocity = 0.0
         var maxHeartRate = 0
         var minHeartRate = 0
+        var heartRates:[Int] = []
         var power = 0.0
+        var calories = 0
+        var vo2Max = 0.0
+        
+        print(metadata)
 
         if let distanceMeta: Double = metadata.getValue(forKey: "Distance") {
             distance = distanceMeta
@@ -210,6 +215,18 @@ final class HealthInteractor: NSObject, ObservableObject {
         if let minHeartRateMeta: Int = metadata.getValue(forKey: "MinHeartRate") {
             minHeartRate = minHeartRateMeta
         } else { dataError = true }
+        
+        if let heartRatesMeta: String = metadata.getValue(forKey: "HeartRates") {
+            heartRates = heartRatesMeta.split(separator: ",").map { Int($0) ?? 0 }
+        } // if no heartRates, but this is not an error
+        
+        if let caloriesMeta: Int = metadata.getValue(forKey: "Calories") {
+            calories = caloriesMeta
+        }
+        
+        if let vo2MaxMeta: Double = metadata.getValue(forKey: "Vo2Max") {
+            vo2Max = vo2MaxMeta
+        }
 
         return WorkoutData(dataID: index+1,
                            date: dateFormatter.string(from: workout.startDate),
@@ -220,9 +237,12 @@ final class HealthInteractor: NSObject, ObservableObject {
                            power: power,
                            heartRate: ["max": maxHeartRate,
                                        "min": minHeartRate],
+                           heartRates: heartRates,
                            route: routes,
                            center: [latSum / Double(dotCount),
                                     lonSum / Double(dotCount)],
+                           calories: calories,
+                           vo2Max: vo2Max,
                            error: dataError)
     }
 

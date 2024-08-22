@@ -32,7 +32,6 @@ final class WorkoutManager: NSObject, ObservableObject {
                                      HKSeriesType.workoutRoute(),
                                      HKQuantityType.quantityType(forIdentifier: .runningSpeed)!,
                                      HKQuantityType.quantityType(forIdentifier: .distanceWalkingRunning)!
-
     ]
 
     private let typesToRead: Set = [
@@ -41,6 +40,8 @@ final class WorkoutManager: NSObject, ObservableObject {
         HKQuantityType.quantityType(forIdentifier: .runningSpeed)!,
         HKQuantityType.quantityType(forIdentifier: .walkingSpeed)!,
         HKQuantityType.quantityType(forIdentifier: .runningPower)!,
+        HKQuantityType.quantityType(forIdentifier: .activeEnergyBurned)!,
+        HKQuantityType.quantityType(forIdentifier: .vo2Max)!,
         HKSeriesType.workoutType(),
         HKSeriesType.workoutRoute(),
         HKObjectType.activitySummaryType()
@@ -84,7 +85,6 @@ final class WorkoutManager: NSObject, ObservableObject {
         // workout configuration 설정
         let configuration = HKWorkoutConfiguration()
         configuration.activityType = .running
-        // TODO: - .indoor 하면 실내 풋살 가능?
         configuration.locationType = .outdoor
 
         // 세션, 빌더, 루트 빌더, 로케이션 매니저 초기화

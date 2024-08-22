@@ -204,6 +204,28 @@ struct FieldRecordView: View {
                 }
             }
             FieldRecordDataView(workout: workout)
+            
+            Spacer()
+                .frame(minHeight: 30)
+            
+            if let rates = workout?.heartRates {
+                if !rates.isEmpty {
+                    HStack {
+                        VStack(alignment: .leading) {
+                            Spacer()
+                            VStack(alignment: .leading, spacing: -8) {
+                                Text("Heart Beat")
+                            }
+                            .font(.matchDetailTitle)
+                        }
+                        Spacer()
+                    }
+
+                    HeartRatesView(rates: rates)
+                        .frame(height: 200)
+                        .padding(.vertical)
+                }
+            }
         }
     }
 }
@@ -305,10 +327,27 @@ struct FieldRecordDataView: View {
                             } else {
                                 Text("--")
                             }
-                            Text(" Bpm")
+                            Text("Bpm")
                                 .font(.fieldRecordUnit)
                         }
                     }
+                    
+//                    if workout?.calories != 0 {
+//                        VStack(alignment: .leading) {
+//                            Text("칼로리")
+//                                .font(.fieldRecordTitle)
+//                            HStack(alignment: .bottom, spacing: 0) {
+//                                if let workout = workout {
+//                                    Text(workout.error ? "--" : workout.calories.formatted())jose
+//                                        .font(.fieldRecordMeasure)
+//                                } else {
+//                                    Text("--")
+//                                }
+//                                Text(" Kcal")
+//                                    .font(.fieldRecordUnit)
+//                            }
+//                        }
+//                    }
                 }
                 
                 VStack(alignment: .leading, spacing: 24) {
@@ -355,6 +394,24 @@ struct FieldRecordDataView: View {
                                 .font(.fieldRecordUnit)
                         }
                     }
+                    
+                    // vo2Max 는 칼로리와 함께 업데이트 됨!
+//                    if workout?.calories != 0 {
+//                        VStack(alignment: .leading) {
+//                            Text("최대산소섭취량")
+//                                .font(.fieldRecordTitle)
+//                            HStack(alignment: .bottom, spacing: 0) {
+//                                if let workout = workout {
+//                                    Text(workout.error ? "--" : workout.vo2Max.formatted())
+//                                        .font(.fieldRecordMeasure)
+//                                } else {
+//                                    Text("--")
+//                                }
+//                                Text(" vo2")
+//                                    .font(.fieldRecordUnit)
+//                            }
+//                        }
+//                    }
                 }
             }
             .padding(.vertical, 56)
