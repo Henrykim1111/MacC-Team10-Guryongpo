@@ -24,7 +24,6 @@ final class MatricsIndicator: NSObject, ObservableObject {
             
             if heartRate != 0 {
                 self.saveHeartRates.append(Int(heartRate))
-                print(saveHeartRates)
             }
         }
     }
@@ -168,8 +167,9 @@ final class MatricsIndicator: NSObject, ObservableObject {
                 self.calculateMaxPower(before: oldPower, current: self.power)
             case HKQuantityType.quantityType(forIdentifier: .vo2Max):
                 let oldvo2Max = self.vo2Max
-                self.vo2Max = statistics.mostRecentQuantity()?.doubleValue(for: HKUnit(from: "ml/kg*min")) ?? 0
+                self.vo2Max = statistics.mostRecentQuantity()?.doubleValue(for: HKUnit(from: "ml/(kg*min)")) ?? 0
                 self.calculateMaxVo2Max(before: oldvo2Max, current: self.vo2Max)
+//                print("vo2max", self.vo2Max)
             default:
                 return
             }
