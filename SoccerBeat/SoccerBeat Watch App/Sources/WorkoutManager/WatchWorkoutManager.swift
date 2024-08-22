@@ -41,6 +41,7 @@ final class WorkoutManager: NSObject, ObservableObject {
         HKQuantityType.quantityType(forIdentifier: .walkingSpeed)!,
         HKQuantityType.quantityType(forIdentifier: .runningPower)!,
         HKQuantityType.quantityType(forIdentifier: .activeEnergyBurned)!,
+        HKQuantityType.quantityType(forIdentifier: .vo2Max)!,
         HKSeriesType.workoutType(),
         HKSeriesType.workoutRoute(),
         HKObjectType.activitySummaryType()

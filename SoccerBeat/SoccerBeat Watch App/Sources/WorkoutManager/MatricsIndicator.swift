@@ -80,6 +80,7 @@ final class MatricsIndicator: NSObject, ObservableObject {
     var power: Double = 0.0
     var maxSpeedMPS: Double = 0.0
     var acceleration: Double = 0.0
+    var vo2Max: Double = 0.0
 
     // TODO: - WorkoutData로 반환하도록 설정
     func getMetadata() -> [String: Any] {
@@ -89,6 +90,7 @@ final class MatricsIndicator: NSObject, ObservableObject {
             "MinHeartRate": saveMinHeartRate != 300 ? saveMinHeartRate : 0,
             "MaxHeartRate": saveMaxHeartRate,
             "HeartRates": saveHeartRates.map {String($0)}.joined(separator: ","),
+            "Vo2Max": Double(vo2Max.rounded(at: 1)),
             "Distance": Double((distanceMeter / 1000).rounded(at: 1)), // km
             "Power": Double(power.rounded(at: 1)), // w
             "Acceleration": Double(acceleration.rounded(at: 1)),
@@ -159,11 +161,15 @@ final class MatricsIndicator: NSObject, ObservableObject {
                 self.speedMPS = statistics.mostRecentQuantity()?.doubleValue(for:  HKUnit.init(from: "m/s")) ?? 0
                 self.calculateSpeedMatrics(before: oldSpeedMPS, current: self.speedMPS)
             case HKQuantityType.quantityType(forIdentifier: .activeEnergyBurned):
-                self.energy = statistics.sumQuantity()?.doubleValue(for: HKUnit(from: "kcal")) ?? 0
+                self.energy = statistics.sumQuantity()?.doubleValue(for: HKUnit.kilocalorie()) ?? 0
             case HKQuantityType.quantityType(forIdentifier: .runningPower):
                 let oldPower = self.power
                 self.power = statistics.mostRecentQuantity()?.doubleValue(for: HKUnit.watt()) ?? 0
                 self.calculateMaxPower(before: oldPower, current: self.power)
+            case HKQuantityType.quantityType(forIdentifier: .vo2Max):
+                let oldvo2Max = self.vo2Max
+                self.vo2Max = statistics.mostRecentQuantity()?.doubleValue(for: HKUnit(from: "ml/kg*min")) ?? 0
+                self.calculateMaxVo2Max(before: oldvo2Max, current: self.vo2Max)
             default:
                 return
             }
@@ -191,5 +197,9 @@ final class MatricsIndicator: NSObject, ObservableObject {
     
     private func calculateMaxPower(before: Double, current: Double) {
         power = max(power, current)
+    }
+    
+    private func calculateMaxVo2Max(before: Double, current: Double) {
+        vo2Max = max(vo2Max, current)
     }
 }
