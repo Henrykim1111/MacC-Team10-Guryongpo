@@ -46,11 +46,28 @@ struct AppStoreUpdateChecker {
             }
             print("----> 최신 버전:", latestVersionNumber)
             print("----> 현재 버전:", currentVersionNumber)
-            return currentVersionNumber != latestVersionNumber
+            
+            return isUpdateNeeded(latestVersion: latestVersionNumber, currentVersion: currentVersionNumber)
+            
         } catch {
-            print("Error occured")
             return false
         }
     }
+    
+    private static func isUpdateNeeded(latestVersion: String, currentVersion: String) -> Bool {
+        let splitLatestVersion = latestVersion.split(separator: ".").compactMap { Int($0) }
+        let splitCurrentVersion = currentVersion.split(separator: ".").compactMap { Int($0) }
+        let excludePatchVersion = 1
+        
+        for i in 0..<max(splitLatestVersion.count, splitCurrentVersion.count) - excludePatchVersion {
+            let latest = i < splitLatestVersion.count ? splitLatestVersion[i] : 0
+            let current = i < splitCurrentVersion.count ? splitCurrentVersion[i] : 0
+            
+            if latest > current { return true }
+            if latest < current { return false }
+        }
+        return false
+    }
+    
 }
 
