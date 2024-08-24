@@ -149,7 +149,7 @@ struct BasicLineView: View {
                     }
                 })
 
-                Text(" bpm")
+                Text(" Bpm")
                     .font(.bpmUnit)
                     .foregroundStyle(.clear)
             }
