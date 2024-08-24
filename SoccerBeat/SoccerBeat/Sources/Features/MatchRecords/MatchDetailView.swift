@@ -214,7 +214,7 @@ struct FieldRecordView: View {
                         VStack(alignment: .leading) {
                             Spacer()
                             VStack(alignment: .leading, spacing: -8) {
-                                Text("Heart Beat")
+                                Text("Heartbeat")
                             }
                             .font(.matchDetailTitle)
                         }
