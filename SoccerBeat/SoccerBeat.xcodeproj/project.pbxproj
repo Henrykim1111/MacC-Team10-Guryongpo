@@ -50,7 +50,6 @@
 		BE0D7D7D2BD14B4800966FF7 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = BE0D7D7C2BD14B4800966FF7 /* PrivacyInfo.xcprivacy */; };
 		BE0D7D7E2BD14B4800966FF7 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = BE0D7D7C2BD14B4800966FF7 /* PrivacyInfo.xcprivacy */; };
 		BE16B7C32B0B7D0300192C3B /* TrophyCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE16B7C22B0B7D0300192C3B /* TrophyCollectionView.swift */; };
-		BE1B6C722C7A961B0073C7D8 /* Phrase.json in Resources */ = {isa = PBXBuildFile; fileRef = BE1B6C712C7A961B0073C7D8 /* Phrase.json */; };
 		BE1B6C732C7A961B0073C7D8 /* Phrase.json in Resources */ = {isa = PBXBuildFile; fileRef = BE1B6C712C7A961B0073C7D8 /* Phrase.json */; };
 		BE22D6352AE586AA009035C9 /* GameProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE22D6302AE586AA009035C9 /* GameProgressView.swift */; };
 		BE22D6372AE586AA009035C9 /* SprintStatusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE22D6322AE586AA009035C9 /* SprintStatusView.swift */; };
@@ -976,7 +975,6 @@
 				D3C500172AE36F3F00EFAEFF /* Assets.xcassets in Resources */,
 				FBA3DA812B03B5770025AD7B /* SF-Pro-Display-HeavyItalic.otf in Resources */,
 				BE4069CB2AF1F80D00FA3030 /* SF-Compact-Text-Medium.otf in Resources */,
-				BE1B6C722C7A961B0073C7D8 /* Phrase.json in Resources */,
 				BE4069DA2AF1FE0500FA3030 /* NotoSans-BlackItalic.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

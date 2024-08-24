@@ -687,6 +687,12 @@
         }
       }
     },
+    "Bpm" : {
+
+    },
+    "BPM" : {
+
+    },
     "close" : {
       "comment" : "닫기",
       "extractionState" : "manual",
@@ -800,6 +806,9 @@
           }
         }
       }
+    },
+    "Heart Beat" : {
+
     },
     "Heartbeat" : {
       "localizations" : {
@@ -1438,6 +1447,9 @@
           }
         }
       }
+    },
+    "Time" : {
+
     },
     "times" : {
       "comment" : "횟수",
