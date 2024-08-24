@@ -89,6 +89,22 @@
         }
       }
     },
+    " kcal" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "kcal"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "kcal"
+          }
+        }
+      }
+    },
     " km" : {
       "localizations" : {
         "en" : {
@@ -195,6 +211,22 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : " 计数"
+          }
+        }
+      }
+    },
+    " VO2" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "VO2"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "VO2"
           }
         }
       }
@@ -687,6 +719,38 @@
         }
       }
     },
+    "Bpm" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bpm"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bpm"
+          }
+        }
+      }
+    },
+    "BPM" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "BPM"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "BPM"
+          }
+        }
+      }
+    },
     "close" : {
       "comment" : "닫기",
       "extractionState" : "manual",
@@ -797,6 +861,22 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "实地记录"
+          }
+        }
+      }
+    },
+    "Heart Beat" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Heart Beat"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "心跳声"
           }
         }
       }
@@ -918,7 +998,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Hint 내용입니다."
+            "value" : "This is the hint"
           }
         },
         "es" : {
@@ -1056,7 +1136,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "최고 속도"
+            "value" : "Maximum Speed"
           }
         },
         "es" : {
@@ -1084,7 +1164,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "이름"
+            "value" : "Name"
           }
         },
         "es" : {
@@ -1172,7 +1252,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "끄기"
+            "value" : "Off"
           }
         },
         "es" : {
@@ -1200,7 +1280,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "켜기"
+            "value" : "On"
           }
         },
         "es" : {
@@ -1228,7 +1308,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "순서"
+            "value" : "Order"
           }
         },
         "es" : {
@@ -1284,7 +1364,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "SoccerBeat 카드"
+            "value" : "SBeat Card"
           }
         },
         "es" : {
@@ -1342,7 +1422,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "스프린트"
+            "value" : "Sprint"
           }
         },
         "es" : {
@@ -1439,6 +1519,22 @@
         }
       }
     },
+    "Time" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Time"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "次"
+          }
+        }
+      }
+    },
     "times" : {
       "comment" : "횟수",
       "extractionState" : "manual",
@@ -1504,7 +1600,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "속력"
+            "value" : "Velocity"
           }
         },
         "es" : {
@@ -1606,7 +1702,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "지난 게임"
+            "value" : "Your past games"
           }
         },
         "es" : {
@@ -3272,7 +3368,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "위치 (필수)"
+            "value" : "Location (Required)"
           }
         },
         "es" : {
@@ -3736,7 +3832,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "접근 권한 안내"
+            "value" : "Access Permission Information"
           }
         },
         "es" : {
@@ -4323,6 +4419,22 @@
         }
       }
     },
+    "최대 산소 섭취량" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Maximal Oxygen Consumption"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "最大摄氧量"
+          }
+        }
+      }
+    },
     "최대 속도" : {
       "comment" : "최대 속도",
       "extractionState" : "manual",
@@ -4358,7 +4470,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "최대 심박수"
+            "value" : "Max heart rate"
           }
         },
         "es" : {
@@ -4555,6 +4667,22 @@
         }
       }
     },
+    "칼로리" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "calorie"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "卡路里"
+          }
+        }
+      }
+    },
     "파란색" : {
       "comment" : "파란색",
       "extractionState" : "manual",
@@ -4680,7 +4808,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "확인"
+            "value" : "Confirm"
           }
         },
         "es" : {
@@ -4702,7 +4830,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "회"
+            "value" : "Count"
           }
         },
         "es" : {

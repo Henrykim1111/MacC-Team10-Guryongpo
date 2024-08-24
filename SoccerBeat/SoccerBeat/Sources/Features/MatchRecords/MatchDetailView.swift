@@ -332,22 +332,20 @@ struct FieldRecordDataView: View {
                         }
                     }
                     
-//                    if workout?.calories != 0 {
-//                        VStack(alignment: .leading) {
-//                            Text("칼로리")
-//                                .font(.fieldRecordTitle)
-//                            HStack(alignment: .bottom, spacing: 0) {
-//                                if let workout = workout {
-//                                    Text(workout.error ? "--" : workout.calories.formatted())jose
-//                                        .font(.fieldRecordMeasure)
-//                                } else {
-//                                    Text("--")
-//                                }
-//                                Text(" Kcal")
-//                                    .font(.fieldRecordUnit)
-//                            }
-//                        }
-//                    }
+                    VStack(alignment: .leading) {
+                        Text("칼로리")
+                            .font(.fieldRecordTitle)
+                        HStack(alignment: .bottom, spacing: 0) {
+                            if let workout = workout {
+                                Text(workout.error ? "--" : workout.calories.formatted())
+                                    .font(.fieldRecordMeasure)
+                            } else {
+                                Text("--")
+                            }
+                            Text(" kcal")
+                                .font(.fieldRecordUnit)
+                        }
+                    }
                 }
                 
                 VStack(alignment: .leading, spacing: 24) {
@@ -395,23 +393,20 @@ struct FieldRecordDataView: View {
                         }
                     }
                     
-                    // vo2Max 는 칼로리와 함께 업데이트 됨!
-//                    if workout?.calories != 0 {
-//                        VStack(alignment: .leading) {
-//                            Text("최대산소섭취량")
-//                                .font(.fieldRecordTitle)
-//                            HStack(alignment: .bottom, spacing: 0) {
-//                                if let workout = workout {
-//                                    Text(workout.error ? "--" : workout.vo2Max.formatted())
-//                                        .font(.fieldRecordMeasure)
-//                                } else {
-//                                    Text("--")
-//                                }
-//                                Text(" vo2")
-//                                    .font(.fieldRecordUnit)
-//                            }
-//                        }
-//                    }
+                    VStack(alignment: .leading) {
+                        Text("최대 산소 섭취량")
+                            .font(.fieldRecordTitle)
+                        HStack(alignment: .bottom, spacing: 0) {
+                            if let workout = workout {
+                                Text(workout.error ? "--" : workout.vo2Max.formatted())
+                                    .font(.fieldRecordMeasure)
+                            } else {
+                                Text("--")
+                            }
+                            Text(" VO2")
+                                .font(.fieldRecordUnit)
+                        }
+                    }
                 }
             }
             .padding(.vertical, 56)
