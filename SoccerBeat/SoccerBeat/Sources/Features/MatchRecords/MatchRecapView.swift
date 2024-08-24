@@ -105,7 +105,6 @@ struct MatchRecapView: View {
     }
     
     private func delete(_ offset: IndexSet) async {
-        workouts.remove(atOffsets: offset)
         do {
             try await healthInteractor.delete(at: offset)
         } catch {

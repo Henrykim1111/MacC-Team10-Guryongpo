@@ -50,6 +50,7 @@
 		BE0D7D7D2BD14B4800966FF7 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = BE0D7D7C2BD14B4800966FF7 /* PrivacyInfo.xcprivacy */; };
 		BE0D7D7E2BD14B4800966FF7 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = BE0D7D7C2BD14B4800966FF7 /* PrivacyInfo.xcprivacy */; };
 		BE16B7C32B0B7D0300192C3B /* TrophyCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE16B7C22B0B7D0300192C3B /* TrophyCollectionView.swift */; };
+		BE1B6C732C7A961B0073C7D8 /* Phrase.json in Resources */ = {isa = PBXBuildFile; fileRef = BE1B6C712C7A961B0073C7D8 /* Phrase.json */; };
 		BE22D6352AE586AA009035C9 /* GameProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE22D6302AE586AA009035C9 /* GameProgressView.swift */; };
 		BE22D6372AE586AA009035C9 /* SprintStatusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE22D6322AE586AA009035C9 /* SprintStatusView.swift */; };
 		BE22D6382AE586AA009035C9 /* Color+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE22D6342AE586AA009035C9 /* Color+extension.swift */; };
@@ -64,8 +65,6 @@
 		BE360EFE2B9703A700071C30 /* WorkoutData.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3D4F18C2AF26662006C6B8A /* WorkoutData.swift */; };
 		BE360F002B9FF4A100071C30 /* MatricsIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE360EFF2B9FF4A100071C30 /* MatricsIndicator.swift */; };
 		BE360F022BA016EA00071C30 /* WorkoutManager+extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE360F012BA016EA00071C30 /* WorkoutManager+extensions.swift */; };
-		BE4069992AF0EB3E00FA3030 /* Phrase.json in Resources */ = {isa = PBXBuildFile; fileRef = BE4069962AF0E84300FA3030 /* Phrase.json */; };
-		BE40699A2AF0EB3E00FA3030 /* Phrase.json in Resources */ = {isa = PBXBuildFile; fileRef = BE4069962AF0E84300FA3030 /* Phrase.json */; };
 		BE40699C2AF0EB7700FA3030 /* Phrase.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE40699B2AF0EB7700FA3030 /* Phrase.swift */; };
 		BE40699D2AF0EB7700FA3030 /* Phrase.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE40699B2AF0EB7700FA3030 /* Phrase.swift */; };
 		BE40699F2AF0F2F500FA3030 /* Bundle+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE40699E2AF0F2F500FA3030 /* Bundle+extension.swift */; };
@@ -213,9 +212,7 @@
 		685D7B6D2AE5396200783433 /* LightRectangleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LightRectangleView.swift; sourceTree = "<group>"; };
 		685D7B742AE53DC400783433 /* SpeedChart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeedChart.swift; sourceTree = "<group>"; };
 		686E99892BD0DB4900B9FD56 /* NameFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NameFieldView.swift; sourceTree = "<group>"; };
-		687606A62BFB61D50023B4F0 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.json; name = "zh-Hans"; path = "zh-Hans.lproj/Phrase.json"; sourceTree = "<group>"; };
 		6876C0BE2B0B7F73005C6872 /* FifaBackground.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = FifaBackground.mp3; sourceTree = "<group>"; };
-		688DEBE52BF4E07200F75E1A /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.json; name = ko; path = ko.lproj/Phrase.json; sourceTree = "<group>"; };
 		6898F2842AEFD7FC0075A573 /* SprintView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SprintView.swift; sourceTree = "<group>"; };
 		68B0732C2AF11847004C723F /* AlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertView.swift; sourceTree = "<group>"; };
 		68C47FAC2C746A0700019099 /* HeartRatesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeartRatesView.swift; sourceTree = "<group>"; };
@@ -231,6 +228,7 @@
 		BE0639D92AE66D93008D1D4E /* SessionPagingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionPagingView.swift; sourceTree = "<group>"; };
 		BE0D7D7C2BD14B4800966FF7 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		BE16B7C22B0B7D0300192C3B /* TrophyCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrophyCollectionView.swift; sourceTree = "<group>"; };
+		BE1B6C712C7A961B0073C7D8 /* Phrase.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Phrase.json; sourceTree = "<group>"; };
 		BE22D6302AE586AA009035C9 /* GameProgressView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameProgressView.swift; sourceTree = "<group>"; };
 		BE22D6322AE586AA009035C9 /* SprintStatusView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SprintStatusView.swift; sourceTree = "<group>"; };
 		BE22D6342AE586AA009035C9 /* Color+extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Color+extension.swift"; sourceTree = "<group>"; };
@@ -241,7 +239,6 @@
 		BE323D472B0CC5DE00F289D4 /* SF-Pro-Text-MediumItalic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Text-MediumItalic.otf"; sourceTree = "<group>"; };
 		BE360EFF2B9FF4A100071C30 /* MatricsIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatricsIndicator.swift; sourceTree = "<group>"; };
 		BE360F012BA016EA00071C30 /* WorkoutManager+extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "WorkoutManager+extensions.swift"; sourceTree = "<group>"; };
-		BE4069982AF0E8AC00FA3030 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.json; name = en; path = en.lproj/Phrase.json; sourceTree = "<group>"; };
 		BE40699B2AF0EB7700FA3030 /* Phrase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Phrase.swift; sourceTree = "<group>"; };
 		BE40699E2AF0F2F500FA3030 /* Bundle+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle+extension.swift"; sourceTree = "<group>"; };
 		BE4069BD2AF1D22B00FA3030 /* NotoSans-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSans-Black.ttf"; sourceTree = "<group>"; };
@@ -774,7 +771,7 @@
 		FB954B0C2BB3B84700A365FB /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				BE4069962AF0E84300FA3030 /* Phrase.json */,
+				BE1B6C712C7A961B0073C7D8 /* Phrase.json */,
 				BE40699B2AF0EB7700FA3030 /* Phrase.swift */,
 			);
 			path = Models;
@@ -978,7 +975,6 @@
 				D3C500172AE36F3F00EFAEFF /* Assets.xcassets in Resources */,
 				FBA3DA812B03B5770025AD7B /* SF-Pro-Display-HeavyItalic.otf in Resources */,
 				BE4069CB2AF1F80D00FA3030 /* SF-Compact-Text-Medium.otf in Resources */,
-				BE40699A2AF0EB3E00FA3030 /* Phrase.json in Resources */,
 				BE4069DA2AF1FE0500FA3030 /* NotoSans-BlackItalic.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1010,7 +1006,7 @@
 				BE4069CA2AF1F80D00FA3030 /* SF-Compact-Text-Regular.otf in Resources */,
 				D3C500292AE36F4000EFAEFF /* Assets.xcassets in Resources */,
 				BE4069CC2AF1F80D00FA3030 /* SF-Compact-Text-Medium.otf in Resources */,
-				BE4069992AF0EB3E00FA3030 /* Phrase.json in Resources */,
+				BE1B6C732C7A961B0073C7D8 /* Phrase.json in Resources */,
 				BE4069DB2AF1FE0500FA3030 /* NotoSans-BlackItalic.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1177,19 +1173,6 @@
 			targetProxy = D3C500212AE36F3F00EFAEFF /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
-
-/* Begin PBXVariantGroup section */
-		BE4069962AF0E84300FA3030 /* Phrase.json */ = {
-			isa = PBXVariantGroup;
-			children = (
-				BE4069982AF0E8AC00FA3030 /* en */,
-				688DEBE52BF4E07200F75E1A /* ko */,
-				687606A62BFB61D50023B4F0 /* zh-Hans */,
-			);
-			name = Phrase.json;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		D3C5002D2AE36F4000EFAEFF /* Debug */ = {
