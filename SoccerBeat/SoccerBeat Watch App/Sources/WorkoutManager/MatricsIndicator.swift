@@ -188,7 +188,7 @@ final class MatricsIndicator: NSObject, ObservableObject {
             isSprint = false
         }
         
-        // 직전 스프린트 최대 속도
+        // 직전 스프린트 최고 속도
         if isSprint {
             recentSprintSpeedMPS = max(recentSprintSpeedMPS, current)
         }

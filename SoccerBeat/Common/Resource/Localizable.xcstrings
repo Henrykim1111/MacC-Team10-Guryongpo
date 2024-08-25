@@ -155,6 +155,28 @@
         }
       }
     },
+    " ml/kg/min" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : " ml/kg/min"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : " ml/kg/min"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : " ml/kg/min"
+          }
+        }
+      }
+    },
     " time" : {
       "localizations" : {
         "en" : {
@@ -221,34 +243,12 @@
         }
       }
     },
-    " VO2" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : " VO2"
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : " VO2"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : " VO2"
-          }
-        }
-      }
-    },
     " w" : {
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "bmp"
+            "value" : " w"
           }
         },
         "es" : {
@@ -1144,7 +1144,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Maximum Speed"
+            "value" : "Max Speed"
           }
         },
         "es" : {
@@ -3960,7 +3960,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Badges with the maximum speed"
+            "value" : "Badges with the max speed"
           }
         },
         "es" : {
@@ -3990,7 +3990,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Maximum speed\\nOver 10 km/h"
+            "value" : "Max speed\\nOver 10 km/h"
           }
         },
         "es" : {
@@ -4020,7 +4020,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Maximum speed\\nOver 15 km/h"
+            "value" : "Max speed\\nOver 15 km/h"
           }
         },
         "es" : {
@@ -4050,7 +4050,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Maximum speed\\nOver 20 km/h"
+            "value" : "Max speed\\nOver 20 km/h"
           }
         },
         "es" : {
@@ -4080,7 +4080,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Maximum speed\\nOver 25 km/h"
+            "value" : "Max speed\\nOver 25 km/h"
           }
         },
         "es" : {
@@ -4410,7 +4410,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Recent changes in maximum speed"
+            "value" : "Recent changes in max speed"
           }
         },
         "es" : {
@@ -4438,49 +4438,19 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Maximal Oxygen Consumption"
+            "value" : "Max VO2"
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Consumo máximo de oxígeno"
+            "value" : "VO2 máxima"
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "最大摄氧量"
-          }
-        }
-      }
-    },
-    "최대 속도" : {
-      "comment" : "최대 속도",
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Maximum Speed"
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Velocidad máxima"
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "최대 속도"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "最高速度"
           }
         }
       }
@@ -4692,7 +4662,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "calorie"
+            "value" : "Calorie"
           }
         },
         "es" : {

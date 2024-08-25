@@ -403,7 +403,7 @@ struct FieldRecordDataView: View {
                             } else {
                                 Text("--")
                             }
-                            Text(" VO2")
+                            Text(" ml/kg/min")
                                 .font(.fieldRecordUnit)
                         }
                     }
