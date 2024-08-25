@@ -25,7 +25,7 @@ struct SpeedChartView: View {
             HStack {
                 VStack(alignment: .leading) {
                     InformationButton(message: "최근 최고 속도의 변화입니다.")
-                    Text("최대 속도")
+                    Text("최고 속도")
                         .font(.navigationSportySubTitle)
                         .foregroundStyle(.navigationSportyHead)
                     Text("The trends of")

@@ -214,7 +214,7 @@ struct FieldRecordView: View {
                         VStack(alignment: .leading) {
                             Spacer()
                             VStack(alignment: .leading, spacing: -8) {
-                                Text("Heart Beat")
+                                Text("Heartbeat")
                             }
                             .font(.matchDetailTitle)
                         }
@@ -338,12 +338,12 @@ struct FieldRecordDataView: View {
 //                                .font(.fieldRecordTitle)
 //                            HStack(alignment: .bottom, spacing: 0) {
 //                                if let workout = workout {
-//                                    Text(workout.error ? "--" : workout.calories.formatted())jose
+//                                    Text(workout.error ? "--" : workout.calories.formatted())
 //                                        .font(.fieldRecordMeasure)
 //                                } else {
 //                                    Text("--")
 //                                }
-//                                Text(" Kcal")
+//                                Text(" kcal")
 //                                    .font(.fieldRecordUnit)
 //                            }
 //                        }
@@ -394,11 +394,9 @@ struct FieldRecordDataView: View {
                                 .font(.fieldRecordUnit)
                         }
                     }
-                    
-                    // vo2Max 는 칼로리와 함께 업데이트 됨!
 //                    if workout?.calories != 0 {
 //                        VStack(alignment: .leading) {
-//                            Text("최대산소섭취량")
+//                            Text("최대 산소 섭취량")
 //                                .font(.fieldRecordTitle)
 //                            HStack(alignment: .bottom, spacing: 0) {
 //                                if let workout = workout {
@@ -407,7 +405,7 @@ struct FieldRecordDataView: View {
 //                                } else {
 //                                    Text("--")
 //                                }
-//                                Text(" vo2")
+//                                Text(" ml/kg/min")
 //                                    .font(.fieldRecordUnit)
 //                            }
 //                        }

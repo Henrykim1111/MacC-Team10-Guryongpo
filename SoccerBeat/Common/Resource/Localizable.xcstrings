@@ -89,6 +89,28 @@
         }
       }
     },
+    " kcal" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : " kcal"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : " kcal"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : " kcal"
+          }
+        }
+      }
+    },
     " km" : {
       "localizations" : {
         "en" : {
@@ -129,6 +151,28 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : " km/h"
+          }
+        }
+      }
+    },
+    " ml/kg/min" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : " ml/kg/min"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : " ml/kg/min"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : " ml/kg/min"
           }
         }
       }
@@ -226,7 +270,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : " 회"
+            "value" : " times"
           }
         },
         "es" : {
@@ -550,7 +594,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "> 개인 정보 보호 및 보안\n> 건강\n> SoccerBeat > 모두켜기\n 순서로 설정해주세요."
+            "value" : "Please follow these steps to set it up:\n> Privacy & Security\n> Health\n> SoccerBeat > Turn On All"
           }
         },
         "es" : {
@@ -578,7 +622,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "> 개인 정보 보호 및 보안\n> 위치\n> SoccerBeat > 모두켜기\n 순서로 설정해주세요."
+            "value" : "Please follow these steps to set it up:\n> Privacy & Security\n> Health\n> SoccerBeat > Turn On All"
           }
         },
         "es" : {
@@ -606,7 +650,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "🏆 Level Up! ⚽️🏃‍♂️\n\n사커비트가 유저분들의 의견을 반영하여 사용성을 개선했어요\n\n지금 바로 업데이트하고 즐겨보세요!"
+            "value" : "🏆 Level Up! ⚽️🏃‍♂️\n\nSoccerBeat has improved usability based on user feedback.\n\nUpdate now and enjoy the new experience!"
           }
         },
         "es" : {
@@ -688,10 +732,48 @@
       }
     },
     "Bpm" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bpm"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bpm"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bpm"
+          }
+        }
+      }
     },
     "BPM" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "BPM"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "BPM"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "BPM"
+          }
+        }
+      }
     },
     "close" : {
       "comment" : "닫기",
@@ -806,9 +888,6 @@
           }
         }
       }
-    },
-    "Heart Beat" : {
-
     },
     "Heartbeat" : {
       "localizations" : {
@@ -927,7 +1006,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Hint 내용입니다."
+            "value" : "This is the hint"
           }
         },
         "es" : {
@@ -1065,7 +1144,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "최고 속도"
+            "value" : "Max Speed"
           }
         },
         "es" : {
@@ -1093,7 +1172,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "이름"
+            "value" : "Name"
           }
         },
         "es" : {
@@ -1181,7 +1260,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "끄기"
+            "value" : "Off"
           }
         },
         "es" : {
@@ -1209,7 +1288,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "켜기"
+            "value" : "On"
           }
         },
         "es" : {
@@ -1237,7 +1316,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "순서"
+            "value" : "Order"
           }
         },
         "es" : {
@@ -1265,7 +1344,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%@ 플레이어, "
+            "value" : "Player %@,"
           }
         },
         "es" : {
@@ -1293,7 +1372,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "SoccerBeat 카드"
+            "value" : "SBeat Card"
           }
         },
         "es" : {
@@ -1351,7 +1430,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "스프린트"
+            "value" : "Sprint"
           }
         },
         "es" : {
@@ -1449,7 +1528,26 @@
       }
     },
     "Time" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Time"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tiempo"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "次"
+          }
+        }
+      }
     },
     "times" : {
       "comment" : "횟수",
@@ -1516,7 +1614,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "속력"
+            "value" : "Velocity"
           }
         },
         "es" : {
@@ -1618,7 +1716,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "지난 게임"
+            "value" : "Your past games"
           }
         },
         "es" : {
@@ -1706,7 +1804,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "건강 (필수)"
+            "value" : "Health (Required)"
           }
         },
         "es" : {
@@ -1728,7 +1826,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "건강 권한 설정하기"
+            "value" : "Set Health Permissions"
           }
         },
         "es" : {
@@ -2162,7 +2260,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "단계별 설정 방법"
+            "value" : "Step-by-Step Setup Instructions"
           }
         },
         "es" : {
@@ -2244,7 +2342,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "데이터에 오류가 발생했습니다. "
+            "value" : "Error occurred in this data."
           }
         },
         "es" : {
@@ -2326,7 +2424,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "뛴거리 및 속도 측정에 사용"
+            "value" : "Used for measuring distance and speed"
           }
         },
         "es" : {
@@ -2590,7 +2688,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : " Agility"
+            "value" : "Agility"
           }
         },
         "es" : {
@@ -2648,7 +2746,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "불편을 드려 죄송합니다. \n\nSoccerBeat의 개발자 계정으로 문의를 주시면 빠른 시일 안에 답변드리겠습니다. "
+            "value" : "We apologize for the inconvenience.\n\nIf you contact the developer account of SoccerBeat, we will respond to you as soon as possible."
           }
         },
         "es" : {
@@ -2790,7 +2888,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "설정하기"
+            "value" : "Set up"
           }
         },
         "es" : {
@@ -2842,7 +2940,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "스프린트 및 경기장 위치 조회에 사용"
+            "value" : "Used for viewing sprint and stadium locations"
           }
         },
         "es" : {
@@ -3284,7 +3382,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "위치 (필수)"
+            "value" : "Location (Required)"
           }
         },
         "es" : {
@@ -3336,7 +3434,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "위치 권한 설정하기"
+            "value" : "Set Location Permissions"
           }
         },
         "es" : {
@@ -3748,7 +3846,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "접근 권한 안내"
+            "value" : "Access Permission Information"
           }
         },
         "es" : {
@@ -3862,7 +3960,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Badges with the maximum speed"
+            "value" : "Badges with the max speed"
           }
         },
         "es" : {
@@ -3892,7 +3990,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Maximum speed\\nOver 10 km/h"
+            "value" : "Max speed\\nOver 10 km/h"
           }
         },
         "es" : {
@@ -3922,7 +4020,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Maximum speed\\nOver 15 km/h"
+            "value" : "Max speed\\nOver 15 km/h"
           }
         },
         "es" : {
@@ -3952,7 +4050,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Maximum speed\\nOver 20 km/h"
+            "value" : "Max speed\\nOver 20 km/h"
           }
         },
         "es" : {
@@ -3982,7 +4080,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Maximum speed\\nOver 25 km/h"
+            "value" : "Max speed\\nOver 25 km/h"
           }
         },
         "es" : {
@@ -4312,7 +4410,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Recent changes in maximum speed"
+            "value" : "Recent changes in max speed"
           }
         },
         "es" : {
@@ -4335,32 +4433,24 @@
         }
       }
     },
-    "최대 속도" : {
-      "comment" : "최대 속도",
-      "extractionState" : "manual",
+    "최대 산소 섭취량" : {
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Maximum Speed"
+            "value" : "Max VO2"
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Velocidad máxima"
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "최대 속도"
+            "value" : "VO2 máxima"
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "最高速度"
+            "value" : "最大摄氧量"
           }
         }
       }
@@ -4370,7 +4460,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "최대 심박수"
+            "value" : "Max heart rate"
           }
         },
         "es" : {
@@ -4567,6 +4657,28 @@
         }
       }
     },
+    "칼로리" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Calorie"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Caloría"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "卡路里"
+          }
+        }
+      }
+    },
     "파란색" : {
       "comment" : "파란색",
       "extractionState" : "manual",
@@ -4692,7 +4804,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "확인"
+            "value" : "Confirm"
           }
         },
         "es" : {
@@ -4714,7 +4826,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "회"
+            "value" : "Count"
           }
         },
         "es" : {
