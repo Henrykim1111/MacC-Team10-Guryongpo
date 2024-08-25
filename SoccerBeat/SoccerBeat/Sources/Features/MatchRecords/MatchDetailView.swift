@@ -332,18 +332,20 @@ struct FieldRecordDataView: View {
                         }
                     }
                     
-//                    VStack(alignment: .leading) {
-//                        Text("칼로리")
-//                            .font(.fieldRecordTitle)
-//                        HStack(alignment: .bottom, spacing: 0) {
-//                            if let workout = workout {
-//                                Text(workout.error ? "--" : workout.calories.formatted())
-//                                    .font(.fieldRecordMeasure)
-//                            } else {
-//                                Text("--")
+//                    if workout?.calories != 0 {
+//                        VStack(alignment: .leading) {
+//                            Text("칼로리")
+//                                .font(.fieldRecordTitle)
+//                            HStack(alignment: .bottom, spacing: 0) {
+//                                if let workout = workout {
+//                                    Text(workout.error ? "--" : workout.calories.formatted())
+//                                        .font(.fieldRecordMeasure)
+//                                } else {
+//                                    Text("--")
+//                                }
+//                                Text(" kcal")
+//                                    .font(.fieldRecordUnit)
 //                            }
-//                            Text(" kcal")
-//                                .font(.fieldRecordUnit)
 //                        }
 //                    }
                 }
@@ -392,19 +394,20 @@ struct FieldRecordDataView: View {
                                 .font(.fieldRecordUnit)
                         }
                     }
-                    
-//                    VStack(alignment: .leading) {
-//                        Text("최대 산소 섭취량")
-//                            .font(.fieldRecordTitle)
-//                        HStack(alignment: .bottom, spacing: 0) {
-//                            if let workout = workout {
-//                                Text(workout.error ? "--" : workout.vo2Max.formatted())
-//                                    .font(.fieldRecordMeasure)
-//                            } else {
-//                                Text("--")
+//                    if workout?.calories != 0 {
+//                        VStack(alignment: .leading) {
+//                            Text("최대 산소 섭취량")
+//                                .font(.fieldRecordTitle)
+//                            HStack(alignment: .bottom, spacing: 0) {
+//                                if let workout = workout {
+//                                    Text(workout.error ? "--" : workout.vo2Max.formatted())
+//                                        .font(.fieldRecordMeasure)
+//                                } else {
+//                                    Text("--")
+//                                }
+//                                Text(" ml/kg/min")
+//                                    .font(.fieldRecordUnit)
 //                            }
-//                            Text(" ml/kg/min")
-//                                .font(.fieldRecordUnit)
 //                        }
 //                    }
                 }
