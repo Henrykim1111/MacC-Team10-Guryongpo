@@ -90,6 +90,7 @@
       }
     },
     " kcal" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -156,6 +157,7 @@
       }
     },
     " ml/kg/min" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -216,7 +218,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : " 计数"
+            "value" : "次"
           }
         }
       }
@@ -238,7 +240,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : " 计数"
+            "value" : "次"
           }
         }
       }
@@ -282,7 +284,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : " 计数"
+            "value" : "次"
           }
         }
       }
@@ -352,6 +354,9 @@
           }
         }
       }
+    },
+    ":" : {
+
     },
     "# Hello World" : {
       "localizations" : {
@@ -726,7 +731,17 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "徽章收藏"
+            "value" : "Badge Collection"
+          }
+        }
+      }
+    },
+    "bpm" : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "bpm"
           }
         }
       }
@@ -828,7 +843,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "距离"
+            "value" : "Distance"
           }
         }
       }
@@ -856,7 +871,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "实地运动"
+            "value" : "Field Movement"
           }
         }
       }
@@ -884,7 +899,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "实地记录"
+            "value" : "Field Record"
           }
         }
       }
@@ -912,7 +927,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "心跳声"
+            "value" : "Heartbeat"
           }
         }
       }
@@ -940,7 +955,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "心跳速率"
+            "value" : "HeartRate"
           }
         }
       }
@@ -1052,7 +1067,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "怎么做"
+            "value" : "How"
           }
         }
       }
@@ -1117,6 +1132,16 @@
         }
       }
     },
+    "last SPRINT!" : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "last SPRINT!"
+          }
+        }
+      }
+    },
     "like" : {
       "localizations" : {
         "en" : {
@@ -1144,25 +1169,19 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Max Speed"
+            "value" : "Maximum Speed"
           }
         },
         "es" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Velocidad máxima"
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "최고 속도"
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "最大速度"
+            "value" : "Maximum Speed"
           }
         }
       }
@@ -1171,26 +1190,20 @@
       "localizations" : {
         "en" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Name"
           }
         },
         "es" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Nombre"
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "이름"
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "名称"
+            "value" : "Name"
           }
         }
       }
@@ -1259,26 +1272,20 @@
       "localizations" : {
         "en" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Off"
           }
         },
         "es" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Fuera de"
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "끄기"
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "关闭"
+            "value" : "Off"
           }
         }
       }
@@ -1287,26 +1294,20 @@
       "localizations" : {
         "en" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "On"
           }
         },
         "es" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "En"
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "켜기"
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "关于"
+            "value" : "On"
           }
         }
       }
@@ -1315,26 +1316,20 @@
       "localizations" : {
         "en" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Order"
           }
         },
         "es" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Pida"
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "순서"
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "订购"
+            "value" : "Order"
           }
         }
       }
@@ -1343,26 +1338,20 @@
       "localizations" : {
         "en" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Player %@,"
           }
         },
         "es" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "%@ Jugador, "
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "%@ 플레이어, "
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "球员 %@、"
+            "value" : "Player %@,"
           }
         }
       }
@@ -1371,25 +1360,19 @@
       "localizations" : {
         "en" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "SBeat Card"
           }
         },
         "es" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Tarjeta SoccerBeat"
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "SoccerBeat 카드"
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "SBeat Card"
           }
         }
@@ -1429,26 +1412,30 @@
       "localizations" : {
         "en" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Sprint"
           }
         },
         "es" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Sprint"
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "스프린트"
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "冲刺"
+            "value" : "Sprint"
+          }
+        }
+      }
+    },
+    "SPRINT!" : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "SPRINT!"
           }
         }
       }
@@ -1470,7 +1457,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "什么？"
+            "value" : "that?"
           }
         }
       }
@@ -1492,7 +1479,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "的趋势"
+            "value" : "The trends of"
           }
         }
       }
@@ -1503,26 +1490,20 @@
       "localizations" : {
         "en" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "time"
           }
         },
         "es" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "tiempo"
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "time"
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
-            "state" : "translated",
-            "value" : "次"
+            "state" : "needs_review",
+            "value" : "time"
           }
         }
       }
@@ -1544,7 +1525,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "次"
+            "value" : "Time"
           }
         }
       }
@@ -1555,26 +1536,30 @@
       "localizations" : {
         "en" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "times"
           }
         },
         "es" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Cuenta"
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "회"
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "次"
+            "value" : "times"
+          }
+        }
+      }
+    },
+    "TIMES" : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "TIMES"
           }
         }
       }
@@ -1604,7 +1589,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "打开 Apple Watch 上的 SoccerBeat，开始第一场比赛！"
+            "value" : "用Apple Watch的 SoccerBeat，开始精彩的比赛！"
           }
         }
       }
@@ -1613,26 +1598,26 @@
       "localizations" : {
         "en" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Velocity"
           }
         },
         "es" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Velocidad"
           }
         },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "속력"
+            "value" : "Velocity"
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
-            "state" : "translated",
-            "value" : "速度"
+            "state" : "needs_review",
+            "value" : "Velocity"
           }
         }
       }
@@ -1684,7 +1669,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "世界！"
+            "value" : "World!"
           }
         }
       }
@@ -1706,7 +1691,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "你"
+            "value" : "you"
           }
         }
       }
@@ -1715,26 +1700,20 @@
       "localizations" : {
         "en" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Your past games"
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Juegos anteriores"
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "지난 게임"
+            "value" : "Your past games"
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "您过去的游戏"
+            "value" : "Your past games"
           }
         }
       }
@@ -1816,7 +1795,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "健康（必填）"
+            "value" : "健康（必须）"
           }
         }
       }
@@ -1879,25 +1858,19 @@
       "localizations" : {
         "en" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Game Record"
           }
         },
         "es" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Historia del partido"
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "경기 기록"
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "比赛记录"
           }
         }
@@ -2332,7 +2305,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "信息记录发生异常"
+            "value" : "信息记录发生异常。"
           }
         }
       }
@@ -2373,6 +2346,36 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Distancia recorrida"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "뛴 거리"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "跑步距离"
+          }
+        }
+      }
+    },
+    "뛴 거리_" : {
+      "comment" : "워치 표시",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dist."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dist."
           }
         },
         "ko" : {
@@ -2964,7 +2967,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Sprint Counts"
+            "value" : "Sprint"
           }
         },
         "es" : {
@@ -3394,7 +3397,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "地点（必填）"
+            "value" : "位置（必须）"
           }
         }
       }
@@ -3858,7 +3861,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "关于访问权"
+            "value" : "数据使用权利"
           }
         }
       }
@@ -3930,7 +3933,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Max Speed"
+            "value" : "Max SPD"
           }
         },
         "es" : {
@@ -4434,6 +4437,7 @@
       }
     },
     "최대 산소 섭취량" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -4460,7 +4464,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Max heart rate"
+            "value" : "Max HR"
           }
         },
         "es" : {
@@ -4484,7 +4488,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Max heart rate"
+            "value" : "Max HR"
           }
         },
         "es" : {
@@ -4507,6 +4511,30 @@
         }
       }
     },
+    "최대심박" : {
+      "comment" : "워치 서머리뷰 ",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "MAX HR"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "최대심박"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "最高心率"
+          }
+        }
+      }
+    },
     "최소 심박수" : {
       "comment" : "최소 심박수",
       "extractionState" : "manual",
@@ -4514,7 +4542,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Min heart rate"
+            "value" : "Min HR"
           }
         },
         "es" : {
@@ -4527,6 +4555,29 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "최소 심박수"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "最低心率"
+          }
+        }
+      }
+    },
+    "최소심박" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Min HR"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "최소심박"
           }
         },
         "zh-Hans" : {
@@ -4658,6 +4709,7 @@
       }
     },
     "칼로리" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -4838,7 +4890,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "计数"
+            "value" : "次"
           }
         }
       }
