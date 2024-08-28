@@ -10,10 +10,10 @@ import Charts
 
 struct BPMChartView: View {
     let workouts: [WorkoutData]
-    private var startDate: String {
+    private var endDate: String {
         workouts.first?.yearMonthDay ?? "2023.10.10"
     }
-    private var endDate: String {
+    private var startDate: String {
         workouts.last?.yearMonthDay ?? "2023.10.10"
     }
     var body: some View {
@@ -136,10 +136,21 @@ extension BPMChartView: Analyzable {
     
     func average(of workouts: [WorkoutData]) -> Double {
         var maximumHeartRateSum = 0
+        var zeroHeartCounts = 0
         workouts.forEach { workout in
-            maximumHeartRateSum += workout.maxHeartRate
+            if workout.maxHeartRate != 0 {
+                maximumHeartRateSum += workout.maxHeartRate
+            } else {
+                zeroHeartCounts += 1
+            }
         }
-        return Double(maximumHeartRateSum) / Double(workouts.count)
+        
+        // 심장이 안 뛴 날은 없다는 가정입니다!
+        if workouts.count - zeroHeartCounts == 0 {
+            return 0
+        } else {
+            return Double(maximumHeartRateSum) / (Double(workouts.count) - Double(zeroHeartCounts))
+        }
     }
 }
 

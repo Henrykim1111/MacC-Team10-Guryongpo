@@ -10,10 +10,10 @@ import SwiftUI
 
 struct SpeedChartView: View {
     let workouts: [WorkoutData]
-    private var startDate: String {
+    private var endDate: String {
         workouts.first?.yearMonthDay ?? "2023.10.10"
     }
-    private var endDate: String {
+    private var startDate: String {
         workouts.last?.yearMonthDay ?? "2023.10.10"
     }
     
@@ -137,10 +137,22 @@ extension SpeedChartView: Analyzable {
     
     func average(of workouts: [WorkoutData]) -> Double {
         var velocitySum = 0.0
+        var zeroVelocityCount = 0
         workouts.forEach { workout in
-            velocitySum += workout.velocity
+            if workout.velocity != 0 {
+                velocitySum += workout.velocity
+            } else {
+                zeroVelocityCount += 1
+            }
         }
-        return velocitySum / Double(workouts.count)
+        
+        // 속도가 0이었던 경기는 계산하지 않습니다.
+        if workouts.count - zeroVelocityCount == 0 {
+            return 0
+        } else {
+            return velocitySum / (Double(workouts.count) - Double(zeroVelocityCount))
+        }
+        
     }
 }
 
