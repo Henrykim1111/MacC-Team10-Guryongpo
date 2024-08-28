@@ -63,7 +63,8 @@ extension Font {
     // MARK: - After Game Data, Summary View
     
     public static let summaryContent = Font.notoSans(size: 26, weight: .blackItalic)
-    public static let summaryTraillingTop = Font.sfCompactText(size: 13.5)
+    public static let summaryUnit = Font.notoSans(size: 11, weight: .blackItalic)
+    public static let summaryTraillingTop = Font.sfCompactText(size: 12.0)
     public static let summaryLeadingBottom = Font.sfCompactText(size: 13.5)
     public static let summaryDoneButton = Font.sfCompactText(size: 15.0, weight: .semiboldItalic)
     
