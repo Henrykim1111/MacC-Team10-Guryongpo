@@ -205,19 +205,25 @@
       "localizations" : {
         "en" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : " times"
           }
         },
         "es" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : " times"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "회"
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "次"
           }
         }
@@ -1546,9 +1552,15 @@
             "value" : "Cuenta"
           }
         },
-        "zh-Hans" : {
+        "ko" : {
           "stringUnit" : {
             "state" : "translated",
+            "value" : "회"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "needs_review",
             "value" : "times"
           }
         }
