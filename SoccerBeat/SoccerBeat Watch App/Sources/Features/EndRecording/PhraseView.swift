@@ -28,7 +28,9 @@ struct PhraseView: View {
                 .scaleEffect(beatAnimation ? 1.1 : 1)
                 .animation(.spring.repeatForever(autoreverses: true).speed(3),
                            value: beatAnimation)
-
+        }
+        .onAppear {
+            beatAnimation.toggle()
         }
     }
 }
