@@ -48,12 +48,14 @@ struct AccessPermissionView: View {
             Rectangle()
                 .background(Color.white)
                 .frame(height: 1)
-                
+            
             
             VStack(alignment: .leading, spacing: 20) {
                 Text("정보 수집을 위해 다음과 같은 접근 권한을 사용하고 있습니다.")
                     .foregroundColor(.white)
-                    .padding(.bottom, 40)
+                
+                Spacer()
+                    .frame(height: 20)
                 
                 Group {
                     Text("위치(필수): 사용자의 필드 위 위치를 저장하기 위해 사용합니다.")
