@@ -356,7 +356,26 @@
       }
     },
     "* %@" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "* %@"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "* %@"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "* %@"
+          }
+        }
+      }
     },
     "# Hello World" : {
       "localizations" : {
@@ -622,12 +641,11 @@
         }
       }
     },
-    "> 개인 정보 보호 및 보안\n> 위치\n> SoccerBeat > 모두켜기\n 순서로 설정해주세요." : {
-      "extractionState" : "stale",
+    "> 개인 정보 보호 및 보안\n> 위치 서비스\n> SoccerBeat > 모두켜기\n 순서로 설정해주세요." : {
       "localizations" : {
         "en" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Please follow these steps to set it up:\n> Privacy & Security\n> Location Services\n> SoccerBeat > Turn On All"
           }
         },
@@ -637,12 +655,6 @@
             "value" : "> Privacidad y seguridad\n> Servicios de localización\n> SoccerBeat > Activar todo\n en este orden."
           }
         },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "> 개인 정보 보호 및 보안\n> 위치 서비스\n> SoccerBeat > 모두켜기\n 순서로 설정해주세요."
-          }
-        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -650,9 +662,6 @@
           }
         }
       }
-    },
-    "> 개인 정보 보호 및 보안\n> 위치 서비스\n> SoccerBeat > 모두켜기\n 순서로 설정해주세요." : {
-
     },
     "🏆 Level Up! ⚽️🏃‍♂️\n\n사커비트가 유저분들의 의견을 반영하여 사용성을 개선했어요\n\n지금 바로 업데이트하고 즐겨보세요!" : {
       "localizations" : {
@@ -2884,7 +2893,7 @@
         }
       }
     },
-    "사커비트의 건강 권한이 없습니다. " : {
+    "사커비트의 건강 권한이 없습니다." : {
       "comment" : "GuideAuthorizationView Info Button",
       "extractionState" : "manual",
       "localizations" : {
@@ -2914,7 +2923,7 @@
         }
       }
     },
-    "사커비트의 위치 권한이 없습니다. " : {
+    "사커비트의 위치 권한이 없습니다." : {
       "comment" : "GuideAuthorizationView Info Button",
       "extractionState" : "manual",
       "localizations" : {

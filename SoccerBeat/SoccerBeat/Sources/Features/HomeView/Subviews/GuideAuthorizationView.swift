@@ -45,8 +45,8 @@ struct GuideAuthorizationView: View {
                             }
                             .font(.custom("SFProDisplay-HeavyItalic", size: 36))
                         }
+                        .padding(.horizontal)
                     }
-                    .padding()
                     
                     Spacer()
                         .frame(height: 110)
