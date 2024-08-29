@@ -10,8 +10,8 @@ import SwiftUI
 struct DetailGuideView: View {
     let alertTitle: String = "문제가 있으신가요?"
     let requestingAuth: Auth
-    let TabViewHealthText = ["1", "2", "3", "4"]
-    let TabViewLocationText = ["a", "b", "c", "d"]
+    let TabViewHealthText = ["Privacy & Security", "Health", "SoccerBeat", "Turn On All"]
+    let TabViewLocationText = ["Privacy & Security", "Location Services", "SoccerBeat", "While Using the App"]
     @Binding var isShowingQuestion: Bool
     @State var isShowingBug = false
     var body: some View {
@@ -56,7 +56,8 @@ struct DetailGuideView: View {
                                 RoundedRectangle(cornerRadius: 20)
                             }
                         
-                        Text(requestingAuth == .health ? "\(TabViewHealthText[index])" : "\(TabViewLocationText[index])")
+                        Text(requestingAuth == .health ? "* \(TabViewHealthText[index])" : "* \(TabViewLocationText[index])")
+                            .font(.mainInfoText)
                         
                         Spacer()
                             .frame(height: 54)
@@ -129,5 +130,5 @@ struct DetailGuideView: View {
 }
 
 #Preview {
-    DetailGuideView(requestingAuth:.health, isShowingQuestion: .constant(true))
+    DetailGuideView(requestingAuth:.location, isShowingQuestion: .constant(true))
 }

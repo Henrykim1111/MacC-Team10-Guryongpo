@@ -355,6 +355,9 @@
         }
       }
     },
+    "* %@" : {
+
+    },
     "# Hello World" : {
       "localizations" : {
         "en" : {
@@ -620,32 +623,36 @@
       }
     },
     "> 개인 정보 보호 및 보안\n> 위치\n> SoccerBeat > 모두켜기\n 순서로 설정해주세요." : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
-            "state" : "translated",
-            "value" : "Please follow these steps to set it up:\n> Privacy & Security\n> Health\n> SoccerBeat > Turn On All"
+            "state" : "needs_review",
+            "value" : "Please follow these steps to set it up:\n> Privacy & Security\n> Location Services\n> SoccerBeat > Turn On All"
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "> Privacidad y seguridad\n> Localización\n> SoccerBeat > Activar todo\n en este orden."
+            "value" : "> Privacidad y seguridad\n> Servicios de localización\n> SoccerBeat > Activar todo\n en este orden."
           }
         },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "> 개인 정보 보호 및 보안\n> 위치\n> SoccerBeat > 모두켜기\n 순서로 설정해주세요."
+            "value" : "> 개인 정보 보호 및 보안\n> 위치 서비스\n> SoccerBeat > 모두켜기\n 순서로 설정해주세요."
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "> 隐私与安全\n> 位置\n> SoccerBeat > 全部打开\n 请按以下顺序设置。"
+            "value" : "> 隐私与安全\n> 位置服务\n> SoccerBeat > 全部打开\n 请按以下顺序设置。"
           }
         }
       }
+    },
+    "> 개인 정보 보호 및 보안\n> 위치 서비스\n> SoccerBeat > 모두켜기\n 순서로 설정해주세요." : {
+
     },
     "🏆 Level Up! ⚽️🏃‍♂️\n\n사커비트가 유저분들의 의견을 반영하여 사용성을 개선했어요\n\n지금 바로 업데이트하고 즐겨보세요!" : {
       "localizations" : {

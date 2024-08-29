@@ -28,7 +28,7 @@ struct NoAuthorizationView: View {
                                 
                                 Spacer()
                             }
-                            .padding(.top, 48)
+                            .padding(.top, 70)
                             .padding(.bottom, 30)
                             HStack {
                                 VStack(alignment: .leading, spacing: 0.0) {
@@ -42,6 +42,7 @@ struct NoAuthorizationView: View {
                                 }
                                 .font(.custom("SFProDisplay-HeavyItalic", size: 36))
                             }
+                            .padding()
                         }
                     }
                     
