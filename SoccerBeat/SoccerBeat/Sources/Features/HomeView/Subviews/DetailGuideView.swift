@@ -10,6 +10,8 @@ import SwiftUI
 struct DetailGuideView: View {
     let alertTitle: String = "문제가 있으신가요?"
     let requestingAuth: Auth
+    let TabViewHealthText = ["1", "2", "3", "4"]
+    let TabViewLocationText = ["a", "b", "c", "d"]
     @Binding var isShowingQuestion: Bool
     @State var isShowingBug = false
     var body: some View {
@@ -37,7 +39,7 @@ struct DetailGuideView: View {
                                 }
                                 .padding(.horizontal)
                             }
-                            .padding()                            
+                            .padding()
                         }
                         .font(.custom("SFProDisplay-HeavyItalic", size: 36))
                     }
@@ -47,13 +49,18 @@ struct DetailGuideView: View {
             
             TabView {
                 ForEach(0..<4) { index in
-                    Image(requestingAuth == .health ? "Health-\(index)" : "Location-\(index)")
-                        .resizable()
-                        .scaledToFit()
-                        .mask{
-                            RoundedRectangle(cornerRadius: 20)
-                        }
-                        .padding(.bottom, 64)
+                    VStack() {Image(requestingAuth == .health ? "Health-\(index)" : "Location-\(index)")
+                            .resizable()
+                            .scaledToFit()
+                            .mask{
+                                RoundedRectangle(cornerRadius: 20)
+                            }
+                        
+                        Text(requestingAuth == .health ? "\(TabViewHealthText[index])" : "\(TabViewLocationText[index])")
+                        
+                        Spacer()
+                            .frame(height: 54)
+                    }
                 }
             }
             .tabViewStyle(PageTabViewStyle())
