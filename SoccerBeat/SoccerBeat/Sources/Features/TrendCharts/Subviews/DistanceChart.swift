@@ -10,10 +10,10 @@ import Charts
 
 struct DistanceChartView: View {
     let workouts: [WorkoutData]
-    private var startDate: String {
+    private var endDate: String {
         workouts.first?.yearMonthDay ?? "2023.10.10"
     }
-    private var endDate: String {
+    private var startDate: String {
         workouts.last?.yearMonthDay ?? "2023.10.10"
     }
     var body: some View {
@@ -135,10 +135,20 @@ extension DistanceChartView: Analyzable {
     
     func average(of workouts: [WorkoutData]) -> Double {
         var distanceSum = 0.0
+        var zeroDistanceCounts = 0
         workouts.forEach { workout in
-            distanceSum += workout.distance
+            if workout.distance != 0 {
+                distanceSum += workout.distance
+            } else {
+                zeroDistanceCounts += 1
+            }
         }
-        return distanceSum / Double(workouts.count)
+        // 0 미터를 뛴 경기는 계산하지 않습니다.
+        if workouts.count - zeroDistanceCounts == 0 {
+            return 0
+        } else {
+            return distanceSum / (Double(workouts.count) - Double(zeroDistanceCounts))
+        }
     }
 }
 

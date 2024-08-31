@@ -14,7 +14,9 @@ final class MatricsIndicator: NSObject, ObservableObject {
         didSet {
             self.heartZone = computeHeartZone(heartRate)
             
-            if saveMinHeartRate > Int(heartRate) {
+            if saveMinHeartRate == 0 {
+                saveMinHeartRate = Int(heartRate) // by defaults, minimum HR is 0. Initial HR value becomes the minimum value.
+            } else if saveMinHeartRate > Int(heartRate){
                 saveMinHeartRate = Int(heartRate)
             }
             
@@ -70,7 +72,7 @@ final class MatricsIndicator: NSObject, ObservableObject {
     let sprintSpeed: Double = 5.56 // 2.78ms == 10km/h 비교에 사용되는 스프린트 변수 상수 값. 현재는 20km/h 기준
 
     // 데이터 기록 변수
-    var saveMinHeartRate: Int = 300 // 심박최고수 저장
+    var saveMinHeartRate: Int = 0
     var saveMaxHeartRate: Int = 0
     var saveHeartRates: [Int] = []
 
@@ -86,7 +88,7 @@ final class MatricsIndicator: NSObject, ObservableObject {
         return [
             "MaxSpeed": Double(maxSpeedMPS.rounded(at: 2)), // m/s
             "SprintCount": sprintCount,
-            "MinHeartRate": saveMinHeartRate != 300 ? saveMinHeartRate : 0,
+            "MinHeartRate": saveMinHeartRate,
             "MaxHeartRate": saveMaxHeartRate,
             "HeartRates": saveHeartRates.map {String($0)}.joined(separator: ","),
             "Vo2Max": Double(vo2Max.rounded(at: 1)),

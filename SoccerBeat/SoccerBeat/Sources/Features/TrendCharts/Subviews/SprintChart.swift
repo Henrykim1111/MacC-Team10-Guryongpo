@@ -10,10 +10,10 @@ import Charts
 
 struct SprintChartView: View {
     let workouts: [WorkoutData]
-    private var startDate: String {
+    private var endDate: String {
         workouts.first?.yearMonthDay ?? "2023.10.10"
     }
-    private var endDate: String {
+    private var startDate: String {
         workouts.last?.yearMonthDay ?? "2023.10.10"
     }
     var body: some View {
@@ -138,10 +138,21 @@ extension SprintChartView: Analyzable {
     
     func average(of workouts: [WorkoutData]) -> Double {
         var maximumHeartRateSum = 0
+        var errorCount = 0
         workouts.forEach { workout in
-            maximumHeartRateSum += workout.sprint
+            // 스프린트는 0번일 수 있으니, 에러가 없는 데이터만을 계산합니다.
+            if !workout.error {
+                maximumHeartRateSum += workout.sprint
+            } else {
+                errorCount += 1
+            }
         }
-        return Double(maximumHeartRateSum) / Double(workouts.count)
+        
+        if workouts.count - errorCount == 0 {
+            return 0
+        } else {
+            return Double(maximumHeartRateSum) / (Double(workouts.count) - Double(errorCount))
+        }
     }
 }
 

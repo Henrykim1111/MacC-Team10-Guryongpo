@@ -10,20 +10,10 @@ import SwiftUI
 struct SummaryComponent: View {
     let title: String
     let content: String
+    let unit: String
     
     var body: some View {
-        ZStack(alignment: .topLeading) {
-            ZStack {
-                Rectangle()
-                    .foregroundStyle(Color.columnContent)
-                Text(content)
-                    .foregroundStyle(.summaryGradient)
-                    .font(.summaryContent)
-                    .padding()
-                    .scaledToFit()
-            }
-            .padding(.top, 22)
-            
+        VStack(alignment: .center, spacing: 0) {
             ZStack {
                 Rectangle()
                     .fill(Color.columnTitle)
@@ -32,23 +22,52 @@ struct SummaryComponent: View {
                     Image(.blueHeart)
                         .resizable()
                         .scaledToFit()
-                        .frame(maxWidth: 25, maxHeight: 25)
-                        .padding(.horizontal)
-                    Spacer()
+                        .frame(maxWidth: 12, maxHeight: 12)
+                        .padding(.leading, 6)
                     Text(LocalizedStringKey(title))
-                        .font(.summaryTraillingTop)
+                        .font(.distanceTimeText)
+                        .kerning(-0.8)
                         .foregroundStyle(.white)
-                        .padding(.horizontal)
+                        Spacer()
                 }
             }
             
-            Spacer()
+            ZStack {
+                Rectangle()
+                    .foregroundStyle(Color.columnContent)
+                    .frame(minWidth: 0, maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
+                
+                VStack {
+                    Spacer()
+                    HStack(alignment: .firstTextBaseline, spacing: 0) {
+                        Text(content)
+                            .foregroundStyle(.summaryGradient)
+                            .font(.summaryContent)
+                        
+                        Text(unit)
+                            .foregroundStyle(.summaryGradient)
+                            .font(.summaryUnit)
+                        
+                    }
+                    Spacer()
+                }
+            }
         }
         .clipShape(RoundedRectangle(cornerRadius: 7.2))
-        .padding(.vertical)
     }
 }
 
 #Preview {
-    SummaryComponent(title: "활동량", content: "2.1KM")
+    VStack(spacing: 4) {
+        HStack(spacing: 4) {
+            SummaryComponent(title: "跑步距离", content: "2.1", unit: "KM")
+            SummaryComponent(title: "跑步距离", content: "2.1", unit: "KM")
+        }
+        HStack(spacing: 4) {
+            SummaryComponent(title: "跑步距离", content: "2.1", unit: "KM")
+            SummaryComponent(title: "跑步距离", content: "2.1", unit: "KM")
+        }
+    }
+    .padding(.all)
+    .edgesIgnoringSafeArea(/*@START_MENU_TOKEN@*/.all/*@END_MENU_TOKEN@*/)
 }
