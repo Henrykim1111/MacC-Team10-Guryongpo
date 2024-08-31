@@ -10,6 +10,8 @@ import SwiftUI
 struct DetailGuideView: View {
     let alertTitle: String = "문제가 있으신가요?"
     let requestingAuth: Auth
+    let TabViewHealthText = ["Privacy & Security", "Health", "SoccerBeat", "Turn On All"]
+    let TabViewLocationText = ["Privacy & Security", "Location Services", "SoccerBeat", "While Using the App"]
     @Binding var isShowingQuestion: Bool
     @State var isShowingBug = false
     var body: some View {
@@ -37,22 +39,29 @@ struct DetailGuideView: View {
                                 }
                                 .padding(.horizontal)
                             }
-                            .padding()                            
+                            .padding()
                         }
                         .font(.custom("SFProDisplay-HeavyItalic", size: 36))
                     }
                 }
             }.padding(.top, 48)
-       
+                .padding(.horizontal)
+            
             TabView {
                 ForEach(0..<4) { index in
-                    Image(requestingAuth == .health ? "Health-\(index)" : "Location-\(index)")
-                        .resizable()
-                        .scaledToFit()
-                        .mask{
-                            RoundedRectangle(cornerRadius: 20)
-                        }
-                        .padding(.bottom, 64)
+                    VStack() {Image(requestingAuth == .health ? "Health-\(index)" : "Location-\(index)")
+                            .resizable()
+                            .scaledToFit()
+                            .mask{
+                                RoundedRectangle(cornerRadius: 20)
+                            }
+                        
+                        Text(requestingAuth == .health ? "* \(TabViewHealthText[index])" : "* \(TabViewLocationText[index])")
+                            .font(.mainInfoText)
+                        
+                        Spacer()
+                            .frame(height: 54)
+                    }
                 }
             }
             .tabViewStyle(PageTabViewStyle())
@@ -81,21 +90,21 @@ struct DetailGuideView: View {
                 Spacer()
             }
             .alert(
-                        alertTitle,
-                        isPresented: $isShowingBug
-                    ) {
-                        Button("취소", role: .cancel) {
-                            // Handle the acknowledgement.
-                            isShowingBug.toggle()
-                        }
-                        Button("문의하기") {
-                            let url = createEmailUrl(to: "guryongpo23@gmail.com", subject: "", body: "")
-                            openURL(urlString: url)
-                            // TODO: 로그인 안될 때엔 어떻게 됩니까?
-                        }
-                    } message: {
-                       Text("불편을 드려 죄송합니다. \n\nSoccerBeat의 개발자 계정으로 문의를 주시면 빠른 시일 안에 답변드리겠습니다. ")
-                    }
+                alertTitle,
+                isPresented: $isShowingBug
+            ) {
+                Button("취소", role: .cancel) {
+                    // Handle the acknowledgement.
+                    isShowingBug.toggle()
+                }
+                Button("문의하기") {
+                    let url = createEmailUrl(to: "guryongpo23@gmail.com", subject: "", body: "")
+                    openURL(urlString: url)
+                    // TODO: 로그인 안될 때엔 어떻게 됩니까?
+                }
+            } message: {
+                Text("불편을 드려 죄송합니다. \n\nSoccerBeat의 개발자 계정으로 문의를 주시면 빠른 시일 안에 답변드리겠습니다. ")
+            }
         }
     }
     
@@ -109,17 +118,17 @@ struct DetailGuideView: View {
             }
         }
     }
-
+    
     func createEmailUrl(to: String, subject: String, body: String) -> String {
         let subjectEncoded = subject.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
         let bodyEncoded = body.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
-            
+        
         let defaultUrl = "mailto:\(to)?subject=\(subjectEncoded)&body=\(bodyEncoded)"
-            
+        
         return defaultUrl
     }
 }
 
 #Preview {
-    DetailGuideView(requestingAuth:.health, isShowingQuestion: .constant(true))
+    DetailGuideView(requestingAuth:.location, isShowingQuestion: .constant(true))
 }

@@ -24,7 +24,7 @@ struct NoAuthorizationView: View {
                     HStack {
                         VStack {
                             HStack {
-                                InformationButton(message: " 사커비트를 사용하기 위해 권한을 설정해주세요.")
+                                InformationButton(message: "사커비트를 사용하기 위해 권한을 설정해주세요.")
                                 
                                 Spacer()
                             }
@@ -42,6 +42,7 @@ struct NoAuthorizationView: View {
                                 }
                                 .font(.custom("SFProDisplay-HeavyItalic", size: 36))
                             }
+                            .padding(.horizontal)
                         }
                     }
                     

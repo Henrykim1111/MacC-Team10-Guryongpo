@@ -16,26 +16,36 @@ struct GuideAuthorizationView: View {
                 Image(.backgroundPattern)
                     .frame(maxHeight: UIScreen.screenHeight)
                 VStack {
-                    HStack {
-                        VStack {
-                            HStack {
-                                InformationButton(message: requestingAuth == .health ? " 사커비트의 건강 권한이 없습니다. " : " 사커비트의 위치 권한이 없습니다. ")
-                                Spacer()
+                    VStack {
+                        HStack {
+                            if requestingAuth == .health {
+                                InformationButton(message: "사커비트의 건강 권한이 없습니다.")
+                            } else {
+                                InformationButton(message: "사커비트의 위치 권한이 없습니다.")
                             }
-                            .padding(.top, 48)
-                            .padding(.bottom, 30)
-                            HStack {
-                                VStack(alignment: .leading, spacing: 0.0) {
-                                    HStack {
-                                        Text(requestingAuth == .health ? "건강 권한 설정하기" : "위치 권한 설정하기")
+                            Spacer()
+                        }
+                        .padding(.top, 48)
+                        .padding(.bottom, 30)
+                        HStack {
+                            VStack(alignment: .leading, spacing: 0.0) {
+                                HStack {
+                                    if requestingAuth == .health {
+                                        Text("건강 권한 설정하기")
                                             .font(.matchDetailSubTitle)
                                             .foregroundStyle(.shareViewSubTitleTint)
-                                        Spacer()
+                                    } else {
+                                        Text("위치 권한 설정하기")
+                                            .font(.matchDetailSubTitle)
+                                            .foregroundStyle(.shareViewSubTitleTint)
                                     }
+                                    
+                                    Spacer()
                                 }
-                                .font(.custom("SFProDisplay-HeavyItalic", size: 36))
                             }
+                            .font(.custom("SFProDisplay-HeavyItalic", size: 36))
                         }
+                        .padding(.horizontal)
                     }
                     
                     Spacer()
@@ -69,9 +79,15 @@ struct GuideAuthorizationView: View {
                             }.offset(y: -20)
                             
                             VStack(alignment: .leading) {
-                                Text(requestingAuth == .health ? "> 개인 정보 보호 및 보안\n> 건강\n> SoccerBeat > 모두켜기\n 순서로 설정해주세요." : "> 개인 정보 보호 및 보안\n> 위치\n> SoccerBeat > 모두켜기\n 순서로 설정해주세요.")
-                                    .font(.noAuthorizationTitleFont)
-                                    .foregroundStyle(.brightmint)
+                                if requestingAuth == .health {
+                                    Text("> 개인 정보 보호 및 보안\n> 건강\n> SoccerBeat > 모두켜기\n 순서로 설정해주세요.")
+                                        .font(.noAuthorizationTitleFont)
+                                        .foregroundStyle(.brightmint)
+                                } else {
+                                    Text("> 개인 정보 보호 및 보안\n> 위치 서비스\n> SoccerBeat > 모두켜기\n 순서로 설정해주세요.")
+                                        .font(.noAuthorizationTitleFont)
+                                        .foregroundStyle(.brightmint)
+                                }
                             }.offset(y: -10)
                             
                             Spacer()
@@ -80,9 +96,6 @@ struct GuideAuthorizationView: View {
                             HStack {
                                 Spacer()
                                 Button {
-//                                    x-apple-health://HealthProfile
-//                                prefs:root=HEALTH
-//                                    App-Prefs:HEALTH&path=SOURCES_ITEM/
                                     if let bundleIdentifier = Bundle.main.bundleIdentifier,
                                        let url = requestingAuth == .health ? URL(string: "App-Prefs:HEALTH&path=SOURCES")! : URL(string: "\(UIApplication.openSettingsURLString)\(bundleIdentifier)") {
                                         UIApplication.shared.open(url, options: [:], completionHandler: nil)

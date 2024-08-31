@@ -364,6 +364,28 @@
     ":" : {
 
     },
+    "* %@" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "* %@"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "* %@"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "* %@"
+          }
+        }
+      }
+    },
     "# Hello World" : {
       "localizations" : {
         "en" : {
@@ -628,30 +650,24 @@
         }
       }
     },
-    "> 개인 정보 보호 및 보안\n> 위치\n> SoccerBeat > 모두켜기\n 순서로 설정해주세요." : {
+    "> 개인 정보 보호 및 보안\n> 위치 서비스\n> SoccerBeat > 모두켜기\n 순서로 설정해주세요." : {
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Please follow these steps to set it up:\n> Privacy & Security\n> Health\n> SoccerBeat > Turn On All"
+            "value" : "Please follow these steps to set it up:\n> Privacy & Security\n> Location Services\n> SoccerBeat > Turn On All"
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "> Privacidad y seguridad\n> Localización\n> SoccerBeat > Activar todo\n en este orden."
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "> 개인 정보 보호 및 보안\n> 위치\n> SoccerBeat > 모두켜기\n 순서로 설정해주세요."
+            "value" : "> Privacidad y seguridad\n> Servicios de localización\n> SoccerBeat > Activar todo\n en este orden."
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "> 隐私与安全\n> 位置\n> SoccerBeat > 全部打开\n 请按以下顺序设置。"
+            "value" : "> 隐私与安全\n> 位置服务\n> SoccerBeat > 全部打开\n 请按以下顺序设置。"
           }
         }
       }
@@ -2756,6 +2772,28 @@
         }
       }
     },
+    "백그라운드 위치(필수): 사용자의 필드 위 위치를 저장하기 위해 사용합니다." : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Background Location (Required): Used to store the user's position on the field."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ubicación en segundo plano (Requerido): Se utiliza para almacenar la posición del usuario en el campo."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "后台位置（必需）: 用于存储用户在场地上的位置。"
+          }
+        }
+      }
+    },
     "불편을 드려 죄송합니다. \n\nSoccerBeat의 개발자 계정으로 문의를 주시면 빠른 시일 안에 답변드리겠습니다. " : {
       "localizations" : {
         "en" : {
@@ -2834,6 +2872,96 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "红色"
+          }
+        }
+      }
+    },
+    "사커비트를 사용하기 위해 권한을 설정해주세요." : {
+      "comment" : "NoAuthorizationView Info Button",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Please enable permissions to use SoccerBeat."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Por favor, habilite los permisos para usar SoccerBeat."
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "사커비트를 사용하기 위해 권한을 설정해주세요."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "请设置权限以使用SoccerBeat。"
+          }
+        }
+      }
+    },
+    "사커비트의 건강 권한이 없습니다." : {
+      "comment" : "GuideAuthorizationView Info Button",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "SoccerBeat does not have health permissions. "
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "SoccerBeat no tiene permisos de salud."
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "사커비트의 건강 권한이 없습니다. "
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "SoccerBeat没有健康权限。"
+          }
+        }
+      }
+    },
+    "사커비트의 위치 권한이 없습니다." : {
+      "comment" : "GuideAuthorizationView Info Button",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "SoccerBeat does not have location permissions. "
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "SoccerBeat no tiene permisos de ubicación."
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "사커비트의 위치 권한이 없습니다. "
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "SoccerBeat没有位置权限。"
           }
         }
       }
@@ -3272,6 +3400,28 @@
         }
       }
     },
+    "앱 접근 권한 안내" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "App Access Permissions Guide"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Guía de permisos de acceso a la aplicación"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "应用访问权限指南"
+          }
+        }
+      }
+    },
     "업데이트" : {
       "comment" : "업데이트",
       "extractionState" : "manual",
@@ -3462,6 +3612,28 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "设置位置权限"
+          }
+        }
+      }
+    },
+    "위치(필수): 사용자의 필드 위 위치를 저장하기 위해 사용합니다." : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Location (Required): Used to store the user's position on the field."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ubicación (Requerido): Se utiliza para almacenar la posición del usuario en el campo."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "位置（必需）: 用于存储用户在场地上的位置。"
           }
         }
       }
@@ -3874,6 +4046,28 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "数据使用权利"
+          }
+        }
+      }
+    },
+    "정보 수집을 위해 다음과 같은 접근 권한을 사용하고 있습니다." : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The following access permissions are used for data collection."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Se utilizan los siguientes permisos de acceso para la recopilación de datos."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "为了收集信息，使用以下访问权限。"
           }
         }
       }
@@ -4859,6 +5053,28 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "哈里·凯恩平时的心率是40 bpm。"
+          }
+        }
+      }
+    },
+    "헬스 정보(필수): 사용자의 경기 데이터를 저장하기 위해 사용합니다." : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Health Information (Required): Used to store the user's game data."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Información de salud (Requerido): Se utiliza para almacenar los datos de juego del usuario."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "健康信息（必需）: 用于存储用户的比赛数据。"
           }
         }
       }
