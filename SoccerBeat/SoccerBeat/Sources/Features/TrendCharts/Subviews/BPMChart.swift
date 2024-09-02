@@ -72,7 +72,7 @@ struct BPMChart: View {
                     let workout = workouts[index]
                     
                     BarMark(
-                        x: .value("Order", index),
+                        x: .value("Order", workouts.count - index),
                         yStart: .value("HeartRate", 0),
                         yEnd: .value("HeartRate", workout.maxHeartRate)
                     )

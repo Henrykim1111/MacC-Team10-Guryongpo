@@ -72,7 +72,7 @@ struct SprintChart: View {
                     let workout = workouts[index]
                     
                     BarMark(
-                        x: .value("Order", index),
+                        x: .value("Order", workouts.count - index),
                         yStart: .value("Sprint", 0),
                         yEnd: .value("Sprint", workout.sprint)
                     )

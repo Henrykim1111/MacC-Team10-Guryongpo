@@ -74,7 +74,7 @@ struct DistanceChart: View {
                     let workout = workouts[index]
                     
                     BarMark(
-                        x: .value("Order", index),
+                        x: .value("Order", workouts.count - index),
                         yStart: .value("Distance", 0.0),
                         yEnd: .value("Distance", workout.distance)
                     )

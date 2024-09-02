@@ -75,7 +75,7 @@ struct SpeedChart: View {
                     let workout = workouts[index]
                     
                     BarMark(
-                        x: .value("Order", index),
+                        x: .value("Order", workouts.count - index),
                         yStart: .value("Velocity", 0.0),
                         yEnd: .value("Velocity", workout.velocity)
                     )
