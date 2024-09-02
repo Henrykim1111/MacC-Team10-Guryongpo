@@ -55,7 +55,7 @@ struct BPMChart: View {
     let fastestWorkout: WorkoutData
     let slowestWorkout: WorkoutData
     let averageBPM: Double
-    let betweenBarSpace = 70.0
+    let betweenBarSpace = 40.0
     
     private func isMax(_ workout: WorkoutData) -> Bool {
         workout == fastestWorkout

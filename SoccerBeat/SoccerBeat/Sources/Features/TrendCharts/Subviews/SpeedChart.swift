@@ -57,7 +57,7 @@ struct SpeedChart: View {
     let fastestWorkout: WorkoutData
     let slowestWorkout: WorkoutData
     let averageSpeed: Double
-    let betweenBarSpace = 70.0
+    let betweenBarSpace = 40.0
     
     
     private func isMax(_ workout: WorkoutData) -> Bool {

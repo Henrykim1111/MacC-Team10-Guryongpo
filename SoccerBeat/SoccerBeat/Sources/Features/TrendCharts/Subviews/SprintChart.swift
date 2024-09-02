@@ -55,7 +55,7 @@ struct SprintChart: View {
     let fastestWorkout: WorkoutData
     let slowestWorkout: WorkoutData
     let averageSprint: Double
-    let betweenBarSpace = 70.0
+    let betweenBarSpace = 40.0
     
     private func isMax(_ workout: WorkoutData) -> Bool {
         workout == fastestWorkout
@@ -171,7 +171,7 @@ extension SprintChartView {
                             
                             HStack {
                                 Spacer()
-                                Text("단위: Bpm")
+                                Text("단위: 회")
                             }
                             .font(.durationStyle)
                             .foregroundStyle(.defaultDayStyle)

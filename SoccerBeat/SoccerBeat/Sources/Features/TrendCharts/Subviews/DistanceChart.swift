@@ -57,7 +57,7 @@ struct DistanceChart: View {
     let fastestWorkout: WorkoutData
     let slowestWorkout: WorkoutData
     let averageDistance: Double
-    let betweenBarSpace = 70.0
+    let betweenBarSpace = 40.0
     
     private func isMax(_ workout: WorkoutData) -> Bool {
         workout == fastestWorkout
