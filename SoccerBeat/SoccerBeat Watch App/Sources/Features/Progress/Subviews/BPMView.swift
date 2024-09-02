@@ -46,7 +46,7 @@ struct BPMView: View {
                                 .offset(x: 1.5, y: 3)
                         }
                     
-                    Text("bpm")
+                    Text("Bpm")
                         .font(.bpmUnit)
                 }
             }
