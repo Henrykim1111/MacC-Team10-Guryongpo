@@ -33,7 +33,6 @@ struct SprintChartView: View {
                         .highlighter(activity: .sprint, isDefault: false)
                 }
                 .font(.navigationSportyTitle)
-                .padding(.top, 32)
                 
                 Spacer()
             }
@@ -92,7 +91,7 @@ struct SprintChart: View {
                             .padding(.top, 8)
                             
                             
-                            Text("\(workout.monthDay)")
+                            Text(workout.monthDay)
                                 .font(isMaxOrMin ? .maxDayUnit : .defaultDayUnit)
                                 .foregroundStyle(.defaultDayStyle)
                         }

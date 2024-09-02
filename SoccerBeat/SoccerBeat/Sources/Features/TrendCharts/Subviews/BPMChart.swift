@@ -33,7 +33,6 @@ struct BPMChartView: View {
                         .highlighter(activity: .heartrate, isDefault: false)
                 }
                 .font(.navigationSportyTitle)
-                .padding(.top, 32)
                 
                 Spacer()
             }
@@ -89,7 +88,7 @@ struct BPMChart: View {
                                 .opacity(isMaxOrMin ? 1.0 : 0.5)
                                 .padding(.top, 8)
                             
-                            Text("\(workout.monthDay)")
+                            Text(workout.monthDay)
                                 .font(isMaxOrMin ? .maxDayUnit : .defaultDayUnit)
                                 .foregroundStyle(.defaultDayStyle)
                         }
