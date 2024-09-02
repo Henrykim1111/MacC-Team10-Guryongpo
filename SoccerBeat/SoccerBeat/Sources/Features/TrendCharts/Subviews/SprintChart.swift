@@ -34,7 +34,7 @@ struct SprintChartView: View {
                 }
                 .font(.navigationSportyTitle)
                 .padding(.top, 32)
-
+                
                 Spacer()
             }
             
@@ -43,7 +43,7 @@ struct SprintChartView: View {
             averageSprintView
                 .padding(.horizontal, 48)
                 .padding(.top, 30)
-
+            
             Spacer()
         }
         .padding()
@@ -86,19 +86,18 @@ struct SprintChart: View {
                         VStack(spacing: 6) {
                             HStack(spacing: 0) {
                                 Text(workout.sprint.formatted())
-                                Text("회")
                             }
-                                .font(.maxValueUint)
-                                .foregroundStyle(.maxValueStyle)
-                                .opacity(isMaxOrMin ? 1.0 : 0.5)
-                                .padding(.top, 8)
+                            .font(.maxValueUint)
+                            .foregroundStyle(.maxValueStyle)
+                            .opacity(isMaxOrMin ? 1.0 : 0.5)
+                            .padding(.top, 8)
                             
                             HStack(spacing: 0) {
                                 Text("\(workout.day)")
                                 Text("일")
                             }
-                                .font(isMaxOrMin ? .maxDayUnit : .defaultDayUnit)
-                                .foregroundStyle(.defaultDayStyle)
+                            .font(isMaxOrMin ? .maxDayUnit : .defaultDayUnit)
+                            .foregroundStyle(.defaultDayStyle)
                         }
                     }
                 }
@@ -165,10 +164,18 @@ extension SprintChartView {
             .overlay {
                 if !workouts.isEmpty {
                     VStack {
-                        
-                        Text("\(startDate) - \(endDate)")
+                        ZStack {
+                            Text("\(startDate) - \(endDate)")
+                                .font(.durationStyle)
+                                .foregroundStyle(.durationStyle)
+                            
+                            HStack {
+                                Spacer()
+                                Text("단위: Bpm")
+                            }
                             .font(.durationStyle)
-                            .foregroundStyle(.durationStyle)
+                            .foregroundStyle(.defaultDayStyle)
+                        }
                         
                         Spacer()
                         SprintChart(
@@ -178,8 +185,9 @@ extension SprintChartView {
                             averageSprint: average(of: workouts)
                         )
                         .frame(height: 120)
+                        .padding(.horizontal)
                     }
-                    .padding(.horizontal, 30)
+                    .padding(.horizontal, 20)
                     .padding(.vertical, 24)
                 } else {
                     ZStack {
@@ -189,7 +197,7 @@ extension SprintChartView {
                             .opacity(0.3)
                         VStack {
                             Text("저장된 경기 기록이 없습니다.")
-                            .font(.matchRecapEmptyDataTop)
+                                .font(.matchRecapEmptyDataTop)
                             Group {
                                 Text("애플워치를 차고 사커비트로")
                                 Text("당신의 첫 번째 경기를 기록해 보세요!")
@@ -206,19 +214,19 @@ extension SprintChartView {
     @ViewBuilder
     private var averageSprintView: some View {
         let player = FileLoader.sprints.randomElement()
-
+        
         let sprintsMessage = String(
             format: "%@의 평균 스프린트 횟수는 %@입니다.".localized(),
             player?.name ?? "Lionel Messi",
             player?.sprintCount ?? "13"
         )
-
+        
         VStack(alignment: .center, spacing: 16) {
             Text(sprintsMessage)
                 .font(.playerComapareSaying)
                 .multilineTextAlignment(.center)
                 .foregroundStyle(.playerCompareStyle)
-
+            
             Text("최근 경기 평균")
                 .font(.averageText)
                 .foregroundStyle(.averageTextStyle)
