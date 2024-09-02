@@ -55,7 +55,7 @@ struct SprintChart: View {
     let fastestWorkout: WorkoutData
     let slowestWorkout: WorkoutData
     let averageSprint: Double
-    let betweenBarSpace = 40.0
+    let betweenBarSpace = 45.0
     
     private func isMax(_ workout: WorkoutData) -> Bool {
         workout == fastestWorkout
@@ -92,12 +92,10 @@ struct SprintChart: View {
                             .opacity(isMaxOrMin ? 1.0 : 0.5)
                             .padding(.top, 8)
                             
-                            HStack(spacing: 0) {
-                                Text("\(workout.day)")
-                                Text("일")
-                            }
-                            .font(isMaxOrMin ? .maxDayUnit : .defaultDayUnit)
-                            .foregroundStyle(.defaultDayStyle)
+                            
+                            Text("\(workout.monthDay)")
+                                .font(isMaxOrMin ? .maxDayUnit : .defaultDayUnit)
+                                .foregroundStyle(.defaultDayStyle)
                         }
                     }
                 }
