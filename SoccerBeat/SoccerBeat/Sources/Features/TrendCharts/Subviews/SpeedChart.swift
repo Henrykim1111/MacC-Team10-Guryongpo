@@ -43,7 +43,6 @@ struct SpeedChartView: View {
             speedChartView(fastest: fastest, slowest: slowest)
             
             averageSpeedView
-                .padding(.horizontal, 48)
                 .padding(.top, 30)
             
             Spacer()
@@ -219,31 +218,31 @@ extension SpeedChartView {
             player?.topSpeed ?? "33.2"
         )
         
-        VStack(spacing: 16) {
-            Text(topSpeedMessage)
-                .font(.playerComapareSaying)
-                .multilineTextAlignment(.center)
-                .foregroundStyle(.playerCompareStyle)
-            
-            Text("최근 경기 평균")
-                .font(.averageText)
-                .foregroundStyle(.averageTextStyle)
-            Group {
-                if !workouts.isEmpty {
-                    Text(average(of: workouts).rounded(at: 1))
-                    + Text(" km/h")
-                } else {
-                    Text("--")
-                    + Text(" km/h")
+        LightRectangleView(color: .chartBoxBackground.opacity(0.4))
+            .frame(height: 120)
+            .overlay {
+                VStack(spacing: 16) {
+                    Text(topSpeedMessage)
+                        .font(.playerComapareSaying)
+                        .multilineTextAlignment(.center)
+                        .foregroundStyle(.playerCompareStyle)
+                    
+                    Text("최근 경기 평균")
+                        .font(.averageText)
+                        .foregroundStyle(.averageTextStyle)
+                    Group {
+                        if !workouts.isEmpty {
+                            Text(average(of: workouts).rounded(at: 1))
+                            + Text(" km/h")
+                        } else {
+                            Text("--")
+                            + Text(" km/h")
+                        }
+                    }
+                    .font(.averageValue)
+                    .foregroundStyle(.navigationSportySpeedTitle)
                 }
             }
-            .font(.averageValue)
-            .foregroundStyle(.navigationSportySpeedTitle)
-        }
-        .padding()
-        .overlay {
-            LightRectangleView(color: .chartBoxBackground.opacity(0.4))
-        }
     }
 }
 

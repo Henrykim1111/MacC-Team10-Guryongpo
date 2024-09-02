@@ -41,7 +41,6 @@ struct BPMChartView: View {
             BPMChartView(fastest: fastest, slowest: slowest)
             
             averageMaximumBpmView
-                .padding(.horizontal, 48)
                 .padding(.top, 30)
             
             Spacer()
@@ -217,31 +216,31 @@ extension BPMChartView {
             player?.heartRate.gameWinningGoal ?? "175"
         )
         
-        VStack(spacing: 16) {
-            Text(heartRateMessage)
-                .font(.playerComapareSaying)
-                .multilineTextAlignment(.center)
-                .foregroundStyle(.playerCompareStyle)
-            
-            Text("최근 경기 평균")
-                .font(.averageText)
-                .foregroundStyle(.averageTextStyle)
-            Group {
-                if !workouts.isEmpty {
-                    Text(average(of: workouts).rounded(at: 0))
-                    + Text(" Bpm")
-                } else {
-                    Text("--")
-                    + Text(" Bpm")
+        LightRectangleView(color: .chartBoxBackground.opacity(0.4))
+            .frame(height: 120)
+            .overlay {
+                VStack(spacing: 16) {
+                    Text(heartRateMessage)
+                        .font(.playerComapareSaying)
+                        .multilineTextAlignment(.center)
+                        .foregroundStyle(.playerCompareStyle)
+                    
+                    Text("최근 경기 평균")
+                        .font(.averageText)
+                        .foregroundStyle(.averageTextStyle)
+                    Group {
+                        if !workouts.isEmpty {
+                            Text(average(of: workouts).rounded(at: 0))
+                            + Text(" Bpm")
+                        } else {
+                            Text("--")
+                            + Text(" Bpm")
+                        }
+                    }
+                    .font(.averageValue)
+                    .foregroundStyle(.navigationSportyBPMTitle)
                 }
             }
-            .font(.averageValue)
-            .foregroundStyle(.navigationSportyBPMTitle)
-        }
-        .padding()
-        .overlay {
-            LightRectangleView(color: .chartBoxBackground.opacity(0.4))
-        }
     }
 }
 

@@ -41,7 +41,6 @@ struct SprintChartView: View {
             sprintChartView(fastest: fastest, slowest: slowest)
             
             averageSprintView
-                .padding(.horizontal, 48)
                 .padding(.top, 30)
             
             Spacer()
@@ -219,31 +218,31 @@ extension SprintChartView {
             player?.sprintCount ?? "13"
         )
         
-        VStack(alignment: .center, spacing: 16) {
-            Text(sprintsMessage)
-                .font(.playerComapareSaying)
-                .multilineTextAlignment(.center)
-                .foregroundStyle(.playerCompareStyle)
-            
-            Text("최근 경기 평균")
-                .font(.averageText)
-                .foregroundStyle(.averageTextStyle)
-            Group {
-                if !workouts.isEmpty {
-                    Text(average(of: workouts).rounded(at: 0))
-                    + Text(" 회")
-                } else {
-                    Text("--")
-                    + Text(" 회")
+        LightRectangleView(color: .chartBoxBackground.opacity(0.4))
+            .frame(height: 120)
+            .overlay {
+                VStack(alignment: .center, spacing: 16) {
+                    Text(sprintsMessage)
+                        .font(.playerComapareSaying)
+                        .multilineTextAlignment(.center)
+                        .foregroundStyle(.playerCompareStyle)
+                    
+                    Text("최근 경기 평균")
+                        .font(.averageText)
+                        .foregroundStyle(.averageTextStyle)
+                    Group {
+                        if !workouts.isEmpty {
+                            Text(average(of: workouts).rounded(at: 0))
+                            + Text(" 회")
+                        } else {
+                            Text("--")
+                            + Text(" 회")
+                        }
+                    }
+                    .font(.averageValue)
+                    .foregroundStyle(.navigationSportySprintTitle)
                 }
             }
-            .font(.averageValue)
-            .foregroundStyle(.navigationSportySprintTitle)
-        }
-        .padding()
-        .overlay {
-            LightRectangleView(color: .chartBoxBackground.opacity(0.4))
-        }
     }
 }
 

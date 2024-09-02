@@ -43,7 +43,6 @@ struct DistanceChartView: View {
             distanceChartView(fastest: fastest, slowest: slowest)
             
             averageDistanceView
-                .padding(.horizontal, 48)
                 .padding(.top, 30)
             
             Spacer()
@@ -213,32 +212,31 @@ extension DistanceChartView {
             player?.name ?? "Lionel Messi",
             player?.distancePer90min ?? "7.2"
         )
-        
-        VStack(spacing: 16) {
-            Text(distanceMessage)
-                .multilineTextAlignment(.center)
-                .font(.playerComapareSaying)
-                .foregroundStyle(.playerCompareStyle)
-            
-            Text("최근 경기 평균")
-                .font(.averageText)
-                .foregroundStyle(.averageTextStyle)
-            Group {
-                if !workouts.isEmpty {
-                    Text(average(of: workouts).rounded())
-                    + Text(" km")
-                } else {
-                    Text("--")
-                    + Text(" km")
+        LightRectangleView(color: .chartBoxBackground.opacity(0.4))
+            .frame(height: 120)
+            .overlay {
+                VStack(spacing: 16) {
+                    Text(distanceMessage)
+                        .multilineTextAlignment(.center)
+                        .font(.playerComapareSaying)
+                        .foregroundStyle(.playerCompareStyle)
+                    
+                    Text("최근 경기 평균")
+                        .font(.averageText)
+                        .foregroundStyle(.averageTextStyle)
+                    Group {
+                        if !workouts.isEmpty {
+                            Text(average(of: workouts).rounded())
+                            + Text(" km")
+                        } else {
+                            Text("--")
+                            + Text(" km")
+                        }
+                    }
+                    .font(.averageValue)
+                    .foregroundStyle(.navigationSportyDistanceTitle)
                 }
             }
-            .font(.averageValue)
-            .foregroundStyle(.navigationSportyDistanceTitle)
-        }
-        .padding()
-        .overlay {
-            LightRectangleView(color: .chartBoxBackground.opacity(0.4))
-        }
     }
 }
 
