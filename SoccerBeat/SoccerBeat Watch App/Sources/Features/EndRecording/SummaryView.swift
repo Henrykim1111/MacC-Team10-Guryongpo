@@ -26,7 +26,7 @@ struct SummaryView: View {
             GeometryReader { proxy in
                 TabView {
                     Group {
-                        VStack(spacing: 8) {
+                        VStack(spacing: 4) {
                             InfoSportsView()
                             Image(systemName: "arrowtriangle.down.fill")
                                 .foregroundStyle(.summaryGradient)
@@ -35,8 +35,10 @@ struct SummaryView: View {
                                 .animation(.spring.repeatForever(autoreverses: false).speed(0.8),
                                            value: isBlinking)
                         }
+                        .padding(.vertical)
+                        .edgesIgnoringSafeArea(.all)
                         
-                        VStack(spacing: 8) {
+                        VStack(spacing: 4) {
                             Image(systemName: "arrowtriangle.up.fill")
                                 .foregroundStyle(.summaryGradient)
                                 .font(.summaryTraillingTop)
@@ -44,6 +46,7 @@ struct SummaryView: View {
                                 .animation(.spring.repeatForever(autoreverses: false).speed(0.8),
                                            value: isHeartBlinking)
                             InfoHeartView()
+                            Spacer()
                             Button {
                                 workoutManager.showingSummaryView = false
                             } label: {
@@ -59,6 +62,7 @@ struct SummaryView: View {
                                     }
                             }
                         }
+                        .edgesIgnoringSafeArea(.all)
                         .onAppear {
                             withAnimation {
                                 isHeartBlinking = true

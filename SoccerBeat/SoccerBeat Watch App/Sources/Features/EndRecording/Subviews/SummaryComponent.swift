@@ -17,13 +17,13 @@ struct SummaryComponent: View {
             ZStack {
                 Rectangle()
                     .fill(Color.columnTitle)
-                    .frame(minWidth: 0, maxWidth: .infinity, maxHeight: 26, alignment: .top)
+                    .frame(minWidth: 0, maxWidth: .infinity, minHeight: 24, maxHeight: 26, alignment: .top)
                 HStack {
                     Image(.blueHeart)
                         .resizable()
                         .scaledToFit()
                         .frame(maxWidth: 12, maxHeight: 12)
-                        .padding(.leading, 6)
+                        .padding(.leading, 5)
                     Text(LocalizedStringKey(title))
                         .font(.distanceTimeText)
                         .kerning(-0.8)
@@ -35,10 +35,9 @@ struct SummaryComponent: View {
             ZStack {
                 Rectangle()
                     .foregroundStyle(Color.columnContent)
-                    .frame(minWidth: 0, maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
+                    .frame(minWidth: 0, maxWidth: .infinity, minHeight: 60, maxHeight: 60, alignment: .top)
                 
                 VStack {
-                    Spacer()
                     HStack(alignment: .firstTextBaseline, spacing: 0) {
                         Text(content)
                             .foregroundStyle(.summaryGradient)
@@ -49,7 +48,6 @@ struct SummaryComponent: View {
                             .font(.summaryUnit)
                         
                     }
-                    Spacer()
                 }
             }
         }
