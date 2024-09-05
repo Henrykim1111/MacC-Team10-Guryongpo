@@ -33,7 +33,6 @@ struct BPMChartView: View {
                         .highlighter(activity: .heartrate, isDefault: false)
                 }
                 .font(.navigationSportyTitle)
-                .padding(.top, 32)
                 
                 Spacer()
             }
@@ -41,7 +40,6 @@ struct BPMChartView: View {
             BPMChartView(fastest: fastest, slowest: slowest)
             
             averageMaximumBpmView
-                .padding(.horizontal, 48)
                 .padding(.top, 30)
             
             Spacer()
@@ -55,7 +53,7 @@ struct BPMChart: View {
     let fastestWorkout: WorkoutData
     let slowestWorkout: WorkoutData
     let averageBPM: Double
-    let betweenBarSpace = 70.0
+    let betweenBarSpace = 45.0
     
     private func isMax(_ workout: WorkoutData) -> Bool {
         workout == fastestWorkout
@@ -72,7 +70,7 @@ struct BPMChart: View {
                     let workout = workouts[index]
                     
                     BarMark(
-                        x: .value("Order", index),
+                        x: .value("Order", workouts.count - index),
                         yStart: .value("HeartRate", 0),
                         yEnd: .value("HeartRate", workout.maxHeartRate)
                     )
@@ -84,15 +82,13 @@ struct BPMChart: View {
                     .annotation(position: .bottom, alignment: .center) {
                         let isMaxOrMin = isMin(workout) || isMax(workout)
                         VStack(spacing: 6) {
-                            Text(workout.maxHeartRate.formatted() + "Bpm")
+                            Text(workout.maxHeartRate.formatted())
                                 .font(.maxValueUint)
                                 .foregroundStyle(.maxValueStyle)
                                 .opacity(isMaxOrMin ? 1.0 : 0.5)
                                 .padding(.top, 8)
-                            HStack(spacing: 0) {
-                                Text("\(workout.day)")
-                                Text("일")
-                            }
+                            
+                            Text(workout.monthDay)
                                 .font(isMaxOrMin ? .maxDayUnit : .defaultDayUnit)
                                 .foregroundStyle(.defaultDayStyle)
                         }
@@ -163,11 +159,18 @@ extension BPMChartView {
             .overlay {
                 if !workouts.isEmpty {
                     VStack {
-                        
-                        Text("\(startDate) - \(endDate)")
+                        ZStack {
+                            Text("\(startDate) - \(endDate)")
+                                .font(.durationStyle)
+                                .foregroundStyle(.durationStyle)
+                            
+                            HStack {
+                                Spacer()
+                                Text("단위: Bpm")
+                            }
                             .font(.durationStyle)
-                            .foregroundStyle(.durationStyle)
-                        
+                            .foregroundStyle(.defaultDayStyle)
+                        }
                         Spacer()
                         BPMChart(
                             workouts: workouts,
@@ -176,8 +179,9 @@ extension BPMChartView {
                             averageBPM: average(of: workouts)
                         )
                         .frame(height: 120)
+                        .padding(.horizontal)
                     }
-                    .padding(.horizontal, 30)
+                    .padding(.horizontal, 20)
                     .padding(.vertical, 24)
                 } else {
                     ZStack {
@@ -187,7 +191,7 @@ extension BPMChartView {
                             .opacity(0.3)
                         VStack {
                             Text("저장된 경기 기록이 없습니다.")
-                            .font(.matchRecapEmptyDataTop)
+                                .font(.matchRecapEmptyDataTop)
                             Group {
                                 Text("애플워치를 차고 사커비트로")
                                 Text("당신의 첫 번째 경기를 기록해 보세요!")
@@ -204,38 +208,38 @@ extension BPMChartView {
     @ViewBuilder
     private var averageMaximumBpmView: some View {
         let player = FileLoader.heartRate.randomElement()
-
+        
         let heartRateMessage = String(
             format: "%@의 결승골 득점시 심박수는 %@입니다.".localized(),
             player?.name ?? "Lionel Messi",
             player?.heartRate.gameWinningGoal ?? "175"
         )
-
-        VStack(spacing: 16) {
-            Text(heartRateMessage)
-                .font(.playerComapareSaying)
-                .multilineTextAlignment(.center)
-                .foregroundStyle(.playerCompareStyle)
-
-            Text("최근 경기 평균")
-                .font(.averageText)
-                .foregroundStyle(.averageTextStyle)
-            Group {
-                if !workouts.isEmpty {
-                    Text(average(of: workouts).rounded(at: 0))
-                    + Text(" Bpm")
-                } else {
-                    Text("--")
-                    + Text(" Bpm")
+        
+        LightRectangleView(color: .chartBoxBackground.opacity(0.4))
+            .frame(height: 120)
+            .overlay {
+                VStack(spacing: 16) {
+                    Text(heartRateMessage)
+                        .font(.playerComapareSaying)
+                        .multilineTextAlignment(.center)
+                        .foregroundStyle(.playerCompareStyle)
+                    
+                    Text("최근 경기 평균")
+                        .font(.averageText)
+                        .foregroundStyle(.averageTextStyle)
+                    Group {
+                        if !workouts.isEmpty {
+                            Text(average(of: workouts).rounded(at: 0))
+                            + Text(" Bpm")
+                        } else {
+                            Text("--")
+                            + Text(" Bpm")
+                        }
+                    }
+                    .font(.averageValue)
+                    .foregroundStyle(.navigationSportyBPMTitle)
                 }
             }
-            .font(.averageValue)
-            .foregroundStyle(.navigationSportyBPMTitle)
-        }
-        .padding()
-        .overlay {
-            LightRectangleView(color: .chartBoxBackground.opacity(0.4))
-        }
     }
 }
 

@@ -34,18 +34,16 @@ struct SpeedChartView: View {
                         .highlighter(activity: .speed, isDefault: false)
                 }
                 .font(.navigationSportyTitle)
-                .padding(.top, 32)
-
+                
                 Spacer()
             }
-
+            
             
             speedChartView(fastest: fastest, slowest: slowest)
             
             averageSpeedView
-                .padding(.horizontal, 48)
                 .padding(.top, 30)
-
+            
             Spacer()
         }
         .padding()
@@ -57,7 +55,7 @@ struct SpeedChart: View {
     let fastestWorkout: WorkoutData
     let slowestWorkout: WorkoutData
     let averageSpeed: Double
-    let betweenBarSpace = 70.0
+    let betweenBarSpace = 45.0
     
     
     private func isMax(_ workout: WorkoutData) -> Bool {
@@ -75,7 +73,7 @@ struct SpeedChart: View {
                     let workout = workouts[index]
                     
                     BarMark(
-                        x: .value("Order", index),
+                        x: .value("Order", workouts.count - index),
                         yStart: .value("Velocity", 0.0),
                         yEnd: .value("Velocity", workout.velocity)
                     )
@@ -87,16 +85,13 @@ struct SpeedChart: View {
                     .annotation(position: .bottom, alignment: .center) {
                         let isMaxOrMin = isMin(workout) || isMax(workout)
                         VStack(spacing: 6) {
-                            Text(workout.velocity.rounded() + " km/h")
+                            Text(workout.velocity.rounded())
                                 .font(.maxValueUint)
                                 .foregroundStyle(.maxValueStyle)
                                 .opacity(isMaxOrMin ? 1.0 : 0.5)
                                 .padding(.top, 8)
                             
-                            HStack(spacing: 0) {
-                                Text("\(workout.day)")
-                                Text("일")
-                            }
+                            Text(workout.monthDay)
                                 .font(isMaxOrMin ? .maxDayUnit : .defaultDayUnit)
                                 .foregroundStyle(.defaultDayStyle)
                         }
@@ -165,10 +160,18 @@ extension SpeedChartView {
             .overlay {
                 if !workouts.isEmpty {
                     VStack {
-                        
-                        Text("\(startDate) - \(endDate)")
+                        ZStack {
+                            Text("\(startDate) - \(endDate)")
+                                .font(.durationStyle)
+                                .foregroundStyle(.durationStyle)
+                            
+                            HStack {
+                                Spacer()
+                                Text("단위: km/h")
+                            }
                             .font(.durationStyle)
-                            .foregroundStyle(.durationStyle)
+                            .foregroundStyle(.defaultDayStyle)
+                        }
                         
                         Spacer()
                         SpeedChart(
@@ -178,8 +181,9 @@ extension SpeedChartView {
                             averageSpeed: average(of: workouts)
                         )
                         .frame(height: 120)
+                        .padding(.horizontal)
                     }
-                    .padding(.horizontal, 30)
+                    .padding(.horizontal, 20)
                     .padding(.vertical, 24)
                 } else {
                     ZStack {
@@ -189,7 +193,7 @@ extension SpeedChartView {
                             .opacity(0.3)
                         VStack {
                             Text("저장된 경기 기록이 없습니다.")
-                            .font(.matchRecapEmptyDataTop)
+                                .font(.matchRecapEmptyDataTop)
                             Group {
                                 Text("애플워치를 차고 사커비트로")
                                 Text("당신의 첫 번째 경기를 기록해 보세요!")
@@ -206,38 +210,38 @@ extension SpeedChartView {
     @ViewBuilder
     private var averageSpeedView: some View {
         let player = FileLoader.topSpeed.randomElement()
-
+        
         let topSpeedMessage = String(
             format: "%@의 최고 속도는 %@km/h입니다.".localized(),
             player?.name ?? "Lionel Messi",
             player?.topSpeed ?? "33.2"
         )
-
-        VStack(spacing: 16) {
-            Text(topSpeedMessage)
-                .font(.playerComapareSaying)
-                .multilineTextAlignment(.center)
-                .foregroundStyle(.playerCompareStyle)
-
-            Text("최근 경기 평균")
-                .font(.averageText)
-                .foregroundStyle(.averageTextStyle)
-            Group {
-                if !workouts.isEmpty {
-                    Text(average(of: workouts).rounded(at: 1))
-                    + Text(" km/h")
-                } else {
-                    Text("--")
-                    + Text(" km/h")
+        
+        LightRectangleView(color: .chartBoxBackground.opacity(0.4))
+            .frame(height: 120)
+            .overlay {
+                VStack(spacing: 16) {
+                    Text(topSpeedMessage)
+                        .font(.playerComapareSaying)
+                        .multilineTextAlignment(.center)
+                        .foregroundStyle(.playerCompareStyle)
+                    
+                    Text("최근 경기 평균")
+                        .font(.averageText)
+                        .foregroundStyle(.averageTextStyle)
+                    Group {
+                        if !workouts.isEmpty {
+                            Text(average(of: workouts).rounded(at: 1))
+                            + Text(" km/h")
+                        } else {
+                            Text("--")
+                            + Text(" km/h")
+                        }
+                    }
+                    .font(.averageValue)
+                    .foregroundStyle(.navigationSportySpeedTitle)
                 }
             }
-            .font(.averageValue)
-            .foregroundStyle(.navigationSportySpeedTitle)
-        }
-        .padding()
-        .overlay {
-            LightRectangleView(color: .chartBoxBackground.opacity(0.4))
-        }
     }
 }
 
