@@ -26,24 +26,30 @@ struct SummaryView: View {
             GeometryReader { proxy in
                 TabView {
                     Group {
-                        VStack(spacing: 8) {
+                        VStack(spacing: 4) {
+                            
                             InfoSportsView()
+                                .padding(.top)
                             Image(systemName: "arrowtriangle.down.fill")
                                 .foregroundStyle(.summaryGradient)
                                 .font(.summaryTraillingTop)
                                 .opacity(isBlinking ? 1 : 0)
                                 .animation(.spring.repeatForever(autoreverses: false).speed(0.8),
                                            value: isBlinking)
+                                .padding(.bottom)
                         }
                         
-                        VStack(spacing: 8) {
+                        VStack(spacing: 4) {
+                            
                             Image(systemName: "arrowtriangle.up.fill")
                                 .foregroundStyle(.summaryGradient)
                                 .font(.summaryTraillingTop)
                                 .opacity(isHeartBlinking ? 1 : 0)
                                 .animation(.spring.repeatForever(autoreverses: false).speed(0.8),
                                            value: isHeartBlinking)
+                                .padding(.top)
                             InfoHeartView()
+                            Spacer()
                             Button {
                                 workoutManager.showingSummaryView = false
                             } label: {
@@ -53,11 +59,13 @@ struct SummaryView: View {
                                     .overlay {
                                         Text("완료")
                                             .font(.summaryDoneButton)
-                                            .padding(.horizontal, 20)
-                                            .padding(.vertical, 14)
+                                            .padding(.horizontal, 18)
+                                            .padding(.vertical, 24)
                                             .foregroundStyle(.summaryGradient)
                                     }
                             }
+                            .padding(.bottom, 16)
+                            
                         }
                         .onAppear {
                             withAnimation {
@@ -81,7 +89,6 @@ struct SummaryView: View {
                 .scrollIndicators(.hidden)
                 
             }
-            .padding(.vertical)
             .edgesIgnoringSafeArea(.all)
         } else {
             PhraseView()

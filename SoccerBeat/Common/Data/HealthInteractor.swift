@@ -18,10 +18,14 @@ final class HealthInteractor: NSObject, ObservableObject {
     // Object to request permission to read HealthKit data.
     var healthStore = HKHealthStore()
     let locationManager = CLLocationManager()
-    let typesToRead = Set([HKObjectType.quantityType(forIdentifier: .heartRate)!,
+    let typesToRead = Set([
+                           HKObjectType.quantityType(forIdentifier: .heartRate)!,
                            HKObjectType.quantityType(forIdentifier: .distanceWalkingRunning)!,
-                           HKObjectType.quantityType(forIdentifier: .runningSpeed)!,
                            HKObjectType.quantityType(forIdentifier: .walkingSpeed)!,
+                           HKObjectType.quantityType(forIdentifier: .runningSpeed)!,
+                           HKQuantityType.quantityType(forIdentifier: .runningPower)!,
+                           HKQuantityType.quantityType(forIdentifier: .activeEnergyBurned)!,
+                           HKQuantityType.quantityType(forIdentifier: .vo2Max)!,
                            HKSeriesType.workoutType(),
                            HKSeriesType.workoutRoute(),
                            HKObjectType.activitySummaryType()
@@ -31,7 +35,6 @@ final class HealthInteractor: NSObject, ObservableObject {
                              HKSeriesType.workoutRoute(),
                              HKQuantityType.quantityType(forIdentifier: .runningSpeed)!,
                              HKQuantityType.quantityType(forIdentifier: .distanceWalkingRunning)!
-
     ]
 
     // Entire user workouts in HealthKit data.

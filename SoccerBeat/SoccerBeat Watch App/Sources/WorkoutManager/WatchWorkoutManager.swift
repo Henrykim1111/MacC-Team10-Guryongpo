@@ -28,23 +28,23 @@ final class WorkoutManager: NSObject, ObservableObject {
     private(set) var builder: HKLiveWorkoutBuilder?
     private(set) var routeBuilder: HKWorkoutRouteBuilder?
 
-    private let typesToShare: Set = [HKQuantityType.workoutType(),
-                                     HKSeriesType.workoutRoute(),
-                                     HKQuantityType.quantityType(forIdentifier: .runningSpeed)!,
-                                     HKQuantityType.quantityType(forIdentifier: .distanceWalkingRunning)!
-    ]
-
     private let typesToRead: Set = [
         HKQuantityType.quantityType(forIdentifier: .heartRate)!,
         HKQuantityType.quantityType(forIdentifier: .distanceWalkingRunning)!,
-        HKQuantityType.quantityType(forIdentifier: .runningSpeed)!,
         HKQuantityType.quantityType(forIdentifier: .walkingSpeed)!,
+        HKQuantityType.quantityType(forIdentifier: .runningSpeed)!,
         HKQuantityType.quantityType(forIdentifier: .runningPower)!,
         HKQuantityType.quantityType(forIdentifier: .activeEnergyBurned)!,
         HKQuantityType.quantityType(forIdentifier: .vo2Max)!,
         HKSeriesType.workoutType(),
         HKSeriesType.workoutRoute(),
         HKObjectType.activitySummaryType()
+    ]
+    
+    private let typesToShare: Set = [HKQuantityType.workoutType(),
+                                     HKSeriesType.workoutRoute(),
+                                     HKQuantityType.quantityType(forIdentifier: .runningSpeed)!,
+                                     HKQuantityType.quantityType(forIdentifier: .distanceWalkingRunning)!
     ]
 
     @Published var workout: HKWorkout?
