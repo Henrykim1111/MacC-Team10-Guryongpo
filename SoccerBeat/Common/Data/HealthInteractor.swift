@@ -23,6 +23,7 @@ final class HealthInteractor: NSObject, ObservableObject {
                            HKObjectType.quantityType(forIdentifier: .distanceWalkingRunning)!,
                            HKObjectType.quantityType(forIdentifier: .walkingSpeed)!,
                            HKObjectType.quantityType(forIdentifier: .runningSpeed)!,
+                           HKQuantityType.quantityType(forIdentifier: .runningPower)!,
                            HKQuantityType.quantityType(forIdentifier: .activeEnergyBurned)!,
                            HKQuantityType.quantityType(forIdentifier: .vo2Max)!,
                            HKSeriesType.workoutType(),

@@ -4772,12 +4772,13 @@
       }
     },
     "최소심박" : {
+      "comment" : "워치 서머리뷰",
       "extractionState" : "manual",
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Min HR"
+            "value" : "MIN HR"
           }
         },
         "ko" : {
